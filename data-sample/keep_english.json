@@ -1,0 +1,33 @@
+[
+ {
+  "term": "Zoom",
+  "en_pattern": "(?i)\\bZoom\\b",
+  "vi_variants": {
+   "thu phóng": "{term}"
+  },
+  "why": "Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn",
+  "added": "2026-11-02T17:10:40",
+  "updated": "2026-11-02T17:10:40"
+ },
+ {
+  "term": "Time Code",
+  "en_pattern": "(?i)\\bTime\\s*Code\\b",
+  "vi_variants": {
+   "mã thời gian": "{term}"
+  },
+  "why": "Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn",
+  "added": "2026-11-02T17:10:40",
+  "updated": "2026-11-02T17:10:40"
+ },
+ {
+  "term": "Preset",
+  "en_pattern": "(?i)\\bPreset\\b",
+  "vi_variants": {
+   "cài đặt trước": "cài đặt {term}",
+   "đặt trước": "{term}"
+  },
+  "why": "Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn",
+  "added": "2026-11-02T17:10:40",
+  "updated": "2026-11-02T17:10:40"
+ }
+]

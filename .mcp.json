@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "sony-alpha-viet": {
+      "command": "uv",
+      "args": ["run", "--directory", "${CLAUDE_PLUGIN_ROOT}", "sony-alpha-viet-mcp"]
+    }
+  }
+}

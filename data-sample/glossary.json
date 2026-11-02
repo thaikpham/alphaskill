@@ -1,0 +1,4191 @@
+[
+ {
+  "en": "Access Point",
+  "vi": "điểm truy cập",
+  "short": "điểm truy cập",
+  "category": "network"
+ },
+ {
+  "en": "Accessibility",
+  "vi": "trợ năng",
+  "short": "trợ năng",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Active",
+  "vi": "chủ động",
+  "short": "chủ động",
+  "category": "rev3",
+  "locked": true,
+  "note": "SteadyShot"
+ },
+ {
+  "en": "Add",
+  "vi": "thêm",
+  "short": "thêm",
+  "category": "ui-generic"
+ },
+ {
+  "en": "ADI flash",
+  "vi": "flash ADI",
+  "short": "flash ADI",
+  "category": "flash"
+ },
+ {
+  "en": "AEL",
+  "vi": "AEL",
+  "short": "AEL",
+  "category": "exposure"
+ },
+ {
+  "en": "AEL hold",
+  "vi": "giữ AEL",
+  "short": "giữ AEL",
+  "category": "custom",
+  "note": "Hold = nhấn giữ -> \"Giữ ...\"."
+ },
+ {
+  "en": "AEL toggle",
+  "vi": "bật/tắt AEL",
+  "short": "bật/tắt AEL",
+  "category": "custom",
+  "note": "Toggle = nhấn để bật/tắt -> \"Bật/tắt ...\"."
+ },
+ {
+  "en": "AF",
+  "vi": "AF",
+  "short": "AF",
+  "category": "focus"
+ },
+ {
+  "en": "AF Illuminator",
+  "vi": "đèn hỗ trợ AF",
+  "short": "đèn hỗ trợ AF",
+  "category": "focus"
+ },
+ {
+  "en": "AF Range Limiter",
+  "vi": "giới hạn phạm vi AF",
+  "short": "giới hạn dải AF",
+  "category": "focus"
+ },
+ {
+  "en": "AF Track Sens",
+  "vi": "độ nhạy theo dõi AF",
+  "short": "độ nhạy theo dõi AF",
+  "category": "focus"
+ },
+ {
+  "en": "AF-C",
+  "vi": "AF-C",
+  "short": "AF-C",
+  "category": "focus"
+ },
+ {
+  "en": "AF-S",
+  "vi": "AF-S",
+  "short": "AF-S",
+  "category": "focus"
+ },
+ {
+  "en": "AF/MF",
+  "vi": "AF/MF",
+  "short": "AF/MF",
+  "category": "focus"
+ },
+ {
+  "en": "Airplane",
+  "vi": "máy bay",
+  "short": "máy bay",
+  "category": "focus"
+ },
+ {
+  "en": "Airplane Mode",
+  "vi": "chế độ máy bay",
+  "short": "chế độ máy bay",
+  "category": "network"
+ },
+ {
+  "en": "All",
+  "vi": "tất cả",
+  "short": "tất cả",
+  "category": "ui-generic"
+ },
+ {
+  "en": "All Images in This Group",
+  "vi": "tất cả ảnh trong nhóm này",
+  "short": "tất cả trong nhóm",
+  "category": "playback"
+ },
+ {
+  "en": "All in this Folder",
+  "vi": "tất cả trong thư mục này",
+  "short": "tất cả trong thư mục",
+  "category": "playback"
+ },
+ {
+  "en": "All with this date",
+  "vi": "tất cả ảnh cùng ngày",
+  "short": "tất cả cùng ngày",
+  "category": "playback"
+ },
+ {
+  "en": "Animal",
+  "vi": "động vật",
+  "short": "động vật",
+  "category": "focus"
+ },
+ {
+  "en": "Animal/Bird",
+  "vi": "động vật/chim",
+  "short": "động vật/chim",
+  "category": "focus"
+ },
+ {
+  "en": "Anti Motion Blur",
+  "vi": "chống nhòe chuyển động",
+  "short": "chống nhòe",
+  "category": "exposure"
+ },
+ {
+  "en": "Anti-flicker",
+  "vi": "chống nhấp nháy",
+  "short": "chống nhấp nháy",
+  "category": "drive"
+ },
+ {
+  "en": "Aperture",
+  "vi": "khẩu độ",
+  "short": "khẩu độ",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Aperture Priority",
+  "vi": "ưu tiên khẩu độ",
+  "short": "ưu tiên khẩu",
+  "category": "exposure",
+  "note": "Mode A."
+ },
+ {
+  "en": "Area Setting",
+  "vi": "cài đặt khu vực",
+  "short": "cài đặt khu vực",
+  "category": "setup",
+  "note": "Time zone."
+ },
+ {
+  "en": "Area/Date",
+  "vi": "khu vực/ngày",
+  "short": "khu vực/ngày",
+  "category": "setup"
+ },
+ {
+  "en": "Aspect Marker",
+  "vi": "khung tỷ lệ",
+  "short": "khung tỷ lệ",
+  "category": "movie"
+ },
+ {
+  "en": "Aspect Ratio",
+  "vi": "tỷ lệ khung hình",
+  "short": "tỷ lệ khung hình",
+  "category": "movie",
+  "note": "3:2, 16:9..."
+ },
+ {
+  "en": "Audio",
+  "vi": "âm thanh",
+  "short": "âm thanh",
+  "category": "audio"
+ },
+ {
+  "en": "Audio Level Display",
+  "vi": "hiển thị mức âm thanh",
+  "short": "hiển thị mức âm",
+  "category": "audio"
+ },
+ {
+  "en": "Audio NR",
+  "vi": "giảm ồn âm thanh",
+  "short": "giảm ồn",
+  "category": "audio"
+ },
+ {
+  "en": "Audio Out Timing",
+  "vi": "thời điểm xuất âm thanh",
+  "short": "thời điểm xuất âm",
+  "category": "audio"
+ },
+ {
+  "en": "Audio Rec Level",
+  "vi": "mức ghi âm",
+  "short": "mức ghi âm",
+  "category": "audio"
+ },
+ {
+  "en": "Audio Recording",
+  "vi": "ghi âm",
+  "short": "ghi âm",
+  "category": "audio"
+ },
+ {
+  "en": "Audio signals",
+  "vi": "âm báo",
+  "short": "âm báo",
+  "category": "audio",
+  "note": "Operation beeps."
+ },
+ {
+  "en": "Auto",
+  "vi": "tự động",
+  "short": "AUTO",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Auto Power OFF Temp.",
+  "vi": "nhiệt độ tự tắt nguồn",
+  "short": "nhiệt độ tự tắt",
+  "category": "setup"
+ },
+ {
+  "en": "Auto Review",
+  "vi": "tự động xem lại",
+  "short": "tự động xem lại",
+  "category": "playback"
+ },
+ {
+  "en": "Auto/Manual",
+  "vi": "tự động/thủ công",
+  "short": "tự động/thủ công",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Autoflash",
+  "vi": "flash tự động",
+  "short": "flash tự động",
+  "category": "flash"
+ },
+ {
+  "en": "Av",
+  "vi": "Av",
+  "short": "Av",
+  "category": "exposure",
+  "note": "Sony dial label (aperture value). Never translate."
+ },
+ {
+  "en": "Av/Tv",
+  "vi": "Av/Tv",
+  "short": "Av/Tv",
+  "category": "exposure"
+ },
+ {
+  "en": "AWB",
+  "vi": "AWB",
+  "short": "AWB",
+  "category": "color"
+ },
+ {
+  "en": "Back",
+  "vi": "quay lại",
+  "short": "quay lại",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Background",
+  "vi": "phông nền",
+  "short": "phông",
+  "category": "exposure"
+ },
+ {
+  "en": "Background Defocus",
+  "vi": "xóa phông",
+  "short": "xóa phông",
+  "category": "exposure",
+  "note": "Community term. Alternative \"làm mờ phông nền\"."
+ },
+ {
+  "en": "Backlight",
+  "vi": "ngược sáng",
+  "short": "ngược sáng",
+  "category": "exposure",
+  "note": "Not \"đèn nền\"."
+ },
+ {
+  "en": "Backlight Corr. HDR",
+  "vi": "HDR ngược sáng",
+  "short": "HDR ngược sáng",
+  "category": "exposure",
+  "note": "Backlight = ngược sáng. Est. 102% at W200 26x34: needs SonyTool check."
+ },
+ {
+  "en": "Balanced Emphasis",
+  "vi": "cân bằng",
+  "short": "cân bằng",
+  "category": "focus"
+ },
+ {
+  "en": "Base ISO",
+  "vi": "ISO gốc",
+  "short": "ISO gốc",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Battery",
+  "vi": "pin",
+  "short": "pin",
+  "category": "setup"
+ },
+ {
+  "en": "Beach",
+  "vi": "bãi biển",
+  "short": "bãi biển",
+  "category": "exposure"
+ },
+ {
+  "en": "Bird",
+  "vi": "chim",
+  "short": "chim",
+  "category": "focus"
+ },
+ {
+  "en": "Bluetooth",
+  "vi": "Bluetooth",
+  "short": "Bluetooth",
+  "category": "network"
+ },
+ {
+  "en": "Bottom",
+  "vi": "dưới",
+  "short": "dưới",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Bracket",
+  "vi": "bù trừ",
+  "short": "bù trừ",
+  "category": "rev3",
+  "locked": true,
+  "note": "Nikon/Canon VN: chụp bù trừ; không giữ 'Bracket'"
+ },
+ {
+  "en": "Bracket Settings",
+  "vi": "cài đặt Bracket",
+  "short": "cài đặt Bracket",
+  "category": "drive"
+ },
+ {
+  "en": "Breathing Comp.",
+  "vi": "hiệu chỉnh breathing",
+  "short": "hiệu chỉnh breathing",
+  "category": "color"
+ },
+ {
+  "en": "Burst",
+  "vi": "chụp loạt",
+  "short": "chụp loạt",
+  "category": "drive"
+ },
+ {
+  "en": "Button",
+  "vi": "nút",
+  "short": "nút",
+  "category": "custom"
+ },
+ {
+  "en": "C2PA",
+  "vi": "C2PA",
+  "short": "C2PA",
+  "category": "network"
+ },
+ {
+  "en": "Cam.Set",
+  "vi": "cài đặt máy ảnh",
+  "short": "cài đặt máy",
+  "category": "setup",
+  "note": "Camera Settings 1/2 memory."
+ },
+ {
+  "en": "Camera Settings",
+  "vi": "cài đặt máy ảnh",
+  "short": "cài đặt máy",
+  "category": "setup"
+ },
+ {
+  "en": "Camera Settings Reset",
+  "vi": "đặt lại cài đặt máy ảnh",
+  "short": "đặt lại cài đặt máy",
+  "category": "setup"
+ },
+ {
+  "en": "Cancel",
+  "vi": "hủy",
+  "short": "hủy",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Canceled.",
+  "vi": "đã hủy.",
+  "short": "đã hủy.",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Car/Train",
+  "vi": "xe/tàu",
+  "short": "xe/tàu",
+  "category": "focus"
+ },
+ {
+  "en": "Center",
+  "vi": "trung tâm",
+  "short": "trung tâm",
+  "category": "exposure",
+  "note": "Metering/focus area. \"Giữa\" for position."
+ },
+ {
+  "en": "Center Marker",
+  "vi": "dấu tâm",
+  "short": "dấu tâm",
+  "category": "movie"
+ },
+ {
+  "en": "Certificate",
+  "vi": "chứng chỉ",
+  "short": "chứng chỉ",
+  "category": "network"
+ },
+ {
+  "en": "Certification Logo",
+  "vi": "logo chứng nhận",
+  "short": "logo chứng nhận",
+  "category": "setup"
+ },
+ {
+  "en": "Changed the",
+  "vi": "đã đổi",
+  "short": "đã đổi",
+  "category": "ui-generic",
+  "note": "Message opener."
+ },
+ {
+  "en": "Chromatic Aberration Comp.",
+  "vi": "hiệu chỉnh sắc sai",
+  "short": "hiệu chỉnh sắc sai",
+  "category": "color"
+ },
+ {
+  "en": "Clarity",
+  "vi": "độ rõ",
+  "short": "độ rõ",
+  "category": "color"
+ },
+ {
+  "en": "Clear Image Zoom",
+  "vi": "Zoom rõ nét",
+  "short": "Zoom rõ nét",
+  "category": "rev3",
+  "locked": true,
+  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+ },
+ {
+  "en": "Clip Flag",
+  "vi": "cờ đoạn phim",
+  "short": "cờ đoạn phim",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Close",
+  "vi": "đóng",
+  "short": "đóng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Cloud",
+  "vi": "Cloud",
+  "short": "Cloud",
+  "category": "network",
+  "note": "Creators' Cloud."
+ },
+ {
+  "en": "Cnct.",
+  "vi": "kết nối",
+  "short": "kết nối",
+  "category": "network"
+ },
+ {
+  "en": "Cnct./Remote Sht.",
+  "vi": "kết nối/chụp từ xa",
+  "short": "kết nối/từ xa",
+  "category": "network",
+  "note": "Report. If still too long: \"Kết nối/Từ xa\"."
+ },
+ {
+  "en": "Color",
+  "vi": "màu",
+  "short": "màu",
+  "category": "color"
+ },
+ {
+  "en": "Color Gamut",
+  "vi": "không gian màu",
+  "short": "không gian màu",
+  "category": "color"
+ },
+ {
+  "en": "Color Temp./Filter",
+  "vi": "nhiệt độ màu/kính lọc",
+  "short": "nhiệt độ màu/lọc",
+  "category": "color"
+ },
+ {
+  "en": "Color/Tone",
+  "vi": "màu/tông màu",
+  "short": "màu/tông",
+  "category": "color"
+ },
+ {
+  "en": "Commander",
+  "vi": "bộ chỉ huy",
+  "short": "bộ chỉ huy",
+  "category": "rev3",
+  "locked": true,
+  "note": "Quy tắc mục 7"
+ },
+ {
+  "en": "Communication",
+  "vi": "giao tiếp",
+  "short": "giao tiếp",
+  "category": "network"
+ },
+ {
+  "en": "Comp.",
+  "vi": "bù / hiệu chỉnh",
+  "short": "bù",
+  "category": "exposure",
+  "note": "Exposure/flash -> \"bù\" (bù sáng, bù flash); lens corrections -> \"hiệu chỉnh\"."
+ },
+ {
+  "en": "Compensation",
+  "vi": "bù / hiệu chỉnh",
+  "short": "bù",
+  "category": "exposure",
+  "note": "See Comp."
+ },
+ {
+  "en": "Completed.",
+  "vi": "đã hoàn tất.",
+  "short": "đã hoàn tất.",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Compressed",
+  "vi": "nén",
+  "short": "nén",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Connect",
+  "vi": "kết nối",
+  "short": "kết nối",
+  "category": "network"
+ },
+ {
+  "en": "Connecting...",
+  "vi": "đang kết nối...",
+  "short": "đang kết nối",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Connection",
+  "vi": "kết nối",
+  "short": "kết nối",
+  "category": "network"
+ },
+ {
+  "en": "Cont.",
+  "vi": "liên tục",
+  "short": "liên tục",
+  "category": "drive"
+ },
+ {
+  "en": "Cont. Bracket",
+  "vi": "Bracket liên tục",
+  "short": "Bracket liên tục",
+  "category": "drive"
+ },
+ {
+  "en": "Cont. Shooting",
+  "vi": "chụp liên tục",
+  "short": "chụp liên tục",
+  "category": "drive"
+ },
+ {
+  "en": "Cont. Shooting Speed",
+  "vi": "tốc độ chụp liên tục",
+  "short": "tốc độ chụp liên tục",
+  "category": "drive"
+ },
+ {
+  "en": "Continuous",
+  "vi": "liên tiếp",
+  "short": "liên tiếp",
+  "category": "rev3",
+  "locked": true,
+  "note": "chỉ khi chuỗi EN đứng riêng; 'chụp liên tục' giữ nguyên"
+ },
+ {
+  "en": "Continuous Shooting",
+  "vi": "chụp liên tục",
+  "short": "chụp liên tục",
+  "category": "drive"
+ },
+ {
+  "en": "Contrast",
+  "vi": "độ tương phản",
+  "short": "tương phản",
+  "category": "color"
+ },
+ {
+  "en": "Control Dial",
+  "vi": "vòng xoay",
+  "short": "vòng xoay",
+  "category": "custom",
+  "note": "Control Dial L/R -> \"Vòng xoay L/R\"."
+ },
+ {
+  "en": "Control Wheel",
+  "vi": "bánh xe điều khiển",
+  "short": "bánh xe",
+  "category": "custom"
+ },
+ {
+  "en": "Creative Look",
+  "vi": "Creative Look",
+  "short": "Creative Look",
+  "category": "color"
+ },
+ {
+  "en": "Crop",
+  "vi": "cắt khung",
+  "short": "cắt khung",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "CTRL FOR HDMI",
+  "vi": "điều khiển qua HDMI",
+  "short": "điều khiển HDMI",
+  "category": "setup"
+ },
+ {
+  "en": "Custom",
+  "vi": "tùy chỉnh",
+  "short": "tùy chỉnh",
+  "category": "custom"
+ },
+ {
+  "en": "Custom Key",
+  "vi": "nút tùy chỉnh",
+  "short": "nút tùy chỉnh",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Custom Key Setting",
+  "vi": "cài đặt nút tùy chỉnh",
+  "short": "nút tùy chỉnh",
+  "category": "custom"
+ },
+ {
+  "en": "Custom WB",
+  "vi": "WB tùy chỉnh",
+  "short": "WB tùy chỉnh",
+  "category": "color",
+  "note": "Modifier after noun."
+ },
+ {
+  "en": "D-Range Optimizer",
+  "vi": "tối ưu dải động (DRO)",
+  "short": "DRO",
+  "category": "exposure"
+ },
+ {
+  "en": "Date/Time Setup",
+  "vi": "cài đặt ngày/giờ",
+  "short": "cài đặt ngày/giờ",
+  "category": "setup"
+ },
+ {
+  "en": "Daylight Savings",
+  "vi": "giờ mùa hè",
+  "short": "giờ mùa hè",
+  "category": "setup",
+  "note": "Standard VN term for DST."
+ },
+ {
+  "en": "Defocus",
+  "vi": "xóa phông",
+  "short": "xóa phông",
+  "category": "rev3",
+  "locked": true,
+  "note": "duyệt 02/11/2026: không dùng 'mất nét'"
+ },
+ {
+  "en": "Delete",
+  "vi": "xóa",
+  "short": "xóa",
+  "category": "playback"
+ },
+ {
+  "en": "Developer",
+  "vi": "nhà phát triển",
+  "short": "nhà phát triển",
+  "category": "setup"
+ },
+ {
+  "en": "Developer Tools",
+  "vi": "công cụ lập trình",
+  "short": "công cụ lập trình",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Device",
+  "vi": "thiết bị",
+  "short": "thiết bị",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Dial",
+  "vi": "vòng xoay",
+  "short": "vòng xoay",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Dial Customize",
+  "vi": "tùy chỉnh vòng xoay",
+  "short": "tùy chỉnh vòng xoay",
+  "category": "custom"
+ },
+ {
+  "en": "Dial Setup",
+  "vi": "cài đặt vòng xoay",
+  "short": "cài đặt vòng xoay",
+  "category": "custom"
+ },
+ {
+  "en": "Digital Signature",
+  "vi": "chữ ký số",
+  "short": "chữ ký số",
+  "category": "network"
+ },
+ {
+  "en": "Digital Zoom",
+  "vi": "Zoom số",
+  "short": "Zoom số",
+  "category": "rev3",
+  "locked": true,
+  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+ },
+ {
+  "en": "Directivity",
+  "vi": "hướng thu",
+  "short": "hướng thu",
+  "category": "audio",
+  "note": "Mic directivity."
+ },
+ {
+  "en": "Disable",
+  "vi": "tắt",
+  "short": "tắt",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Disp",
+  "vi": "hiển thị",
+  "short": "hiển thị",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Disp.",
+  "vi": "hiển thị",
+  "short": "hiển thị",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Display",
+  "vi": "hiển thị",
+  "short": "hiển thị",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Display All Info.",
+  "vi": "hiển thị toàn bộ thông tin",
+  "short": "hiện mọi thông tin",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Display Option",
+  "vi": "tùy chọn hiển thị",
+  "short": "tùy chọn hiển thị",
+  "category": "setup"
+ },
+ {
+  "en": "Display Quality",
+  "vi": "chất lượng hiển thị",
+  "short": "chất lượng hiển thị",
+  "category": "setup"
+ },
+ {
+  "en": "Display Select",
+  "vi": "chọn hiển thị",
+  "short": "chọn hiển thị",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Distortion Comp.",
+  "vi": "hiệu chỉnh méo hình",
+  "short": "hiệu chỉnh méo",
+  "category": "color"
+ },
+ {
+  "en": "Divider Frame",
+  "vi": "khung phân cách",
+  "short": "khung phân cách",
+  "category": "playback"
+ },
+ {
+  "en": "DMF",
+  "vi": "DMF",
+  "short": "DMF",
+  "category": "focus"
+ },
+ {
+  "en": "Drive",
+  "vi": "kiểu chụp",
+  "short": "kiểu chụp",
+  "category": "drive"
+ },
+ {
+  "en": "Drive Mode",
+  "vi": "kiểu chụp",
+  "short": "kiểu chụp",
+  "category": "drive",
+  "note": "Distinct from Shoot Mode (chế độ chụp). Alternative: \"chế độ điều khiển\" (Sony VN manual, literal)."
+ },
+ {
+  "en": "DRO",
+  "vi": "DRO",
+  "short": "DRO",
+  "category": "exposure"
+ },
+ {
+  "en": "DRO Bracket",
+  "vi": "Bracket DRO",
+  "short": "Bracket DRO",
+  "category": "drive"
+ },
+ {
+  "en": "Dynamic Active",
+  "vi": "chủ động nâng cao",
+  "short": "chủ động nâng cao",
+  "category": "rev3",
+  "locked": true,
+  "note": "SteadyShot"
+ },
+ {
+  "en": "e-Front Curtain Shut.",
+  "vi": "màn trập trước điện tử",
+  "short": "màn trập trước điện tử",
+  "category": "exposure"
+ },
+ {
+  "en": "E-Shutter",
+  "vi": "màn trập điện tử",
+  "short": "màn trập điện tử",
+  "category": "exposure"
+ },
+ {
+  "en": "Edit",
+  "vi": "chỉnh sửa",
+  "short": "chỉnh sửa",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Electronic Shutter",
+  "vi": "màn trập điện tử",
+  "short": "(điện tử)",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Enable",
+  "vi": "bật",
+  "short": "bật",
+  "category": "ui-generic",
+  "note": "Not \"hữu hiệu hóa\"."
+ },
+ {
+  "en": "End",
+  "vi": "kết thúc",
+  "short": "kết thúc",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Enlarge",
+  "vi": "phóng to",
+  "short": "phóng to",
+  "category": "playback"
+ },
+ {
+  "en": "Enlarge Screen",
+  "vi": "phóng to màn hình",
+  "short": "phóng to màn hình",
+  "category": "setup"
+ },
+ {
+  "en": "Enter",
+  "vi": "Enter",
+  "short": "Enter",
+  "category": "ui-generic",
+  "note": "Button name."
+ },
+ {
+  "en": "Entire Screen Avg.",
+  "vi": "trung bình toàn khung",
+  "short": "TB toàn màn hình",
+  "category": "exposure"
+ },
+ {
+  "en": "Error",
+  "vi": "lỗi",
+  "short": "lỗi",
+  "category": "ui-generic"
+ },
+ {
+  "en": "EV",
+  "vi": "EV",
+  "short": "EV",
+  "category": "unit"
+ },
+ {
+  "en": "Execute",
+  "vi": "thực hiện",
+  "short": "thực hiện",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Exit",
+  "vi": "thoát",
+  "short": "thoát",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Expand Spot",
+  "vi": "điểm mở rộng",
+  "short": "điểm mở rộng",
+  "category": "focus"
+ },
+ {
+  "en": "Exposure",
+  "vi": "phơi sáng",
+  "short": "phơi sáng",
+  "category": "exposure",
+  "note": "Noun. \"Độ phơi sáng\" only when a value is meant."
+ },
+ {
+  "en": "Exposure Comp.",
+  "vi": "bù sáng",
+  "short": "bù sáng",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Exposure Compensation",
+  "vi": "bù sáng",
+  "short": "bù sáng",
+  "category": "exposure",
+  "note": "Same as Exposure Comp."
+ },
+ {
+  "en": "Exposure Mode",
+  "vi": "chế độ phơi sáng",
+  "short": "chế độ phơi sáng",
+  "category": "exposure"
+ },
+ {
+  "en": "Exposure Std. Adj.",
+  "vi": "chỉnh chuẩn phơi sáng",
+  "short": "chuẩn phơi sáng",
+  "category": "exposure",
+  "note": "Exposure Standard Adjust."
+ },
+ {
+  "en": "Exposure Step",
+  "vi": "bước phơi sáng",
+  "short": "bước phơi sáng",
+  "category": "exposure"
+ },
+ {
+  "en": "Ext Mic",
+  "vi": "mic ngoài",
+  "short": "mic ngoài",
+  "category": "audio"
+ },
+ {
+  "en": "External Flash",
+  "vi": "flash ngoài",
+  "short": "flash ngoài",
+  "category": "flash"
+ },
+ {
+  "en": "External Output",
+  "vi": "ngõ ra tín hiệu",
+  "short": "ngõ ra tín hiệu",
+  "category": "setup",
+  "note": "Report wording."
+ },
+ {
+  "en": "Extra fine",
+  "vi": "cực mịn",
+  "short": "cực mịn",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Eye",
+  "vi": "mắt",
+  "short": "mắt",
+  "category": "focus"
+ },
+ {
+  "en": "Eye AF",
+  "vi": "Eye AF",
+  "short": "Eye AF",
+  "category": "focus"
+ },
+ {
+  "en": "Face",
+  "vi": "khuôn mặt",
+  "short": "mặt",
+  "category": "focus",
+  "note": "Titles: \"mặt\"; help text: \"khuôn mặt\"."
+ },
+ {
+  "en": "Face Priority in Multi Metering",
+  "vi": "ưu tiên mặt khi đo đa điểm",
+  "short": "ưu tiên mặt (đa điểm)",
+  "category": "exposure",
+  "note": "Report wording. If too long use \"Ưu tiên mặt (đo sáng)\"."
+ },
+ {
+  "en": "Face/Eye",
+  "vi": "khuôn mặt/mắt",
+  "short": "mặt/mắt",
+  "category": "focus"
+ },
+ {
+  "en": "Face/Eye AF",
+  "vi": "AF khuôn mặt/mắt",
+  "short": "AF mặt/mắt",
+  "category": "focus"
+ },
+ {
+  "en": "Face/Eye Priority",
+  "vi": "ưu tiên khuôn mặt/mắt",
+  "short": "ưu tiên mặt/mắt",
+  "category": "focus"
+ },
+ {
+  "en": "Fade",
+  "vi": "Fade",
+  "short": "Fade",
+  "category": "color",
+  "note": "Creative Look parameter; kept in English."
+ },
+ {
+  "en": "Failed",
+  "vi": "thất bại",
+  "short": "thất bại",
+  "category": "ui-generic",
+  "note": "Failed to ... -> \"Không thể ...\"."
+ },
+ {
+  "en": "Fast",
+  "vi": "nhanh",
+  "short": "nhanh",
+  "category": "ui-generic"
+ },
+ {
+  "en": "FEL Lock",
+  "vi": "khóa FEL",
+  "short": "khóa FEL",
+  "category": "exposure"
+ },
+ {
+  "en": "File",
+  "vi": "tập tin",
+  "short": "tập tin",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "File Format",
+  "vi": "định dạng tập tin",
+  "short": "định dạng tập tin",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Fill-flash",
+  "vi": "flash cưỡng bức",
+  "short": "flash cưỡng bức",
+  "category": "flash"
+ },
+ {
+  "en": "Filter",
+  "vi": "bộ lọc",
+  "short": "lọc",
+  "category": "playback"
+ },
+ {
+  "en": "Filtered Images",
+  "vi": "ảnh đã lọc",
+  "short": "ảnh đã lọc",
+  "category": "playback"
+ },
+ {
+  "en": "Finder",
+  "vi": "ống ngắm",
+  "short": "ống ngắm",
+  "category": "rev3",
+  "locked": true,
+  "note": "không dùng 'bộ tìm kiếm'"
+ },
+ {
+  "en": "Finder Frame Rate",
+  "vi": "tốc độ khung hình ống ngắm",
+  "short": "FPS ống ngắm",
+  "category": "setup"
+ },
+ {
+  "en": "Finder/Monitor",
+  "vi": "ống ngắm/màn hình",
+  "short": "ống ngắm/màn hình",
+  "category": "setup"
+ },
+ {
+  "en": "Fine",
+  "vi": "nét",
+  "short": "nét",
+  "category": "ui-generic",
+  "note": "JPEG/HEIF image quality (local team decision). Extra Fine = siêu nét. \"Soft skin\" stays làm mịn da."
+ },
+ {
+  "en": "Fireworks",
+  "vi": "pháo hoa",
+  "short": "pháo hoa",
+  "category": "exposure"
+ },
+ {
+  "en": "Firing",
+  "vi": "nháy",
+  "short": "nháy",
+  "category": "flash",
+  "note": "Flash firing."
+ },
+ {
+  "en": "Firmware",
+  "vi": "Firmware",
+  "short": "Firmware",
+  "category": "user",
+  "locked": true,
+  "note": "giữ nguyên — ai cũng hiểu (duyệt 02/11/2026)"
+ },
+ {
+  "en": "Flash",
+  "vi": "đèn flash",
+  "short": "flash",
+  "category": "flash",
+  "note": "Titles may use \"flash\" alone when tight."
+ },
+ {
+  "en": "Flash Comp.",
+  "vi": "bù flash",
+  "short": "bù flash",
+  "category": "exposure",
+  "note": "Flash compensation."
+ },
+ {
+  "en": "Flash Compensation",
+  "vi": "bù flash",
+  "short": "bù flash",
+  "category": "exposure"
+ },
+ {
+  "en": "Flash Control",
+  "vi": "điều khiển flash",
+  "short": "điều khiển flash",
+  "category": "flash"
+ },
+ {
+  "en": "Flash Mode",
+  "vi": "chế độ flash",
+  "short": "chế độ flash",
+  "category": "flash"
+ },
+ {
+  "en": "Flash Off",
+  "vi": "tắt flash",
+  "short": "tắt flash",
+  "category": "flash"
+ },
+ {
+  "en": "Flash Power",
+  "vi": "công suất flash",
+  "short": "công suất flash",
+  "category": "flash",
+  "note": "FATAL in current: \"nguồn điện đèn flash\"."
+ },
+ {
+  "en": "Flexible Exp. Mode",
+  "vi": "chế độ phơi sáng linh hoạt",
+  "short": "phơi sáng linh hoạt",
+  "category": "exposure"
+ },
+ {
+  "en": "Flexible Spot",
+  "vi": "điểm linh hoạt",
+  "short": "điểm linh hoạt",
+  "category": "focus"
+ },
+ {
+  "en": "Flicker",
+  "vi": "nhấp nháy",
+  "short": "nhấp nháy",
+  "category": "drive"
+ },
+ {
+  "en": "Fn",
+  "vi": "Fn",
+  "short": "Fn",
+  "category": "custom"
+ },
+ {
+  "en": "Fn Menu",
+  "vi": "Menu Fn",
+  "short": "Menu Fn",
+  "category": "custom"
+ },
+ {
+  "en": "Focus",
+  "vi": "lấy nét",
+  "short": "lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Area",
+  "vi": "vùng lấy nét",
+  "short": "vùng lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Area Limit",
+  "vi": "giới hạn vùng lấy nét",
+  "short": "giới hạn vùng lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Bracket",
+  "vi": "Bracket lấy nét",
+  "short": "Bracket lấy nét",
+  "category": "drive"
+ },
+ {
+  "en": "Focus Frame",
+  "vi": "khung lấy nét",
+  "short": "khung lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Frame Display",
+  "vi": "hiển thị khung lấy nét",
+  "short": "hiện khung lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Mag.",
+  "vi": "phóng to lấy nét",
+  "short": "phóng to lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Magnif. Time",
+  "vi": "thời gian phóng to lấy nét",
+  "short": "thời gian phóng to",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Magnifier",
+  "vi": "phóng to lấy nét",
+  "short": "phóng to lấy nét",
+  "category": "focus",
+  "note": "FATAL in current: \"Bộ khuếch đại tiêu cự\" is wrong."
+ },
+ {
+  "en": "Focus Map",
+  "vi": "bản đồ lấy nét",
+  "short": "bản đồ lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Mode",
+  "vi": "chế độ lấy nét",
+  "short": "chế độ lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Focus Point",
+  "vi": "điểm lấy nét",
+  "short": "điểm nét",
+  "category": "focus"
+ },
+ {
+  "en": "Folder",
+  "vi": "thư mục",
+  "short": "thư mục",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Follow Custom",
+  "vi": "theo tùy chỉnh",
+  "short": "theo tùy chỉnh",
+  "category": "custom"
+ },
+ {
+  "en": "Format",
+  "vi": "định dạng",
+  "short": "định dạng",
+  "category": "setup"
+ },
+ {
+  "en": "fps",
+  "vi": "fps",
+  "short": "fps",
+  "category": "unit"
+ },
+ {
+  "en": "Frame",
+  "vi": "khung hình",
+  "short": "khung",
+  "category": "movie"
+ },
+ {
+  "en": "Frame Rate",
+  "vi": "tốc độ khung hình",
+  "short": "tốc độ khung hình",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Framing",
+  "vi": "căn khung",
+  "short": "căn khung",
+  "category": "drive",
+  "note": "Auto Framing."
+ },
+ {
+  "en": "Front",
+  "vi": "trước",
+  "short": "trước",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Front Dial",
+  "vi": "vòng xoay trước",
+  "short": "vòng xoay trước",
+  "category": "custom"
+ },
+ {
+  "en": "FTP",
+  "vi": "FTP",
+  "short": "FTP",
+  "category": "network"
+ },
+ {
+  "en": "FTP Server",
+  "vi": "máy chủ FTP",
+  "short": "máy chủ FTP",
+  "category": "network"
+ },
+ {
+  "en": "FTP Transfer",
+  "vi": "chuyển FTP",
+  "short": "chuyển FTP",
+  "category": "network"
+ },
+ {
+  "en": "Full",
+  "vi": "toàn bộ",
+  "short": "toàn bộ",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Full Frame",
+  "vi": "toàn khung",
+  "short": "toàn khung",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Func.",
+  "vi": "chức năng",
+  "short": "chức năng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Function",
+  "vi": "chức năng",
+  "short": "chức năng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Function Menu",
+  "vi": "Menu Fn",
+  "short": "Menu Fn",
+  "category": "custom",
+  "note": "Menu chức năng in help text."
+ },
+ {
+  "en": "Function Menu Lower",
+  "vi": "Menu Fn hàng dưới",
+  "short": "Fn dưới",
+  "category": "custom"
+ },
+ {
+  "en": "Function Menu Upper",
+  "vi": "Menu Fn hàng trên",
+  "short": "Fn trên",
+  "category": "custom",
+  "note": "Upper1..6 -> \"Menu Fn trên 1\"."
+ },
+ {
+  "en": "Gamma",
+  "vi": "gamma",
+  "short": "gamma",
+  "category": "color"
+ },
+ {
+  "en": "Gamma Disp. Assist",
+  "vi": "hỗ trợ hiển thị gamma",
+  "short": "hỗ trợ gamma",
+  "category": "color"
+ },
+ {
+  "en": "Gamut",
+  "vi": "không gian màu",
+  "short": "không gian màu",
+  "category": "color"
+ },
+ {
+  "en": "Gourmet",
+  "vi": "ẩm thực",
+  "short": "ẩm thực",
+  "category": "exposure"
+ },
+ {
+  "en": "Grid",
+  "vi": "lưới",
+  "short": "lưới",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Grid Line",
+  "vi": "đường lưới",
+  "short": "đường lưới",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Group",
+  "vi": "nhóm",
+  "short": "nhóm",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Guideframe",
+  "vi": "khung hướng dẫn",
+  "short": "khung hướng dẫn",
+  "category": "movie"
+ },
+ {
+  "en": "h",
+  "vi": "giờ",
+  "short": "giờ",
+  "category": "unit"
+ },
+ {
+  "en": "Hand-held Twilight",
+  "vi": "cảnh đêm cầm tay",
+  "short": "đêm cầm tay",
+  "category": "exposure"
+ },
+ {
+  "en": "HDMI",
+  "vi": "HDMI",
+  "short": "HDMI",
+  "category": "setup"
+ },
+ {
+  "en": "HDMI Info. Display",
+  "vi": "hiển thị thông tin HDMI",
+  "short": "thông tin HDMI",
+  "category": "setup"
+ },
+ {
+  "en": "HDMI Output Settings",
+  "vi": "cài đặt ngõ ra HDMI",
+  "short": "cài đặt HDMI",
+  "category": "setup"
+ },
+ {
+  "en": "HDR",
+  "vi": "HDR",
+  "short": "HDR",
+  "category": "exposure"
+ },
+ {
+  "en": "HDR Painting",
+  "vi": "tranh HDR",
+  "short": "tranh HDR",
+  "category": "color"
+ },
+ {
+  "en": "Headphone",
+  "vi": "tai nghe",
+  "short": "tai nghe",
+  "category": "audio"
+ },
+ {
+  "en": "HEIF",
+  "vi": "HEIF",
+  "short": "HEIF",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Hi",
+  "vi": "cao",
+  "short": "cao",
+  "category": "rev3",
+  "locked": true,
+  "note": "mức tốc độ"
+ },
+ {
+  "en": "High",
+  "vi": "cao",
+  "short": "cao",
+  "category": "ui-generic"
+ },
+ {
+  "en": "High Contrast Mono.",
+  "vi": "đơn sắc tương phản cao",
+  "short": "đơn sắc tương phản",
+  "category": "color"
+ },
+ {
+  "en": "High ISO NR",
+  "vi": "giảm nhiễu ISO cao",
+  "short": "giảm nhiễu ISO cao",
+  "category": "color"
+ },
+ {
+  "en": "Highlight",
+  "vi": "vùng sáng",
+  "short": "vùng sáng",
+  "category": "exposure",
+  "note": "Metering mode / Creative Look \"Highlights\"."
+ },
+ {
+  "en": "Highlights",
+  "vi": "vùng sáng",
+  "short": "vùng sáng",
+  "category": "color"
+ },
+ {
+  "en": "Histogram",
+  "vi": "biểu đồ",
+  "short": "biểu đồ",
+  "category": "rev3",
+  "locked": true,
+  "note": "Quy tắc mục 7"
+ },
+ {
+  "en": "Histogram Display",
+  "vi": "hiển thị Histogram",
+  "short": "hiển thị Histogram",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Hold",
+  "vi": "giữ",
+  "short": "giữ",
+  "category": "custom",
+  "note": "on Hold -> \"khi giữ\"."
+ },
+ {
+  "en": "Home",
+  "vi": "trang chủ",
+  "short": "trang chủ",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Horizontal",
+  "vi": "ngang",
+  "short": "ngang",
+  "category": "ui-generic"
+ },
+ {
+  "en": "hours",
+  "vi": "giờ",
+  "short": "giờ",
+  "category": "unit"
+ },
+ {
+  "en": "Human",
+  "vi": "người",
+  "short": "người",
+  "category": "focus"
+ },
+ {
+  "en": "Icon",
+  "vi": "biểu tượng",
+  "short": "biểu tượng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Illumination",
+  "vi": "chiếu sáng",
+  "short": "chiếu sáng",
+  "category": "setup"
+ },
+ {
+  "en": "Illustration",
+  "vi": "minh họa",
+  "short": "minh họa",
+  "category": "color"
+ },
+ {
+  "en": "Image",
+  "vi": "ảnh",
+  "short": "ảnh",
+  "category": "ui-generic",
+  "note": "Not \"hình ảnh\"."
+ },
+ {
+  "en": "Image Database File",
+  "vi": "dữ liệu ảnh",
+  "short": "dữ liệu ảnh",
+  "category": "rev3",
+  "locked": true,
+  "note": "Cấm 'CSDL'"
+ },
+ {
+  "en": "Image Jump",
+  "vi": "nhảy ảnh",
+  "short": "nhảy ảnh",
+  "category": "playback"
+ },
+ {
+  "en": "Image Quality",
+  "vi": "chất lượng ảnh",
+  "short": "chất lượng ảnh",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Image Size",
+  "vi": "kích thước ảnh",
+  "short": "kích thước ảnh",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Image Stabilization",
+  "vi": "ổn định hình ảnh",
+  "short": "ổn định hình ảnh",
+  "category": "drive"
+ },
+ {
+  "en": "Image Stabilization Settings",
+  "vi": "cài đặt ổn định hình ảnh",
+  "short": "cài đặt ổn định",
+  "category": "drive"
+ },
+ {
+  "en": "Images",
+  "vi": "ảnh",
+  "short": "ảnh",
+  "category": "ui-generic"
+ },
+ {
+  "en": "images/sec",
+  "vi": "ảnh/giây",
+  "short": "ảnh/giây",
+  "category": "unit"
+ },
+ {
+  "en": "Img.",
+  "vi": "ảnh",
+  "short": "ảnh",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Import",
+  "vi": "nhập",
+  "short": "nhập",
+  "category": "network"
+ },
+ {
+  "en": "Index",
+  "vi": "chỉ mục",
+  "short": "chỉ mục",
+  "category": "playback"
+ },
+ {
+  "en": "Info.",
+  "vi": "thông tin",
+  "short": "thông tin",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Information",
+  "vi": "thông tin",
+  "short": "thông tin",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Initial Focus Mag.",
+  "vi": "tỷ lệ phóng to ban đầu",
+  "short": "phóng to ban đầu",
+  "category": "focus"
+ },
+ {
+  "en": "Initialize",
+  "vi": "khởi tạo",
+  "short": "khởi tạo",
+  "category": "setup"
+ },
+ {
+  "en": "Insect",
+  "vi": "côn trùng",
+  "short": "côn trùng",
+  "category": "focus"
+ },
+ {
+  "en": "Install",
+  "vi": "cài đặt",
+  "short": "cài đặt",
+  "category": "ui-generic",
+  "note": "Software."
+ },
+ {
+  "en": "Int Mic",
+  "vi": "mic trong",
+  "short": "mic trong",
+  "category": "audio"
+ },
+ {
+  "en": "Intelligent Auto",
+  "vi": "tự động thông minh",
+  "short": "tự động thông minh",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Interval",
+  "vi": "khoảng cách",
+  "short": "khoảng cách",
+  "category": "drive",
+  "note": "Interval between shots. \"Khoảng thời gian\" in help text."
+ },
+ {
+  "en": "Interval Shoot Func.",
+  "vi": "chụp cách quãng",
+  "short": "chụp cách quãng",
+  "category": "drive",
+  "note": "Interval shooting (time-lapse stills)."
+ },
+ {
+  "en": "Interval Shooting",
+  "vi": "chụp cách quãng",
+  "short": "chụp cách quãng",
+  "category": "drive"
+ },
+ {
+  "en": "IP Address",
+  "vi": "địa chỉ IP",
+  "short": "địa chỉ IP",
+  "category": "network"
+ },
+ {
+  "en": "ISO",
+  "vi": "ISO",
+  "short": "ISO",
+  "category": "exposure"
+ },
+ {
+  "en": "ISO AUTO",
+  "vi": "ISO AUTO",
+  "short": "ISO AUTO",
+  "category": "exposure"
+ },
+ {
+  "en": "ISO Range Limit",
+  "vi": "giới hạn dải ISO",
+  "short": "giới hạn dải ISO",
+  "category": "exposure"
+ },
+ {
+  "en": "Item",
+  "vi": "mục",
+  "short": "mục",
+  "category": "ui-generic"
+ },
+ {
+  "en": "JPEG",
+  "vi": "JPEG",
+  "short": "JPEG",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Jump",
+  "vi": "nhảy",
+  "short": "nhảy",
+  "category": "playback"
+ },
+ {
+  "en": "Key",
+  "vi": "nút",
+  "short": "nút",
+  "category": "custom"
+ },
+ {
+  "en": "Lamp",
+  "vi": "đèn",
+  "short": "đèn",
+  "category": "setup"
+ },
+ {
+  "en": "LAN",
+  "vi": "LAN",
+  "short": "LAN",
+  "category": "network"
+ },
+ {
+  "en": "Landscape",
+  "vi": "phong cảnh",
+  "short": "phong cảnh",
+  "category": "exposure"
+ },
+ {
+  "en": "Language",
+  "vi": "ngôn ngữ",
+  "short": "ngôn ngữ",
+  "category": "setup"
+ },
+ {
+  "en": "Large",
+  "vi": "lớn",
+  "short": "lớn",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Left",
+  "vi": "trái",
+  "short": "trái",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Lens",
+  "vi": "ống kính",
+  "short": "ống kính",
+  "category": "setup"
+ },
+ {
+  "en": "Lens Comp.",
+  "vi": "hiệu chỉnh ống kính",
+  "short": "hiệu chỉnh ống kính",
+  "category": "color"
+ },
+ {
+  "en": "Level",
+  "vi": "thước thủy",
+  "short": "thước thủy",
+  "category": "ui-generic",
+  "note": "Electronic level. For audio/other levels -> \"mức\"."
+ },
+ {
+  "en": "Level (amount)",
+  "vi": "mức",
+  "short": "mức",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Lever",
+  "vi": "cần gạt",
+  "short": "cần gạt",
+  "category": "custom"
+ },
+ {
+  "en": "License",
+  "vi": "giấy phép",
+  "short": "giấy phép",
+  "category": "setup"
+ },
+ {
+  "en": "Light",
+  "vi": "nhẹ",
+  "short": "nhẹ",
+  "category": "ui-generic",
+  "note": "JPEG quality."
+ },
+ {
+  "en": "Limit",
+  "vi": "giới hạn",
+  "short": "giới hạn",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Live View",
+  "vi": "Live View",
+  "short": "Live View",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Live View Display",
+  "vi": "hiển thị Live View",
+  "short": "hiển thị Live View",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Lo",
+  "vi": "thấp",
+  "short": "thấp",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Load",
+  "vi": "tải",
+  "short": "tải",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Location Info",
+  "vi": "thông tin vị trí",
+  "short": "thông tin vị trí",
+  "category": "network"
+ },
+ {
+  "en": "Lock",
+  "vi": "khóa",
+  "short": "khóa",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Log",
+  "vi": "Log",
+  "short": "Log",
+  "category": "movie"
+ },
+ {
+  "en": "Log Shooting",
+  "vi": "quay Log",
+  "short": "quay Log",
+  "category": "movie"
+ },
+ {
+  "en": "Long Exposure NR",
+  "vi": "giảm nhiễu phơi sáng dài",
+  "short": "giảm nhiễu phơi dài",
+  "category": "color"
+ },
+ {
+  "en": "Look",
+  "vi": "Look",
+  "short": "Look",
+  "category": "color",
+  "note": "Creative Look \"look\"."
+ },
+ {
+  "en": "Lossless",
+  "vi": "nén không mất dữ liệu",
+  "short": "không mất dữ liệu",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Low",
+  "vi": "thấp",
+  "short": "thấp",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Lower",
+  "vi": "dưới",
+  "short": "dưới",
+  "category": "ui-generic"
+ },
+ {
+  "en": "LUT",
+  "vi": "LUT",
+  "short": "LUT",
+  "category": "movie"
+ },
+ {
+  "en": "MAC Address",
+  "vi": "địa chỉ MAC",
+  "short": "địa chỉ MAC",
+  "category": "network"
+ },
+ {
+  "en": "Macro",
+  "vi": "cận cảnh",
+  "short": "cận cảnh",
+  "category": "exposure"
+ },
+ {
+  "en": "Magnification",
+  "vi": "phóng to",
+  "short": "phóng to",
+  "category": "playback",
+  "note": "Not \"phóng lớn\"."
+ },
+ {
+  "en": "Magnifier",
+  "vi": "phóng to",
+  "short": "phóng to",
+  "category": "playback"
+ },
+ {
+  "en": "Main",
+  "vi": "chính",
+  "short": "chính",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Manual",
+  "vi": "thủ công",
+  "short": "thủ công",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Manual Exposure",
+  "vi": "phơi sáng thủ công",
+  "short": "thủ công",
+  "category": "exposure",
+  "note": "Mode M."
+ },
+ {
+  "en": "Marker",
+  "vi": "đánh dấu",
+  "short": "đánh dấu",
+  "category": "movie",
+  "note": "Marker Display -> \"Hiển thị đánh dấu\"."
+ },
+ {
+  "en": "Mass Storage",
+  "vi": "lưu trữ",
+  "short": "lưu trữ",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Mbps",
+  "vi": "Mbps",
+  "short": "Mbps",
+  "category": "unit"
+ },
+ {
+  "en": "Mechanical Shutter",
+  "vi": "màn trập cơ",
+  "short": "màn trập cơ",
+  "category": "exposure",
+  "locked": true,
+  "note": "duyệt 02/11/2026; không dùng 'màn trập cơ học'"
+ },
+ {
+  "en": "Media",
+  "vi": "phương tiện ghi hình",
+  "short": "phương tiện",
+  "category": "setup",
+  "note": "Recording media = phương tiện ghi hình (local team decision). \"Memory card\" stays thẻ nhớ."
+ },
+ {
+  "en": "Medium",
+  "vi": "vừa",
+  "short": "vừa",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Memo",
+  "vi": "ghi chú",
+  "short": "ghi chú",
+  "category": "playback"
+ },
+ {
+  "en": "Memory",
+  "vi": "bộ nhớ",
+  "short": "bộ nhớ",
+  "category": "custom"
+ },
+ {
+  "en": "Memory card",
+  "vi": "thẻ nhớ",
+  "short": "thẻ nhớ",
+  "category": "setup"
+ },
+ {
+  "en": "Memory recall",
+  "vi": "gọi lại bộ nhớ",
+  "short": "gọi lại bộ nhớ",
+  "category": "custom",
+  "note": "MR mode."
+ },
+ {
+  "en": "Menu",
+  "vi": "Menu",
+  "short": "Menu",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Metering",
+  "vi": "đo sáng",
+  "short": "đo sáng",
+  "category": "exposure"
+ },
+ {
+  "en": "Metering Mode",
+  "vi": "chế độ đo sáng",
+  "short": "chế độ đo sáng",
+  "category": "exposure"
+ },
+ {
+  "en": "MF",
+  "vi": "MF",
+  "short": "MF",
+  "category": "focus"
+ },
+ {
+  "en": "Mic",
+  "vi": "mic",
+  "short": "mic",
+  "category": "audio"
+ },
+ {
+  "en": "Microphone",
+  "vi": "micrô",
+  "short": "micrô",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Mid",
+  "vi": "trung bình",
+  "short": "trung bình",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "min",
+  "vi": "phút",
+  "short": "phút",
+  "category": "unit"
+ },
+ {
+  "en": "Miniature",
+  "vi": "thu nhỏ",
+  "short": "thu nhỏ",
+  "category": "color"
+ },
+ {
+  "en": "mm",
+  "vi": "mm",
+  "short": "mm",
+  "category": "unit"
+ },
+ {
+  "en": "Mode",
+  "vi": "chế độ",
+  "short": "chế độ",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Mode Dial",
+  "vi": "vòng xoay chế độ",
+  "short": "vòng xoay chế độ",
+  "category": "custom"
+ },
+ {
+  "en": "Monitor",
+  "vi": "màn hình",
+  "short": "màn hình",
+  "category": "setup"
+ },
+ {
+  "en": "Monitor Brightness",
+  "vi": "độ sáng màn hình",
+  "short": "độ sáng màn hình",
+  "category": "setup"
+ },
+ {
+  "en": "Monitoring",
+  "vi": "giám sát",
+  "short": "giám sát",
+  "category": "audio",
+  "note": "Audio monitoring."
+ },
+ {
+  "en": "Movie",
+  "vi": "phim",
+  "short": "phim",
+  "category": "movie",
+  "note": "Approved: \"phim\", not \"video\"."
+ },
+ {
+  "en": "Movie Light Mode",
+  "vi": "chế độ đèn quay phim",
+  "short": "đèn quay phim",
+  "category": "movie"
+ },
+ {
+  "en": "Movie Recording",
+  "vi": "quay phim",
+  "short": "quay phim",
+  "category": "movie",
+  "note": "Not \"ghi phim\"."
+ },
+ {
+  "en": "Movie Settings",
+  "vi": "cài đặt phim",
+  "short": "cài đặt phim",
+  "category": "movie"
+ },
+ {
+  "en": "Multi",
+  "vi": "đa điểm",
+  "short": "đa điểm",
+  "category": "exposure",
+  "note": "Metering. For \"Multi Images\" use \"nhiều\"."
+ },
+ {
+  "en": "Multi-Selector",
+  "vi": "Multi-Selector",
+  "short": "Multi-Selector",
+  "category": "custom"
+ },
+ {
+  "en": "Multiple Images",
+  "vi": "nhiều ảnh",
+  "short": "nhiều ảnh",
+  "category": "playback"
+ },
+ {
+  "en": "My Dial",
+  "vi": "đĩa xoay của tôi",
+  "short": "đĩa xoay của tôi",
+  "category": "rev3",
+  "locked": true,
+  "note": "Quy tắc mục 7"
+ },
+ {
+  "en": "My Dial Settings",
+  "vi": "cài đặt vòng xoay",
+  "short": "cài đặt vòng xoay",
+  "category": "custom",
+  "note": "Report wording (\"của tôi\" implied)."
+ },
+ {
+  "en": "My Menu",
+  "vi": "Menu của tôi",
+  "short": "Menu của tôi",
+  "category": "setup",
+  "note": "Keep current (14 rows)."
+ },
+ {
+  "en": "My Style",
+  "vi": "phong cách của tôi",
+  "short": "phong cách",
+  "category": "custom"
+ },
+ {
+  "en": "Name",
+  "vi": "tên",
+  "short": "tên",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Narrow",
+  "vi": "hẹp",
+  "short": "hẹp",
+  "category": "ui-generic"
+ },
+ {
+  "en": "ND Filter",
+  "vi": "kính lọc ND",
+  "short": "kính lọc ND",
+  "category": "exposure"
+ },
+ {
+  "en": "Network",
+  "vi": "mạng",
+  "short": "mạng",
+  "category": "network"
+ },
+ {
+  "en": "Network Option",
+  "vi": "tùy chọn mạng",
+  "short": "tùy chọn mạng",
+  "category": "setup"
+ },
+ {
+  "en": "Night Portrait",
+  "vi": "chân dung đêm",
+  "short": "C.dung đêm",
+  "category": "exposure",
+  "note": "Tight icon layout W200 only: 'C.dung đêm'."
+ },
+ {
+  "en": "Night Scene",
+  "vi": "cảnh đêm",
+  "short": "cảnh đêm",
+  "category": "exposure"
+ },
+ {
+  "en": "No",
+  "vi": "không",
+  "short": "không",
+  "category": "ui-generic"
+ },
+ {
+  "en": "No Disp. Info.",
+  "vi": "không hiển thị thông tin",
+  "short": "ẩn thông tin",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Noise Reduction",
+  "vi": "giảm nhiễu",
+  "short": "giảm nhiễu",
+  "category": "color",
+  "note": "Keep current 'giảm nhiễu' (29 rows, natural). Not 'khử tiếng ồn'."
+ },
+ {
+  "en": "Normal",
+  "vi": "bình thường",
+  "short": "thường",
+  "category": "ui-generic"
+ },
+ {
+  "en": "NR",
+  "vi": "giảm nhiễu",
+  "short": "giảm nhiễu",
+  "category": "color",
+  "note": "Audio NR -> 'giảm ồn'."
+ },
+ {
+  "en": "Number",
+  "vi": "số",
+  "short": "số",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Number of Shots",
+  "vi": "số ảnh chụp",
+  "short": "số ảnh",
+  "category": "drive"
+ },
+ {
+  "en": "Off",
+  "vi": "tắt",
+  "short": "tắt",
+  "category": "ui-generic"
+ },
+ {
+  "en": "OK",
+  "vi": "OK",
+  "short": "OK",
+  "category": "ui-generic"
+ },
+ {
+  "en": "On",
+  "vi": "bật",
+  "short": "bật",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Only",
+  "vi": "chỉ",
+  "short": "chỉ",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Operation",
+  "vi": "thao tác",
+  "short": "thao tác",
+  "category": "custom"
+ },
+ {
+  "en": "Operation Customize",
+  "vi": "tùy chỉnh thao tác",
+  "short": "tùy chỉnh thao tác",
+  "category": "custom"
+ },
+ {
+  "en": "Optical Zoom",
+  "vi": "zoom quang",
+  "short": "zoom quang",
+  "category": "custom"
+ },
+ {
+  "en": "Option",
+  "vi": "tùy chọn",
+  "short": "tùy chọn",
+  "category": "setup"
+ },
+ {
+  "en": "Others",
+  "vi": "khác",
+  "short": "khác",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Output",
+  "vi": "xuất / ngõ ra",
+  "short": "xuất",
+  "category": "setup",
+  "note": "Outputs as 720p -> \"Xuất ở 720p\"."
+ },
+ {
+  "en": "Page",
+  "vi": "trang",
+  "short": "trang",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Pairing",
+  "vi": "ghép đôi",
+  "short": "ghép đôi",
+  "category": "network"
+ },
+ {
+  "en": "Panel",
+  "vi": "bảng",
+  "short": "bảng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Partial Color",
+  "vi": "màu chọn lọc",
+  "short": "màu chọn lọc",
+  "category": "color",
+  "note": "Picture Effect keeping one color. Not \"màu chỉ định\"."
+ },
+ {
+  "en": "Password",
+  "vi": "mật khẩu",
+  "short": "mật khẩu",
+  "category": "network"
+ },
+ {
+  "en": "PC Remote",
+  "vi": "điều khiển từ PC",
+  "short": "điều khiển từ PC",
+  "category": "network"
+ },
+ {
+  "en": "PC Remote Function",
+  "vi": "chức năng điều khiển từ PC",
+  "short": "điều khiển từ PC",
+  "category": "network"
+ },
+ {
+  "en": "Peaking",
+  "vi": "viền hỗ trợ lấy nét",
+  "short": "viền lấy nét",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Peaking Color",
+  "vi": "màu viền lấy nét",
+  "short": "màu viền lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Peaking Display",
+  "vi": "viền hỗ trợ lấy nét",
+  "short": "viền lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Peaking Display Select",
+  "vi": "chọn viền lấy nét",
+  "short": "chọn viền lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Peaking Level",
+  "vi": "mức viền lấy nét",
+  "short": "mức viền lấy nét",
+  "category": "focus"
+ },
+ {
+  "en": "Pet",
+  "vi": "thú cưng",
+  "short": "thú cưng",
+  "category": "exposure"
+ },
+ {
+  "en": "Photo Capture",
+  "vi": "trích ảnh",
+  "short": "trích ảnh",
+  "category": "playback",
+  "note": "From movie."
+ },
+ {
+  "en": "Picture Effect",
+  "vi": "hiệu ứng ảnh",
+  "short": "hiệu ứng ảnh",
+  "category": "color"
+ },
+ {
+  "en": "Picture Profile",
+  "vi": "Picture Profile",
+  "short": "Picture Profile",
+  "category": "color",
+  "note": "PP1..PP11."
+ },
+ {
+  "en": "Pixel",
+  "vi": "điểm ảnh",
+  "short": "điểm ảnh",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Pixel Mapping",
+  "vi": "ánh xạ điểm ảnh",
+  "short": "ánh xạ điểm ảnh",
+  "category": "rev3",
+  "locked": true,
+  "note": "Quy tắc mục 7"
+ },
+ {
+  "en": "Play",
+  "vi": "phát",
+  "short": "phát",
+  "category": "playback",
+  "note": "Movies/voice memo."
+ },
+ {
+  "en": "Playback",
+  "vi": "xem lại",
+  "short": "xem lại",
+  "category": "rev3",
+  "locked": true,
+  "note": "âm thanh ghi chú thoại: 'phát'"
+ },
+ {
+  "en": "Playback Option",
+  "vi": "tùy chọn xem lại",
+  "short": "tùy chọn xem lại",
+  "category": "playback"
+ },
+ {
+  "en": "Please wait.",
+  "vi": "vui lòng đợi.",
+  "short": "vui lòng đợi.",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Pop Color",
+  "vi": "màu rực",
+  "short": "màu rực",
+  "category": "color"
+ },
+ {
+  "en": "Portrait",
+  "vi": "chân dung",
+  "short": "chân dung",
+  "category": "exposure"
+ },
+ {
+  "en": "Position",
+  "vi": "vị trí",
+  "short": "vị trí",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Posterization",
+  "vi": "phân sắc độ",
+  "short": "phân sắc độ",
+  "category": "color"
+ },
+ {
+  "en": "Power",
+  "vi": "nguồn",
+  "short": "nguồn",
+  "category": "setup"
+ },
+ {
+  "en": "Power Level",
+  "vi": "mức công suất",
+  "short": "mức công suất",
+  "category": "flash"
+ },
+ {
+  "en": "Power OFF",
+  "vi": "tắt nguồn",
+  "short": "tắt nguồn",
+  "category": "setup"
+ },
+ {
+  "en": "Power Ratio",
+  "vi": "tỷ lệ công suất",
+  "short": "tỷ lệ công suất",
+  "category": "flash"
+ },
+ {
+  "en": "Power Save",
+  "vi": "tiết kiệm pin",
+  "short": "tiết kiệm pin",
+  "category": "setup",
+  "note": "Natural; alternative \"tiết kiệm năng lượng\"."
+ },
+ {
+  "en": "Power Save Start Time",
+  "vi": "thời gian bắt đầu tiết kiệm pin",
+  "short": "bắt đầu tiết kiệm pin",
+  "category": "setup"
+ },
+ {
+  "en": "Power Setting Option",
+  "vi": "tùy chọn nguồn",
+  "short": "tùy chọn nguồn",
+  "category": "setup"
+ },
+ {
+  "en": "Pre-AF",
+  "vi": "Pre-AF",
+  "short": "Pre-AF",
+  "category": "focus"
+ },
+ {
+  "en": "Pre-Capture",
+  "vi": "chụp trước",
+  "short": "chụp trước",
+  "category": "drive"
+ },
+ {
+  "en": "Pre-flash TTL",
+  "vi": "TTL tiền flash",
+  "short": "TTL tiền flash",
+  "category": "flash"
+ },
+ {
+  "en": "Preset",
+  "vi": "Preset",
+  "short": "Preset",
+  "category": "ui-generic",
+  "locked": true,
+  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+ },
+ {
+  "en": "Preset Focus",
+  "vi": "lấy nét Preset",
+  "short": "lấy nét Preset",
+  "category": "focus",
+  "locked": true,
+  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+ },
+ {
+  "en": "Preset Focus/Zoom",
+  "vi": "lấy nét/zoom Preset",
+  "short": "lấy nét/zoom Preset",
+  "category": "focus",
+  "locked": true,
+  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+ },
+ {
+  "en": "Preview",
+  "vi": "xem trước",
+  "short": "xem thử",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Priority",
+  "vi": "ưu tiên",
+  "short": "ưu tiên",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Priority Set in AF-C",
+  "vi": "ưu tiên trong AF-C",
+  "short": "ưu tiên trong AF-C",
+  "category": "focus"
+ },
+ {
+  "en": "Priority Set in AF-S",
+  "vi": "ưu tiên trong AF-S",
+  "short": "ưu tiên trong AF-S",
+  "category": "focus"
+ },
+ {
+  "en": "Processing...",
+  "vi": "đang xử lý...",
+  "short": "đang xử lý...",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Product Showcase",
+  "vi": "giới thiệu sản phẩm",
+  "short": "giới thiệu sản phẩm",
+  "category": "focus"
+ },
+ {
+  "en": "Program Auto",
+  "vi": "tự động chương trình",
+  "short": "chương trình",
+  "category": "exposure",
+  "note": "Mode P. Shorter than \"tự động theo chương trình\". Tight icon layout W200: 'Chương trình' (P)."
+ },
+ {
+  "en": "Protect",
+  "vi": "bảo vệ",
+  "short": "bảo vệ",
+  "category": "playback"
+ },
+ {
+  "en": "Proxy",
+  "vi": "proxy",
+  "short": "proxy",
+  "category": "movie"
+ },
+ {
+  "en": "Proxy Recording",
+  "vi": "ghi proxy",
+  "short": "ghi proxy",
+  "category": "movie"
+ },
+ {
+  "en": "Quality",
+  "vi": "chất lượng",
+  "short": "chất lượng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Quick",
+  "vi": "nhanh",
+  "short": "nhanh",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Quick Motion",
+  "vi": "quay nhanh",
+  "short": "quay nhanh",
+  "category": "movie"
+ },
+ {
+  "en": "Range",
+  "vi": "phạm vi",
+  "short": "phạm vi",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Range Limiter",
+  "vi": "giới hạn phạm vi",
+  "short": "giới hạn phạm vi",
+  "category": "focus"
+ },
+ {
+  "en": "Rating",
+  "vi": "xếp hạng",
+  "short": "xếp hạng",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Rating Only",
+  "vi": "chỉ xếp hạng",
+  "short": "chỉ xếp hạng",
+  "category": "rev3",
+  "locked": true,
+  "note": "duyệt 02/11/2026"
+ },
+ {
+  "en": "Ratio Control",
+  "vi": "điều khiển tỷ lệ",
+  "short": "điều khiển tỷ lệ",
+  "category": "flash"
+ },
+ {
+  "en": "RAW",
+  "vi": "RAW",
+  "short": "RAW",
+  "category": "ui-generic"
+ },
+ {
+  "en": "RAW File Type",
+  "vi": "loại tập tin RAW",
+  "short": "loại RAW",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Rear",
+  "vi": "sau",
+  "short": "sau",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Rear Dial",
+  "vi": "vòng xoay sau",
+  "short": "vòng xoay sau",
+  "category": "custom"
+ },
+ {
+  "en": "Rear Sync.",
+  "vi": "đồng bộ sau",
+  "short": "đồng bộ sau",
+  "category": "flash"
+ },
+ {
+  "en": "REC",
+  "vi": "REC",
+  "short": "REC",
+  "category": "movie"
+ },
+ {
+  "en": "Rec Frame Rate",
+  "vi": "tốc độ khung hình",
+  "short": "tốc độ khung",
+  "category": "movie",
+  "note": "FATAL in current: \"tỷ lệ khung hình\" means aspect ratio."
+ },
+ {
+  "en": "Rec. Media Settings",
+  "vi": "cài đặt phương tiện ghi hình",
+  "short": "p.tiện ghi hình",
+  "category": "setup",
+  "note": "Settings implied in tight icon layouts."
+ },
+ {
+  "en": "Recall",
+  "vi": "gọi lại",
+  "short": "gọi lại",
+  "category": "ui-generic",
+  "note": "Not \"nhắc lại\"."
+ },
+ {
+  "en": "Receiver",
+  "vi": "bộ thu",
+  "short": "bộ thu",
+  "category": "flash"
+ },
+ {
+  "en": "Recognition",
+  "vi": "nhận dạng",
+  "short": "nhận dạng",
+  "category": "focus"
+ },
+ {
+  "en": "Recognition Target",
+  "vi": "đối tượng nhận dạng",
+  "short": "đối tượng nhận dạng",
+  "category": "focus"
+ },
+ {
+  "en": "Record",
+  "vi": "quay / ghi",
+  "short": "ghi",
+  "category": "movie",
+  "note": "Movies -> \"quay\"; audio/data -> \"ghi\"."
+ },
+ {
+  "en": "Record Setting",
+  "vi": "cài đặt ghi hình",
+  "short": "cài đặt ghi hình",
+  "category": "movie",
+  "note": "Movie bitrate/quality."
+ },
+ {
+  "en": "Recording Media",
+  "vi": "phương tiện ghi hình",
+  "short": "thẻ nhớ",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Red Eye Reduction",
+  "vi": "giảm mắt đỏ",
+  "short": "giảm mắt đỏ",
+  "category": "flash"
+ },
+ {
+  "en": "Regist. AF Area",
+  "vi": "vùng AF đã đăng ký",
+  "short": "vùng AF đăng ký",
+  "category": "focus"
+ },
+ {
+  "en": "Register",
+  "vi": "đăng ký",
+  "short": "đăng ký",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Release",
+  "vi": "nhả / chụp",
+  "short": "chụp",
+  "category": "drive",
+  "note": "Release w/o Card -> \"Chụp khi không có thẻ\"; \"Release w/o Lens\" -> \"Chụp khi không có ống kính\"."
+ },
+ {
+  "en": "Remaining",
+  "vi": "còn lại",
+  "short": "còn lại",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Remote",
+  "vi": "từ xa",
+  "short": "từ xa",
+  "category": "network"
+ },
+ {
+  "en": "Remote Commander",
+  "vi": "điều khiển từ xa",
+  "short": "điều khiển từ xa",
+  "category": "network",
+  "note": "Accessory remote."
+ },
+ {
+  "en": "Remote Shoot",
+  "vi": "chụp từ xa",
+  "short": "chụp từ xa",
+  "category": "network"
+ },
+ {
+  "en": "Remote Shoot Setting",
+  "vi": "cài đặt chụp từ xa",
+  "short": "chụp từ xa",
+  "category": "network"
+ },
+ {
+  "en": "Remote Shooting",
+  "vi": "chụp từ xa",
+  "short": "chụp từ xa",
+  "category": "network"
+ },
+ {
+  "en": "Reset",
+  "vi": "đặt lại",
+  "short": "đặt lại",
+  "category": "rev3",
+  "locked": true,
+  "note": "không 'thiết lập lại'"
+ },
+ {
+  "en": "Resolution",
+  "vi": "độ phân giải",
+  "short": "độ phân giải",
+  "category": "movie"
+ },
+ {
+  "en": "Responsive",
+  "vi": "nhạy",
+  "short": "nhạy",
+  "category": "ui-generic",
+  "note": "Tracking sensitivity value."
+ },
+ {
+  "en": "Retro Photo",
+  "vi": "ảnh hoài cổ",
+  "short": "ảnh hoài cổ",
+  "category": "color"
+ },
+ {
+  "en": "Rich-tone Mono.",
+  "vi": "đơn sắc đậm",
+  "short": "đơn sắc đậm",
+  "category": "color"
+ },
+ {
+  "en": "Right",
+  "vi": "phải",
+  "short": "phải",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Right/Left Eye Select",
+  "vi": "chọn mắt phải/trái",
+  "short": "chọn mắt phải/trái",
+  "category": "focus"
+ },
+ {
+  "en": "Ring",
+  "vi": "vòng",
+  "short": "vòng",
+  "category": "custom",
+  "note": "Lens ring."
+ },
+ {
+  "en": "Root Certificate",
+  "vi": "chứng chỉ gốc",
+  "short": "chứng chỉ gốc",
+  "category": "network"
+ },
+ {
+  "en": "Rotate",
+  "vi": "xoay",
+  "short": "xoay",
+  "category": "playback"
+ },
+ {
+  "en": "S&Q",
+  "vi": "S&Q",
+  "short": "S&Q",
+  "category": "movie"
+ },
+ {
+  "en": "S-Log3",
+  "vi": "S-Log3",
+  "short": "S-Log3",
+  "category": "movie"
+ },
+ {
+  "en": "Safety Zone",
+  "vi": "vùng an toàn",
+  "short": "vùng an toàn",
+  "category": "movie"
+ },
+ {
+  "en": "Saturation",
+  "vi": "độ bão hòa",
+  "short": "bão hòa",
+  "category": "color"
+ },
+ {
+  "en": "Save",
+  "vi": "lưu",
+  "short": "lưu",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Save/Load Settings",
+  "vi": "lưu/tải cài đặt",
+  "short": "lưu/tải cài đặt",
+  "category": "setup"
+ },
+ {
+  "en": "Sbj Recog",
+  "vi": "nhận dạng chủ thể",
+  "short": "nhận dạng chủ thể",
+  "category": "focus"
+ },
+ {
+  "en": "Scene Selection",
+  "vi": "chọn cảnh",
+  "short": "chọn cảnh",
+  "category": "exposure"
+ },
+ {
+  "en": "Screen",
+  "vi": "màn hình",
+  "short": "màn hình",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Screen Reader",
+  "vi": "trình đọc màn hình",
+  "short": "trình đọc màn hình",
+  "category": "setup"
+ },
+ {
+  "en": "sec",
+  "vi": "giây",
+  "short": "giây",
+  "category": "unit",
+  "note": "${v1} sec -> \"${v1} giây\". Tight layouts may keep \"s\"."
+ },
+ {
+  "en": "Sec.",
+  "vi": "giây",
+  "short": "giây",
+  "category": "unit"
+ },
+ {
+  "en": "Select",
+  "vi": "chọn",
+  "short": "chọn",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Select Playback Media",
+  "vi": "chọn phương tiện ghi hình xem lại",
+  "short": "chọn p.tiện xem lại",
+  "category": "playback",
+  "note": "Recording media = phương tiện ghi hình."
+ },
+ {
+  "en": "Selection",
+  "vi": "lựa chọn",
+  "short": "chọn",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Self-portrait",
+  "vi": "tự chụp",
+  "short": "tự chụp",
+  "category": "drive"
+ },
+ {
+  "en": "Self-timer",
+  "vi": "hẹn giờ",
+  "short": "hẹn giờ",
+  "category": "drive",
+  "note": "Chụp hẹn giờ when standalone title needs clarity."
+ },
+ {
+  "en": "Self-timer(Cont.)",
+  "vi": "hẹn giờ (liên tục)",
+  "short": "hẹn giờ (liên tục)",
+  "category": "drive"
+ },
+ {
+  "en": "Self-timer(Single)",
+  "vi": "hẹn giờ (đơn)",
+  "short": "hẹn giờ (đơn)",
+  "category": "drive"
+ },
+ {
+  "en": "Send",
+  "vi": "gửi",
+  "short": "gửi",
+  "category": "network"
+ },
+ {
+  "en": "Sensitivity",
+  "vi": "độ nhạy",
+  "short": "độ nhạy",
+  "category": "exposure",
+  "note": "Tracking sensitivity / mic sensitivity. ISO sensitivity -> \"độ nhạy ISO\"."
+ },
+ {
+  "en": "Serial Number",
+  "vi": "số sê-ri",
+  "short": "số sê-ri",
+  "category": "setup"
+ },
+ {
+  "en": "Server",
+  "vi": "máy chủ",
+  "short": "máy chủ",
+  "category": "network"
+ },
+ {
+  "en": "Set",
+  "vi": "cài đặt",
+  "short": "cài đặt",
+  "category": "setup",
+  "note": "Verb in help text: \"Sets ...\" -> \"Cài đặt ...\"."
+ },
+ {
+  "en": "Set.",
+  "vi": "cài đặt",
+  "short": "cài đặt",
+  "category": "setup"
+ },
+ {
+  "en": "Setting",
+  "vi": "cài đặt",
+  "short": "cài đặt",
+  "category": "setup",
+  "note": "Approved standard. Never \"thiết lập/thiết đặt/C.đ/Cđặt\"."
+ },
+ {
+  "en": "Setting Reset",
+  "vi": "đặt lại cài đặt",
+  "short": "đặt lại cài đặt",
+  "category": "setup"
+ },
+ {
+  "en": "Settings",
+  "vi": "cài đặt",
+  "short": "cài đặt",
+  "category": "setup"
+ },
+ {
+  "en": "Setup",
+  "vi": "cài đặt",
+  "short": "cài đặt",
+  "category": "setup",
+  "note": "Setup tab also \"Cài đặt\" (report: standardize)."
+ },
+ {
+  "en": "Setup Option",
+  "vi": "tùy chọn cài đặt",
+  "short": "tùy chọn cài đặt",
+  "category": "setup"
+ },
+ {
+  "en": "Shading Comp.",
+  "vi": "hiệu chỉnh tối góc",
+  "short": "hiệu chỉnh tối góc",
+  "category": "color"
+ },
+ {
+  "en": "Shadows",
+  "vi": "vùng tối",
+  "short": "vùng tối",
+  "category": "color"
+ },
+ {
+  "en": "Sharpness",
+  "vi": "độ nét",
+  "short": "độ nét",
+  "category": "color"
+ },
+ {
+  "en": "Sharpness Range",
+  "vi": "dải độ nét",
+  "short": "dải độ nét",
+  "category": "color"
+ },
+ {
+  "en": "Shoe",
+  "vi": "ngàm",
+  "short": "ngàm",
+  "category": "audio"
+ },
+ {
+  "en": "Shoe Audio",
+  "vi": "âm thanh qua ngàm",
+  "short": "âm thanh ngàm",
+  "category": "audio",
+  "note": "Multi Interface Shoe."
+ },
+ {
+  "en": "Shoot",
+  "vi": "chụp",
+  "short": "chụp",
+  "category": "drive"
+ },
+ {
+  "en": "Shoot Mode",
+  "vi": "chế độ chụp",
+  "short": "chế độ chụp",
+  "category": "exposure",
+  "note": "P/A/S/M."
+ },
+ {
+  "en": "Shoot.",
+  "vi": "chụp",
+  "short": "chụp",
+  "category": "drive"
+ },
+ {
+  "en": "Shoot. Mode",
+  "vi": "chế độ chụp",
+  "short": "chế độ chụp",
+  "category": "exposure"
+ },
+ {
+  "en": "Shooting",
+  "vi": "chụp",
+  "short": "chụp",
+  "category": "drive"
+ },
+ {
+  "en": "Shooting Display",
+  "vi": "hiển thị khi chụp",
+  "short": "hiển thị khi chụp",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Shooting Interval",
+  "vi": "khoảng cách chụp",
+  "short": "khoảng cách chụp",
+  "category": "drive"
+ },
+ {
+  "en": "Shooting Option",
+  "vi": "tùy chọn chụp",
+  "short": "tùy chọn chụp",
+  "category": "setup"
+ },
+ {
+  "en": "Shooting Settings",
+  "vi": "cài đặt chụp",
+  "short": "cài đặt chụp",
+  "category": "drive"
+ },
+ {
+  "en": "Shot",
+  "vi": "ảnh",
+  "short": "ảnh",
+  "category": "drive"
+ },
+ {
+  "en": "Shot Mark",
+  "vi": "dấu cảnh",
+  "short": "dấu cảnh",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Shots",
+  "vi": "ảnh",
+  "short": "ảnh",
+  "category": "drive",
+  "note": "Shoot 4 Shots -> \"Chụp 4 ảnh\"."
+ },
+ {
+  "en": "Showcase",
+  "vi": "giới thiệu sản phẩm",
+  "short": "giới thiệu SP",
+  "category": "focus"
+ },
+ {
+  "en": "Sht.",
+  "vi": "chụp",
+  "short": "chụp",
+  "category": "drive"
+ },
+ {
+  "en": "Shtr",
+  "vi": "màn trập",
+  "short": "màn trập",
+  "category": "exposure",
+  "note": "EN abbreviation of Shutter."
+ },
+ {
+  "en": "Shutter",
+  "vi": "màn trập",
+  "short": "màn trập",
+  "category": "rev3",
+  "locked": true,
+  "note": "Quy tắc mục 2"
+ },
+ {
+  "en": "Shutter Button",
+  "vi": "nút chụp",
+  "short": "nút chụp",
+  "category": "rev3",
+  "locked": true,
+  "note": "Duyệt 02/11/2026: theo Sony/Canon VN, không dùng 'nút màn trập'"
+ },
+ {
+  "en": "Shutter Priority",
+  "vi": "ưu tiên tốc độ màn trập",
+  "short": "ưu tiên màn trập",
+  "category": "rev3",
+  "locked": true,
+  "note": "Nikon VN: tự động ưu tiên màn trập"
+ },
+ {
+  "en": "Shutter Speed",
+  "vi": "tốc độ màn trập",
+  "short": "tốc độ màn trập",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Shutter Type",
+  "vi": "loại màn trập",
+  "short": "loại màn trập",
+  "category": "exposure"
+ },
+ {
+  "en": "Silent Mode",
+  "vi": "chế độ im lặng",
+  "short": "im lặng",
+  "category": "drive"
+ },
+ {
+  "en": "Single",
+  "vi": "đơn",
+  "short": "đơn",
+  "category": "drive"
+ },
+ {
+  "en": "Single Bracket",
+  "vi": "Bracket đơn",
+  "short": "Bracket đơn",
+  "category": "drive"
+ },
+ {
+  "en": "Single Burst Shooting",
+  "vi": "chụp loạt một lần",
+  "short": "chụp loạt",
+  "category": "drive"
+ },
+ {
+  "en": "Single Shooting",
+  "vi": "chụp đơn",
+  "short": "chụp đơn",
+  "category": "drive"
+ },
+ {
+  "en": "Size",
+  "vi": "kích thước",
+  "short": "kích thước",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Slide Show",
+  "vi": "trình chiếu",
+  "short": "trình chiếu",
+  "category": "playback"
+ },
+ {
+  "en": "Slot",
+  "vi": "khe",
+  "short": "khe",
+  "category": "setup",
+  "note": "Slot 1 -> \"Khe 1\"."
+ },
+ {
+  "en": "Slow",
+  "vi": "chậm",
+  "short": "chậm",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Slow & Quick",
+  "vi": "quay chậm/nhanh",
+  "short": "quay chậm/nhanh",
+  "category": "movie"
+ },
+ {
+  "en": "Slow Motion",
+  "vi": "quay chậm",
+  "short": "quay chậm",
+  "category": "movie"
+ },
+ {
+  "en": "Slow Sync.",
+  "vi": "đồng bộ chậm",
+  "short": "đồng bộ chậm",
+  "category": "flash"
+ },
+ {
+  "en": "Small",
+  "vi": "nhỏ",
+  "short": "nhỏ",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Smartphone",
+  "vi": "điện thoại",
+  "short": "điện thoại",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Smartphone Connect",
+  "vi": "kết nối smartphone",
+  "short": "kết nối smartphone",
+  "category": "network"
+ },
+ {
+  "en": "Snow",
+  "vi": "tuyết",
+  "short": "tuyết",
+  "category": "exposure"
+ },
+ {
+  "en": "Soft Focus",
+  "vi": "lấy nét mềm",
+  "short": "lấy nét mềm",
+  "category": "color"
+ },
+ {
+  "en": "Soft High-key",
+  "vi": "High-key mềm",
+  "short": "High-key mềm",
+  "category": "color"
+ },
+ {
+  "en": "Soft Skin",
+  "vi": "làm mịn da",
+  "short": "làm mịn da",
+  "category": "color"
+ },
+ {
+  "en": "Soft Skin Effect",
+  "vi": "làm mịn da",
+  "short": "làm mịn da",
+  "category": "color"
+ },
+ {
+  "en": "Sort",
+  "vi": "sắp xếp",
+  "short": "sắp xếp",
+  "category": "playback"
+ },
+ {
+  "en": "Sound Option",
+  "vi": "tùy chọn âm thanh",
+  "short": "tùy chọn âm thanh",
+  "category": "setup"
+ },
+ {
+  "en": "Speaker",
+  "vi": "loa",
+  "short": "loa",
+  "category": "audio"
+ },
+ {
+  "en": "Speed",
+  "vi": "tốc độ",
+  "short": "tốc độ",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Speed Boost",
+  "vi": "tăng tốc",
+  "short": "tăng tốc",
+  "category": "drive"
+ },
+ {
+  "en": "Sports Action",
+  "vi": "thể thao",
+  "short": "thể thao",
+  "category": "exposure"
+ },
+ {
+  "en": "Spot",
+  "vi": "điểm",
+  "short": "điểm",
+  "category": "exposure"
+ },
+ {
+  "en": "Spot Metering Point",
+  "vi": "điểm đo sáng",
+  "short": "điểm đo sáng",
+  "category": "exposure"
+ },
+ {
+  "en": "SSID",
+  "vi": "SSID",
+  "short": "SSID",
+  "category": "network"
+ },
+ {
+  "en": "Standard",
+  "vi": "tiêu chuẩn",
+  "short": "chuẩn",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Start",
+  "vi": "bắt đầu",
+  "short": "bắt đầu",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Status",
+  "vi": "trạng thái",
+  "short": "trạng thái",
+  "category": "ui-generic"
+ },
+ {
+  "en": "SteadyShot",
+  "vi": "SteadyShot",
+  "short": "SteadyShot",
+  "category": "drive"
+ },
+ {
+  "en": "Step",
+  "vi": "bước",
+  "short": "bước",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Step Crop Shooting",
+  "vi": "chụp crop theo bước",
+  "short": "chụp crop bước",
+  "category": "drive"
+ },
+ {
+  "en": "Step Zoom",
+  "vi": "zoom theo bước",
+  "short": "zoom bước",
+  "category": "custom"
+ },
+ {
+  "en": "Still",
+  "vi": "ảnh tĩnh",
+  "short": "ảnh tĩnh",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Still Image",
+  "vi": "ảnh tĩnh",
+  "short": "ảnh tĩnh",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Still/Movie",
+  "vi": "ảnh tĩnh/phim",
+  "short": "ảnh/phim",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Stop",
+  "vi": "dừng",
+  "short": "dừng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Streaming",
+  "vi": "truyền phát",
+  "short": "Stream",
+  "category": "network",
+  "note": "Sony VN term. Alternative: keep \"stream\"."
+ },
+ {
+  "en": "Sub",
+  "vi": "phụ",
+  "short": "phụ",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Subject",
+  "vi": "chủ thể",
+  "short": "chủ thể",
+  "category": "focus"
+ },
+ {
+  "en": "Subject Recognition",
+  "vi": "nhận dạng chủ thể",
+  "short": "nhận dạng",
+  "category": "focus",
+  "note": "Majority current term (84) + Sony VN manual; fix the 15 'nhận diện'."
+ },
+ {
+  "en": "Sunset",
+  "vi": "hoàng hôn",
+  "short": "hoàng hôn",
+  "category": "exposure"
+ },
+ {
+  "en": "Superior Auto",
+  "vi": "tự động cao cấp",
+  "short": "tự động cao cấp",
+  "category": "exposure"
+ },
+ {
+  "en": "Swipe",
+  "vi": "vuốt",
+  "short": "vuốt",
+  "category": "custom"
+ },
+ {
+  "en": "Switch",
+  "vi": "chuyển đổi",
+  "short": "chuyển",
+  "category": "ui-generic",
+  "note": "Report: full \"chuyển đổi\"; short \"chuyển\"."
+ },
+ {
+  "en": "Target",
+  "vi": "đích / đối tượng",
+  "short": "đích",
+  "category": "ui-generic",
+  "note": "Transfer target -> \"đích\"; recognition target -> \"đối tượng\"."
+ },
+ {
+  "en": "TC",
+  "vi": "TC",
+  "short": "TC",
+  "category": "movie"
+ },
+ {
+  "en": "TC/UB",
+  "vi": "TC/UB",
+  "short": "TC/UB",
+  "category": "movie"
+ },
+ {
+  "en": "TC/UB Disp. Setting",
+  "vi": "cài đặt hiển thị TC/UB",
+  "short": "hiển thị TC/UB",
+  "category": "movie"
+ },
+ {
+  "en": "Tethering",
+  "vi": "chia sẻ mạng",
+  "short": "chia sẻ",
+  "category": "rev3",
+  "locked": true,
+  "note": "Android/iOS VN"
+ },
+ {
+  "en": "This Image",
+  "vi": "ảnh này",
+  "short": "ảnh này",
+  "category": "playback"
+ },
+ {
+  "en": "Thumbnail",
+  "vi": "ảnh thu nhỏ",
+  "short": "ảnh thu nhỏ",
+  "category": "playback"
+ },
+ {
+  "en": "Time",
+  "vi": "thời gian",
+  "short": "thời gian",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Time Code",
+  "vi": "Time Code",
+  "short": "Time Code",
+  "category": "user",
+  "locked": true,
+  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+ },
+ {
+  "en": "Time-lapse",
+  "vi": "tua nhanh thời gian",
+  "short": "quay tua nhanh",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Timecode",
+  "vi": "Timecode",
+  "short": "Timecode",
+  "category": "movie",
+  "note": "TC."
+ },
+ {
+  "en": "Timing",
+  "vi": "thời điểm",
+  "short": "thời điểm",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Title",
+  "vi": "tiêu đề",
+  "short": "tiêu đề",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Toggle",
+  "vi": "bật/tắt",
+  "short": "bật/tắt",
+  "category": "custom",
+  "note": "on Toggle -> \"khi nhấn\"."
+ },
+ {
+  "en": "Tone",
+  "vi": "tông màu",
+  "short": "tông",
+  "category": "color"
+ },
+ {
+  "en": "Tools",
+  "vi": "công cụ",
+  "short": "công cụ",
+  "category": "setup"
+ },
+ {
+  "en": "Top",
+  "vi": "trên",
+  "short": "trên",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Touch",
+  "vi": "cảm ứng / chạm",
+  "short": "chạm",
+  "category": "custom",
+  "note": "Touch screen/operation -> \"cảm ứng\"; touch focus/shutter/tracking -> \"chạm\"."
+ },
+ {
+  "en": "Touch Focus",
+  "vi": "chạm lấy nét",
+  "short": "chạm lấy nét",
+  "category": "custom"
+ },
+ {
+  "en": "Touch Operation",
+  "vi": "thao tác cảm ứng",
+  "short": "thao tác cảm ứng",
+  "category": "custom"
+ },
+ {
+  "en": "Touch Pad",
+  "vi": "bàn di cảm ứng",
+  "short": "bàn di cảm ứng",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Touch Panel",
+  "vi": "màn hình cảm ứng",
+  "short": "màn hình cảm ứng",
+  "category": "custom"
+ },
+ {
+  "en": "Touch Shutter",
+  "vi": "chạm chụp",
+  "short": "chạm chụp",
+  "category": "custom"
+ },
+ {
+  "en": "Touch Tracking",
+  "vi": "chạm theo dõi",
+  "short": "chạm theo dõi",
+  "category": "custom"
+ },
+ {
+  "en": "Toy Camera",
+  "vi": "máy ảnh đồ chơi",
+  "short": "máy ảnh đồ chơi",
+  "category": "color"
+ },
+ {
+  "en": "Track",
+  "vi": "theo dõi",
+  "short": "theo dõi",
+  "category": "focus"
+ },
+ {
+  "en": "Tracking",
+  "vi": "theo dõi",
+  "short": "theo dõi",
+  "category": "rev3",
+  "locked": true,
+  "note": "không dùng 'dò'"
+ },
+ {
+  "en": "Transfer",
+  "vi": "chuyển",
+  "short": "chuyển",
+  "category": "network",
+  "note": "Image transfer. \"Chuyển ảnh\" when standalone."
+ },
+ {
+  "en": "Transfer Status",
+  "vi": "trạng thái chuyển",
+  "short": "trạng thái chuyển",
+  "category": "network"
+ },
+ {
+  "en": "Transfer/Remote",
+  "vi": "chuyển ảnh/từ xa",
+  "short": "chuyển/từ xa",
+  "category": "network"
+ },
+ {
+  "en": "Trigger",
+  "vi": "bộ kích",
+  "short": "bộ kích",
+  "category": "flash"
+ },
+ {
+  "en": "Trimming",
+  "vi": "cắt ảnh",
+  "short": "cắt ảnh",
+  "category": "playback"
+ },
+ {
+  "en": "TTL",
+  "vi": "TTL",
+  "short": "TTL",
+  "category": "flash"
+ },
+ {
+  "en": "Tv",
+  "vi": "Tv",
+  "short": "Tv",
+  "category": "exposure",
+  "note": "Sony dial label (shutter value)."
+ },
+ {
+  "en": "Type",
+  "vi": "loại",
+  "short": "loại",
+  "category": "ui-generic"
+ },
+ {
+  "en": "UB",
+  "vi": "UB",
+  "short": "UB",
+  "category": "movie"
+ },
+ {
+  "en": "Unable to",
+  "vi": "không thể",
+  "short": "không thể",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Uncompressed",
+  "vi": "không nén",
+  "short": "không nén",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Update",
+  "vi": "cập nhật",
+  "short": "cập nhật",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Upper",
+  "vi": "trên",
+  "short": "trên",
+  "category": "ui-generic"
+ },
+ {
+  "en": "USB",
+  "vi": "USB",
+  "short": "USB",
+  "category": "setup"
+ },
+ {
+  "en": "USB Connection Mode",
+  "vi": "chế độ kết nối USB",
+  "short": "kết nối USB",
+  "category": "setup"
+ },
+ {
+  "en": "USB LUN Setting",
+  "vi": "cài đặt USB LUN",
+  "short": "cài đặt USB LUN",
+  "category": "setup"
+ },
+ {
+  "en": "USB Power Supply",
+  "vi": "cấp điện qua USB",
+  "short": "cấp điện USB",
+  "category": "setup"
+ },
+ {
+  "en": "USB Streaming",
+  "vi": "truyền phát USB",
+  "short": "truyền phát USB",
+  "category": "network"
+ },
+ {
+  "en": "USB-LAN/Tethering Connect",
+  "vi": "kết nối USB-LAN/Tethering",
+  "short": "USB-LAN/Tethering",
+  "category": "network"
+ },
+ {
+  "en": "User",
+  "vi": "người dùng",
+  "short": "người dùng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "User Bit",
+  "vi": "User Bit",
+  "short": "User Bit",
+  "category": "movie",
+  "note": "UB."
+ },
+ {
+  "en": "Value",
+  "vi": "giá trị",
+  "short": "giá trị",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Var. Shutter",
+  "vi": "màn trập biến thiên",
+  "short": "màn trập biến thiên",
+  "category": "exposure",
+  "note": "Variable Shutter (anti-flicker fine tuning). Est. 100% with icon at W304: borderline."
+ },
+ {
+  "en": "Variable",
+  "vi": "biến thiên",
+  "short": "biến thiên",
+  "category": "exposure"
+ },
+ {
+  "en": "Version",
+  "vi": "phiên bản",
+  "short": "phiên bản",
+  "category": "setup"
+ },
+ {
+  "en": "Vertical",
+  "vi": "dọc",
+  "short": "dọc",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Video",
+  "vi": "video",
+  "short": "video",
+  "category": "movie",
+  "note": "Only where EN says \"Video\" (e.g. video light); movie = phim."
+ },
+ {
+  "en": "Viewfinder",
+  "vi": "ống ngắm",
+  "short": "ống ngắm",
+  "category": "setup"
+ },
+ {
+  "en": "Viewfinder Bright.",
+  "vi": "độ sáng ống ngắm",
+  "short": "độ sáng ống ngắm",
+  "category": "setup"
+ },
+ {
+  "en": "Voice Memo",
+  "vi": "ghi chú thoại",
+  "short": "ghi chú thoại",
+  "category": "playback",
+  "note": "Current \"ghi âm\" is ambiguous."
+ },
+ {
+  "en": "Volume",
+  "vi": "âm lượng",
+  "short": "âm lượng",
+  "category": "audio"
+ },
+ {
+  "en": "Watercolor",
+  "vi": "màu nước",
+  "short": "màu nước",
+  "category": "color"
+ },
+ {
+  "en": "WB",
+  "vi": "WB",
+  "short": "WB",
+  "category": "color"
+ },
+ {
+  "en": "WB bracket",
+  "vi": "Bracket WB",
+  "short": "Bracket WB",
+  "category": "drive"
+ },
+ {
+  "en": "Wheel",
+  "vi": "bánh xe",
+  "short": "bánh xe",
+  "category": "custom"
+ },
+ {
+  "en": "White Balance",
+  "vi": "cân bằng trắng",
+  "short": "WB",
+  "category": "color",
+  "note": "Short form WB universally understood."
+ },
+ {
+  "en": "Wi-Fi",
+  "vi": "Wi-Fi",
+  "short": "Wi-Fi",
+  "category": "network"
+ },
+ {
+  "en": "Wide",
+  "vi": "rộng",
+  "short": "rộng",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Wind Noise Reduct.",
+  "vi": "giảm tiếng gió",
+  "short": "giảm tiếng gió",
+  "category": "audio"
+ },
+ {
+  "en": "Wind Noise Reduction",
+  "vi": "giảm tiếng gió",
+  "short": "giảm tiếng gió",
+  "category": "audio"
+ },
+ {
+  "en": "Wired LAN",
+  "vi": "LAN có dây",
+  "short": "LAN có dây",
+  "category": "network"
+ },
+ {
+  "en": "Wireless",
+  "vi": "không dây",
+  "short": "không dây",
+  "category": "network"
+ },
+ {
+  "en": "Wireless LAN",
+  "vi": "LAN không dây",
+  "short": "LAN không dây",
+  "category": "network"
+ },
+ {
+  "en": "Yes",
+  "vi": "có",
+  "short": "có",
+  "category": "ui-generic"
+ },
+ {
+  "en": "Zebra",
+  "vi": "sọc vằn",
+  "short": "sọc vằn",
+  "category": "rev3",
+  "locked": true
+ },
+ {
+  "en": "Zebra Display",
+  "vi": "hiển thị Zebra",
+  "short": "hiển thị Zebra",
+  "category": "exposure"
+ },
+ {
+  "en": "Zebra Level",
+  "vi": "mức Zebra",
+  "short": "mức Zebra",
+  "category": "exposure"
+ },
+ {
+  "en": "Zone",
+  "vi": "vùng",
+  "short": "vùng",
+  "category": "focus"
+ },
+ {
+  "en": "Zoom",
+  "vi": "Zoom",
+  "short": "tiêu cự (vị trí zoom)",
+  "category": "rev3",
+  "locked": true,
+  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+ },
+ {
+  "en": "Zoom Ring",
+  "vi": "vòng zoom",
+  "short": "vòng zoom",
+  "category": "custom"
+ },
+ {
+  "en": "Zoom Speed",
+  "vi": "tốc độ zoom",
+  "short": "tốc độ zoom",
+  "category": "custom"
+ }
+]

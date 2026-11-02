@@ -1,0 +1,15 @@
+{
+  "name": "thaikpham-blogskill",
+  "description": "Sony Alpha Việt: dịch menu máy ảnh Sony sang tiếng Việt và viết blog máy ảnh chuẩn SEO/AIO",
+  "owner": {
+    "name": "Pham Khang Thai",
+    "email": "thaikpham.art@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "sony-alpha-viet",
+      "source": "./",
+      "description": "Skill + MCP: dịch menu Sony (bộ nhớ dịch, kiểm độ rộng, tự học) và viết/chấm blog SEO + AIO tiếng Việt"
+    }
+  ]
+}

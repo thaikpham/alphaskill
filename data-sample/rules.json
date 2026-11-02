@@ -1,0 +1,1247 @@
+{
+ "substitutions": [
+  {
+   "id": "r000",
+   "pattern": "(tập tin|file|tệp) cơ sở dữ liệu ảnh",
+   "replace": "dữ liệu ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r001",
+   "pattern": "CSDL ảnh",
+   "replace": "dữ liệu ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r002",
+   "pattern": "Xin hãy chờ",
+   "replace": "Vui lòng chờ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r003",
+   "pattern": "(?<=ảnh) Vui lòng chờ",
+   "replace": ". Vui lòng chờ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r004",
+   "pattern": "Bracket: liên tục:",
+   "replace": "Bù trừ liên tục:",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r005",
+   "pattern": "chụp bằng Bracket",
+   "replace": "chụp bù trừ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r006",
+   "pattern": "chụp Bracket",
+   "replace": "chụp bù trừ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r007",
+   "pattern": "khi Bracket",
+   "replace": "khi chụp bù trừ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r008",
+   "pattern": "Bracket lấy nét",
+   "replace": "bù trừ lấy nét",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r009",
+   "pattern": "Bracket (liên tục|đơn|DRO|cân bằng trắng|WB|LPF)",
+   "replace": "bù trừ \\1",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r010",
+   "pattern": "Bracket",
+   "replace": "bù trừ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r011",
+   "pattern": "USB-LAN/Tethering",
+   "replace": "USB-LAN/chia sẻ mạng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r012",
+   "pattern": "USB LAN/Tethering",
+   "replace": "USB LAN/chia sẻ mạng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r013",
+   "pattern": "USB Tethering",
+   "replace": "chia sẻ mạng qua USB",
+   "fallback": "chia sẻ mạng USB",
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r014",
+   "pattern": "kết nối Tethering",
+   "replace": "kết nối chia sẻ mạng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r015",
+   "pattern": "Kết nối Tethering",
+   "replace": "Kết nối chia sẻ mạng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r016",
+   "pattern": "Ngắt Tethering",
+   "replace": "Ngắt chia sẻ mạng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r017",
+   "pattern": "Cổng Tethering",
+   "replace": "Cổng chia sẻ mạng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r018",
+   "pattern": "Tethering",
+   "replace": "chia sẻ mạng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r019",
+   "pattern": "[Ss]martphone\\+máy",
+   "replace": "Điện thoại+máy ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r020",
+   "pattern": "[Ss]martphone",
+   "replace": "điện thoại",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r021",
+   "pattern": "mức phóng to của zoom",
+   "replace": "mức thu phóng",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r022",
+   "pattern": "tỷ lệ zoom",
+   "replace": "mức thu phóng",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r023",
+   "pattern": "zoom quang học",
+   "replace": "thu phóng quang học",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r024",
+   "pattern": "zoom quang\\b",
+   "replace": "thu phóng quang học",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r025",
+   "pattern": "zoom kỹ thuật số",
+   "replace": "thu phóng kỹ thuật số",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r026",
+   "pattern": "[Zz]oom số\\b",
+   "replace": "thu phóng số",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r027",
+   "pattern": "zoom thông minh",
+   "replace": "thu phóng thông minh",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r028",
+   "pattern": "[Zz]oom ảnh rõ",
+   "replace": "thu phóng rõ nét",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r029",
+   "pattern": "cần gạt zoom",
+   "replace": "cần thu phóng",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r030",
+   "pattern": "cần zoom",
+   "replace": "cần thu phóng",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r031",
+   "pattern": "vòng zoom",
+   "replace": "vòng thu phóng",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r032",
+   "pattern": "zoom bước",
+   "replace": "thu phóng theo bước",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r033",
+   "pattern": "Zoom vào/ra",
+   "replace": "Phóng to/thu nhỏ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r034",
+   "pattern": "\\b[Zz]oom\\b",
+   "replace": "thu phóng",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Zoom)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r035",
+   "pattern": "Histogram&T\\.thủy",
+   "replace": "Biểu đồ&thước thủy",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r036",
+   "pattern": "Histogram & T\\.thủy",
+   "replace": "Biểu đồ & thước thủy",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r037",
+   "pattern": "[Hh]istogram",
+   "replace": "biểu đồ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r038",
+   "pattern": "[Tt]ime-lapse",
+   "replace": "tua nhanh thời gian",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r039",
+   "pattern": "Shot Mark(\\d)",
+   "replace": "dấu cảnh \\1",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r040",
+   "pattern": "Shot Mark",
+   "replace": "dấu cảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r041",
+   "pattern": "cờ clip|Cờ clip",
+   "replace": "cờ đoạn phim",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r042",
+   "pattern": "chụp crop theo bước",
+   "replace": "chụp cắt khung theo bước",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r043",
+   "pattern": "Chụp crop theo bước",
+   "replace": "Chụp cắt khung theo bước",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r044",
+   "pattern": "[Hh]iệu chỉnh pixel",
+   "replace": "ánh xạ điểm ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r045",
+   "pattern": "Tự ánh xạ điểm ảnh",
+   "replace": "Tự động ánh xạ điểm ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r046",
+   "pattern": "\\b[Pp]ixel\\b",
+   "replace": "điểm ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r047",
+   "pattern": "[Áá]nh sáng video|đèn video|Đèn video",
+   "replace": "đèn quay phim",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r048",
+   "pattern": "Codec video",
+   "replace": "Chuẩn nén phim",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r049",
+   "pattern": "Commander",
+   "replace": "bộ chỉ huy",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r050",
+   "pattern": "1 là thiết lập chậm nhất và 8 là thiết lập nhanh nhất",
+   "replace": "1 là chậm nhất và 8 là nhanh nhất",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r051",
+   "pattern": "(?<=<cE028>)(Cao\\+?|Trung bình|Thấp)\\((?:màn trập điện tử|màn trập đ\\.tử)\\)",
+   "replace": "\\1(điện tử)",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r052",
+   "pattern": "\\bcamera (phụ|chính)",
+   "replace": "máy ảnh \\1",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r053",
+   "pattern": "Chuyển đổi camera",
+   "replace": "Chuyển đổi máy ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r054",
+   "pattern": "\\bFile\\b",
+   "replace": "Tập tin",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r055",
+   "pattern": "\\bfile\\b",
+   "replace": "tập tin",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r056",
+   "pattern": "32bit float",
+   "replace": "32bit dấu phẩy động",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r057",
+   "pattern": "không blackout",
+   "replace": "không tối màn hình",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r058",
+   "pattern": "nút multi-selector|multi-selector",
+   "replace": "nút đa hướng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r059",
+   "pattern": "Crispening",
+   "replace": "làm sắc nét",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r060",
+   "pattern": "Hiệu chỉnh breathing",
+   "replace": "Bù hiện tượng thở",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r061",
+   "pattern": "hiện tượng breathing khi lấy nét",
+   "replace": "hiện tượng thở ống kính khi lấy nét",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r062",
+   "pattern": "Cam ID \\+ Reel#",
+   "replace": "ID máy + số cuộn",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r063",
+   "pattern": "Cam ID",
+   "replace": "ID máy",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r064",
+   "pattern": "Developer Tools",
+   "replace": "Công cụ nhà phát triển",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r065",
+   "pattern": "Fixed-\\$\\{v1\\}",
+   "replace": "Cố định ${v1}",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r066",
+   "pattern": "\\(Beta\\)",
+   "replace": "(bản thử)",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r067",
+   "pattern": "Ver\\.\\$\\{v1\\}",
+   "replace": "Phiên bản ${v1}",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r068",
+   "pattern": "Intelligent Auto",
+   "replace": "Tự động thông minh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r069",
+   "pattern": "\\bmic (trong|ngoài)",
+   "replace": "micrô \\1",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r070",
+   "pattern": "User\\$\\{v1\\}",
+   "replace": "Người dùng ${v1}",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r071",
+   "pattern": "Base ISO",
+   "replace": "ISO gốc",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r072",
+   "pattern": "truyền thông không dây qua radio",
+   "replace": "sóng vô tuyến",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r073",
+   "pattern": "qua radio|bằng radio",
+   "replace": "qua sóng vô tuyến",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r074",
+   "pattern": "\\bradio\\b",
+   "replace": "sóng vô tuyến",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r075",
+   "pattern": "QR Code",
+   "replace": "mã QR",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r076",
+   "pattern": "Xuất Time Code",
+   "replace": "Xuất mã thời gian",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Time Code)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r077",
+   "pattern": "Timecode USB",
+   "replace": "Mã thời gian USB",
+   "fallback": null,
+   "source": "rev3",
+   "disabled": true,
+   "disabled_why": "keep_english(Time Code)",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r078",
+   "pattern": "Mass Storage",
+   "replace": "Lưu trữ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r079",
+   "pattern": "Look tùy chỉnh",
+   "replace": "Phong cách tùy chỉnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r080",
+   "pattern": "Look cơ bản",
+   "replace": "Phong cách cơ bản",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r081",
+   "pattern": "cài đặt Look",
+   "replace": "cài đặt phong cách",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r082",
+   "pattern": "Look hiện tại",
+   "replace": "phong cách hiện tại",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r083",
+   "pattern": "^Look$",
+   "replace": "Phong cách",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r084",
+   "pattern": "Touchpad",
+   "replace": "bàn di cảm ứng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r085",
+   "pattern": "\\b[Mm]icro\\b(?! ?(?:USB|SD|HDMI|B\\b))",
+   "replace": "micrô",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r086",
+   "pattern": "máy ảnh medium format",
+   "replace": "máy ảnh khổ trung bình",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r087",
+   "pattern": "Gamma là Movie",
+   "replace": "Gamma là Phim",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r088",
+   "pattern": "Gamma là Still",
+   "replace": "Gamma là Ảnh tĩnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r089",
+   "pattern": "định dạng non-drop frame",
+   "replace": "định dạng không bỏ khung",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r090",
+   "pattern": "định dạng drop frame",
+   "replace": "định dạng bỏ khung",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r091",
+   "pattern": "Type([15]) \\(",
+   "replace": "Loại\\1 (",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r092",
+   "pattern": "Fixed-(?=\\d|\\$)",
+   "replace": "Cố định ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r093",
+   "pattern": "\\bemail\\b",
+   "replace": "thư điện tử",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r094",
+   "pattern": "(Chụp liên tục: )Hi\\+",
+   "replace": "\\1Cao+",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r095",
+   "pattern": "(Chụp liên tục: )Hi\\b",
+   "replace": "\\1Cao",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r096",
+   "pattern": "(Chụp liên tục: )Mid\\b",
+   "replace": "\\1Trung bình",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r097",
+   "pattern": "(Chụp liên tục: )Lo\\b",
+   "replace": "\\1Thấp",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r098",
+   "pattern": "cho Hi\\+ của",
+   "replace": "cho mức Cao+ của",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r099",
+   "pattern": "cho Hi của",
+   "replace": "cho mức Cao của",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r100",
+   "pattern": "cho Mid của",
+   "replace": "cho mức Trung bình của",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r101",
+   "pattern": "cho Lo của",
+   "replace": "cho mức Thấp của",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r102",
+   "pattern": "user bit",
+   "replace": "bit người dùng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r103",
+   "pattern": "\\bUser (\\d)",
+   "replace": "Người dùng \\1",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r104",
+   "pattern": "tín hiệu video",
+   "replace": "tín hiệu hình ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r105",
+   "pattern": "quay video",
+   "replace": "quay phim",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r106",
+   "pattern": "truyền phát video",
+   "replace": "truyền phát hình ảnh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r107",
+   "pattern": "chế độ mass storage",
+   "replace": "chế độ lưu trữ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r108",
+   "pattern": "giữa mass storage và",
+   "replace": "giữa chế độ lưu trữ và",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r109",
+   "pattern": "mass storage",
+   "replace": "lưu trữ",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r110",
+   "pattern": "Multi-Selector",
+   "replace": "nút đa hướng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r111",
+   "pattern": "Multi-Slc",
+   "replace": "đa hướng",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r112",
+   "pattern": "35mm Full Frame",
+   "replace": "toàn khung 35mm",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r113",
+   "pattern": "Full Frame",
+   "replace": "toàn khung",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r114",
+   "pattern": "Mức Zebra",
+   "replace": "Mức sọc vằn",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r115",
+   "pattern": "Zebra",
+   "replace": "sọc vằn",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r116",
+   "pattern": "Số lần nháy flash",
+   "replace": "Số lần nháy đèn flash",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r117",
+   "pattern": "High-key mềm",
+   "replace": "Tông sáng mềm",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r118",
+   "pattern": "đ\\.ký",
+   "replace": "đăng ký",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r119",
+   "pattern": "Đ\\.khiển",
+   "replace": "Điều khiển",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r120",
+   "pattern": "đ\\.tử",
+   "replace": "điện tử",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r121",
+   "pattern": "p\\.tiện",
+   "replace": "phương tiện",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r122",
+   "pattern": "T\\.thủy",
+   "replace": "thước thủy",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r123",
+   "pattern": "phát lại âm thanh",
+   "replace": "phát âm thanh",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r124",
+   "pattern": "Phát lại giọng nói",
+   "replace": "Phát giọng nói",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r125",
+   "pattern": "âm lượng phát lại",
+   "replace": "âm lượng phát",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "r126",
+   "pattern": "thu, phát lại, xóa",
+   "replace": "thu, phát, xóa",
+   "fallback": null,
+   "source": "rev3",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L127",
+   "pattern": "(?<!\\w)Chọn chụp chống nhấp nháy(?!\\w)",
+   "replace": "\\g<0>",
+   "fallback": "Chống nhấp nháy",
+   "source": "learned",
+   "added": "2026-11-02T17:10:40",
+   "note": "chỉ áp khi tràn khung",
+   "hits": 0,
+   "count": 0
+  }
+ ],
+ "exact": {},
+ "banned": [
+  {
+   "pattern": "[Cc]ửa trập|[Mm]àn chập|[Cc]ửa chập",
+   "why": "shutter = màn trập"
+  },
+  {
+   "pattern": "CSDL",
+   "why": "viết đầy đủ 'dữ liệu ảnh'"
+  },
+  {
+   "pattern": "System Lỗi|Camera Lỗi",
+   "why": "không trộn Anh–Việt"
+  },
+  {
+   "pattern": "Cần review",
+   "why": "bỏ nhãn review"
+  },
+  {
+   "pattern": "[Bb]ộ tìm kiếm",
+   "why": "Finder = ống ngắm"
+  },
+  {
+   "pattern": "\\b[Đđ]ịnh mức\\b",
+   "why": "Rating = xếp hạng"
+  },
+  {
+   "pattern": "[Hh]iển thị [Đđ]ỉnh",
+   "why": "Peaking = viền hỗ trợ lấy nét"
+  },
+  {
+   "pattern": "[Pp]hát lại",
+   "why": "Playback = xem lại"
+  },
+  {
+   "pattern": "[Tt]hiết lập lại",
+   "why": "Reset = đặt lại"
+  },
+  {
+   "pattern": "[Hh]ữu hiệu hóa",
+   "why": "Enable = bật/cho phép"
+  },
+  {
+   "pattern": "[Pp]hóng lớn",
+   "why": "Magnify = phóng to"
+  },
+  {
+   "pattern": "\\b[Dd]ò\\b",
+   "why": "Tracking = theo dõi"
+  },
+  {
+   "pattern": "[Nn]út màn trập",
+   "why": "shutter button = nút chụp (duyệt 02/11/2026)"
+  },
+  {
+   "pattern": "[Mm]ất nét",
+   "why": "Defocus = xóa phông (nếu là giá trị Xóa phông)"
+  }
+ ]
+}

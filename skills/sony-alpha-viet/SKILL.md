@@ -42,16 +42,17 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 6. Sau khi viết: tự audit theo checklist, xuất bảng điểm + danh sách sửa.
 
 ## Quy trình
-**A. Menu** → làm theo `references/sony-menu-terms.md` (get_guidelines → prepare_batch → dịch → check_translation → bảng/CSV → ghi nhớ khi người dùng duyệt).
+**A. Menu** → làm theo `references/sony-menu-terms.md` (mcp__sony-alpha-viet__get_guidelines → mcp__sony-alpha-viet__prepare_batch → dịch → mcp__sony-alpha-viet__check_translation → bảng/CSV → ghi nhớ khi người dùng duyệt với record_term). MCP cũ `mcp__sony-vn-translator__*` vẫn còn dùng được nếu người dùng chạy server cũ.
 
-**B. Tài liệu** → giữ nguyên cấu trúc heading/danh sách/bảng → tên mục menu in đậm theo cột Menu OSD, lần đầu kèm tên gốc trong ngoặc nếu giúp người đọc tìm trên máy tiếng Anh → biên tập lại theo `writing-style-vi.md` (lượt chống văn dịch máy) → liệt kê thuật ngữ mới đề xuất.
+**B. Tài liệu** → giữ nguyên cấu trúc heading/danh sách/bảng → tên mục menu in đậm theo cột Menu OSD, lần đầu kèm tên gốc trong ngoặc nếu giúp người đọc tìm trên máy tiếng Anh → biên tập lại theo `writing-style-vi.md` (lượt chống văn dịch máy) → liệt kê thuật ngữ mới đề xuất. Nếu có MCP: dùng mcp__sony-alpha-viet__lookup_prose_term để tra thuật ngữ bài viết.
 
 **C. Blog** →
 1. Brief: search intent, từ khóa chính/phụ, câu hỏi kiểu People Also Ask, outline H2/H3, internal/external link dự kiến. Trình outline nếu bài > 1.000 từ và người dùng chưa duyệt hướng.
 2. Viết theo `templates/blog-post-template.md`.
-3. Tối ưu AIO: TL;DR, định nghĩa 1 câu, bảng, đoạn trả lời 50–70 từ, FAQ.
-4. Biên tập tiếng Việt (lượt riêng, theo `writing-style-vi.md`).
-5. Audit theo `references/seo-aio-checklist.md` → bảng Đạt/Chưa đạt + sửa cụ thể. Sửa luôn những gì tự sửa được, liệt kê phần cần người dùng (link nội bộ thật, ảnh, giá).
+3. Tối ưu AIO: TL;DR, định nghĩa 1 câu, bảng, đoạn trả lời 50–70 từ, FAQ. Dùng mcp__sony-alpha-viet__lookup_prose_term(từ) để xác minh thuật ngữ.
+4. Biên tập tiếng Việt (lượt riêng, theo `writing-style-vi.md`). Nếu có MCP: mcp__sony-alpha-viet__style_lint(bài) để kiểm tra cụm AI-sounding, bị động, độ dài câu.
+5. Audit theo `references/seo-aio-checklist.md` → bảng Đạt/Chưa đạt + sửa cụ thể. Nếu có MCP: mcp__sony-alpha-viet__seo_audit(bài, từ_khóa_chính) tự động kiểm tra 21 mục máy được. Sửa luôn những gì tự sửa được, liệt kê phần cần người dùng (link nội bộ thật, ảnh, giá).
+6. Sinh JSON-LD schema: mcp__sony-alpha-viet__faq_schema(bài) hoặc dùng `templates/faq-schema.json` làm mẫu.
 
 ## Firmware — giới hạn cứng
 Skill **chỉ dịch và chuẩn hóa text**. Không tự sửa, đóng gói, flash firmware hay vào service mode. Chỉ làm việc với file firmware/resource khi người dùng **tự cung cấp file và xác nhận rõ ràng**, và vẫn chỉ ở mức trích/dịch chuỗi. Mọi câu trả lời liên quan đến firmware/PMCA/unlock ngôn ngữ phải kèm cảnh báo rủi ro (mất bảo hành, hỏng máy, vi phạm điều khoản). Chi tiết: `references/sony-menu-terms.md` mục "Firmware".
