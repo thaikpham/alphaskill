@@ -55,7 +55,7 @@
 |---|---|---|---|---|
 | Shutter Type | シャッター方式 | Loại màn trập | loại màn trập | |
 | Electronic Shutter | 電子シャッター | Màn trập điện tử 🔒 | màn trập điện tử | |
-| Mechanical Shutter | メカシャッター | Màn trập cơ | màn trập cơ | ⚠ `rules.md` ghi "màn trập cơ học" — cần người dùng chốt một dạng |
+| Mechanical Shutter | メカシャッター | Màn trập cơ 🔒 | màn trập cơ | Cấm "màn trập cơ học" (duyệt 02/11/2026) |
 | Silent Shooting | サイレント撮影 | Chụp im lặng | chụp im lặng | Chưa có trong bộ nhớ; check_translation OK 02/11/2026 |
 | Drive Mode | ドライブモード | Kiểu chụp | kiểu chụp | Khác Shoot Mode (chế độ chụp) |
 | Image Stabilization / IBIS | 手ブレ補正 / ボディ内手ブレ補正 | Ổn định hình ảnh; tên tính năng: SteadyShot | chống rung trên thân máy (IBIS) | Menu Sony gọi SteadyShot; "IBIS" chỉ dùng trong văn xuôi |
@@ -68,12 +68,24 @@
 | Full Frame / Full-frame | フルサイズ | Toàn khung 🔒 | full-frame | Văn xuôi không dùng "khung hình đầy đủ" |
 | APS-C / Super 35mm | APS-C / Super 35mm | giữ nguyên | giữ nguyên | |
 | Memory Card | メモリーカード | Thẻ nhớ | thẻ nhớ | |
-| Firmware | ファームウェア | Phần mềm hệ thống [đề xuất, chưa chốt] | firmware | Menu OSD thuần Việt — cần người dùng chốt; văn xuôi giữ "firmware" |
+| Firmware | ファームウェア | Firmware 🔒 | firmware | Giữ nguyên — ai cũng hiểu (duyệt 02/11/2026) |
 | Version | バージョン | Phiên bản | phiên bản | |
 | XAVC S / HS / S-I | — | giữ nguyên | giữ nguyên | |
 
-## 6. Giữ nguyên (mọi chế độ)
-Sony, Alpha, α, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, ISO, RAW, JPEG, HEIF, S-Log2/3, S-Gamut3(.Cine), S-Cinetone, HLG, XAVC (S/HS/S-I), CFexpress, SDXC, UHS-I/II, Wi-Fi, Bluetooth, HDMI, USB, FTP, Creators' App, Imaging Edge Mobile, Monitor & Control, Transfer & Tagging. Danh sách đầy đủ cho menu: `get_guidelines("exceptions")`.
+## 6. Giữ tiếng Anh theo quyết định người dùng (keep_english)
+Nguyên tắc: giữ tiếng Anh khi bản dịch tiếng Việt **không giúp người dùng hiểu hơn**. Viết hoa theo bản gốc EN (tên mục "Zoom Assist" → "Zoom"; câu trợ giúp "zoom speed" → "tốc độ zoom"). Danh sách sống: `get_guidelines("keep_english")`.
 
-## 7. Thuật ngữ mới đề xuất
+| EN | JP | Menu OSD | Bài viết | Ví dụ đã duyệt |
+|---|---|---|---|---|
+| Zoom | ズーム | Zoom 🔒 | zoom | Range of Zoom Assist = Dải hỗ trợ Zoom; Digital Zoom = Zoom số; Clear Image Zoom = Zoom rõ nét |
+| Time Code / timecode | タイムコード | Time Code 🔒 | timecode | Time Code Make = Tạo mã Time Code; Time Code Run = Chạy Time Code |
+| Preset | プリセット | Preset 🔒 | preset | Preset = Preset; Preset Name = Tên Preset |
+| Free Run | フリーラン | Chạy tự do | chạy tự do | (dịch được, rõ nghĩa) |
+
+Cấm: "thu phóng" (khi EN là Zoom), "mã thời gian", "đặt trước".
+
+## 7. Giữ nguyên (mọi chế độ)
+Sony, Alpha, α, Firmware, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, ISO, RAW, JPEG, HEIF, S-Log2/3, S-Gamut3(.Cine), S-Cinetone, HLG, XAVC (S/HS/S-I), CFexpress, SDXC, UHS-I/II, Wi-Fi, Bluetooth, HDMI, USB, FTP, Creators' App, Imaging Edge Mobile, Monitor & Control, Transfer & Tagging. Danh sách đầy đủ cho menu: `get_guidelines("exceptions")`.
+
+## 8. Thuật ngữ mới đề xuất
 Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xuất, chưa chốt]` cho tới lúc đó.

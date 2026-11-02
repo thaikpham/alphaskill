@@ -9,7 +9,7 @@ Ba chế độ, mỗi chế độ một chuẩn thuật ngữ. **Xác định ch
 
 | Chế độ | Khi nào | Chuẩn thuật ngữ | Đầu ra mặc định |
 |---|---|---|---|
-| **A. Menu OSD** | Chuỗi menu, thông báo, help text trên máy; file `*_TranslationCheck_VN.xls` | Cột **Menu OSD** trong glossary — 100% thuần Việt, thuật ngữ khóa của MCP thắng mọi thứ | Bảng Markdown + CSV (`templates/menu-translation-table.csv`) |
+| **A. Menu OSD** | Chuỗi menu, thông báo, help text trên máy; file `*_TranslationCheck_VN.xls` | Cột **Menu OSD** trong glossary — thuần Việt trừ ngoại lệ và danh sách keep_english; thuật ngữ khóa của MCP thắng mọi thứ | Bảng Markdown + CSV (`templates/menu-translation-table.csv`) |
 | **B. Tài liệu** | Hướng dẫn sử dụng, help guide, thông cáo, PDF/DOCX/EPUB, URL | Cột **Bài viết/Tài liệu**; tên mục menu trích đúng như cột Menu OSD | Markdown giữ cấu trúc gốc; PDF nếu được yêu cầu |
 | **C. Blog SEO + AIO** | Viết, biên tập, audit bài blog | Cột **Bài viết/Tài liệu** | Markdown + meta + slug + JSON-LD + bảng audit |
 
@@ -28,7 +28,7 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 ## Nguyên tắc dịch
 1. Tự nhiên, ngắn gọn, đúng ngữ cảnh UI. Không dịch từng chữ.
 2. **Luôn tra glossary**; chế độ A tra thêm MCP (`prepare_batch`) — bộ nhớ đã duyệt và thuật ngữ `locked` thắng glossary trong file này.
-3. Giữ nguyên: Sony, Alpha, tên model, ISO, S-Log3, S-Cinetone, XAVC S/HS/S-I, APS-C, RAW, HEIF, CFexpress, tên ứng dụng (danh sách đầy đủ ở glossary mục "Giữ nguyên").
+3. Giữ nguyên: Sony, Alpha, tên model, Zoom, Time Code, Preset, Firmware (keep_english — chỉ dịch khi tiếng Việt giúp hiểu hơn), ISO, S-Log3, S-Cinetone, XAVC S/HS/S-I, APS-C, RAW, HEIF, CFexpress, tên ứng dụng (danh sách đầy đủ ở glossary mục "Giữ nguyên").
 4. Menu: bản gốc ngắn → bản dịch 2–4 từ; giữ biến `${v1}`, icon `<cE660>`, số dòng.
 5. Không chắc → đưa 2–3 phương án, ghi rõ phương án khuyến nghị và lý do; người dùng chốt thì ghi nhớ (chế độ A: `record_term`).
 6. Nguồn tiếng Nhật: dịch từ nghĩa, không qua tiếng Anh trung gian nếu có thể; đối chiếu tên mục với bản tiếng Anh của cùng model khi có. Cột JP trong glossary dùng để nhận diện.
