@@ -1,0 +1,33 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "[H1 bài viết]",
+      "description": "[meta description]",
+      "inLanguage": "vi-VN",
+      "author": { "@type": "Person", "name": "[Tác giả]", "url": "[URL trang tác giả]" },
+      "publisher": { "@type": "Organization", "name": "[Tên site]", "logo": { "@type": "ImageObject", "url": "[URL logo]" } },
+      "datePublished": "[YYYY-MM-DD]",
+      "dateModified": "[YYYY-MM-DD]",
+      "mainEntityOfPage": "[URL bài viết]",
+      "image": "[URL ảnh đại diện]",
+      "about": [{ "@type": "Product", "name": "[Model Sony]", "brand": { "@type": "Brand", "name": "Sony" } }]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "[Câu hỏi 1 — trùng nguyên văn H3 trong bài]",
+          "acceptedAnswer": { "@type": "Answer", "text": "[Trả lời — trùng nguyên văn trong bài]" }
+        },
+        {
+          "@type": "Question",
+          "name": "[Câu hỏi 2]",
+          "acceptedAnswer": { "@type": "Answer", "text": "[Trả lời]" }
+        }
+      ]
+    }
+  ]
+}
