@@ -243,10 +243,18 @@ def style_lint(text: str) -> dict:
 
 # ---------------- article parsing ----------------
 def _frontmatter(md: str) -> tuple[dict, str]:
-    """Return (frontmatter dict, body). Values in quotes or [lists] are parsed loosely."""
+    """Return (frontmatter dict, body). Real YAML (Obsidian writes multi-line lists/strings); loose parse if invalid."""
     m = re.match(r"---\n(.*?)\n---\n", md, re.DOTALL)
     if not m:
         return {}, md
+    try:
+        import yaml
+        data = yaml.safe_load(m.group(1))
+        if isinstance(data, dict):
+            # dates and numbers as text, e.g. updated: 02/11/2026 stays "02/11/2026"
+            return {str(k): (v if isinstance(v, (list, bool)) else "" if v is None else str(v)) for k, v in data.items()}, md[m.end():]
+    except Exception:
+        pass
     fm = {}
     for line in m.group(1).split("\n"):
         if ":" in line and not line.startswith(" "):

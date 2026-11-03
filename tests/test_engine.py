@@ -155,3 +155,19 @@ def test_data_dir_resolution_order(tmp_path, monkeypatch):
     (cfg / "sony-alpha-viet" / "config.json").unlink()
     importlib.reload(paths)
     assert paths.DATA == tmp_path / "share" / "sony-alpha-viet" / "data"
+
+
+def test_server_picks_up_external_changes(env, tmp_path):
+    """Two processes share one data dir: a write by the other must not be lost when this server writes next."""
+    import importlib
+    import json as _json
+    import sony_alpha_viet.server as server
+    importlib.reload(server)
+    server.remember_translation("Alpha Test", "Thử alpha", "test")
+    # another process records a term behind our back
+    gl = _json.loads((tmp_path / "data" / "glossary.json").read_text(encoding="utf-8"))
+    gl.append({"en": "External Term", "vi": "ngoài", "short": "ngoài", "locked": True})
+    (tmp_path / "data" / "glossary.json").write_text(_json.dumps(gl, ensure_ascii=False), encoding="utf-8")
+    server.record_term("Own Term", "của mình")
+    saved = {g["en"] for g in _json.loads((tmp_path / "data" / "glossary.json").read_text(encoding="utf-8"))}
+    assert {"External Term", "Own Term"} <= saved

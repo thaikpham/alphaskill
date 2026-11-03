@@ -1,6 +1,7 @@
 """MCP server: Sony Alpha Vietnamese menu translator + blog audit."""
 from __future__ import annotations
 
+import functools
 import json
 from pathlib import Path
 
@@ -24,9 +25,21 @@ mcp = FastMCP("sony-alpha-viet", instructions=(
     "Ngoại lệ: thuật ngữ tiếng Anh (Zoom, Time Code, Preset) mà tiếng Việt không giúp → dùng keep_english. "
     "\n\n"
     "**Quy trình B: Blog/Tài liệu**: lookup_prose_term (tra thuật ngữ chuẩn từ glossary) → viết theo template "
-    "→ style_lint (kiểm tra VAI-sounding, bị động, độ dài câu) → seo_audit (kiểm tra 21 mục SEO/AIO) "
+    "→ style_lint (cụm AI-sounding, bị động, câu dài, thuật ngữ) → seo_audit (23 mục SEO/AIO) "
     "→ faq_schema (tạo JSON-LD Article+FAQPage). Nếu MCP không có, thực hiện kiểm tra thủ công từ checklist."))
 store = Store()
+
+
+def tool(fn):
+    """mcp.tool() that first picks up changes made by other processes, so a stale in-memory copy never overwrites them."""
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        store.refresh()
+        try:
+            return fn(*args, **kwargs)
+        finally:
+            store.mark_current()
+    return mcp.tool()(wrapper)
 
 
 def _layout(max_width, font_w, font_h, rows, linefeed):
@@ -35,7 +48,7 @@ def _layout(max_width, font_w, font_h, rows, linefeed):
     return {"max_w": max_width, "font_w": font_w or 27, "font_h": font_h or 36, "rows": rows or 1, "linefeed": linefeed or "Off"}
 
 
-@mcp.tool()
+@tool
 def get_guidelines(section: str = "all") -> str:
     """Quy tắc dịch, ngoại lệ giữ tiếng Anh và các thuật ngữ đã khóa. section: all | rules | exceptions | locked_terms | keep_english | learning_log."""
     parts = []
@@ -55,19 +68,19 @@ def get_guidelines(section: str = "all") -> str:
     return "\n\n".join(parts)
 
 
-@mcp.tool()
+@tool
 def lookup_term(text: str, limit: int = 20) -> list[dict]:
     """Thuật ngữ trong glossary xuất hiện trong chuỗi tiếng Anh (hoặc gần đúng với từ cần tra)."""
     return core.lookup_terms(store, text, limit)
 
 
-@mcp.tool()
+@tool
 def search_memory(text: str, limit: int = 5, min_score: float = 0.55) -> list[dict]:
     """Tìm bản dịch đã duyệt gần giống trong bộ nhớ dịch (8.346 chuỗi ILDC Rev.3 + mọi bản người dùng duyệt sau này)."""
     return core.search_tm(store, text, limit, min_score)
 
 
-@mcp.tool()
+@tool
 def prepare_batch(items: list[dict]) -> list[dict]:
     """Chuẩn bị dịch hàng loạt. items: [{id?, en, max_width?, font_w?, font_h?, rows?, linefeed?}].
     Trả về cho mỗi chuỗi: bản khớp trong bộ nhớ, thuật ngữ liên quan, gợi ý từ quy tắc nếu có bản khớp 100%."""
@@ -82,7 +95,7 @@ def prepare_batch(items: list[dict]) -> list[dict]:
     return out
 
 
-@mcp.tool()
+@tool
 def check_translation(en: str, vi: str, max_width: int = 0, font_w: int = 0, font_h: int = 0, rows: int = 1,
                       linefeed: str = "Off", autofix: bool = True) -> dict:
     """Kiểm tra bản dịch: tiếng Anh sót, từ bị cấm, viết tắt rụng chữ, biến/icon, thống nhất với bộ nhớ, độ rộng OSD.
@@ -97,13 +110,13 @@ def check_translation(en: str, vi: str, max_width: int = 0, font_w: int = 0, fon
     return res
 
 
-@mcp.tool()
+@tool
 def check_fit(text: str, max_width: int, font_w: int = 27, font_h: int = 36, rows: int = 1, linefeed: str = "Off") -> dict:
     """Ước lượng độ rộng hiển thị OSD. OK ≤92%, BORDER 93–100% (cần SonyTool xác nhận), OVER = vượt."""
     return core.fit(text, max_width, font_w, font_h, rows, linefeed)
 
 
-@mcp.tool()
+@tool
 def keep_english(term: str, vi_variants: dict, en_pattern: str = "", why: str = "", apply: bool = False) -> dict:
     """Quản lý thuật ngữ giữ tiếng Anh: khi tiếng Việt không giúp người dùng.
     vi_variants: từ điển {biến_việt: mẫu_thay_thế} — dùng {term} cho thuật ngữ.
@@ -111,65 +124,65 @@ def keep_english(term: str, vi_variants: dict, en_pattern: str = "", why: str = 
     return memory.keep_english(store, term, vi_variants, en_pattern, why, apply)
 
 
-@mcp.tool()
+@tool
 def suggest_short(en: str, vi: str, max_width: int = 0, font_w: int = 0, font_h: int = 0, rows: int = 1, linefeed: str = "Off", limit: int = 5) -> list[dict]:
     """Gợi ý bản dịch ngắn hơn khi OSD tràn khung. Trả về danh sách {text, fit, source} sắp xếp theo fit verdict."""
     lay = _layout(max_width, font_w, font_h, rows, linefeed)
     return core.suggest_short(store, en, vi, lay, limit)
 
 
-@mcp.tool()
+@tool
 def record_term(en: str, vi: str, short: str = "", note: str = "", locked: bool = True) -> dict:
     """Ghi nhớ quyết định thuật ngữ của người dùng (ví dụ Shutter Button = nút chụp). Thuật ngữ khóa luôn được ưu tiên."""
     return memory.record_term(store, en, vi, short, note, locked)
 
 
-@mcp.tool()
+@tool
 def record_feedback(en: str, wrong: str, right: str, reason: str = "", project: str = "", always: bool = False,
                     max_width: int = 0, font_w: int = 0, font_h: int = 0, rows: int = 1, linefeed: str = "Off") -> dict:
     """Ghi nhớ một lần người dùng sửa bản dịch. Cập nhật bộ nhớ dịch; cụm từ bị sửa ≥2 lần (hoặc always=True) tự thành quy tắc."""
     return memory.record_feedback(store, en, wrong, right, reason, project, always, _layout(max_width, font_w, font_h, rows, linefeed))
 
 
-@mcp.tool()
+@tool
 def remember_translation(en: str, vi: str, project: str = "", tm_id: str = "") -> dict:
     """Lưu một cặp EN→VI đã được người dùng duyệt vào bộ nhớ dịch. Chuỗi chỉ khác icon đầu dòng giữ icon của chính nó;
     chuỗi khác token ở giữa không bị đụng. tm_id (S#) để ghi đúng một dòng."""
     return memory.remember_translation(store, en, vi, project, tm_id=tm_id)
 
 
-@mcp.tool()
+@tool
 def ban_term(pattern: str, why: str) -> dict:
     """Thêm mẫu (regex) bị cấm trong bản dịch, ví dụ 'nút màn trập'."""
     return memory.ban_term(store, pattern, why)
 
 
-@mcp.tool()
+@tool
 def learn(min_count: int = 2, dry_run: bool = False) -> dict:
     """Tự cải tiến: biến các lần sửa lặp lại thành quy tắc thay thế. dry_run=True chỉ xem trước."""
     return memory.learn(store, min_count, dry_run)
 
 
-@mcp.tool()
+@tool
 def review_memory() -> dict:
     """Tự rà soát bộ nhớ: quy tắc học được nhưng chưa dùng, thuật ngữ mâu thuẫn, thuật ngữ khóa dính mẫu bị cấm."""
     return memory.review_rules(store)
 
 
-@mcp.tool()
+@tool
 def disable_rule(rule_id: str, why: str = "") -> dict:
     """Tắt một quy tắc thay thế sai (giữ lại trong lịch sử)."""
     return memory.disable_rule(store, rule_id, why)
 
 
-@mcp.tool()
+@tool
 def commit_memory(message: str = "Cập nhật bộ nhớ dịch") -> dict:
     """Commit thư mục data/ vào git để mọi thay đổi bộ nhớ có lịch sử và hoàn tác được."""
     store.save_rules()  # persist hit counters
     return memory.commit_memory(message)
 
 
-@mcp.tool()
+@tool
 def xls_read(path: str, only_flagged: bool = False, limit: int = 0) -> dict:
     """Đọc file Sony *_VN.xls (sheet VN): S#, EN, bản dịch hiện tại, AN/AU/AV, layout. only_flagged=True chỉ trả dòng vi phạm quy tắc."""
     from .xls import sonyxls
@@ -188,7 +201,7 @@ def xls_read(path: str, only_flagged: bool = False, limit: int = 0) -> dict:
     return {"total": len(rows), "returned": len(out), "rows": out}
 
 
-@mcp.tool()
+@tool
 def xls_write(src: str, out: str, proposals: list[dict]) -> dict:
     """Ghi đề xuất vào bản sao file xls (chỉ AN/AU/AV, giữ nguyên byte phần còn lại). proposals: [{row, sid, an, au, av}].
     AU phải thuộc danh sách dropdown của Sony; AV là lý do bằng tiếng Anh. Không bao giờ ghi đè file gốc."""
@@ -198,31 +211,31 @@ def xls_write(src: str, out: str, proposals: list[dict]) -> dict:
 
 # === Blog tools ===
 
-@mcp.tool()
+@tool
 def slugify(text: str, max_words: int = 6) -> str:
     """Chuyển tiếng Việt → ASCII slug (đ→d, loại dấu, dấu gạch nối). max_words tối đa số từ (mặc định 6)."""
     return blog.slugify(text, max_words)
 
 
-@mcp.tool()
+@tool
 def count_words(text: str) -> int:
     """Đếm từ trong markdown (loại table, code fence, frontmatter)."""
     return blog.count_words(text)
 
 
-@mcp.tool()
+@tool
 def lookup_prose_term(query: str) -> list[dict]:
     """Tra cứu thuật ngữ trong glossary (EN/JP/Menu/Bài viết) — fuzzy match substring, case-insensitive."""
     return blog.lookup_prose_term(query)
 
 
-@mcp.tool()
+@tool
 def style_lint(text: str) -> dict:
     """Kiểm tra văn phong: cụm AI-sounding, bị động, độ dài câu, "của" lặp, từ đôi, thập phân prose."""
     return blog.style_lint(text)
 
 
-@mcp.tool()
+@tool
 def seo_audit(markdown: str, primary_keyword: str = "", secondary_keywords: list[str] = None) -> dict:
     """SEO + AIO audit: kiểm tra 21 mục máy được từ seo-aio-checklist.md. Trả về score, failed items, chi tiết."""
     if secondary_keywords is None:
@@ -230,13 +243,13 @@ def seo_audit(markdown: str, primary_keyword: str = "", secondary_keywords: list
     return blog.seo_audit(markdown, primary_keyword, secondary_keywords)
 
 
-@mcp.tool()
+@tool
 def faq_schema(markdown: str, url: str = "", site_name: str = "", image: str = "") -> str:
     """Tạo JSON-LD Article + FAQPage từ markdown frontmatter + FAQ section."""
     return blog.faq_schema(markdown, url, site_name, image)
 
 
-@mcp.tool()
+@tool
 def data_info() -> dict:
     """Thông tin về thư mục dữ liệu: đường dẫn, tính chất (sample hay thực), số lượng từng loại."""
     glossary_count = len(store.glossary)
@@ -356,8 +369,40 @@ def prompt_audit_post(path_or_text: str = "") -> str:
 - #19: JSON-LD Article + FAQPage hợp lệ"""
 
 
+@tool
+def consistency_report(limit: int = 50) -> list[dict]:
+    """Các chuỗi tiếng Anh đang có nhiều bản dịch khác nhau trong bộ nhớ (bỏ qua khác biệt icon), nhóm lớn trước."""
+    from . import obsidian
+    return obsidian.consistency_report(store, limit)
+
+
+@tool
+def obsidian_export() -> dict:
+    """Ghi/cập nhật vault Obsidian (thư mục cấu hình trong ~/.config/sony-alpha-viet/config.json): note thuật ngữ khóa,
+    bảng thuật ngữ, giữ tiếng Anh, rà soát nhất quán, nhật ký học, bản sao skill, mẫu blog. Note thuật ngữ người dùng
+    đã sửa mà chưa import sẽ không bị ghi đè (trả về trong skipped_pending_edits)."""
+    from . import obsidian
+    return obsidian.export(store)
+
+
+@tool
+def obsidian_import(apply: bool = False) -> dict:
+    """Đọc note trong Thuật ngữ/ (đã sửa hoặc tạo mới trong Obsidian) → thay đổi thuật ngữ. apply=False xem trước;
+    apply=True ghi bằng record_term (khóa theo thuộc tính locked)."""
+    from . import obsidian
+    return obsidian.import_terms(store, apply)
+
+
+@tool
+def obsidian_audit_note(path: str, primary_keyword: str = "") -> dict:
+    """Chấm SEO/AIO một bản nháp trong vault (đường dẫn tương đối với thư mục skill trong vault, ví dụ Blog/ten-bai.md,
+    hoặc tuyệt đối). Ghi note '<tên> — SEO audit' bên cạnh và thuộc tính seo_score/seo_complete/seo_audited vào bản nháp."""
+    from . import obsidian
+    return obsidian.audit_note(path, primary_keyword)
+
+
 WRITE_TOOLS = ("record_term", "record_feedback", "remember_translation", "ban_term", "keep_english", "learn",
-               "disable_rule", "commit_memory", "xls_read", "xls_write")
+               "disable_rule", "commit_memory", "xls_read", "xls_write", "obsidian_export", "obsidian_import", "obsidian_audit_note")
 
 
 def main():

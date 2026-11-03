@@ -54,6 +54,13 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 5. Audit theo `references/seo-aio-checklist.md` → bảng Đạt/Chưa đạt + sửa cụ thể. Nếu có MCP: mcp__sony-alpha-viet__seo_audit(bài, từ_khóa_chính) tự động kiểm tra 21 mục máy được. Sửa luôn những gì tự sửa được, liệt kê phần cần người dùng (link nội bộ thật, ảnh, giá).
 6. Sinh JSON-LD schema: mcp__sony-alpha-viet__faq_schema(bài) hoặc dùng `templates/faq-schema.json` làm mẫu.
 
+## Obsidian (khi người dùng đã cấu hình vault)
+Vault đặt trong `~/.config/sony-alpha-viet/config.json` (`"vault"`, `"vault_folder"`). Mọi thứ nằm trong `<vault>/<vault_folder>/`. Không có vault thì bỏ qua mục này.
+- **Blog (chế độ C):** lưu bản nháp vào `Blog/<slug>.md`, frontmatter theo mẫu (Obsidian đọc thành Properties). Viết xong gọi `obsidian_audit_note("Blog/<slug>.md")`: công cụ ghi note `<slug> — SEO audit` và thuộc tính `seo_score`/`seo_complete` vào bản nháp. Sửa theo báo cáo rồi chấm lại.
+- **Thuật ngữ:** người dùng sửa note trong `Thuật ngữ/` hoặc tạo note mới (thuộc tính `en`, `vi`, tùy chọn `short`, `locked`, `note`). Khi họ nói "import thuật ngữ từ Obsidian": gọi `obsidian_import()` → trình bảng thay đổi → chỉ `obsidian_import(apply=True)` khi họ đồng ý.
+- **Sau phiên dịch có thay đổi bộ nhớ** (record_term, keep_english, learn…): gọi `obsidian_export()` để vault cập nhật. Note người dùng đang sửa dở không bị ghi đè; báo lại các note trong `skipped_pending_edits`.
+- **Rà soát nhất quán:** `consistency_report()` (hoặc note `Rà soát nhất quán`) liệt kê chuỗi có nhiều bản dịch, kèm độ rộng khung. Bản ngắn ở khung hẹp thường là rút gọn hợp lệ, đừng tự "sửa". Áp dụng lựa chọn của người dùng bằng `remember_translation(..., tm_id=S#)`.
+
 ## Firmware — giới hạn cứng
 Skill **chỉ dịch và chuẩn hóa text**. Không tự sửa, đóng gói, flash firmware hay vào service mode. Chỉ làm việc với file firmware/resource khi người dùng **tự cung cấp file và xác nhận rõ ràng**, và vẫn chỉ ở mức trích/dịch chuỗi. Mọi câu trả lời liên quan đến firmware/PMCA/unlock ngôn ngữ phải kèm cảnh báo rủi ro (mất bảo hành, hỏng máy, vi phạm điều khoản). Chi tiết: `references/sony-menu-terms.md` mục "Firmware".
 

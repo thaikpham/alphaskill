@@ -8,6 +8,7 @@ dependencies = ["mcp>=1.2,<2", "pillow", "xlrd==2.0.1", "olefile", "pyyaml", "ht
 [project.scripts]
 sony-alpha-viet-mcp = "sony_alpha_viet.server:main"
 sony-alpha-viet-llama = "sony_alpha_viet.llama_agent:main"
+sony-alpha-viet-obsidian = "sony_alpha_viet.obsidian:main"
 
 [build-system]
 requires = ["hatchling"]

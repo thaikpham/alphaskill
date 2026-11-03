@@ -28,6 +28,7 @@ Skill cho Claude biết **phải làm gì và theo chuẩn nào**. MCP **làm v�
   - [Chế độ C: viết và chấm blog SEO + AIO](#chế-độ-c-viết-và-chấm-blog-seo--aio)
 - [Quy tắc thuật ngữ](#quy-tắc-thuật-ngữ)
 - [Tự học từ lần sửa của bạn](#tự-học-từ-lần-sửa-của-bạn)
+- [Kết hợp với Obsidian](#kết-hợp-với-obsidian)
 - [Danh sách công cụ MCP](#danh-sách-công-cụ-mcp)
 - [Cấu trúc repo](#cấu-trúc-repo)
 - [Giới hạn và an toàn](#giới-hạn-và-an-toàn)
@@ -301,6 +302,48 @@ Cuối mỗi phiên, Claude gọi `learn` → `review_memory` (tìm quy tắc th
 
 ---
 
+## Kết hợp với Obsidian
+
+Biến một thư mục trong vault Obsidian thành "bàn làm việc" của skill. Mọi thứ là Markdown thuần cộng Properties, không cần plugin, và Obsidian đóng hay mở đều được.
+
+**Cấu hình** trong `~/.config/sony-alpha-viet/config.json`:
+```json
+{
+  "data": "/đường/dẫn/tới/data",
+  "vault": "/đường/dẫn/tới/vault",
+  "vault_folder": "AI Skills/Sony Alpha Việt"
+}
+```
+
+**Lệnh** (qua Claude/Gemini, hoặc chạy trực tiếp):
+```bash
+uv run sony-alpha-viet-obsidian export
+```
+```bash
+uv run sony-alpha-viet-obsidian import
+```
+```bash
+uv run sony-alpha-viet-obsidian audit "Blog/ten-bai.md"
+```
+Thêm `--apply` vào `import` để ghi thật; mặc định chỉ xem trước.
+
+| Note trong vault | Dùng để |
+|---|---|
+| `Sony Alpha Việt` | Trang chủ: số liệu bộ nhớ, link tới mọi phần |
+| `Thuật ngữ/<EN>` | Mỗi thuật ngữ khóa một note: thuộc tính `en`, `vi`, `short`, `locked` + ví dụ trong bộ nhớ dịch + thuật ngữ liên quan. **Sửa thuộc tính hoặc tạo note mới, rồi import** để đưa vào bộ nhớ |
+| `Danh sách thuật ngữ`, `Bảng thuật ngữ` | Mục lục thuật ngữ khóa; bảng toàn bộ thuật ngữ (chỉ đọc) |
+| `Rà soát nhất quán` | Chuỗi đang có nhiều bản dịch, kèm độ rộng khung, để bạn chọn bản giữ |
+| `Giữ tiếng Anh`, `Nhật ký học` | Danh sách keep_english; những gì công cụ đã tự học |
+| `Skill/` | Bản sao chỉ đọc của SKILL.md, glossary, checklist, mẫu |
+| `Blog/`, `Mẫu/Bài blog SEO` | Bản nháp bài viết; `audit` ghi note `<tên> — SEO audit` và thuộc tính `seo_score`, `seo_complete`, `seo_audited` vào bản nháp |
+
+**An toàn dữ liệu:**
+- `export` không ghi đè note thuật ngữ bạn đang sửa mà chưa import.
+- `import` chỉ thêm hoặc sửa thuật ngữ, không xóa.
+- Note thuật ngữ có trích ví dụ từ bộ nhớ dịch, nên nếu dùng dữ liệu ILDC thì vault sẽ chứa chuỗi menu của Sony. Đừng đồng bộ thư mục này lên dịch vụ công khai.
+
+---
+
 ## Danh sách công cụ MCP
 
 | Nhóm | Công cụ | Việc làm |
@@ -314,6 +357,7 @@ Cuối mỗi phiên, Claude gọi `learn` → `review_memory` (tìm quy tắc th
 | Ghi nhớ | `record_term`, `record_feedback`, `remember_translation`, `ban_term`, `keep_english` | Lưu quyết định của bạn |
 | Tự cải tiến | `learn`, `review_memory`, `disable_rule`, `commit_memory` | Biến lần sửa thành quy tắc, rà soát, lưu lịch sử |
 | File Sony | `xls_read`, `xls_write` | Đọc/ghi `*_TranslationCheck_VN.xls` (chỉ cột AN/AU/AV) |
+| Obsidian | `obsidian_export`, `obsidian_import`, `obsidian_audit_note`, `consistency_report` | Đồng bộ thuật ngữ với vault, chấm SEO bản nháp trong vault, rà soát bản dịch không nhất quán |
 | Blog | `slugify`, `count_words`, `style_lint`, `seo_audit`, `faq_schema` | Tạo slug, đếm từ (bỏ bảng, code, frontmatter), kiểm văn phong, chấm SEO/AIO, sinh JSON-LD |
 
 **Resources:** các file trong `references/` và `templates/` của skill, đọc qua địa chỉ `sony-alpha-viet://references/<tên file>` và `sony-alpha-viet://templates/<tên file>`.

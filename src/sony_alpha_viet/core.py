@@ -54,11 +54,36 @@ def _append(name, obj):
         f.write(json.dumps(obj, ensure_ascii=False) + "\n")
 
 
+DATA_FILES = ("glossary.json", "rules.json", "exceptions.json", "tm.jsonl", "feedback.jsonl", "keep_english.json")
+
+
+def _stamp() -> tuple:
+    out = []
+    for n in DATA_FILES:
+        try:
+            st = (DATA / n).stat()
+            out.append((n, st.st_mtime_ns, st.st_size))
+        except FileNotFoundError:
+            out.append((n, 0, 0))
+    return tuple(out)
+
+
 class Store:
     """All persistent knowledge: glossary, rules, exceptions, translation memory, feedback."""
 
     def __init__(self):
         self.reload()
+
+    def refresh(self) -> bool:
+        """Reload if another process (second MCP server, Gemini CLI, a script) changed the data files since we read them."""
+        if _stamp() != self._stamp:
+            self.reload()
+            return True
+        return False
+
+    def mark_current(self):
+        """Our own writes are the new baseline."""
+        self._stamp = _stamp()
 
     def reload(self):
         self.glossary = _load("glossary.json", [])
@@ -73,6 +98,7 @@ class Store:
                 for term in v:
                     self.allow.update(term.split())
         self._index()
+        self._stamp = _stamp()
 
     def _index(self):
         self.gl_by_en = {g["en"].lower(): g for g in self.glossary}

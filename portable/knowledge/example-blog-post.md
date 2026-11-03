@@ -147,28 +147,34 @@ Tùy ngân sách. Sony A7 V ra mắt tháng 12/2025 với cảm biến 33 MP bá
 
 ---
 
-## Tự audit (theo references/seo-aio-checklist.md)
+## Tự audit (sinh bằng `seo_audit`, `*` = bắt buộc)
 
-| # | Mục | Kết quả | Bằng chứng / Sửa |
-|---|---|---|---|
-| 1 | Từ khóa chính ở H1, slug, 100 từ đầu, H2, meta description | Đạt | Có ở cả 5 vị trí |
-| 2 | Meta title 50–60 ký tự | Đạt | 54 ký tự (đã sửa từ 48) |
-| 3 | Meta description 140–160 ký tự | Đạt | 149 ký tự |
-| 4 | Slug | Đạt | `sony-a7-iv-hay-a7r-v` |
-| 5 | Không nhồi từ khóa | Đạt | Cụm chính xuất hiện 6 lần / ~1.580 từ |
-| 6 | TL;DR 40–70 từ | Đạt | 69 từ |
-| 7 | Heading không nhảy cấp | Đạt | H1 → H2 → H3 (FAQ) |
-| 8 | Bảng / checklist | Đạt | Bảng thông số + danh sách 5 nhu cầu + checklist mua |
-| 11 | FAQ 3–6 câu, 40–70 từ | Đạt | 4 câu, 61–64 từ |
-| 13 | Câu số liệu có chủ thể rõ | Đạt | |
-| 14 | Bối cảnh Việt Nam | Đạt | Hà Giang, Hội An, giá chính hãng/xách tay, bảo hành |
-| 15 | Không số liệu chưa kiểm chứng | **Chưa đạt** | 7 mục `[cần xác minh]` (fps RAW A7R V, crop 4K60 A7R V, EVF A7 IV, màn hình A7R V, file crop 26 MP, nhiễu ISO, giá VN) — đối chiếu trang Sony trước khi đăng |
-| 16 | External link uy tín | Một phần | Trang Sony chưa có URL đầy đủ (không truy cập được khi viết) — thêm URL sản phẩm Sony Việt Nam |
-| 17 | Internal link 2–5 | **Chưa đạt** | Mới 2 placeholder — thay URL thật |
-| 18 | Tác giả, ngày cập nhật | Đạt | |
-| 19 | Article + FAQPage JSON-LD, FAQ trùng nguyên văn | Đạt | JSON hợp lệ; cần thêm `publisher`, `image`, `mainEntityOfPage` khi có URL |
-| 20 | Alt text ảnh | N/A | Bài chưa có ảnh — đề xuất 2 ảnh: thân máy hai mẫu cạnh nhau, ảnh crop 61 MP minh họa |
-| 21 | Thuật ngữ theo glossary | Đạt | full-frame, lấy nét mắt (Eye AF), IBIS, tốc độ màn trập |
-| 22 | Chống văn dịch máy / AI-sounding | Đạt | Không có cụm cấm |
+Điểm **14/18** (77.8%) · 1383 từ · mục bắt buộc chưa đạt: 15.
 
-**Điểm:** 16/18 mục áp dụng đạt hoặc đạt một phần; 2 mục bắt buộc/quan trọng còn mở (#15, #17) cần người dùng cung cấp dữ liệu.
+| # | Mục | Kết quả | Bằng chứng | Cách sửa |
+|---|---|---|---|---|
+| 1* | Từ khóa chính ở H1, slug, 100 từ đầu, H2, meta description | Đạt | H1=có; slug=có; 100 từ đầu=có; H2=có; meta description=có |  |
+| 2 | Meta title 50–60 ký tự | Đạt | 54 ký tự |  |
+| 3 | Meta description 140–160 ký tự | Đạt | 149 ký tự |  |
+| 4 | Slug không dấu, gạch nối, ≤ 6 từ | Đạt | 'sony-a7-iv-hay-a7r-v' |  |
+| 5 | Không nhồi từ khóa (≤ 1,5%) | Đạt | 3 lần / 1383 từ = 0,22% |  |
+| 6* | TL;DR 40–70 từ ngay sau H1 | Đạt | 69 từ |  |
+| 7 | Một H1; heading không nhảy cấp | Đạt | 1 H1 |  |
+| 8* | Có bảng, checklist hoặc danh sách | Đạt | bảng=có; danh sách=có |  |
+| 9 | Đoạn ≤ 4 câu; mỗi H2 mở bằng câu trả lời ngắn | Một phần | 1 đoạn > 4 câu | Tách đoạn dài; mở mỗi H2 bằng câu trả lời 1–2 câu |
+| 10 | Kết luận có hành động cụ thể | Cần người duyệt | Có H2 kết luận | Kết thúc bằng khuyến nghị theo nhóm người dùng + bước tiếp theo |
+| 11* | FAQ 3–6 câu, mỗi câu trả lời 40–70 từ, tự đứng được | Đạt | 4 câu; số từ=[61, 62, 57, 64] |  |
+| 12 | Có định nghĩa một câu cho khái niệm chính | Đạt |  |  |
+| 13 | Câu số liệu nêu rõ chủ thể và đơn vị | Cần người duyệt |  | Kiểm các câu có số: tránh 'nó', 'máy này' |
+| 14 | Có trải nghiệm/bối cảnh riêng (Việt Nam) | Cần người duyệt |  | Thêm ví dụ thực tế: địa điểm, giá, dịch vụ, thói quen chụp |
+| 15* | Không có thông số/giá chưa kiểm chứng | Chưa đạt | 9 chỗ [cần xác minh] | Đối chiếu nguồn chính thức rồi bỏ đánh dấu |
+| 16 | Link ngoài 1–3 nguồn uy tín | Đạt | 3 link: https://en.wikipedia.org/wiki/Sony_%CE%B17_V, https://www.dpreview.com/reviews/sony-a7-iv-review, https://www.dpreview.com/reviews/s |  |
+| 17 | Link nội bộ 2–5 | Một phần | 0 URL thật, 2 placeholder | Thay placeholder [link nội bộ: …] bằng URL thật |
+| 18 | Tác giả và ngày cập nhật | Đạt | author=Thai Pham; updated=02/11/2026 |  |
+| 19* | JSON-LD Article + FAQPage (+ HowTo nếu hướng dẫn), FAQ trùng nguyên văn | Đạt | types=['Article', 'FAQPage'] |  |
+| 20 | Ảnh có alt text | N/A | 0 ảnh, 0 thiếu alt | Thêm alt mô tả tiếng Việt |
+| 21* | Thuật ngữ đúng glossary | Đạt |  |  |
+| 22 | Không văn dịch máy / cụm AI-sounding | Một phần | 3 vấn đề: long_sentence:Chọn **Sony A7R V** nếu bạn ch; long_sentence:61 MP có lợi rõ khi chụp phong; long_sentence:Sony A7R V quay được 8K  | Sửa theo style_lint() |
+| 23 | Không khuyến nghị y tế/tài chính/pháp lý thiếu căn cứ | Cần người duyệt |  |  |
+
+Mục "Cần người duyệt" (10, 13, 14, 23) máy không tự chấm được. Bài chưa đăng được cho tới khi xử lý hết `[cần xác minh]` (mục 15) và thay link nội bộ thật (mục 17).
