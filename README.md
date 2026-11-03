@@ -20,6 +20,7 @@ Skill cho Claude biết **phải làm gì và theo chuẩn nào**. MCP **làm v�
 ## Mục lục
 - [Ứng dụng thực tế](#ứng-dụng-thực-tế)
 - [Cài đặt](#cài-đặt)
+- [Dùng với Gemini, ChatGPT, Meta AI](#dùng-với-gemini-chatgpt-meta-ai)
 - [Dữ liệu và bộ nhớ dịch](#dữ-liệu-và-bộ-nhớ-dịch)
 - [Cách dùng](#cách-dùng)
   - [Chế độ A: dịch menu máy ảnh](#chế-độ-a-dịch-menu-máy-ảnh)
@@ -102,6 +103,19 @@ ln -s "$(pwd)/skills/sony-alpha-viet" ~/.claude/skills/sony-alpha-viet
 
 ### Cách 3: chỉ dùng skill, không MCP
 Chỉ cần làm bước symlink ở trên. Claude vẫn dịch và viết theo glossary, checklist trong `skills/sony-alpha-viet/references/`, nhưng không có bộ nhớ dịch, không đo được độ rộng chữ, không tự chấm SEO bằng máy. Kết quả dịch menu sẽ được ghi rõ là "chưa kiểm bằng MCP".
+
+---
+
+## Dùng với Gemini, ChatGPT, Meta AI
+
+| Nền tảng | Cách cài | Có công cụ MCP? |
+|---|---|---|
+| **Gemini CLI** | `gemini extensions install https://github.com/thaikpham/thaikpham-blogskill` | ✅ đầy đủ |
+| **ChatGPT** | Custom GPT: dán `portable/system-prompt.md` vào Instructions, tải `portable/knowledge/` vào Knowledge | Chỉ khi bật developer mode + chạy server `--http --read-only` sau HTTPS |
+| **Gemini app** | Gem: dán `portable/system-prompt.md`, tải `portable/knowledge/` | ❌ |
+| **Meta AI** | Dán `portable/system-prompt.md` làm tin nhắn đầu tiên | ❌ |
+
+Hướng dẫn từng bước và cảnh báo bảo mật khi mở MCP ra Internet: [`portable/README.md`](portable/README.md).
 
 ---
 
@@ -302,7 +316,9 @@ Cuối mỗi phiên, Claude gọi `learn` → `review_memory` (tìm quy tắc th
 
 ```
 .claude-plugin/          plugin.json, marketplace.json
-.mcp.json                đăng ký MCP server cho plugin
+.mcp.json                đăng ký MCP server cho plugin Claude Code
+gemini-extension.json    extension Gemini CLI (+ GEMINI.md)
+portable/                system-prompt.md + knowledge/ cho ChatGPT, Gemini app, Meta AI
 skills/sony-alpha-viet/
   SKILL.md               quy trình 3 chế độ, nguyên tắc dịch và viết
   references/
@@ -314,7 +330,7 @@ skills/sony-alpha-viet/
   examples/              example-menu-translation.md, example-blog-post.md (kèm bảng audit)
 src/sony_alpha_viet/     MCP server: core (quy tắc, kiểm tra, độ rộng), memory (tự học), blog (SEO/AIO), xls
 data-sample/             dữ liệu khởi tạo công khai (không có bộ nhớ dịch)
-scripts/                 export_public_data.py
+scripts/                 export_public_data.py, build_portable.py
 tests/
 ```
 
@@ -367,6 +383,8 @@ uv run pytest -q
 |---|---|
 | `SONY_VN_DATA` | Thư mục dữ liệu (mặc định `~/.local/share/sony-alpha-viet/data`) |
 | `SONY_VN_FONT` | Font dùng để đo độ rộng chữ (mặc định Liberation Sans) |
+
+Chạy server qua HTTP (cho ChatGPT developer mode / client MCP từ xa): `uv run sony-alpha-viet-mcp --http --read-only --port 8765` → endpoint `/mcp`.
 
 Phát triển từ dự án dịch menu Sony ILDC (2026) và các skill tham khảo: claude-translation-skill, vietnamese-language-skill, ChuotVan, claude-blog, claude-seo, ai-seo.
 

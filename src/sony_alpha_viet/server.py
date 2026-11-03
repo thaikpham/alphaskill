@@ -354,8 +354,27 @@ def prompt_audit_post(path_or_text: str = "") -> str:
 - #19: JSON-LD Article + FAQPage hợp lệ"""
 
 
+WRITE_TOOLS = ("record_term", "record_feedback", "remember_translation", "ban_term", "keep_english", "learn",
+               "disable_rule", "commit_memory", "xls_read", "xls_write")
+
+
 def main():
-    mcp.run()
+    """stdio (Claude Code, Gemini CLI) by default; --http for remote clients (ChatGPT developer mode, other MCP hosts)."""
+    import argparse
+    ap = argparse.ArgumentParser(prog="sony-alpha-viet-mcp")
+    ap.add_argument("--http", action="store_true", help="chạy Streamable HTTP thay vì stdio (endpoint /mcp)")
+    ap.add_argument("--host", default="127.0.0.1")
+    ap.add_argument("--port", type=int, default=8765)
+    ap.add_argument("--read-only", action="store_true", help="tắt các tool ghi dữ liệu và đọc/ghi file (nên bật khi mở ra Internet)")
+    a = ap.parse_args()
+    if a.read_only:
+        for name in WRITE_TOOLS:
+            mcp._tool_manager._tools.pop(name, None)
+    if a.http:
+        mcp.settings.host, mcp.settings.port = a.host, a.port
+        mcp.run(transport="streamable-http")
+    else:
+        mcp.run()
 
 
 if __name__ == "__main__":
