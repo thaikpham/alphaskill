@@ -24,12 +24,71 @@ DEFAULT_TOOLS = ["get_guidelines", "prepare_batch", "lookup_term", "search_memor
 TOOL_NOTE = """
 
 ## Công cụ
-Bạn có công cụ MCP sony-alpha-viet. Dịch menu: gọi prepare_batch trước (dùng exact_match nếu có), dịch phần còn lại, rồi gọi check_translation cho từng chuỗi và dùng trường "text" nó trả về. Blog: sau khi viết, gọi seo_audit và faq_schema thay vì tự đếm. Chỉ gọi công cụ khi cần; trả lời cuối cùng bằng tiếng Việt."""
+Bạn có công cụ MCP sony-alpha-viet. Dịch menu: gọi prepare_batch trước. Có exact_match thì dùng nguyên văn. Không có exact_match thì TỰ DỊCH theo nghĩa chuỗi tiếng Anh; các bản trong "memory" chỉ là chuỗi khác gần giống, KHÔNG chép (ví dụ "NR Shooting = Chụp giảm nhiễu" không phải bản dịch của "Silent Shooting"). Sau đó gọi check_translation cho từng chuỗi tự dịch và dùng trường "text" nó trả về. Xuất bảng EN | VI | Ghi chú. Blog: sau khi viết, gọi seo_audit và faq_schema thay vì tự đếm. Chỉ gọi công cụ khi cần; trả lời cuối cùng bằng tiếng Việt."""
 
 
 def system_prompt() -> str:
     p = ROOT / "portable" / "system-prompt.md"
     return (p.read_text(encoding="utf-8") if p.exists() else "Bạn là biên tập viên tiếng Việt về máy ảnh Sony Alpha.") + TOOL_NOTE
+
+
+def _drop_nulls(v):
+    if isinstance(v, dict):
+        return {k: _drop_nulls(x) for k, x in v.items() if x is not None and x != "None"}
+    if isinstance(v, list):
+        return [_drop_nulls(x) for x in v]
+    return v
+
+
+def _balance(s: str) -> str:
+    """Drop closing brackets that don't match (e.g. a stray ']' small models emit) and close what's left open."""
+    out, stack, in_str, esc = [], [], False, False
+    for ch in s:
+        if in_str:
+            out.append(ch)
+            esc = ch == "\\" and not esc
+            if ch == '"' and not esc:
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch in "{[":
+            stack.append("}" if ch == "{" else "]")
+        elif ch in "}]":
+            if not stack or stack[-1] != ch:
+                continue
+            stack.pop()
+            out.append(ch)
+            if not stack:
+                break
+            continue
+        out.append(ch)
+    return "".join(out) + "".join(reversed(stack))
+
+
+def text_tool_calls(content: str, names: set[str]) -> list[dict]:
+    """Small Llama models often print {"name": …, "parameters": …} as text instead of a structured tool call."""
+    s = (content or "").strip().strip("`")
+    s = s[s.find("{"):] if "{" in s else ""
+    calls, dec, i = [], json.JSONDecoder(), 0
+    while s and i < len(s):
+        try:
+            obj, end = dec.raw_decode(s, i)
+        except json.JSONDecodeError:
+            fixed = _balance(s[i:])
+            try:
+                obj, end = json.loads(fixed), i + len(fixed)
+            except json.JSONDecodeError:
+                break
+        if isinstance(obj, dict) and obj.get("name") in names:
+            args = obj.get("parameters", obj.get("arguments", {}))
+            calls.append({"id": f"t{len(calls)}", "type": "function",
+                          "function": {"name": obj["name"], "arguments": json.dumps(args, ensure_ascii=False)}})
+        nxt = s.find("{", end)
+        if nxt < 0:
+            break
+        i = nxt
+    return calls
 
 
 def to_openai_tool(t) -> dict:
@@ -59,15 +118,15 @@ async def run(prompt: str, base_url: str, model: str, api_key: str = "", tools: 
         messages = [{"role": "system", "content": system_prompt()}, {"role": "user", "content": prompt}]
         for _ in range(max_steps):
             msg = await chat_fn(http, base_url, model, messages, oa_tools)
-            calls = msg.get("tool_calls") or []
-            messages.append({"role": "assistant", "content": msg.get("content") or "", **({"tool_calls": calls} if calls else {})})
+            calls = msg.get("tool_calls") or text_tool_calls(msg.get("content") or "", {t["function"]["name"] for t in oa_tools})
+            messages.append({"role": "assistant", "content": "" if calls else msg.get("content") or "", **({"tool_calls": calls} if calls else {})})
             if not calls:
                 return msg.get("content") or ""
             for c in calls:
                 name = c["function"]["name"]
                 raw = c["function"].get("arguments") or "{}"
                 try:
-                    a = json.loads(raw) if isinstance(raw, str) else raw
+                    a = _drop_nulls(json.loads(raw) if isinstance(raw, str) else raw)
                     res = await session.call_tool(name, a)
                     out = "\n".join(getattr(x, "text", "") for x in res.content)
                 except Exception as e:  # bad arguments from the model: report back so it can retry
