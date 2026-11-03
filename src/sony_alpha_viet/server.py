@@ -7,6 +7,7 @@ from pathlib import Path
 from mcp.server.fastmcp import FastMCP
 
 from . import core, memory, blog
+from . import paths
 from .paths import DATA, ensure_data_dir
 from .core import Store
 
@@ -247,6 +248,7 @@ def data_info() -> dict:
 
     return {
         "data_path": str(DATA),
+        "data_source": paths.DATA_SOURCE,
         "is_sample_data": is_sample,
         "glossary_count": glossary_count,
         "tm_count": tm_count,

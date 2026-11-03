@@ -137,7 +137,8 @@ MCP lưu toàn bộ kiến thức trong một **thư mục dữ liệu riêng, n
 | Ưu tiên | Đường dẫn |
 |---|---|
 | 1 | Biến môi trường `SONY_VN_DATA` nếu bạn đặt |
-| 2 | `~/.local/share/sony-alpha-viet/data` (hoặc `$XDG_DATA_HOME/sony-alpha-viet/data`) |
+| 2 | Trường `"data"` trong `~/.config/sony-alpha-viet/config.json`. Nên dùng cách này: mọi shell và mọi client (Claude Code, Gemini CLI, agent Llama) đều đọc được, kể cả shell không nạp `~/.bashrc` |
+| 3 | `~/.local/share/sony-alpha-viet/data` (hoặc `$XDG_DATA_HOME/sony-alpha-viet/data`): dữ liệu mẫu |
 
 Lần chạy đầu, thư mục này được tạo từ `data-sample/` và khởi tạo git. Nhờ vậy mọi thay đổi đều có lịch sử và hoàn tác được bằng `git revert`.
 
@@ -154,10 +155,11 @@ Lần chạy đầu, thư mục này được tạo từ `data-sample/` và kh�
 
 **`data-sample/` không chứa bộ nhớ dịch thật** (`tm.jsonl` rỗng). Chuỗi menu nội bộ từ các dự án dịch cho Sony là dữ liệu của Sony, không đưa lên repo công khai. Glossary, quy tắc và ngoại lệ trong `data-sample/` là thuật ngữ nhiếp ảnh chung, dùng được ngay.
 
-Nếu bạn có dữ liệu riêng:
-```bash
-export SONY_VN_DATA="$HOME/path/to/private/data"
+Nếu bạn có dữ liệu riêng, tạo `~/.config/sony-alpha-viet/config.json`:
+```json
+{ "data": "/đường/dẫn/tới/data" }
 ```
+Hoặc đặt tạm cho một shell: `export SONY_VN_DATA="/đường/dẫn/tới/data"`. Gọi `data_info` để xem đang dùng dữ liệu nào (`data_source`). Agent Llama cũng cảnh báo cuối câu trả lời nếu đang chạy dữ liệu mẫu.
 Bộ nhớ càng nhiều chuỗi đã duyệt thì `prepare_batch` càng trả về nhiều bản khớp 100%, và bản dịch càng thống nhất.
 
 Tạo lại `data-sample/` từ dữ liệu riêng (đã lọc bỏ bộ nhớ dịch và mã chuỗi nội bộ):

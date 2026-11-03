@@ -40,7 +40,7 @@ Cần [uv](https://docs.astral.sh/uv/):
 ```bash
 gemini extensions install https://github.com/thaikpham/thaikpham-blogskill
 ```
-Extension gồm skill `sony-alpha-viet` và MCP server. Dùng dữ liệu riêng bằng cách đặt `SONY_VN_DATA` trước khi chạy `gemini`.
+Extension gồm skill `sony-alpha-viet` và MCP server. Để dùng dữ liệu riêng, ghi đường dẫn vào `~/.config/sony-alpha-viet/config.json` (`{"data": "…"}`), hoặc đặt `SONY_VN_DATA` trước khi chạy `gemini`.
 
 ## ChatGPT — Custom GPT
 

@@ -134,3 +134,24 @@ def test_remember_translation_respects_separately_shortened_rows(env, tmp_path):
     vis = {e["en"]: e["vi"] for e in s.tm}
     assert vis["Custom Key Z. Speed"] == "Tốc độ zoom nút"
     assert vis["<cE662>Custom Key Z. Speed"] == "<cE662>Tốc độ bằng nút" and len(r["kept_own_translation"]) == 2
+
+
+def test_data_dir_resolution_order(tmp_path, monkeypatch):
+    import importlib
+    import json as _json
+    import sony_alpha_viet.paths as paths
+    cfg = tmp_path / "cfg"
+    (cfg / "sony-alpha-viet").mkdir(parents=True)
+    (cfg / "sony-alpha-viet" / "config.json").write_text(_json.dumps({"data": str(tmp_path / "private")}))
+    monkeypatch.setenv("XDG_CONFIG_HOME", str(cfg))
+    monkeypatch.setenv("XDG_DATA_HOME", str(tmp_path / "share"))
+    monkeypatch.delenv("SONY_VN_DATA", raising=False)
+    importlib.reload(paths)
+    assert paths.DATA == tmp_path / "private" and paths.DATA_SOURCE.startswith("config")
+    monkeypatch.setenv("SONY_VN_DATA", str(tmp_path / "env"))
+    importlib.reload(paths)
+    assert paths.DATA == tmp_path / "env"
+    monkeypatch.delenv("SONY_VN_DATA")
+    (cfg / "sony-alpha-viet" / "config.json").unlink()
+    importlib.reload(paths)
+    assert paths.DATA == tmp_path / "share" / "sony-alpha-viet" / "data"

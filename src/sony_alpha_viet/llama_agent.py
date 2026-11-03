@@ -96,10 +96,12 @@ def text_tool_calls(content: str, names: set[str]) -> list[dict]:
     return calls
 
 
-def footer(used: list[str]) -> str:
+def footer(used: list[str], data: dict | None = None) -> str:
     """Ground truth on what was actually checked; models tend to claim verification they didn't do."""
     names = list(dict.fromkeys(used))
     line = "\n\n---\nCông cụ đã chạy: " + (", ".join(names) if names else "không có")
+    if data and data.get("is_sample_data"):
+        line += f". ⚠ Đang dùng DỮ LIỆU MẪU ({data.get('data_path')}), không có bộ nhớ dịch — đặt SONY_VN_DATA hoặc ~/.config/sony-alpha-viet/config.json"
     if "check_translation" not in names:
         line += ". Bản dịch CHƯA qua check_translation — hãy duyệt lại."
     return line
@@ -126,6 +128,10 @@ async def run(prompt: str, base_url: str, model: str, api_key: str = "", tools: 
     async with stdio_client(params) as (read, write), ClientSession(read, write) as session, \
             httpx.AsyncClient(headers=headers, timeout=300) as http:
         await session.initialize()
+        try:
+            data = json.loads((await session.call_tool("data_info", {})).content[0].text)
+        except Exception:
+            data = None
         available = (await session.list_tools()).tools
         wanted = set(tools or DEFAULT_TOOLS)
         oa_tools = [to_openai_tool(t) for t in available if t.name in wanted]
@@ -136,7 +142,7 @@ async def run(prompt: str, base_url: str, model: str, api_key: str = "", tools: 
             calls = msg.get("tool_calls") or text_tool_calls(msg.get("content") or "", {t["function"]["name"] for t in oa_tools})
             messages.append({"role": "assistant", "content": "" if calls else msg.get("content") or "", **({"tool_calls": calls} if calls else {})})
             if not calls:
-                return (msg.get("content") or "") + footer(used)
+                return (msg.get("content") or "") + footer(used, data)
             for c in calls:
                 name = c["function"]["name"]
                 raw = c["function"].get("arguments") or "{}"
@@ -150,7 +156,7 @@ async def run(prompt: str, base_url: str, model: str, api_key: str = "", tools: 
                 if verbose:
                     print(f"[tool] {name}({raw}) → {out[:300]}", file=sys.stderr)
                 messages.append({"role": "tool", "tool_call_id": c.get("id", name), "name": name, "content": out[:12000]})
-        return "(Dừng: quá số bước gọi công cụ cho phép.)" + footer(used)
+        return "(Dừng: quá số bước gọi công cụ cho phép.)" + footer(used, data)
 
 
 def main():
