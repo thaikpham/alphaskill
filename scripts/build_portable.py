@@ -18,6 +18,7 @@ FILES = ["references/glossary-vi.md", "references/sony-menu-terms.md", "referenc
 MCP_NOTE = "> Ghi chú: các lệnh `mcp__…`/tên công cụ trong file này chỉ có khi dùng MCP server sony-alpha-viet. " \
            "Không có công cụ thì làm thủ công theo cùng quy tắc và ghi \"chưa kiểm bằng MCP\".\n\n"
 PROMPT_LIMIT = 8000  # Custom GPT instructions limit
+META_LIMIT = 2000  # Meta AI Studio instructions limit
 
 
 def main():
@@ -31,6 +32,8 @@ def main():
         (OUT / Path(rel).name).write_text(text, encoding="utf-8")
     n = len((ROOT / "portable" / "system-prompt.md").read_text(encoding="utf-8"))
     print(f"{len(FILES)} file → {OUT.relative_to(ROOT)}; system-prompt.md {n} ký tự" + (" (VƯỢT 8.000 của Custom GPT!)" if n > PROMPT_LIMIT else ""))
+    m = len((ROOT / "portable" / "meta-ai-studio" / "instructions.md").read_text(encoding="utf-8").strip())
+    print(f"meta-ai-studio/instructions.md {m} ký tự" + (" (VƯỢT 2.000 của Meta AI Studio!)" if m > META_LIMIT else ""))
 
 
 if __name__ == "__main__":

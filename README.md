@@ -113,7 +113,7 @@ Chỉ cần làm bước symlink ở trên. Claude vẫn dịch và viết theo 
 | **Gemini CLI** | `gemini extensions install https://github.com/thaikpham/thaikpham-blogskill` | ✅ đầy đủ |
 | **ChatGPT** | Custom GPT: dán `portable/system-prompt.md` vào Instructions, tải `portable/knowledge/` vào Knowledge | Chỉ khi bật developer mode + chạy server `--http --read-only` sau HTTPS |
 | **Gemini app** | Gem: dán `portable/system-prompt.md`, tải `portable/knowledge/` | ❌ |
-| **Meta AI** | Dán `portable/system-prompt.md` làm tin nhắn đầu tiên | ❌ |
+| **Meta AI** | Tạo AI riêng bằng Meta AI Studio với `portable/meta-ai-studio/` (nhớ quy tắc trong Instagram/Messenger/WhatsApp), hoặc dán `portable/system-prompt.md` vào chat | ❌ |
 
 Hướng dẫn từng bước và cảnh báo bảo mật khi mở MCP ra Internet: [`portable/README.md`](portable/README.md).
 

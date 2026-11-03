@@ -20,7 +20,8 @@ uv run python scripts/build_portable.py
 | Gemini CLI | ✅ | ✅ | ✅ |
 | ChatGPT (Custom GPT) | ✅ | ✅ | Chỉ khi bật developer mode và có server HTTPS (xem bên dưới) |
 | Gemini app (Gem) | ✅ | ✅ | ❌ |
-| Meta AI | ✅ (dán vào chat) | ❌ | ❌ |
+| Meta AI (AI Studio) | ✅ bản nén 2.000 ký tự, nhớ giữa các chat | ❌ | ❌ |
+| Meta AI (dán prompt) | ✅ bản đầy đủ, chỉ trong một chat | ❌ | ❌ |
 
 Không có MCP, trợ lý vẫn dịch và viết theo quy tắc, nhưng **không** có:
 - bộ nhớ hàng nghìn chuỗi đã duyệt;
@@ -81,7 +82,9 @@ ChatGPT chỉ kết nối được MCP server **từ xa qua HTTPS**, qua develop
 
 ## Meta AI
 
-Meta AI không có chỗ cài hướng dẫn cố định hay tải file kiến thức. Cách dùng:
+**Cách 1 — Meta AI Studio (khuyến nghị):** tạo một AI riêng, nhớ quy tắc trong Instagram, Messenger và WhatsApp. Xem [`meta-ai-studio/README.md`](meta-ai-studio/README.md). Phần hướng dẫn được nén còn 1.589 ký tự để vừa giới hạn 2.000.
+
+**Cách 2 — dán prompt** (khi AI Studio chưa mở ở nước bạn):
 
 1. Mở cuộc trò chuyện mới tại meta.ai (hoặc trong WhatsApp, Messenger, Instagram).
 2. Gửi tin nhắn đầu tiên: `Trong cuộc trò chuyện này, hãy làm theo hướng dẫn sau:` rồi dán toàn bộ `system-prompt.md`.
