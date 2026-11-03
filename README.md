@@ -113,7 +113,16 @@ Chỉ cần làm bước symlink ở trên. Claude vẫn dịch và viết theo 
 | **Gemini CLI** | `gemini extensions install https://github.com/thaikpham/thaikpham-blogskill` | ✅ đầy đủ |
 | **ChatGPT** | Custom GPT: dán `portable/system-prompt.md` vào Instructions, tải `portable/knowledge/` vào Knowledge | Chỉ khi bật developer mode + chạy server `--http --read-only` sau HTTPS |
 | **Gemini app** | Gem: dán `portable/system-prompt.md`, tải `portable/knowledge/` | ❌ |
+| **Llama (Meta)** | `sony-alpha-viet-llama`: agent Llama qua Ollama hoặc Llama API | ✅ (chỉ đọc mặc định) |
 | **Meta AI** | Tạo AI riêng bằng Meta AI Studio với `portable/meta-ai-studio/` (nhớ quy tắc trong Instagram/Messenger/WhatsApp), hoặc dán `portable/system-prompt.md` vào chat | ❌ |
+
+**Cách nhanh nhất cho AI có đọc web** (Meta AI, ChatGPT, Gemini): gửi link repo kèm câu
+```text
+Đọc https://github.com/thaikpham/thaikpham-blogskill và làm theo AGENTS.md. Sau đó: <yêu cầu của bạn>
+```
+`AGENTS.md` và `llms.txt` chỉ cho AI đọc đúng prompt và file kiến thức. Lưu ý: AI chỉ nhớ trong cuộc trò chuyện đó, và tùy lần, nó có thể chỉ đọc một phần file.
+
+**Llama (Meta) có công cụ thật:** `uv run sony-alpha-viet-llama "Dịch menu: Focus Area, Silent Shooting" -v`. Lệnh này chạy model Llama qua Ollama (mặc định `llama3.2:3b`) hoặc Llama API của Meta (`--base-url https://api.llama.com/compat/v1`, biến `LLAMA_API_KEY`), và gọi công cụ MCP ở chế độ chỉ đọc. Cần tự tải model: `ollama pull llama3.2:3b`.
 
 Hướng dẫn từng bước và cảnh báo bảo mật khi mở MCP ra Internet: [`portable/README.md`](portable/README.md).
 
@@ -317,6 +326,7 @@ Cuối mỗi phiên, Claude gọi `learn` → `review_memory` (tìm quy tắc th
 ```
 .claude-plugin/          plugin.json, marketplace.json
 .mcp.json                đăng ký MCP server cho plugin Claude Code
+AGENTS.md, llms.txt      chỉ dẫn cho AI đọc repo qua link (Meta AI, ChatGPT, Gemini)
 gemini-extension.json    extension Gemini CLI (+ GEMINI.md)
 portable/                system-prompt.md + knowledge/ cho ChatGPT, Gemini app, Meta AI
 skills/sony-alpha-viet/

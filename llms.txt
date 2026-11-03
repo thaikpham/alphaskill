@@ -1,0 +1,15 @@
+# Sony Alpha Việt
+
+> Skill + MCP dịch menu/tài liệu Sony Alpha sang tiếng Việt và viết blog máy ảnh chuẩn SEO + AIO. AI đọc repo này: làm theo AGENTS.md.
+
+## Hướng dẫn chính
+- [AGENTS.md](https://raw.githubusercontent.com/thaikpham/thaikpham-blogskill/main/AGENTS.md): thứ tự đọc file và quy tắc bắt buộc
+- [system-prompt.md](https://raw.githubusercontent.com/thaikpham/thaikpham-blogskill/main/portable/system-prompt.md): toàn bộ quy tắc 3 chế độ
+
+## Kiến thức
+- [glossary-vi.md](https://raw.githubusercontent.com/thaikpham/thaikpham-blogskill/main/portable/knowledge/glossary-vi.md): thuật ngữ EN/JP → menu / bài viết
+- [sony-menu-terms.md](https://raw.githubusercontent.com/thaikpham/thaikpham-blogskill/main/portable/knowledge/sony-menu-terms.md): quy trình dịch menu
+- [seo-aio-checklist.md](https://raw.githubusercontent.com/thaikpham/thaikpham-blogskill/main/portable/knowledge/seo-aio-checklist.md): 23 tiêu chí SEO/AIO
+- [writing-style-vi.md](https://raw.githubusercontent.com/thaikpham/thaikpham-blogskill/main/portable/knowledge/writing-style-vi.md): văn phong
+- [blog-post-template.md](https://raw.githubusercontent.com/thaikpham/thaikpham-blogskill/main/portable/knowledge/blog-post-template.md): khung bài blog
+- [example-blog-post.md](https://raw.githubusercontent.com/thaikpham/thaikpham-blogskill/main/portable/knowledge/example-blog-post.md): bài mẫu kèm bảng audit
