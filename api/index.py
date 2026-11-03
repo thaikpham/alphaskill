@@ -1,9 +1,9 @@
-"""Vercel entrypoint: the public read-only alphaskill API (src/sony_alpha_viet/api.py) over `data/`."""
+"""Vercel entrypoint (every path is rewritten here by vercel.json): the public read-only alphaskill API (src/sony_alpha_viet/api.py) over `data/`."""
 import os
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 os.environ.setdefault("SONY_VN_DATA", str(ROOT / "data"))  # git submodule: github.com/thaikpham/alphaskill-data
 

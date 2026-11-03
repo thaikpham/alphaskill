@@ -17,3 +17,5 @@ __pycache__
 
 # impeccable working files (decision page, mocks)
 .impeccable/
+.vercel
+.env*

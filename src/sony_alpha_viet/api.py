@@ -4,7 +4,7 @@ GET  /v1                    -> version, data counts, every tool with its JSON-sc
 GET  /v1/<tool>?arg=value   -> call a tool with query parameters
 POST /v1/<tool>  {"arg": …} -> call a tool with a JSON body
 
-Local:   uv run sony-alpha-viet-mcp --http --read-only        Vercel: `app.py` at the repo root.
+Local:   uv run sony-alpha-viet-mcp --http --read-only        Vercel: `api/index.py` (vercel.json rewrites every path to it).
 """
 from __future__ import annotations
 

@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }],
   "functions": {
-    "app.py": { "excludeFiles": "{tests/**,portable/**,data-sample/**,.impeccable/**,meta-ai-studio/**}" }
+    "api/index.py": { "excludeFiles": "{tests/**,portable/**,data-sample/**,.impeccable/**,meta-ai-studio/**}" }
   }
 }
