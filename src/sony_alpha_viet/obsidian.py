@@ -10,18 +10,26 @@ import datetime as _dt
 import json
 import os
 import re
+import shutil
 import sys
 from collections import defaultdict
 from pathlib import Path
 
 import yaml
 
-from . import blog, core, docs, memory, paths
+from . import blog, core, docs, knowledge, memory, paths
 
 ROOT = Path(__file__).resolve().parents[2]
 SKILL = ROOT / "skills" / "sony-alpha-viet"
 TERM_TAG = "sony-alpha-viet/thuat-ngu"
 UNSAFE = re.compile(r'[\\/:*?"<>|#^\[\]]')
+
+# Vault folder layout constants
+TERMS = "3 Thuật ngữ"
+MENU = "4 Dịch menu"
+DOCS = "5 Tài liệu Sony"
+BLOG = "6 Blog"
+SKILL_COPY = "9 Skill"
 
 
 # ---------------- config + note io ----------------
@@ -179,7 +187,7 @@ def export(store: core.Store) -> dict:
                 text = f"# {rel}\n\n```{src.suffix.lstrip('.')}\n{text.rstrip()}\n```"
             dest = root / "Skill" / rel.with_suffix(".md")
             write_note(dest, {"generated": True, "source": f"skills/sony-alpha-viet/{rel}", "updated": _today()},
-                       "> Bản sao chỉ đọc. Sửa ở repo `thaikpham-blogskill` rồi export lại.\n\n" + re.sub(r"^---\n.*?\n---\n", "", text, flags=re.S))
+                       "> Bản sao chỉ đọc. Sửa ở repo `alphaskill` rồi export lại.\n\n" + re.sub(r"^---\n.*?\n---\n", "", text, flags=re.S))
     template = (SKILL / "templates" / "blog-post-template.md").read_text(encoding="utf-8")
     (root / "Mẫu").mkdir(parents=True, exist_ok=True)
     (root / "Mẫu" / "Bài blog SEO.md").write_text(template, encoding="utf-8")

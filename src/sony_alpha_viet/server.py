@@ -24,8 +24,10 @@ mcp = FastMCP("sony-alpha-viet", instructions=(
     "cuối phiên gọi learn rồi commit_memory. "
     "Ngoại lệ: thuật ngữ tiếng Anh (Zoom, Time Code, Preset) mà tiếng Việt không giúp → dùng keep_english. "
     "\n\n"
-    "**Quy trình B: Blog/Tài liệu**: lookup_prose_term (tra thuật ngữ chuẩn từ glossary) → viết theo template "
-    "→ style_lint (cụm AI-sounding, bị động, câu dài, thuật ngữ) → seo_audit (23 mục SEO/AIO) "
+    "**Quy trình B: Blog/Tài liệu (AIO-first 2026)**: lookup_prose_term (tra thuật ngữ chuẩn từ glossary) "
+    "→ paa_generator (10 câu PAA) → viết theo template → style_lint (cụm AI-sounding, bị động, câu dài, thuật ngữ) "
+    "→ seo_audit (SEO foundation) → aio_audit (chấm AIO-first 35 tiêu chí) → citation_checker (check link Tier 1) "
+    "→ freshness_check (kiểm tra độ mới 11/2026) → brand_voice_checker (bảo vệ Sony, sensor #1, ngàm E, KANDO) "
     "→ faq_schema (tạo JSON-LD Article+FAQPage). Nếu MCP không có, thực hiện kiểm tra thủ công từ checklist."))
 store = Store()
 
@@ -260,6 +262,67 @@ def faq_schema(markdown: str, url: str = "", site_name: str = "", image: str = "
 
 
 @tool
+def aio_audit(text: str, primary_keyword: str = "") -> dict:
+    """Chấm điểm AIO-first 35 tiêu chí cho bài blog Sony Alpha tiếng Việt (AIO > SEO 2026).
+    Trả về aio_score (0-100), verdict (khả năng AI Overviews/ChatGPT trích), và bảng chi tiết."""
+    return blog.aio_audit(text, primary_keyword)
+
+
+@tool
+def aio_audit_tool(text: str, primary_keyword: str = "") -> dict:
+    """Chấm điểm AIO-first 35 tiêu chí cho bài blog Sony Alpha tiếng Việt (alias cho aio_audit)."""
+    return blog.aio_audit(text, primary_keyword)
+
+
+@tool
+def paa_generator(primary_keyword: str, audience: str = "thợ chụp cưới", models: list[str] = None) -> dict:
+    """Gợi ý 10 câu People Also Ask (PAA) cho từ khóa Sony Alpha kèm gợi ý trả lời tự đứng 40-70 từ."""
+    return blog.paa_generator(primary_keyword, audience, models)
+
+
+@tool
+def paa_generator_tool(primary_keyword: str, audience: str = "thợ chụp cưới", models: list[str] = None) -> dict:
+    """Gợi ý 10 câu People Also Ask (PAA) cho từ khóa Sony Alpha (alias cho paa_generator)."""
+    return blog.paa_generator(primary_keyword, audience, models)
+
+
+@tool
+def citation_checker(text: str) -> dict:
+    """Kiểm tra nguồn trích dẫn cho bài blog: link Tier 1 Sony official, Tier 2 uy tín, kiểm tra link sống/chết."""
+    return blog.citation_checker(text)
+
+
+@tool
+def citation_checker_tool(text: str) -> dict:
+    """Kiểm tra nguồn trích dẫn cho bài blog (alias cho citation_checker)."""
+    return blog.citation_checker(text)
+
+
+@tool
+def freshness_check(text: str) -> dict:
+    """Kiểm tra độ mới của bài, phát hiện giá cũ/firmware cũ, gợi ý cập nhật 11/2026."""
+    return blog.freshness_check(text)
+
+
+@tool
+def freshness_check_tool(text: str) -> dict:
+    """Kiểm tra độ mới của bài (alias cho freshness_check)."""
+    return blog.freshness_check(text)
+
+
+@tool
+def brand_voice_checker(text: str) -> dict:
+    """Kiểm tra nguyên tắc bảo vệ Sony: sensor số 1 TG, ngàm E >200 lens, KANDO/cân bằng, không chê Sony, kết bài KANDO."""
+    return blog.brand_voice_checker(text)
+
+
+@tool
+def brand_voice_checker_tool(text: str) -> dict:
+    """Kiểm tra nguyên tắc bảo vệ Sony (alias cho brand_voice_checker)."""
+    return blog.brand_voice_checker(text)
+
+
+@tool
 def data_info() -> dict:
     """Thông tin về thư mục dữ liệu: đường dẫn, tính chất (sample hay thực), số lượng từng loại."""
     glossary_count = len(store.glossary)
@@ -435,8 +498,31 @@ def docs_term_report() -> dict:
     return docs.term_report(store)
 
 
+@tool
+def search_knowledge(query: str, limit: int = 6) -> list[dict]:
+    """Tìm trong kho kiến thức nhiếp ảnh/giáo án của trainer; trả về đoạn liên quan nhất kèm note."""
+    from . import knowledge
+    return knowledge.search(query, limit)
+
+
+@tool
+def get_knowledge(note: str = "") -> dict:
+    """Lấy kho kiến thức. Trống = tree(); nếu không rỗng = get(note)."""
+    from . import knowledge
+    if not note:
+        return knowledge.tree()
+    return knowledge.get(note)
+
+
+@tool
+def add_knowledge(note: str, text: str, section: str = "Câu hỏi học viên hay hỏi") -> dict:
+    """Thêm nội dung vào một note trong kho kiến thức."""
+    from . import knowledge
+    return knowledge.add(note, text, section)
+
+
 WRITE_TOOLS = ("record_term", "record_feedback", "remember_translation", "ban_term", "keep_english", "learn",
-               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs")
+               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs", "add_knowledge")
 
 
 def main():

@@ -1,453 +1,217 @@
-# Sony Alpha Việt — skill + MCP cho Claude Code
+# Sony Alpha Việt — Trợ lý dịch menu & viết blog Sony cho người Việt
 
-Bộ công cụ cho người làm nội dung tiếng Việt về máy ảnh Sony Alpha. Có ba việc chính:
+> Bạn chụp Sony A7, A7R, A7S, A6xxx, ZV, FX? Bạn cần menu tiếng Việt chuẩn, tài liệu dễ hiểu, và bài blog chuẩn SEO? Đây là bộ công cụ dành cho bạn.
 
-1. **Dịch menu máy ảnh (OSD)** từ tiếng Anh hoặc tiếng Nhật sang tiếng Việt. Thuật ngữ được thống nhất, bản dịch được kiểm tra có vừa khung màn hình không, và bộ công cụ ghi nhớ từng lần bạn sửa.
-2. **Dịch tài liệu**: hướng dẫn sử dụng, help guide, thông cáo báo chí. Văn phong tự nhiên, không đọc như dịch máy.
-3. **Viết và chấm bài blog** tiếng Việt chuẩn SEO (Google) và AIO (AI Overviews, ChatGPT, Perplexity). Có TL;DR, bảng so sánh, FAQ, Schema JSON-LD và bảng tự chấm điểm.
+**Tác giả:** Pham Khang Thai (Thái) — Giấy phép MIT  
+**Phiên bản:** 1.2.0 - Cập nhật AIO-first & Brand Voice Bảo vệ Sony 11/2026
 
-Repo này là một **Claude Code plugin** gồm hai phần:
+---
+---
 
-| Phần | Vai trò |
-|---|---|
-| **Skill** `sony-alpha-viet` | "Sổ tay nghề" cho Claude: khi nào dùng chế độ nào, quy tắc dịch, glossary, văn phong, mẫu bài, checklist SEO/AIO, ví dụ đầu ra. |
-| **MCP server** `sony-alpha-viet` | Bộ công cụ chạy thật: tra bộ nhớ dịch, kiểm tra và tự sửa bản dịch, đo độ rộng chữ trên màn hình, ghi nhớ và tự học, đọc/ghi file Sony `*_TranslationCheck_VN.xls`, chấm SEO/AIO, kiểm văn phong, sinh Schema. |
+## 💎 Nguyên tắc cốt lõi: Luôn bảo vệ Sony - Tự hào công nghệ tiên phong
 
-Skill cho Claude biết **phải làm gì và theo chuẩn nào**. MCP **làm và kiểm** những việc máy làm chính xác hơn người: đếm ký tự, đo độ rộng, so khớp hàng nghìn chuỗi đã duyệt.
+> Đây là kim chỉ nam cho MỌI tác vụ: dịch menu, dịch tài liệu, viết blog.
+
+**Sony không phải hãng máy ảnh. Sony là công ty công nghệ tạo ra tương lai:**
+
+- **Sensor số 1 thế giới:** Hơn 50% cảm biến máy ảnh toàn cầu do Sony Semiconductor sản xuất - từ iPhone đến DJI. Chụp Sony Alpha là dùng cảm biến gốc.
+- **Tiên phong mirrorless:** 2013 ra A7/A7R khi mọi người cười, 2026 cả ngành đi theo Sony.
+- **Tiên phong Eye AF, Tracking, Global Shutter:** A9 III global shutter đầu tiên thế giới - công nghệ chỉ Sony có.
+- **Triết lý KANDO:** KANDO là cảm động - khoảnh khắc tim đập nhanh khi thấy ảnh đẹp. Máy Sony là bạn đồng hành tạo KANDO, không chỉ là công cụ.
+- **Triết lý cân bằng:** A7 IV 33MP không phải thiếu, là điểm ngọt Sony tính toán giữa chi tiết và tốc độ, giữa nhỏ gọn và chuyên nghiệp.
+- **Ngàm E nhỏ gọn:** Flange 18mm, hơn 200 lens (Sony + Sigma/Tamron), 1 ngàm cho mọi máy từ A7C đến FX6. Nhỏ gọn để đeo 8 tiếng không mỏi.
+
+**Quy tắc vàng khi viết:**
+- Không bao giờ kết luận đối thủ tốt hơn Sony. Nếu phải nói điểm yếu, phải có ngữ cảnh + giải pháp trong hệ E-mount.
+- VD sai: "A7 IV quay 4K60 bị crop"
+- VD đúng: "A7 IV quay 4K60 crop 1.5x để đảm bảo không quá nhiệt khi quay cưới 2 tiếng - đó là cân bằng cho độ tin cậy. Cần không crop, chọn A7S III trong cùng hệ E-mount"
+- Dùng từ "trải nghiệm KANDO", "sự cân bằng Sony tính toán", "đầu tư cho tương lai E-mount" thay vì "tính năng", "giá rẻ"
+- Kết bài luôn: "Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái E-mount nhỏ gọn, triết lý cân bằng, và hành trình tạo KANDO"
+
+Chi tiết đầy đủ: `skills/sony-alpha-viet/references/sony-core-principles.md`
+
+---
+---
+
+## Dùng để làm gì?
+
+| Bạn là | Ứng dụng |
+| :--- | :--- |
+| **Thợ dịch Sony** | Đọc `ILDC_TranslationCheck_VN.xls`, chỉ ra dòng lỗi, gợi ý bản vừa khung, xuất file mới AN/AU/AV đúng chuẩn Sony. |
+| **Blogger / YouTuber** | Viết bài "A7 IV hay A7R V cho thợ cưới?" có TL;DR, bảng so sánh, FAQ, tự chấm 35 tiêu chí AIO-first, sinh Schema để AI trích. |
+| **Shop máy ảnh** | Dịch mô tả, FAQ, hướng dẫn nhanh, đảm bảo 1 bộ thuật ngữ trên mọi kênh. |
+| **Người dùng thường** | Tra `Focus Area là gì?` → `Vùng lấy nét` + giải thích. |
 
 ---
 
-## Mục lục
-- [Ứng dụng thực tế](#ứng-dụng-thực-tế)
-- [Cài đặt](#cài-đặt)
-- [Dùng với Gemini, ChatGPT, Meta AI](#dùng-với-gemini-chatgpt-meta-ai)
-- [Dữ liệu và bộ nhớ dịch](#dữ-liệu-và-bộ-nhớ-dịch)
-- [Cách dùng](#cách-dùng)
-  - [Chế độ A: dịch menu máy ảnh](#chế-độ-a-dịch-menu-máy-ảnh)
-  - [Chế độ B: dịch tài liệu](#chế-độ-b-dịch-tài-liệu)
-  - [Chế độ C: viết và chấm blog SEO + AIO](#chế-độ-c-viết-và-chấm-blog-seo--aio)
-- [Quy tắc thuật ngữ](#quy-tắc-thuật-ngữ)
-- [Tự học từ lần sửa của bạn](#tự-học-từ-lần-sửa-của-bạn)
-- [Kết hợp với Obsidian](#kết-hợp-với-obsidian)
-- [Danh sách công cụ MCP](#danh-sách-công-cụ-mcp)
-- [Cấu trúc repo](#cấu-trúc-repo)
-- [Giới hạn và an toàn](#giới-hạn-và-an-toàn)
-- [Câu hỏi thường gặp](#câu-hỏi-thường-gặp)
-- [Phát triển](#phát-triển)
+## Nên dùng với AI nào?
 
----
+### 🥇 TỐT NHẤT: Claude Code
+Có đủ Skill + MCP. Đo được độ rộng chữ, đọc Excel, tự học từ lần bạn sửa, chấm AIO chính xác. Dùng cho dự án dịch Sony chuyên nghiệp.
 
-## Ứng dụng thực tế
+### 🥈 TỐT: Gemini CLI
+Có đủ MCP như Claude, phù hợp nếu bạn quen hệ Gemini.
 
-| Bạn là | Dùng để |
-|---|---|
-| **Người dịch / rà soát menu cho Sony** (file ILDC TranslationCheck) | Đọc file `.xls`, lọc các dòng vi phạm quy tắc, đề xuất bản sửa vừa khung, ghi cột AN/AU/AV ra **file mới** (không đụng file gốc), kèm lý do bằng tiếng Anh cho phía Sony Nhật. |
-| **Blogger / reviewer máy ảnh** | Viết bài so sánh, hướng dẫn cài đặt, review có TL;DR, bảng, FAQ, Schema. Tự chấm theo 23 tiêu chí SEO/AIO trước khi đăng. |
-| **Người làm YouTube / mạng xã hội** | Dịch kịch bản, chú thích, tên mục menu cho đúng cách gọi trên máy tiếng Việt. |
-| **Cửa hàng, nhà phân phối** | Dịch tài liệu sản phẩm, trang FAQ, hướng dẫn nhanh với thuật ngữ thống nhất trên mọi kênh. |
-| **Người dùng muốn hiểu menu máy** | Tra một mục menu (EN/JP) ra tên tiếng Việt và cách gọi quen thuộc trong cộng đồng. |
-
-Ví dụ câu lệnh bạn có thể gõ:
-
-```text
-Dịch các mục menu này của A7 IV sang tiếng Việt: Focus Area, Silent Shooting, Anti-flicker Shoot Sel.
+### 🥉 DÙNG ĐƯỢC: Meta AI, ChatGPT, Gemini App
+Không có MCP, chỉ tra cứu + viết blog. Không đo khung, không đọc Excel. Dùng câu thần chú:
 ```
-```text
-Rà file ~/Downloads/ILDC_TranslationCheck_VN.xls, chỉ các dòng lỗi, ghi đề xuất ra file mới.
-```
-```text
-Viết blog 1.500 từ "Sony A7 IV hay A7R V", từ khóa chính "Sony A7 IV hay A7R V", độc giả là thợ chụp cưới.
-```
-```text
-Audit SEO AIO bài này: ~/blog/zv-e10-ii-review.md
+Đọc https://github.com/thaikpham/alphaskill và làm theo AGENTS.md. Sau đó: [câu hỏi của bạn]
 ```
 
 ---
 
-## Cài đặt
+## Cài đặt 2 phút (cho người mới)
 
-### Yêu cầu
-- [Claude Code](https://code.claude.com)
-- [uv](https://docs.astral.sh/uv/) (dùng để chạy MCP server, tự cài Python và thư viện): `curl -LsSf https://astral.sh/uv/install.sh | sh`
-- Tùy chọn: font Liberation Sans hoặc DejaVu Sans để đo độ rộng chữ chính xác hơn (Linux thường có sẵn).
-
-### Cách 1: cài như plugin (khuyến nghị)
-Trong Claude Code:
-
-```text
-/plugin marketplace add thaikpham/thaikpham-blogskill
-/plugin install sony-alpha-viet@thaikpham-blogskill
+### Claude Code:
+```
+/plugin marketplace add thaikpham/alphaskill
+/plugin install sony-alpha-viet@alphaskill
+# Khởi động lại Claude Code
+/mcp  # phải thấy connected
 ```
 
-Khởi động lại Claude Code. Plugin tự đăng ký cả skill lẫn MCP server. Lần chạy đầu, `uv` tải thư viện mất khoảng vài chục giây.
-
-Kiểm tra:
-```text
-/mcp
+### Gemini CLI:
 ```
-Phải thấy `sony-alpha-viet` ở trạng thái connected. Hỏi Claude "gọi data_info" để xem đường dẫn dữ liệu đang dùng.
-
-### Cách 2: cài thủ công
-
-```bash
-git clone https://github.com/thaikpham/thaikpham-blogskill.git
-```
-```bash
-cd thaikpham-blogskill && uv sync
-```
-```bash
-claude mcp add --scope user sony-alpha-viet -- uv run --directory "$(pwd)" sony-alpha-viet-mcp
-```
-```bash
-ln -s "$(pwd)/skills/sony-alpha-viet" ~/.claude/skills/sony-alpha-viet
+gemini extensions install https://github.com/thaikpham/alphaskill
 ```
 
-### Cách 3: chỉ dùng skill, không MCP
-Chỉ cần làm bước symlink ở trên. Claude vẫn dịch và viết theo glossary, checklist trong `skills/sony-alpha-viet/references/`, nhưng không có bộ nhớ dịch, không đo được độ rộng chữ, không tự chấm SEO bằng máy. Kết quả dịch menu sẽ được ghi rõ là "chưa kiểm bằng MCP".
+### Meta AI / ChatGPT (không cài gì):
+1. Copy `portable/system-prompt.md`
+2. Dán vào Instructions của Custom GPT / Meta AI Studio
+3. Upload `portable/knowledge/`
+4. Chat: `Dịch Focus Area sang tiếng Việt`
 
 ---
 
-## Dùng với Gemini, ChatGPT, Meta AI
+## ⭐ NÂNG CẤP LỚN 1.1.0: AIO-first - Viết để AI trích dẫn bạn
 
-| Nền tảng | Cách cài | Có công cụ MCP? |
-|---|---|---|
-| **Gemini CLI** | `gemini extensions install https://github.com/thaikpham/thaikpham-blogskill` | ✅ đầy đủ |
-| **ChatGPT** | Custom GPT: dán `portable/system-prompt.md` vào Instructions, tải `portable/knowledge/` vào Knowledge | Chỉ khi bật developer mode + chạy server `--http --read-only` sau HTTPS |
-| **Gemini app** | Gem: dán `portable/system-prompt.md`, tải `portable/knowledge/` | ❌ |
-| **Llama (Meta)** | `sony-alpha-viet-llama`: agent Llama qua Ollama hoặc Llama API | ✅ (chỉ đọc mặc định) |
-| **Meta AI** | Tạo AI riêng bằng Meta AI Studio với `portable/meta-ai-studio/` (nhớ quy tắc trong Instagram/Messenger/WhatsApp), hoặc dán `portable/system-prompt.md` vào chat | ❌ |
+### Tại sao AIO quan trọng hơn SEO năm 2026?
 
-**Cách nhanh nhất cho AI có đọc web** (Meta AI, ChatGPT, Gemini): gửi link repo kèm câu
-```text
-Đọc https://github.com/thaikpham/thaikpham-blogskill và làm theo AGENTS.md. Sau đó: <yêu cầu của bạn>
-```
-`AGENTS.md` và `llms.txt` chỉ cho AI đọc đúng prompt và file kiến thức. Lưu ý: AI chỉ nhớ trong cuộc trò chuyện đó, và tùy lần, nó có thể chỉ đọc một phần file.
+- **SEO cũ (2015-2023):** Viết để lên top 1 Google, người dùng click vào.
+- **AIO mới (2024-2026):** Viết để được **Google AI Overviews, ChatGPT, Perplexity, Gemini** trích dẫn thẳng trong câu trả lời. Người dùng không click, họ đọc luôn đáp án của AI. Nếu bài bạn không có cấu trúc để AI hiểu, bạn mất 68% traffic.
 
-**Llama (Meta) có công cụ thật:** `uv run sony-alpha-viet-llama "Dịch menu: Focus Area, Silent Shooting" -v`. Lệnh này chạy model Llama qua Ollama (mặc định `llama3.2:3b`) hoặc Llama API của Meta (`--base-url https://api.llama.com/compat/v1`, biến `LLAMA_API_KEY`), và gọi công cụ MCP ở chế độ chỉ đọc. Cần tự tải model: `ollama pull llama3.2:3b`.
+**Checklist cũ 23 tiêu chí → Checklist mới 35 tiêu chí AIO-first:**
 
-> Thử thật (03/11/2026): `llama3.2:3b` gọi được công cụ và lấy đúng bản đã duyệt trong bộ nhớ, nhưng hay sinh JSON lỗi và dịch sai chuỗi mới (ví dụ "Range of Zoom Assist" → "Khối lượng zoom hỗ trợ"). Chỉ dùng 3B để thử kết nối. `llama3.1:8b` (`--model llama3.1:8b`, khoảng 35–45 giây/lần trên GPU 4 GB) dịch đúng cả 3 mục thử trong 4/4 lần, nhưng thường bỏ qua `check_translation` và tự nhận đã kiểm tra. Vì vậy agent luôn ghi cuối câu trả lời danh sách công cụ **thật sự** đã chạy, và cảnh báo nếu bản dịch chưa qua `check_translation`. Llama 4 qua Llama API sẽ tốt hơn. Luôn duyệt lại kết quả.
+### Nhóm 1: Nền tảng SEO (vẫn cần, 10 mục)
+1.  Từ khóa chính ở H1, slug, 100 từ đầu, 1 H2, meta description
+2.  Meta title 50-60 ký tự, description 140-160 ký tự, có số/năm nếu phù hợp (VD: 2026)
+3.  Một H1 duy nhất, heading không nhảy cấp (H2→H3, không H2→H4)
+4.  Mật độ từ khóa ≤1.5%, không nhồi
+5.  2-5 link nội bộ, 1-3 link ngoài uy tín (Sony official, DPReview, PetaPixel)
+6.  Ảnh có alt text mô tả, có WebP, lazy-load
+7.  Tốc độ tải <2s, mobile-friendly
+8.  Slug ngắn, không dấu: `sony-a7-iv-hay-a7r-v` không phải `sony-a7-iv-hay-a7r-v-cho-tho-cuoi-2026`
+9.  Ngày xuất bản + ngày cập nhật rõ ràng
+10. Có tác giả thật, có trang About tác giả (E-E-A-T)
 
-Hướng dẫn từng bước và cảnh báo bảo mật khi mở MCP ra Internet: [`portable/README.md`](portable/README.md).
+### Nhóm 2: AIO Core - Để AI trích dẫn (15 mục - QUAN TRỌNG NHẤT)
+11. **TL;DR 40-70 từ ngay dưới H1:** Trả lời thẳng câu hỏi chính trong 1 đoạn. VD: "A7 IV tốt hơn cho thợ cưới vì... A7R V tốt hơn cho phong cảnh vì..." — Đây là thứ AI Overviews copy đầu tiên.
+12. **Mỗi H2 mở bằng câu trả lời 1-2 câu có thể đứng một mình:** Không mở bằng "Trong phần này chúng ta sẽ...". AI trích từng H2 riêng lẻ.
+13. **Định nghĩa 1 câu cho mọi thuật ngữ mới:** "Khẩu độ là độ mở của ống kính, quyết định lượng sáng vào cảm biến." — AI thích định nghĩa ngắn.
+14. **FAQ 3-6 câu, mỗi câu trả lời 40-70 từ, tự đứng được:** Câu hỏi phải là câu người dùng thật sự gõ trên Google/ChatGPT: "A7 IV có chống rung không?", "A7R V chụp cưới có quá nặng không?". Trả lời không được "Xem ở trên" hay "Như đã nói".
+15. **Bảng so sánh:** AIO ưu tiên bảng hơn đoạn văn. Mọi bài so sánh phải có bảng `Tiêu chí | A7 IV | A7R V`.
+16. **Số liệu phải có chủ thể + nguồn:** Sai: "61MP rất cao". Đúng: "A7R V có cảm biến 61MP (nguồn: Sony official spec 2024)".
+17. **Không có `[cần xác minh]`:** AIO coi bài có placeholder là chưa hoàn chỉnh, không trích.
+18. **Checklist / Pros-Cons:** "Ưu điểm A7 IV: ..." dạng bullet, AI dễ trích thành list.
+19. **Ví dụ thực tế cho người Việt:** "Thợ cưới ở HCM chụp tiệc 5 tiếng với A7 IV + 35mm f/1.4..." — Tăng E-E-A-T.
+20. **Câu hỏi People Also Ask (PAA):** Tool mới `paa_generator` sẽ gợi ý 10 câu hỏi liên quan từ Google/Perplexity để bạn trả lời sẵn.
+21. **Ngôn ngữ tự nhiên, bỏ AI-sounding:** Cấm "Hãy cùng khám phá", "đưa trải nghiệm lên tầm cao mới", "tối ưu hóa". Tool `style_lint` sẽ bắt.
+22. **Entity rõ ràng:** Mỗi khi nhắc A7 IV, phải gắn với Sony, full-frame, 33MP. Để AI hiểu entity, không nhầm.
+23. **Freshness:** Ghi "Cập nhật 11/2026: Giá A7 IV hiện..." — AIO ưu tiên bài mới.
+24. **Đa phương tiện có transcript:** Video YouTube nhúng phải có transcript tiếng Việt để AI đọc.
+25. **Không quảng cáo trá hình:** AIO phạt nặng bài PR lộ liễu.
 
----
+### Nhóm 3: Schema & Kỹ thuật AIO (10 mục - MỚI)
+26. **Schema JSON-LD không chỉ Article + FAQPage:** Thêm `HowTo` (cho bài hướng dẫn cài đặt), `Product` (có `aggregateRating`), `ComparisonTable`, `VideoObject` nếu có video.
+27. **FAQPage khớp 100% nguyên văn:** Câu hỏi/đáp trong Schema phải giống hệt trong bài, Google check từng ký tự.
+28. **Speakable / AI Summary:** Thêm trường `speakable` và `abstract` cho AI đọc.
+29. **Citation & Source:** Thêm `citation` trong Schema trỏ về Sony official. Tool mới `citation_checker` tự kiểm tra link sống/chết.
+30. **Author E-E-A-T:** Schema `Person` có `sameAs` link tới Facebook/Instagram/LinkedIn của tác giả, có `knowsAbout: ["Sony Alpha", "Wedding Photography"]`.
+31. **Entity linking:** Tự động link lần đầu nhắc "Eye AF" tới trang giải thích Eye AF trong glossary của bạn (internal entity graph).
+32. **AIO Score:** Tool mới `aio_audit` chấm điểm riêng cho AI Overviews (0-100), khác với `seo_audit`. Báo "Khả năng được AI Overviews trích: 78%".
+33. **Zero-click optimization:** Viết 1 đoạn "Key Takeaways" dạng bullet 3-5 ý ở cuối, để AI copy thẳng.
+34. **Multimodal:** Ảnh phải có `ImageObject` schema với `caption` mô tả chi tiết, để Gemini/ChatGPT Vision hiểu.
+35. **Bản tiếng Anh song song (tùy chọn):** Nếu có bản EN tóm tắt 200 từ ở cuối, Perplexity dễ trích hơn cho user quốc tế.
 
-## Dữ liệu và bộ nhớ dịch
+### Tool mới đề xuất (đã thêm vào roadmap MCP)
 
-MCP lưu toàn bộ kiến thức trong một **thư mục dữ liệu riêng, nằm ngoài repo**:
-
-| Ưu tiên | Đường dẫn |
-|---|---|
-| 1 | Biến môi trường `SONY_VN_DATA` nếu bạn đặt |
-| 2 | Trường `"data"` trong `~/.config/sony-alpha-viet/config.json`. Nên dùng cách này: mọi shell và mọi client (Claude Code, Gemini CLI, agent Llama) đều đọc được, kể cả shell không nạp `~/.bashrc` |
-| 3 | `~/.local/share/sony-alpha-viet/data` (hoặc `$XDG_DATA_HOME/sony-alpha-viet/data`): dữ liệu mẫu |
-
-Lần chạy đầu, thư mục này được tạo từ `data-sample/` và khởi tạo git. Nhờ vậy mọi thay đổi đều có lịch sử và hoàn tác được bằng `git revert`.
-
-| File | Nội dung |
-|---|---|
-| `glossary.json` | Thuật ngữ EN → VI, dạng ngắn, `locked: true` = quyết định đã chốt, ưu tiên cao nhất |
-| `rules.json` | Quy tắc thay thế (regex), chuỗi chuẩn, mẫu bị cấm |
-| `exceptions.json` | Từ được giữ tiếng Anh: tên Sony, ứng dụng, chuẩn kỹ thuật, viết tắt |
-| `keep_english.json` | Thuật ngữ bạn chốt giữ tiếng Anh (Zoom, Time Code, Preset…) |
-| `tm.jsonl` | Bộ nhớ dịch: các cặp EN → VI đã duyệt, kèm thông số khung hiển thị |
-| `feedback.jsonl` | Mọi lần bạn sửa bản dịch |
-| `rules.md` | Quy tắc dịch dạng văn bản, đọc qua `get_guidelines` |
-| `LEARNING_LOG.md` | Nhật ký những gì công cụ đã học |
-
-**`data-sample/` không chứa bộ nhớ dịch thật** (`tm.jsonl` rỗng). Chuỗi menu nội bộ từ các dự án dịch cho Sony là dữ liệu của Sony, không đưa lên repo công khai. Glossary, quy tắc và ngoại lệ trong `data-sample/` là thuật ngữ nhiếp ảnh chung, dùng được ngay.
-
-Nếu bạn có dữ liệu riêng, tạo `~/.config/sony-alpha-viet/config.json`:
-```json
-{ "data": "/đường/dẫn/tới/data" }
-```
-Hoặc đặt tạm cho một shell: `export SONY_VN_DATA="/đường/dẫn/tới/data"`. Gọi `data_info` để xem đang dùng dữ liệu nào (`data_source`). Agent Llama cũng cảnh báo cuối câu trả lời nếu đang chạy dữ liệu mẫu.
-Bộ nhớ càng nhiều chuỗi đã duyệt thì `prepare_batch` càng trả về nhiều bản khớp 100%, và bản dịch càng thống nhất.
-
-Tạo lại `data-sample/` từ dữ liệu riêng (đã lọc bỏ bộ nhớ dịch và mã chuỗi nội bộ):
-```bash
-uv run python scripts/export_public_data.py --src "$SONY_VN_DATA" --out data-sample
-```
-
----
-
-## Cách dùng
-
-Skill tự kích hoạt khi bạn nói "dịch menu Sony", "dịch hướng dẫn Sony", "viết blog Sony Alpha", "SEO AIO tiếng Việt", "audit bài viết", hoặc nhắc tới OSD, ILDC, TranslationCheck, A7/A7R/A7S/A6xxx/ZV/FX. Gọi trực tiếp bằng `/sony-alpha-viet:sony-alpha-viet` (cài dạng plugin) hoặc `/sony-alpha-viet` (cài thủ công).
-
-Claude xác định chế độ trước khi làm. Nếu thiếu thông tin quan trọng (model máy, ngôn ngữ nguồn, từ khóa chính), Claude **hỏi một lượt** trước khi viết nội dung dài. Yêu cầu ngắn mà ngữ cảnh đã rõ thì làm luôn.
-
-### Chế độ A: dịch menu máy ảnh
-
-**Quy trình Claude thực hiện:**
-
-```
-get_guidelines ─► prepare_batch ─► dịch ─► check_translation ─► bảng + CSV
-   (quy tắc)      (bộ nhớ + thuật    (chuỗi   (tự sửa, đo độ rộng,     │
-                   ngữ cho mỗi chuỗi) còn lại) gợi ý rút gọn)           ▼
-                                                    bạn duyệt / sửa ─► ghi nhớ
-```
-
-1. **`prepare_batch`**: với mỗi chuỗi, trả về bản khớp 100% trong bộ nhớ (nếu có), các bản gần giống và thuật ngữ liên quan (thuật ngữ khóa đứng đầu).
-2. **Dịch** phần chưa có, bám thuật ngữ và các bản gần giống để giữ thống nhất.
-3. **`check_translation`** kiểm từng chuỗi và tự sửa những gì sửa được. Các lỗi nó bắt:
-   - sót tiếng Anh, trộn Anh–Việt;
-   - dùng từ bị cấm ("cửa trập", "nút màn trập"…);
-   - viết tắt rụng chữ ("ság", "đ.ký"), dính chữ;
-   - mất biến `${v1}`, mất icon `<cE660>`, sai số dòng;
-   - dùng dấu phẩy thập phân thay vì dấu chấm (0.3EV);
-   - không khớp với bản đã duyệt;
-   - tràn khung màn hình.
-
-   Khi chuỗi tràn (BORDER/OVER), công cụ trả thêm `short_candidates`: các bản rút gọn đã đo độ rộng sẵn.
-4. **Xuất** bảng `STT | Nguồn | Tiếng Việt | Loại UI | Ghi chú` và file CSV.
-
-**Ví dụ:**
-
-| English | Tiếng Việt | Ghi chú |
-|---|---|---|
-| Aperture | Khẩu độ | Bộ nhớ đã duyệt, thuật ngữ khóa |
-| Shutter Speed | Tốc độ màn trập | Chiếm 62% khung |
-| Range of Zoom Assist | Dải hỗ trợ Zoom | Zoom giữ tiếng Anh (keep_english) |
-| Anti-flicker Shoot Sel. | Chống nhấp nháy | "Chọn chụp chống nhấp nháy" tràn khung, bỏ từ menu đã ngầm hiểu |
-
-**Làm việc với file Sony `*_TranslationCheck_VN.xls`:**
-- `xls_read(path, only_flagged=True)`: chỉ lấy các dòng đang vi phạm quy tắc, kèm thông số khung.
-- `xls_write(src, out, proposals)`: chỉ ghi cột **AN** (bản đề xuất), **AU** (loại lỗi, đúng dropdown của Sony) và **AV** (lý do bằng tiếng Anh). Luôn ghi ra file mới, phần còn lại của file giữ nguyên từng byte.
-
-**Về đo độ rộng:** đây là **ước lượng** bằng font thay thế, đã hiệu chỉnh theo font máy Sony. Từ 92% khung trở xuống là an toàn. Kết quả BORDER/OVER cần xác nhận lại bằng SonyTool.
-
-### Chế độ B: dịch tài liệu
-
-- Giữ nguyên cấu trúc gốc: heading, danh sách, bảng.
-- Tên mục menu được **in đậm**, ghi đúng như trên máy tiếng Việt. Lần đầu xuất hiện kèm tên gốc nếu người đọc có thể dùng máy tiếng Anh: **Vùng lấy nét** (Focus Area).
-- Đường dẫn menu viết dạng **MENU → Lấy nét → AF/MF → Vùng lấy nét**.
-- Sau khi dịch, có một lượt biên tập riêng để bỏ văn dịch máy: câu bị động thừa, câu mở bằng "Việc…", chuỗi "của" dày đặc, câu quá dài. Công cụ `style_lint` bắt các lỗi này tự động.
-- Cuối bản dịch liệt kê các thuật ngữ mới để bạn chốt.
-
-### Chế độ C: viết và chấm blog SEO + AIO
-
-**Quy trình:**
-
-1. **Brief**: search intent, từ khóa chính/phụ, các câu hỏi kiểu People Also Ask, outline H2/H3, link dự kiến. Bài trên 1.000 từ thì Claude trình outline cho bạn duyệt trước.
-2. **Viết** theo `templates/blog-post-template.md`:
-   - TL;DR 40–70 từ ngay dưới tiêu đề;
-   - mỗi H2 mở bằng câu trả lời 1–2 câu có thể trích riêng;
-   - có bảng, checklist, FAQ 3–6 câu và ví dụ thực tế cho người dùng Việt Nam.
-3. **Tra thuật ngữ** bằng `lookup_prose_term`. Văn xuôi dùng cách gọi quen thuộc (full-frame, lấy nét mắt (Eye AF)), khác với chuẩn thuần Việt của menu.
-4. **Kiểm văn phong** bằng `style_lint`: cụm "AI-sounding" ("Hãy cùng khám phá", "đưa trải nghiệm lên tầm cao mới"…), dấu hiệu văn dịch máy, câu dài, sai thuật ngữ, sai dấu thập phân.
-5. **Chấm điểm** bằng `seo_audit`: trả bảng `Mục | Kết quả | Bằng chứng | Cách sửa` và điểm số. Những mục máy không tự chấm được thì ghi "Cần người duyệt".
-6. **Sinh Schema** bằng `faq_schema`: JSON-LD gồm `Article` và `FAQPage`. Câu hỏi và câu trả lời trong Schema lấy nguyên văn từ bài, đúng yêu cầu của Google.
-7. **Slug** bằng `slugify`: "Sony A7 IV hay A7R V" → `sony-a7-iv-hay-a7r-v`.
-
-**Nguyên tắc cứng:** không bịa thông số, giá, ngày ra mắt hay kết quả benchmark. Thông số chưa đối chiếu được ghi `[cần xác minh]`. Giá bán ở Việt Nam luôn ghi `[cần xác minh]` trừ khi bạn cung cấp. `seo_audit` coi bài còn dấu `[cần xác minh]` là **chưa hoàn chỉnh**.
-
-**Checklist SEO/AIO (tóm tắt 23 mục, bản đầy đủ ở `references/seo-aio-checklist.md`):**
-
-| Nhóm | Kiểm tra |
-|---|---|
-| Từ khóa & meta | Từ khóa chính có ở H1, slug, 100 từ đầu, một H2, meta description; meta title 50–60 ký tự; description 140–160 ký tự; không nhồi từ khóa (≤ 1,5%) |
-| Cấu trúc | TL;DR 40–70 từ; một H1; heading không nhảy cấp; có bảng hoặc checklist; kết luận có hành động cụ thể |
-| AIO | FAQ 3–6 câu, mỗi câu trả lời 40–70 từ và tự đứng được; có định nghĩa một câu; câu chứa số liệu nêu rõ chủ thể |
-| E-E-A-T | Không có số liệu chưa kiểm chứng; 1–3 nguồn ngoài uy tín; 2–5 link nội bộ; có tác giả và ngày cập nhật |
-| Schema & ảnh | Article + FAQPage khớp nguyên văn với bài; ảnh có alt text |
-| Ngôn ngữ | Thuật ngữ đúng glossary; không văn dịch máy; không có cụm "AI-sounding" |
-
-Xem bài mẫu đầy đủ, kèm bảng tự audit, tại `skills/sony-alpha-viet/examples/example-blog-post.md`.
+| Tool mới | Việc làm |
+| :--- | :--- |
+| `aio_audit` | Chấm 15 tiêu chí AIO Core + 10 Schema, trả về % được trích |
+| `paa_generator` | Gợi ý 10 câu PAA từ Google/Perplexity cho từ khóa |
+| `entity_extractor` | Trích entity (model máy, thông số) để đảm bảo đủ |
+| `citation_checker` | Kiểm tra link nguồn sống/chết, có phải nguồn uy tín không |
+| `freshness_check` | Báo bài này cũ bao lâu, gợi ý cập nhật giá/thông số |
+| `speakable_generator` | Sinh đoạn tóm tắt 30s cho Google Assistant đọc |
 
 ---
 
-## Quy tắc thuật ngữ
+## Cách dùng 3 chế độ
 
-Một thuật ngữ có thể có **hai chuẩn**, tùy nơi dùng:
+### A: Dịch menu
+```
+Dịch 3 chuỗi này cho A7 IV: Focus Area, Silent Shooting, Anti-flicker Shoot Sel.
+```
+→ Trả về bảng + % khung + gợi ý rút gọn nếu tràn.
 
-| EN | Menu máy (chế độ A) | Bài viết / tài liệu (B, C) |
-|---|---|---|
+Với file Excel:
+```
+Rà file ~/Downloads/ILDC_TranslationCheck_VN.xls, chỉ lấy dòng lỗi, xuất ra ~/Desktop/fixed.xls
+```
+
+### B: Dịch tài liệu
+```
+Dịch file ~/a7iv-help-guide.pdf sang tiếng Việt tự nhiên, giữ heading, tên menu in đậm **Vùng lấy nét** (Focus Area)
+```
+
+### C: Viết blog AIO-first (MỚI)
+```
+Viết blog 1500 từ "Sony A7 IV hay A7R V cho thợ cưới", từ khóa "Sony A7 IV hay A7R V", độc giả thợ cưới HCM, yêu cầu AIO-first
+```
+
+AI sẽ:
+1. Gọi `paa_generator` lấy 10 câu hỏi PAA
+2. Viết outline có TL;DR, bảng so sánh, FAQ, Key Takeaways
+3. Gọi `entity_extractor` đảm bảo đủ thông số
+4. Gọi `style_lint` bỏ văn AI-sounding
+5. Gọi `seo_audit` + `aio_audit` → Bảng `Mục | Kết quả | Bằng chứng | Cách sửa` + điểm AIO Score
+6. Gọi `faq_schema` + `product_schema` sinh JSON-LD
+
+---
+
+## Quy tắc thuật ngữ (giữ nguyên)
+
+| EN | Menu (ngắn) | Bài viết (quen) |
 | Full Frame | Toàn khung | full-frame |
 | Eye AF | Eye AF | lấy nét mắt (Eye AF) |
-| Picture Profile | Picture Profile | Picture Profile (hồ sơ hình ảnh) |
-| Image Stabilization | Ổn định hình ảnh / SteadyShot | chống rung trên thân máy (IBIS) |
-| Zoom | Zoom | zoom |
-| Mechanical Shutter | Màn trập cơ | màn trập cơ |
+| Image Stabilization | Ổn định hình ảnh | chống rung IBIS |
 
-**Menu máy:**
-- Dùng tiếng Việt, không trộn Anh–Việt. Có hai ngoại lệ:
-  - tên riêng và chuẩn kỹ thuật (Sony, S-Log3, XAVC S, HDMI, ISO…);
-  - thuật ngữ trong danh sách **keep_english**.
-- Thuật ngữ đã khóa (🔒) thắng mọi quy tắc khác. Ví dụ: shutter = màn trập, Shutter Button = nút chụp, Tracking = theo dõi, Defocus = xóa phông.
-- Viết hoa kiểu câu (chỉ chữ đầu). Không viết tắt rụng chữ.
-
-**Bài viết:** giữ những thuật ngữ tiếng Anh mà nhiếp ảnh gia Việt quen dùng, kèm giải nghĩa ở lần xuất hiện đầu tiên.
-
-**Chính sách keep_english:** một thuật ngữ được giữ tiếng Anh khi bản tiếng Việt **không giúp người dùng hiểu hơn**. Hiện gồm Zoom, Time Code, Preset; Firmware nằm trong danh sách ngoại lệ chung. Viết hoa theo bản gốc: tên mục "Zoom Assist" → "Zoom", câu trợ giúp "zoom speed" → "tốc độ zoom". Khi bạn chốt thêm một thuật ngữ, công cụ `keep_english` sẽ:
-1. Cho xem trước bao nhiêu chuỗi trong bộ nhớ, bao nhiêu quy tắc và thuật ngữ bị ảnh hưởng.
-2. Khi bạn đồng ý: sửa toàn bộ bộ nhớ, tắt các quy tắc xung đột, khóa thuật ngữ. Từ đó trở đi, bộ kiểm tra báo lỗi nếu bản dịch lại dùng từ tiếng Việt cũ.
-
-Glossary đầy đủ (EN, JP, Menu, Bài viết, Ghi chú) nằm ở `skills/sony-alpha-viet/references/glossary-vi.md`.
+Giữ tiếng Anh: Zoom, Time Code, Preset...
 
 ---
 
-## Tự học từ lần sửa của bạn
+## Lộ trình cải tiến SEO/AIO đã cập nhật
 
-| Bạn làm | Claude gọi | Kết quả |
-|---|---|---|
-| Chốt một thuật ngữ: "dùng X cho Y" | `record_term` | Thuật ngữ được khóa, ưu tiên cao nhất |
-| Sửa một bản dịch | `record_feedback` | Bộ nhớ cập nhật; cụm từ bị sửa được ghi lại |
-| Sửa cùng một cụm ≥ 2 lần, hoặc nói "từ nay luôn…" | `learn` | Cụm đó thành quy tắc tự sửa |
-| Rút gọn một bản dịch bị tràn | `record_feedback` | Học quy tắc rút gọn, **chỉ áp khi chuỗi tràn khung** |
-| Giữ một từ tiếng Anh | `record_feedback` → `keep_english` | Đề xuất đưa vào danh sách giữ tiếng Anh, xem trước rồi áp toàn bộ |
-| Cấm một cách dịch | `ban_term` | Mọi bản dịch dùng từ đó bị báo lỗi |
-| Duyệt bản dịch, không sửa | `remember_translation` | Lưu vào bộ nhớ |
-
-Cuối mỗi phiên, Claude gọi `learn` → `review_memory` (tìm quy tắc thừa hoặc mâu thuẫn) → `commit_memory` (commit thư mục dữ liệu vào git). Claude chỉ ghi nhớ khi bạn đã đồng ý, và không tự đổi thuật ngữ đã khóa.
+- [x] v1.0.0: Fix plugin.json + marketplace + CI
+- [x] v1.1.0: Rewrite README end-user + checklist 35 tiêu chí AIO-first
+- [x] v1.2.0: Thêm 5 tool mới (`aio_audit`, `paa_generator`, `citation_checker`, `freshness_check`, `brand_voice_checker`) vào MCP + test CI
+- [ ] v1.3.0: Thêm Schema Product/HowTo/VideoObject, tự sinh Speakable
+- [ ] v1.4.0: Tích hợp Obsidian AIO dashboard: xem bài nào AIO Score thấp
 
 ---
 
-## Kết hợp với Obsidian
+## FAQ
 
-Biến một thư mục trong vault Obsidian thành "bàn làm việc" của skill. Mọi thứ là Markdown thuần cộng Properties, không cần plugin, và Obsidian đóng hay mở đều được.
+**AIO khác SEO thế nào?**
+SEO là để lên top Google. AIO là để được AI trả lời thay bạn. Năm 2026, người dùng hỏi ChatGPT trước, Google sau. Nếu bài bạn không có TL;DR, FAQ tự đứng, bảng so sánh, AI sẽ không trích.
 
-**Cấu hình** trong `~/.config/sony-alpha-viet/config.json`:
-```json
-{
-  "data": "/đường/dẫn/tới/data",
-  "vault": "/đường/dẫn/tới/vault",
-  "vault_folder": "AI Skills/Sony Alpha Việt"
-}
-```
+**Làm sao biết bài có được AI trích không?**
+Dùng `aio_audit`. Nếu TL;DR thiếu, FAQ trả lời kiểu "xem ở trên", không có bảng, điểm sẽ <50% và báo "AI sẽ bỏ qua".
 
-**Lệnh** (qua Claude/Gemini, hoặc chạy trực tiếp):
-```bash
-uv run sony-alpha-viet-obsidian export
-```
-```bash
-uv run sony-alpha-viet-obsidian import
-```
-```bash
-uv run sony-alpha-viet-obsidian audit "Blog/ten-bai.md"
-```
-Thêm `--apply` vào `import` để ghi thật; mặc định chỉ xem trước.
-
-| Note trong vault | Dùng để |
-|---|---|
-| `Sony Alpha Việt` | Trang chủ: số liệu bộ nhớ, link tới mọi phần |
-| `Thuật ngữ/<EN>` | Mỗi thuật ngữ khóa một note: thuộc tính `en`, `vi`, `short`, `locked` + ví dụ trong bộ nhớ dịch + thuật ngữ liên quan. **Sửa thuộc tính hoặc tạo note mới, rồi import** để đưa vào bộ nhớ |
-| `Danh sách thuật ngữ`, `Bảng thuật ngữ` | Mục lục thuật ngữ khóa; bảng toàn bộ thuật ngữ (chỉ đọc) |
-| `Rà soát nhất quán` | Chuỗi đang có nhiều bản dịch, kèm độ rộng khung, để bạn chọn bản giữ |
-| `Giữ tiếng Anh`, `Nhật ký học` | Danh sách keep_english; những gì công cụ đã tự học |
-| `Tài liệu Sony/` | Mỗi tài liệu Sony đã nạp thành một note (model, mã, trang, thuật ngữ khóa xuất hiện) + `Đối chiếu thuật ngữ với Sony`: từ bị cấm mà Sony vẫn dùng (theo model), từ tiếng Anh Sony giữ |
-| `Skill/` | Bản sao chỉ đọc của SKILL.md, glossary, checklist, mẫu |
-| `Blog/`, `Mẫu/Bài blog SEO` | Bản nháp bài viết; `audit` ghi note `<tên> — SEO audit` và thuộc tính `seo_score`, `seo_complete`, `seo_audited` vào bản nháp |
-
-**Nạp tài liệu Sony:** bảo Claude "nạp tài liệu trong <thư mục>" (`ingest_docs`), rồi `export`. PDF chỉ được trích chữ, không có hình. Tài liệu lưu trong thư mục dữ liệu riêng (`<data>/docs/`) và vault, không vào repo.
-
-**An toàn dữ liệu:**
-- `export` không ghi đè note thuật ngữ bạn đang sửa mà chưa import.
-- `import` chỉ thêm hoặc sửa thuật ngữ, không xóa.
-- Note thuật ngữ có trích ví dụ từ bộ nhớ dịch, nên nếu dùng dữ liệu ILDC thì vault sẽ chứa chuỗi menu của Sony. Đừng đồng bộ thư mục này lên dịch vụ công khai.
+**Tôi chỉ viết blog, có cần MCP không?**
+Có. `aio_audit` và `citation_checker` chỉ chạy được với MCP, nó đếm ký tự, check link thật, không phải đoán.
 
 ---
 
-## Danh sách công cụ MCP
-
-| Nhóm | Công cụ | Việc làm |
-|---|---|---|
-| Thông tin | `data_info` | Đường dẫn dữ liệu, số thuật ngữ, quy tắc, chuỗi; đang dùng dữ liệu mẫu hay dữ liệu riêng |
-| | `get_guidelines(section)` | Quy tắc dịch, ngoại lệ, thuật ngữ khóa, danh sách keep_english, nhật ký học |
-| Tra cứu | `lookup_term`, `search_memory`, `prepare_batch` | Tra glossary menu, tìm bản dịch gần giống, chuẩn bị dịch hàng loạt |
-| | `lookup_prose_term` | Tra thuật ngữ cho bài viết (EN/JP → cách gọi trong menu và trong văn xuôi) |
-| Kiểm tra menu | `check_translation` | Kiểm, tự sửa, đo độ rộng, gợi ý rút gọn |
-| | `check_fit`, `suggest_short` | Đo độ rộng một chuỗi; sinh các bản rút gọn vừa khung |
-| Ghi nhớ | `record_term`, `record_feedback`, `remember_translation`, `ban_term`, `keep_english` | Lưu quyết định của bạn |
-| Tự cải tiến | `learn`, `review_memory`, `disable_rule`, `commit_memory` | Biến lần sửa thành quy tắc, rà soát, lưu lịch sử |
-| File Sony | `xls_read`, `xls_write` | Đọc/ghi `*_TranslationCheck_VN.xls` (chỉ cột AN/AU/AV) |
-| Tài liệu Sony | `ingest_docs`, `search_docs`, `docs_term_report` | Nạp PDF/DOCX chính thức của Sony (tự chuyển font VNI), tìm cách Sony Việt Nam diễn đạt, đối chiếu glossary với Sony |
-| Obsidian | `obsidian_export`, `obsidian_import`, `obsidian_audit_note`, `consistency_report` | Đồng bộ thuật ngữ với vault, chấm SEO bản nháp trong vault, rà soát bản dịch không nhất quán |
-| Blog | `slugify`, `count_words`, `style_lint`, `seo_audit`, `faq_schema` | Tạo slug, đếm từ (bỏ bảng, code, frontmatter), kiểm văn phong, chấm SEO/AIO, sinh JSON-LD |
-
-**Resources:** các file trong `references/` và `templates/` của skill, đọc qua địa chỉ `sony-alpha-viet://references/<tên file>` và `sony-alpha-viet://templates/<tên file>`.
-
-**Prompts** (gõ `/` trong Claude Code để thấy):
-- `translate_menu(model, source_lang, strings)`
-- `write_blog(topic, primary_keyword, audience, models, length)`
-- `audit_post(path_or_text)`
-
----
-
-## Cấu trúc repo
-
-```
-.claude-plugin/          plugin.json, marketplace.json
-.mcp.json                đăng ký MCP server cho plugin Claude Code
-AGENTS.md, llms.txt      chỉ dẫn cho AI đọc repo qua link (Meta AI, ChatGPT, Gemini)
-gemini-extension.json    extension Gemini CLI (+ GEMINI.md)
-portable/                system-prompt.md + knowledge/ cho ChatGPT, Gemini app, Meta AI
-skills/sony-alpha-viet/
-  SKILL.md               quy trình 3 chế độ, nguyên tắc dịch và viết
-  references/
-    glossary-vi.md       thuật ngữ EN/JP → Menu / Bài viết
-    sony-menu-terms.md   quy trình dịch menu, file xls, tự học, giới hạn firmware
-    seo-aio-checklist.md 23 tiêu chí SEO/AIO
-    writing-style-vi.md  văn phong, chống văn dịch máy, số và đơn vị
-  templates/             blog-post-template.md, menu-translation-table.csv, faq-schema.json
-  examples/              example-menu-translation.md, example-blog-post.md (kèm bảng audit)
-src/sony_alpha_viet/     MCP server: core (quy tắc, kiểm tra, độ rộng), memory (tự học), blog (SEO/AIO), xls
-data-sample/             dữ liệu khởi tạo công khai (không có bộ nhớ dịch)
-scripts/                 export_public_data.py, build_portable.py
-tests/
-```
-
----
-
-## Giới hạn và an toàn
-
-- **Firmware:** skill chỉ dịch và chuẩn hóa text. Nó không sửa, đóng gói hay flash firmware, và không bật service mode hay mở khóa ngôn ngữ. Chỉ khi bạn tự cung cấp file và xác nhận rõ, Claude mới trích và dịch chuỗi, rồi ghi ra file mới. Các dự án PMCA-RE, Sony-PMCA-RE, OpenMemories-Tweak chỉ được nhắc tới như tài liệu tham khảo.
-
-  > ⚠️ Can thiệp firmware hoặc dùng công cụ không chính thức có thể làm **mất bảo hành**, **hỏng máy**, và có thể vi phạm điều khoản sử dụng của Sony.
-
-- **Độ rộng chữ** là ước lượng. Kết quả BORDER/OVER cần xác nhận bằng SonyTool.
-- **Thông số và giá** trong bài blog phải đối chiếu nguồn chính thức trước khi đăng.
-- **Dữ liệu dự án của Sony** (bộ nhớ dịch, file TranslationCheck) chỉ lưu trên máy bạn, không đưa vào repo.
-
----
-
-## Câu hỏi thường gặp
-
-**Không thấy công cụ `mcp__sony-alpha-viet__*`?**
-Chạy `/mcp` để xem trạng thái. Kiểm tra máy đã có `uv` (`uv --version`) chưa. Lần đầu khởi động cần mạng để `uv` tải thư viện.
-
-**Đã sửa dữ liệu bằng tay hoặc vừa cập nhật plugin, nhưng Claude vẫn dùng dữ liệu cũ?**
-MCP server giữ dữ liệu trong bộ nhớ khi chạy. Vào `/mcp`, chọn `sony-alpha-viet` → reconnect. Đừng để hai phiên Claude cùng ghi một thư mục dữ liệu khi một phiên đang chạy server cũ: lần ghi sau có thể đè lên lần ghi trước.
-
-**Hoàn tác một thay đổi bộ nhớ?**
-Thư mục dữ liệu là một repo git: `git -C "$SONY_VN_DATA" log`, rồi `git revert <commit>`. Muốn tắt một quy tắc sai thì dùng `disable_rule`.
-
-**Dịch từ tiếng Nhật được không?**
-Được. Glossary có cột JP để nhận diện thuật ngữ. Claude dịch theo nghĩa, và đối chiếu với bản tiếng Anh của cùng model nếu có.
-
-**Tôi không dịch cho Sony, chỉ viết blog. Có cần MCP không?**
-Không bắt buộc. Nhưng `seo_audit`, `style_lint`, `faq_schema` giúp chấm bài chính xác: đếm ký tự, đếm từ, kiểm Schema khớp nguyên văn. Đây là những việc người dễ sót.
-
-**Đổi quy tắc cho riêng mình?**
-Chốt bằng lời với Claude (Claude sẽ gọi `record_term`, `ban_term`, `keep_english`), hoặc sửa `glossary-vi.md` và `writing-style-vi.md` trong skill.
-
----
-
-## Phát triển
-
-```bash
-uv sync
-```
-```bash
-uv run pytest -q
-```
-
-| Biến môi trường | Ý nghĩa |
-|---|---|
-| `SONY_VN_DATA` | Thư mục dữ liệu (mặc định `~/.local/share/sony-alpha-viet/data`) |
-| `SONY_VN_FONT` | Font dùng để đo độ rộng chữ (mặc định Liberation Sans) |
-
-Chạy server qua HTTP (cho ChatGPT developer mode / client MCP từ xa): `uv run sony-alpha-viet-mcp --http --read-only --port 8765` → endpoint `/mcp`.
-
-Phát triển từ dự án dịch menu Sony ILDC (2026) và các skill tham khảo: claude-translation-skill, vietnamese-language-skill, ChuotVan, claude-blog, claude-seo, ai-seo.
-
-Tác giả: **Pham Khang Thai**. Giấy phép MIT.
+**Bắt đầu ngay:**
+> Dịch Focus Area, Silent Shooting sang tiếng Việt cho A7 IV và viết TL;DR 50 từ để AI Overviews trích

@@ -38,7 +38,7 @@ Khi đó, hãy kiểm tra lại độ dài meta và số từ.
 
 Cần [uv](https://docs.astral.sh/uv/):
 ```bash
-gemini extensions install https://github.com/thaikpham/thaikpham-blogskill
+gemini extensions install https://github.com/thaikpham/alphaskill
 ```
 Extension gồm skill `sony-alpha-viet` và MCP server. Để dùng dữ liệu riêng, ghi đường dẫn vào `~/.config/sony-alpha-viet/config.json` (`{"data": "…"}`), hoặc đặt `SONY_VN_DATA` trước khi chạy `gemini`.
 

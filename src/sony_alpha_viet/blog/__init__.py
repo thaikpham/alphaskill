@@ -8,10 +8,34 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
+from .aio_audit import aio_audit
+from .brand_voice_checker import brand_voice_checker
+from .citation_checker import citation_checker
+from .freshness_check import freshness_check
+from .paa_generator import paa_generator
+
+__all__ = [
+    "aio_audit",
+    "brand_voice_checker",
+    "citation_checker",
+    "count_words",
+    "faq_schema",
+    "freshness_check",
+    "lookup_prose_term",
+    "paa_generator",
+    "seo_audit",
+    "slugify",
+    "style_lint",
+]
+
 # Read skill resources at runtime
 def _get_skill_root() -> Path:
     """Locate skill dir relative to package root (repo root = parent of src)."""
-    return Path(__file__).resolve().parents[2] / "skills" / "sony-alpha-viet"
+    for p in (Path(__file__).resolve().parents[3], Path(__file__).resolve().parents[2]):
+        candidate = p / "skills" / "sony-alpha-viet"
+        if candidate.exists():
+            return candidate
+    return Path(__file__).resolve().parents[3] / "skills" / "sony-alpha-viet"
 
 def _load_glossary_vi() -> dict:
     """Load glossary-vi.md and parse markdown table: returns {en.lower(): {en, jp, menu, prose, note}}."""
