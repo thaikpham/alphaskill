@@ -9,7 +9,8 @@ Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — b
 2. **Thuật ngữ khóa thắng mọi thứ** (shutter = màn trập, Shutter Button = nút chụp, Bracket = bù trừ, Defocus = xóa phông, Tracking = theo dõi, Mechanical Shutter = màn trập cơ).
 3. **Không viết tắt rụng chữ** ("ság", "vòg", "đ.ký"). Không vừa khung (BORDER/OVER): **lấy `short_candidates` từ `check_translation` (hoặc `suggest_short`)** trước khi tự nghĩ. Thứ tự ưu tiên: bản đã duyệt cùng khái niệm (vd. Anti-flicker Set. = Chống nhấp nháy) → **bỏ hẳn từ mà ngữ cảnh menu ngầm hiểu** ("Chọn", "Cài đặt", "Chụp", "Chế độ", "Chức năng") → dạng `short` → cuối cùng mới cắt âm tiết có dấu chấm và ghi "cần kiểm tra bằng SonyTool". Đừng dừng ở bản chỉ bớt một từ nếu bản gọn hơn vẫn rõ nghĩa: Anti-flicker Shoot Sel. = **Chống nhấp nháy** (không phải "Chụp chống nhấp nháy").
 4. **Trước khi đề xuất dịch một thuật ngữ đang để tiếng Anh**, tự hỏi: bản Việt có giúp người dùng hiểu hơn không? Nếu thuật ngữ là tên nút/tính năng quay phim chuyên dụng mà người dùng Việt quen gọi bằng tiếng Anh (Zoom, Time Code, Preset, Firmware, LUT, Log…), **giữ nguyên** và chỉ ghi chú — không xếp vào lỗi "sót tiếng Anh".
-5. Giữ nguyên `${v1}`, `<cE660>`, số dòng `\n` (khi Line Feed = Off), dấu chấm thập phân (0.3EV, f/2.8).
+5. Giữ nguyên `${v1}`, `<cE660>`, dấu chấm thập phân (0.3EV, f/2.8). Line Feed = Off: được ngắt dòng khác bản tiếng Anh, miễn số dòng ≤ max(cột Rows, số dòng của chuỗi tiếng Anh). Luôn dùng Unicode NFC (ký tự dựng sẵn), engine báo `not_nfc` nếu sai.
+   Gợi ý rút gọn (`short_candidates`/`suggest_short`) chỉ lấy bản đã duyệt của **cùng chuỗi gốc**, bỏ động từ đầu nhãn, hoặc dạng ngắn trong glossary; vẫn phải đọc lại nghĩa trước khi dùng. Verdict `CHECK` = chính chuỗi tiếng Anh cũng vượt khung theo ước lượng → nghi dữ liệu layout, kiểm bằng SonyTool.
 6. Viết hoa kiểu câu: chữ đầu, tên riêng, viết tắt.
 7. Help text: sửa sai nghĩa và thuật ngữ; không viết lại cho hay hơn.
 
@@ -25,6 +26,7 @@ Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — b
 Loại UI: `Tiêu đề menu` · `Mục menu` · `Giá trị` · `Nút` · `Thông báo` · `Trợ giúp` · `Biểu tượng/nhãn ngắn`.
 
 ## File Sony *_VN.xls
+- **Rà toàn bộ một bộ file đã dịch:** đọc từng file bằng `xls_read`, chấm mọi dòng (AN nếu có, không thì cột VI). Chỉ ghi AN cho **lỗi thật**: sai nghĩa, sai thuật ngữ khóa, chính tả hay mã hóa, lệch bộ nhớ đã duyệt. Dòng BORDER/OVER/CHECK đưa vào file rà soát độ rộng (CSV, note Obsidian) kèm gợi ý; không ghi AN khi chưa xác nhận bằng SonyTool. Ghi kết quả ra thư mục mới.
 - Đọc: `mcp__sony-alpha-viet__xls_read(path, only_flagged=True)` lấy dòng vi phạm; layout lấy từ file.
 - Ghi: `mcp__sony-alpha-viet__xls_write(src, out, proposals)` — chỉ ghi AN (đề xuất), AU (loại lỗi), AV (lý do bằng **tiếng Anh**, Sony Nhật đọc). Luôn ghi ra file mới. Chỉ đề xuất khi thực sự khác bản hiện tại.
 - AU hợp lệ: Suggest a better translation · By a fatal error as photographic terms · By a spelling error · By a grammatical error · By the other reason.

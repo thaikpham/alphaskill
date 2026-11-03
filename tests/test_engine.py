@@ -171,3 +171,48 @@ def test_server_picks_up_external_changes(env, tmp_path):
     server.record_term("Own Term", "của mình")
     saved = {g["en"] for g in _json.loads((tmp_path / "data" / "glossary.json").read_text(encoding="utf-8"))}
     assert {"External Term", "Own Term"} <= saved
+
+
+def test_suggest_short_never_swaps_meaning(env, tmp_path):
+    core, _, _ = env
+    _seed_tm(tmp_path, [("Lens update failed.", "Cập nhật ống kính thất bại."), ("Lens update complete.", "Đã cập nhật ống kính."),
+                        ("Shoot Mode", "Chế độ chụp"), ("<cE660>Intelligent Auto", "<cE660>Tự động TM")])
+    s = core.Store()
+    tight = {"max_w": 150, "font_w": 24, "font_h": 38, "rows": 1, "linefeed": "Off"}
+    texts = [c["text"] for c in core.suggest_short(s, "Lens update failed.", "Cập nhật ống kính đã bị thất bại.", tight)]
+    assert "Đã cập nhật ống kính." not in texts and "Cập nhật ống kính thất bại." in texts  # same source only
+    assert "Chế độ" not in [c["text"] for c in core.suggest_short(s, "Shoot Mode", "Chế độ chụp", {**tight, "max_w": 60})]  # no mid drop
+    c = core.suggest_short(s, "<cE662>Intelligent Auto", "<cE662>Tự động thông minh", tight)
+    assert c and c[0]["text"] == "<cE662>Tự động TM"  # own icon kept
+    wb = core.suggest_short(s, "White Balance Setting", "Cài đặt cân bằng trắng", {**tight, "max_w": 120})
+    assert any(x["text"] == "Cài đặt WB" for x in wb) and all(x["text"] != "WB" for x in wb)
+
+
+def test_two_line_source_with_rows_1_is_not_over(env):
+    core, _, s = env
+    lay = {"max_w": 544, "font_w": 29, "font_h": 38, "rows": 1, "linefeed": "Off"}
+    a = core.audit(s, "Memory card locked.\nSlot 1", "Thẻ nhớ bị khóa.\nKhe 1", lay)
+    assert a["fit"]["verdict"] == "OK" and a["ok"]
+    assert core.audit(s, "Autoflash", "Flash tự động")["ok"]  # loanword at label start
+
+
+def test_suggest_short_drops_leading_verbs(env):
+    core, _, s = env
+    c = [x["text"] for x in core.suggest_short(s, "Anti-flicker Shoot Sel.", "Chọn chụp chống nhấp nháy", {"max_w": 150, "font_w": 24, "font_h": 38, "rows": 1, "linefeed": "Off"})]
+    assert "Chống nhấp nháy" in c
+
+
+def test_suggest_short_keeps_meaningful_words(env):
+    core, _, s = env
+    tight = {"max_w": 150, "font_w": 24, "font_h": 38, "rows": 1, "linefeed": "Off"}
+    texts = lambda en, vi: [x["text"] for x in core.suggest_short(s, en, vi, tight)]
+    assert "Khi không có phương tiện ghi hình" not in texts("Release w/o Card", "Chụp khi không có phương tiện ghi hình")
+    assert not any(t.startswith("3 ký tự") for t in texts("Sets the first 3 characters.", "Thiết lập 3 ký tự đầu tiên cho các tên tập tin."))
+    assert "Điểm truy cập" in texts("Access Point Set.", "Cài đặt điểm truy cập")
+
+
+def test_audit_flags_decomposed_unicode(env):
+    import unicodedata
+    core, _, s = env
+    a = core.audit(s, "Registered.", unicodedata.normalize("NFD", "Đã đăng ký."))
+    assert not a["ok"] and a["issues"][0]["type"] == "not_nfc" and a["issues"][0]["fix"] == "Đã đăng ký."

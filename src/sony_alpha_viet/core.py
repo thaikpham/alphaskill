@@ -117,6 +117,9 @@ class Store:
                     self.allow.add(form)
                     self.allow.add(form.lower())
                     self.allow.update(form.split())
+        # loanwords/kept terms are valid in any case ("Flash tự động" at the start of a label); other exceptions stay case-exact
+        self.allow_lower = {w.lower() for x in self.exceptions.get("loanwords", []) for w in x.split()}
+        self.allow_lower |= {w.lower() for k in getattr(self, "keep", []) for w in (k.get("term", ""), k.get("term", "").replace(" ", ""))}
         self._compiled = []
         for s in self.rules.get("substitutions", []):
             if s.get("disabled"):
@@ -183,6 +186,15 @@ def est_width(text: str, font_w: float, font_h: float) -> float:
     if f is None:
         return len(text) * 0.5 * float(font_w)
     return f.getlength(text) * (float(font_w) / float(font_h))
+
+
+def effective_layout(en: str, layout: dict | None) -> dict | None:
+    """With Line Feed Off the source's own line breaks are allowed: Sony's approved data has 2-line strings declared rows=1
+    (e.g. "…memory card.\\nSlot 1"). Allowed lines = max(declared rows, source lines)."""
+    if not layout or str(layout.get("linefeed", "Off")).lower() == "on" or not en:
+        return layout
+    n = en.replace("\\n", "\n").count("\n") + 1
+    return {**layout, "rows": max(int(layout.get("rows") or 1), n)}
 
 
 def fit(text: str, max_w, font_w=27, font_h=36, rows=1, linefeed="Off") -> dict:
@@ -260,12 +272,12 @@ def apply_rules(store: Store, vi: str, en: str = "", layout: dict | None = None)
     exact = store.rules.get("exact", {})
     approved = {store.tm[i]["vi"] for i in store.tm_by_en.get(_key(en), []) if store.tm[i].get("status", "").startswith(("approved", "user"))}
     if vi in approved:  # an approved (possibly width-shortened) form is never rewritten
-        return _finish(vi, vi, [], layout)
-    if core_en in exact and exact[core_en] and not (layout and fit(pre_vi + exact[core_en], **layout)["verdict"] == "OVER"):
+        return _finish(vi, vi, [], layout, en)
+    if core_en in exact and exact[core_en] and not (layout and fit(pre_vi + exact[core_en], **effective_layout(en, layout))["verdict"] == "OVER"):
         new = pre_vi + exact[core_en]
         if new != vi:
             applied.append({"rule": "exact", "en": core_en})
-        return _finish(vi, new, applied, layout)
+        return _finish(vi, new, applied, layout, en)
 
     def run(level):
         v = vi
@@ -294,9 +306,9 @@ def apply_rules(store: Store, vi: str, en: str = "", layout: dict | None = None)
         return v, used
 
     new, used = run(0)
-    if layout and fit(new, **layout)["verdict"] == "OVER":
+    if layout and fit(new, **effective_layout(en, layout))["verdict"] == "OVER":
         alt, used2 = run(1)
-        if fit(alt, **layout)["verdict"] != "OVER" or len(alt) < len(new):
+        if fit(alt, **effective_layout(en, layout))["verdict"] != "OVER" or len(alt) < len(new):
             new, used = alt, used2
     applied += [{"rule": u} for u in used]
     for s, _ in store._compiled:
@@ -304,22 +316,24 @@ def apply_rules(store: Store, vi: str, en: str = "", layout: dict | None = None)
             s["hits"] = s.get("hits", 0) + 1
     # Apply keep_english conversions
     new = _apply_keep_english(new, en, store.keep)
-    return _finish(vi, new, applied, layout)
+    return _finish(vi, new, applied, layout, en)
 
 
-def _finish(old, new, applied, layout):
+def _finish(old, new, applied, layout, en=""):
     out = {"text": new, "changed": new != old, "applied": applied}
     if layout:
-        out["fit"] = fit(new, **layout)
+        out["fit"] = fit(new, **effective_layout(en, layout))
     return out
 
 
 # ---------------- audit ----------------
 def audit(store: Store, en: str, vi: str, layout: dict | None = None) -> dict:
     """List rule violations in a Vietnamese string."""
+    issues = []
+    if vi and nfc(vi) != vi:  # combining diacritics (NFD) look identical but may render wrong in the camera font
+        issues.append({"type": "not_nfc", "fix": nfc(vi), "why": "dấu tổ hợp (NFD), cần ký tự dựng sẵn (NFC)"})
     vi = nfc(vi)
     en = en or ""
-    issues = []
     # Check for keep_english variants that should not be flagged as english_residue
     kept_variants = set()
     for entry in store.keep:
@@ -343,7 +357,7 @@ def audit(store: Store, en: str, vi: str, layout: dict | None = None) -> dict:
         w = w.strip("'-")
         if re.search(r"\d", w) or NON_LATIN.search(w):
             continue
-        if VI_CHARS.search(w) or w.lower() in VI_ASCII or w in store.allow or w.isupper() or len(w) < 2:
+        if VI_CHARS.search(w) or w.lower() in VI_ASCII or w in store.allow or w.lower() in store.allow_lower or w.isupper() or len(w) < 2:
             continue
         if w.lower() in enw or re.search(r"[fjwz]", w.lower()):
             hint = _gl_hint(store, w)
@@ -370,7 +384,10 @@ def audit(store: Store, en: str, vi: str, layout: dict | None = None) -> dict:
     if en and te != tv:
         issues.append({"type": "token_mismatch", "en_tokens": te, "vi_tokens": tv})
     if en and en.count("\n") != vi.count("\n") and layout and str(layout.get("linefeed", "Off")).lower() != "on":
-        issues.append({"type": "line_count", "en_lines": en.count("\n") + 1, "vi_lines": vi.count("\n") + 1})
+        allowed = effective_layout(en, layout)["rows"]
+        # approved Sony data reflows lines freely within the allowed rows; only more lines than allowed is an error
+        issues.append({"type": "line_count", "en_lines": en.count("\n") + 1, "vi_lines": vi.count("\n") + 1, "allowed": allowed,
+                       **({} if vi.count("\n") + 1 > allowed else {"severity": "info"})})
     if re.search(r"\d,\d", vi) and re.search(r"\d\.\d", en):
         issues.append({"type": "decimal_comma", "why": "dùng dấu chấm thập phân như tiếng Anh (0.3EV, f/2.8)"})
     k = _key(en)
@@ -383,8 +400,16 @@ def audit(store: Store, en: str, vi: str, layout: dict | None = None) -> dict:
         issues.append({"type": "inconsistent_with_memory", "approved_variants": sorted(set(approved))[:5]})
     out = {"ok": not any(i.get("severity", "error") == "error" for i in issues), "issues": issues}
     if layout:
-        out["fit"] = fit(vi, **layout)
-        if out["fit"]["verdict"] != "OK":
+        lay = effective_layout(en, layout)
+        out["fit"] = fit(vi, **lay)
+        if out["fit"]["verdict"] != "OK" and en:
+            en_fit = fit(en, **lay)
+            if en_fit["verdict"] == "OVER" and out["fit"]["ratio"] <= en_fit["ratio"] * 1.1:
+                # the English source itself "overflows" by our estimate → the layout data or estimate is off, not the translation
+                out["fit"]["verdict"] = "CHECK"
+                issues.append({"type": "layout_suspect", "severity": "info", "en_ratio": en_fit["ratio"],
+                               "why": "chính chuỗi tiếng Anh cũng vượt khung theo ước lượng; kiểm bằng SonyTool"})
+        if out["fit"]["verdict"] not in ("OK", "CHECK"):
             out["ok"] = False
     return out
 
@@ -406,70 +431,57 @@ def lookup_terms(store: Store, text: str, limit: int = 30) -> list[dict]:
     return hits[:limit]
 
 
+IMPLIED = ["chọn", "cài đặt", "thiết lập"]  # leading verbs the menu context already implies
+IMPLIED_AFTER = ["chụp"]  # droppable only right after an IMPLIED verb ("Chọn chụp …"); alone it carries meaning
+
+
 def suggest_short(store: Store, en: str, vi: str, layout: dict | None = None, limit: int = 5) -> list[dict]:
-    """Suggest shorter Vietnamese forms when OSD layout is BORDER/OVER."""
-    if not layout:
+    """Shorter forms for a BORDER/OVER string that keep its meaning:
+    (a) learned width-only rules, (b) approved translations of the SAME source string made for other layouts,
+    (c) dropping implied words at the start/end only, (d) glossary short forms substituted in place.
+    Never proposes another string's translation (that changed meaning, e.g. "update failed" → "updated")."""
+    layout = effective_layout(en, layout)
+    if not layout or fit(vi, **layout)["verdict"] == "OK":
         return []
+    pre, core_vi = ICON_PREFIX_RE.match(vi).groups()
+    tokens = sorted(TOKEN_RE.findall(vi))
+    found, seen = [], {vi}
 
-    current_fit = fit(vi, **layout)
-    if current_fit["verdict"] == "OK":
-        return []
+    def add(text, source):
+        text = re.sub(r"\s+", " ", text).strip() if "\n" not in text else text.strip()
+        if text and text not in seen and sorted(TOKEN_RE.findall(text)) == tokens:
+            seen.add(text)
+            found.append({"text": text, "fit": fit(text, **layout), "source": source})
 
-    candidates = []
-    seen = set()
-
-    IMPLIED = ["chọn", "cài đặt", "thiết lập", "chụp", "chế độ", "chức năng"]
-
-    # (a) Learned fallbacks from rules
-    for s in store.rules.get("substitutions", []):
-        if s.get("fallback") and s.get("source") == "learned":
-            pattern = s.get("pattern", "")
-            try:
-                if re.search(pattern, vi):
-                    trial = re.sub(pattern, s["fallback"], vi)
-                    if trial != vi and trial not in seen:
-                        trial_fit = fit(trial, **layout)
-                        candidates.append({"text": trial, "fit": trial_fit, "source": f"fallback {s['id']}"})
-                        seen.add(trial)
-            except re.error:
-                pass
-
-    # (b) Approved TM entries with high similarity
-    en_key = _key(en)
-    for t in store.tm:
-        if t.get("status", "").startswith(("approved", "user")):
-            t_key = _key(t.get("en", ""))
-            # Check similarity on key (without tokens)
-            similarity = difflib.SequenceMatcher(None, en_key, t_key).ratio()
-            if similarity >= 0.6 and t["vi"] != vi and t["vi"] not in seen:
-                t_fit = fit(t["vi"], **layout)
-                candidates.append({"text": t["vi"], "fit": t_fit, "source": f"tm {t.get('id')}"})
-                seen.add(t["vi"])
-
-    # (c) Drop implied leading/trailing words
-    words = vi.split()
-    for implied in IMPLIED:
-        for i, w in enumerate(words):
-            if w.lower() == implied:
-                # Try dropping this word
-                trial = " ".join(words[:i] + words[i+1:])
-                if trial and trial not in seen:
-                    trial_fit = fit(trial, **layout)
-                    candidates.append({"text": trial, "fit": trial_fit, "source": f"drop '{implied}'"})
-                    seen.add(trial)
-                break
-
-    # (d) Glossary short forms
+    for s, rx in store._compiled:  # (a)
+        if s.get("fallback") and rx.search(vi):
+            add(rx.sub(s["fallback"], vi), f"fallback {s['id']}")
+    for i in store.tm_by_en.get(_key(en), []):  # (b)
+        e = store.tm[i]
+        if e.get("status", "").startswith(("approved", "user")):
+            add(pre + ICON_PREFIX_RE.match(e["vi"]).group(2), f"memory {e.get('id')} (cùng chuỗi gốc, khung {e.get('maxW', '?')}px)")
+    words = core_vi.split(" ")  # (c) labels only: leading implied verbs ("Chọn chụp chống nhấp nháy" → "Chống nhấp nháy")
+    is_label = len(words) <= 6 and not re.search(r"[.?!:,]\s|\n|[.?!]$", core_vi)
+    n = 0
+    while is_label and n < len(words):
+        two = " ".join(words[n:n + 2]).lower()
+        step = 2 if two in IMPLIED else 1 if words[n].lower() in IMPLIED or (n and words[n].lower() in IMPLIED_AFTER) else 0
+        if not step:
+            break
+        n += step
+        if len(words) - n >= 2:
+            add(pre + _cap(" ".join(words[n:])), f"bỏ '{' '.join(words[:n])}' ở đầu")
+    low_en = en.lower()  # (d)
     for g in store.glossary:
-        if g.get("short") and g["short"] != g["vi"] and g["short"] not in seen:
-            if any(word.lower() in en.lower() for word in re.findall(r"\w+", g["en"])):
-                trial_fit = fit(g["short"], **layout)
-                candidates.append({"text": g["short"], "fit": trial_fit, "source": f"glossary {g['en']}"})
-                seen.add(g["short"])
-
-    # Sort: OK first, then BORDER, then OVER; within same verdict, by source
-    candidates.sort(key=lambda x: (x["fit"]["verdict"] not in ("OK", "BORDER"), x["fit"]["verdict"] == "OVER"))
-    return candidates[:limit]
+        sh = g.get("short")
+        if sh and sh != g["vi"] and re.search(r"(?<![a-z])" + re.escape(g["en"].lower()) + r"(?![a-z])", low_en):
+            m = re.search(r"(?<!\w)" + re.escape(g["vi"]) + r"(?!\w)", vi, re.IGNORECASE)
+            if m:
+                rep = _cap(sh) if m.group(0)[:1].isupper() else sh
+                add(vi[:m.start()] + rep + vi[m.end():], f"dạng ngắn '{g['en']}'")
+    rank = {"OK": 0, "BORDER": 1, "OVER": 2}
+    found.sort(key=lambda c: (rank.get(c["fit"]["verdict"], 3), c["fit"]["ratio"]))
+    return found[:limit]
 
 
 def search_tm(store: Store, text: str, limit: int = 5, min_score: float = 0.55) -> list[dict]:

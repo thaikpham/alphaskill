@@ -7,7 +7,10 @@
 - **Không viết tắt**: Không dùng CSDL, phải viết đầy đủ "dữ liệu ảnh" / "cơ sở dữ liệu ảnh"
 - **Không giữ nguyên EN**: Bỏ hoàn toàn nhãn "(Cần review - giữ nguyên EN)", dịch hết
 - **Ngoại lệ giữ tiếng Anh (keep_english)**: thuật ngữ mà tiếng Việt không giúp người dùng hiểu hơn được giữ nguyên tiếng Anh, viết hoa theo bản gốc — Zoom, Time Code, Preset (người dùng duyệt 02/11/2026). Danh sách sống: `get_guidelines("keep_english")`.
-- **Khi tràn khung**: bỏ trước các từ mà ngữ cảnh menu ngầm hiểu (Chọn, Cài đặt, Chụp…) — ví dụ Anti-flicker Shoot Sel. = **Chống nhấp nháy**.
+- **Khi tràn khung**: chỉ ở nhãn ngắn, bỏ động từ đầu nhãn mà ngữ cảnh menu ngầm hiểu (Chọn, Cài đặt, Thiết lập; "Chụp" chỉ khi đi sau chúng) — ví dụ Anti-flicker Shoot Sel. = **Chống nhấp nháy**. Không bỏ từ trong câu trợ giúp, không bỏ "Chụp" đứng một mình ("Chụp khi không có thẻ" ≠ "Khi không có thẻ"). Chỉ dùng bản ngắn đã duyệt của **cùng chuỗi gốc**, không mượn bản dịch của chuỗi khác chỉ vì giống chữ.
+- **Số dòng (Line Feed = Off)**: được ngắt dòng khác bản tiếng Anh, miễn không vượt số dòng cho phép. Số dòng cho phép = max(cột Rows, số dòng của chính chuỗi tiếng Anh) — dữ liệu Sony có chuỗi 2 dòng ("…\nSlot 1") khai Rows = 1 (học từ 8.346 chuỗi ILDC đã duyệt, 03/11/2026).
+- **Mã hóa**: luôn dùng ký tự dựng sẵn (Unicode NFC). Dấu tổ hợp (NFD, ví dụ "a" + U+0303) nhìn giống hệt nhưng có thể hiển thị sai trên font máy ảnh.
+- **Độ rộng ước lượng**: OK ≤ 92%; BORDER 93–100% và OVER cần SonyTool xác nhận; CHECK = chính chuỗi tiếng Anh cũng "vượt khung" theo ước lượng → nghi dữ liệu layout, không phải lỗi bản dịch.
 
 ### 2. THUẬT NGỮ MÀN TRẬP - QUAN TRỌNG NHẤT
 - shutter = **màn trập** (CẤM: cửa trập, màn chập, cửa chập)
