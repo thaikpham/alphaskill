@@ -123,3 +123,14 @@ def test_remember_translation_keeps_each_icon(env, tmp_path):
     memory.remember_translation(s, "<cE6B1>Focus Area", "<cE6B1>Vùng LN", tm_id="T1")
     vis = {e["en"]: e["vi"] for e in s.tm}
     assert vis["<cE6B1>Focus Area"] == "<cE6B1>Vùng LN" and vis["<cE662>Focus Area"] == "<cE662>Vùng lấy nét"
+
+
+def test_remember_translation_respects_separately_shortened_rows(env, tmp_path):
+    core, memory, _ = env
+    _seed_tm(tmp_path, [("<cE662>Custom Key Z. Speed", "<cE662>Tốc độ bằng nút"), ("Custom Key Z. Speed", "Tốc độ thu phóng bằng nút"),
+                        ("<cE6B1>Custom Key Z. Speed", "<cE6B1>Tốc độ bằng nút")])
+    s = core.Store()
+    r = memory.remember_translation(s, "Custom Key Z. Speed", "Tốc độ zoom nút", "test")
+    vis = {e["en"]: e["vi"] for e in s.tm}
+    assert vis["Custom Key Z. Speed"] == "Tốc độ zoom nút"
+    assert vis["<cE662>Custom Key Z. Speed"] == "<cE662>Tốc độ bằng nút" and len(r["kept_own_translation"]) == 2

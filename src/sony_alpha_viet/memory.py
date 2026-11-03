@@ -49,36 +49,42 @@ def ban_term(store: Store, pattern: str, why: str) -> dict:
 
 def remember_translation(store: Store, en: str, vi: str, project: str = "", layout: dict | None = None, status: str = "user-approved",
                          tm_id: str = "") -> dict:
-    """Store an approved EN→VI pair. Entries whose EN differs only by icon tokens keep their own icons;
-    entries whose tokens differ elsewhere are left alone. tm_id targets one entry exactly."""
+    """Store an approved EN→VI pair. Rows with exactly this EN get the new text. Rows that differ only by the leading icon
+    follow along (keeping their own icon) only if they were in sync with the target before — a row shortened separately
+    for another layout is left alone. Rows whose tokens differ elsewhere are never touched. tm_id targets one row only."""
     vi = nfc(vi)
-    pre_en, core_en = ICON_PREFIX_RE.match(en).groups()
     core_vi = ICON_PREFIX_RE.match(vi).group(2)
+    core_en = ICON_PREFIX_RE.match(en).group(2)
     norm = lambda s: re.sub(r"\s+", " ", s).strip()
-    replaced, skipped = 0, []
-    for i in store.tm_by_en.get(_key(en), []):
+    rows = [i for i in store.tm_by_en.get(_key(en), []) if not project or store.tm[i].get("project") == project]
+    exact = [i for i in rows if norm(store.tm[i]["en"]) == norm(en) and (not tm_id or store.tm[i].get("id") == tm_id)]
+    if tm_id and not exact:
+        exact = [i for i in rows if store.tm[i].get("id") == tm_id]
+    synced = {norm(ICON_PREFIX_RE.match(store.tm[i]["vi"]).group(2)) for i in exact}
+    replaced, kept, skipped = 0, [], []
+    for i in rows:
         e = store.tm[i]
-        if tm_id and e.get("id") != tm_id:
-            continue
-        if project and e.get("project") != project:
-            continue
         e_pre, e_core = ICON_PREFIX_RE.match(e["en"]).groups()
-        if norm(e["en"]) == norm(en):
-            new_vi = vi
+        if i in exact:
+            new_vi = vi if norm(e["en"]) == norm(en) else e_pre + core_vi
+        elif tm_id:
+            continue
         elif norm(e_core) == norm(core_en) and not TOKEN_RE.search(e_core):
-            new_vi = e_pre + core_vi  # same text, different leading icon: keep the entry's own icon
+            if norm(ICON_PREFIX_RE.match(e["vi"]).group(2)) not in synced:
+                kept.append({"id": e.get("id"), "vi": e["vi"]})  # separately approved (e.g. shortened for its layout)
+                continue
+            new_vi = e_pre + core_vi
         else:
             skipped.append(e.get("id"))
             continue
         if e["vi"] != new_vi:
             e["vi"], e["status"], e["updated"] = new_vi, status, _now(); replaced += 1
-    exact = [i for i in store.tm_by_en.get(_key(en), []) if norm(store.tm[i]["en"]) == norm(en)]
-    if not tm_id and not exact:
+    if not exact and not tm_id:
         rec = {"id": f"u{len(store.tm)}", "en": en, "vi": vi, "project": project, "status": status, "added": _now()}
         rec.update(layout or {})
         store.tm.append(rec)
     store.save_tm(); store._index()
-    return {"stored": True, "replaced": replaced, "skipped_token_mismatch": skipped}
+    return {"stored": True, "replaced": replaced, "kept_own_translation": kept, "skipped_token_mismatch": skipped}
 
 
 def keep_english(store: Store, term: str, vi_variants: dict, en_pattern: str = "", why: str = "", apply: bool = False) -> dict:
