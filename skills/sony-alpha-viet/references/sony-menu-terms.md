@@ -18,7 +18,7 @@ Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — b
 4. **Dịch** phần còn lại, bám `terms` (ưu tiên `locked`) và bản `memory` gần giống. Nguồn tiếng Nhật: dùng cột JP trong glossary để nhận diện; nếu có bản tiếng Anh cùng model thì đối chiếu tên mục.
 5. **Kiểm.** `mcp__sony-alpha-viet__check_translation(en, vi, layout…)` từng chuỗi (autofix bật) đến khi `ok`. `fit.verdict` = BORDER/OVER → rút gọn theo quy tắc 3.
 6. **Xuất** bảng `STT | Nguồn (EN/JP) | Tiếng Việt | Loại UI | Ghi chú` + CSV theo `templates/menu-translation-table.csv`. Ghi chú chỉ khi có lý do (thuật ngữ mới, độ rộng, ngoại lệ, phương án thay thế).
-7. **Thuật ngữ mới** → đề xuất 2–3 phương án, khuyến nghị một; người dùng chốt → `record_term` + thêm vào glossary-vi.md.
+7. **Thuật ngữ mới** → `search_docs` xem Sony Việt Nam đã dùng chữ gì (ưu tiên tài liệu đời mới) → đề xuất 2–3 phương án, khuyến nghị một; người dùng chốt → `record_term` + thêm vào glossary-vi.md.
 
 Loại UI: `Tiêu đề menu` · `Mục menu` · `Giá trị` · `Nút` · `Thông báo` · `Trợ giúp` · `Biểu tượng/nhãn ngắn`.
 

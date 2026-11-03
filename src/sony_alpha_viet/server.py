@@ -401,8 +401,32 @@ def obsidian_audit_note(path: str, primary_keyword: str = "") -> dict:
     return obsidian.audit_note(path, primary_keyword)
 
 
+@tool
+def ingest_docs(folder: str) -> dict:
+    """Nạp tài liệu Sony (PDF Hướng dẫn khởi động/Help Guide, DOCX chứa link) từ một thư mục vào dữ liệu riêng (DATA/docs).
+    Tự chuyển font VNI cũ sang Unicode, bỏ file trùng. Không đưa tài liệu lên repo công khai."""
+    from . import docs
+    return docs.ingest(folder)
+
+
+@tool
+def search_docs(query: str, limit: int = 10) -> list[dict]:
+    """Tìm cụm từ trong tài liệu tiếng Việt chính thức của Sony (theo model, trang). Dùng để xem Sony Việt Nam diễn đạt thế nào
+    trước khi đề xuất thuật ngữ mới hoặc khi dịch tài liệu."""
+    from . import docs
+    return docs.search(query, limit)
+
+
+@tool
+def docs_term_report() -> dict:
+    """Đối chiếu glossary/quy tắc với tài liệu Sony: thuật ngữ khóa Sony có dùng, từ bị cấm mà Sony vẫn dùng (theo model),
+    từ tiếng Anh Sony giữ nguyên. Chỉ là bằng chứng; mọi thay đổi do người dùng quyết định."""
+    from . import docs
+    return docs.term_report(store)
+
+
 WRITE_TOOLS = ("record_term", "record_feedback", "remember_translation", "ban_term", "keep_english", "learn",
-               "disable_rule", "commit_memory", "xls_read", "xls_write", "obsidian_export", "obsidian_import", "obsidian_audit_note")
+               "disable_rule", "commit_memory", "xls_read", "xls_write", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs")
 
 
 def main():

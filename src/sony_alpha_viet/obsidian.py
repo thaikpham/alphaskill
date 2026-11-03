@@ -16,7 +16,7 @@ from pathlib import Path
 
 import yaml
 
-from . import blog, core, memory, paths
+from . import blog, core, docs, memory, paths
 
 ROOT = Path(__file__).resolve().parents[2]
 SKILL = ROOT / "skills" / "sony-alpha-viet"
@@ -185,6 +185,7 @@ def export(store: core.Store) -> dict:
     (root / "Mẫu" / "Bài blog SEO.md").write_text(template, encoding="utf-8")
     (root / "Blog").mkdir(exist_ok=True)
 
+    doc_info = export_docs(store)
     info = {"tm": len(store.tm), "terms": len(store.glossary), "locked": sum(1 for g in store.glossary if g.get("locked")),
             "keep_english": len(store.keep), "data": str(core.DATA)}
     write_note(root / "Sony Alpha Việt.md", {"generated": True, "updated": _today(), "tags": ["sony-alpha-viet"], **info}, f"""
@@ -199,6 +200,7 @@ Trang chủ dữ liệu dịch và viết blog Sony Alpha. Các note ở đây d
 | [[Giữ tiếng Anh]] | Thuật ngữ không dịch |
 | [[Rà soát nhất quán]] | {len(rep)} chuỗi có nhiều bản dịch cần quyết định |
 | [[Nhật ký học]] | Những gì công cụ đã tự học |
+| [[Tài liệu Sony/Tài liệu Sony\\|Tài liệu Sony]] | {doc_info.get('docs', 0)} tài liệu tiếng Việt chính thức + [[Tài liệu Sony/Đối chiếu thuật ngữ với Sony\\|đối chiếu thuật ngữ]] |
 | [[Skill/SKILL\\|Skill]] | Quy tắc, glossary, checklist SEO/AIO (bản sao chỉ đọc) |
 | Blog/ | Bản nháp bài viết; mẫu ở [[Mẫu/Bài blog SEO]] |
 
@@ -210,7 +212,53 @@ Bộ nhớ dịch: {info['tm']} chuỗi · dữ liệu: `{info['data']}`
 - Viết nháp trong `Blog/` theo mẫu → "Audit SEO note Blog/<tên>": kết quả ghi vào thuộc tính `seo_*` và note `… — SEO audit`.
 """)
     return {"vault_dir": str(root), "term_notes_written": written, "skipped_pending_edits": skipped,
-            "consistency_groups": len(rep), "glossary_rows": len(store.glossary)}
+            "consistency_groups": len(rep), "glossary_rows": len(store.glossary), "sony_docs": doc_info.get("docs", 0)}
+
+
+# ---------------- official Sony docs ----------------
+def export_docs(store: core.Store) -> dict:
+    """Tài liệu Sony/: one note per ingested document, an index with Help Guide links, and the glossary-vs-Sony report."""
+    corpus = docs.load()
+    if not corpus["docs"]:
+        return {"docs": 0}
+    root = vault_dir() / "Tài liệu Sony"
+    locked = [g for g in store.glossary if g.get("locked") and len(g["vi"]) >= 4]
+    names = {}
+    for m in corpus["docs"]:
+        text = corpus["texts"].get(m["id"], "")
+        name = f"{m['model']} — {m['kind']}"
+        names[m["id"]] = name
+        low = docs._fold(text)
+        seen = [g for g in locked if re.search(r"(?<!\w)" + re.escape(docs._fold(g["vi"])) + r"(?!\w)", low)]
+        terms = "\n".join(f"- [[Thuật ngữ/{note_name(g['en'])}|{g['en']}]] → {g['vi']}" for g in seen) or "_Không có._"
+        write_note(root / f"{name}.md", {"model": m["model"], "kind": m["kind"], "code": m["code"], "pages": m["pages"],
+                                          "source_file": m["file"], "encoding": m["encoding"], "language": "vi",
+                                          "tags": ["sony-alpha-viet/tai-lieu"], "updated": _today()},
+                   f"# {m['model']} — {m['kind']}\n\nBản chính thức tiếng Việt của Sony ({m['code'] or 'không mã'}, {m['pages']} trang"
+                   + (", chuyển từ font VNI" if m["encoding"] == "vni" else "") + "). Văn bản trích từ PDF, hình minh họa không có.\n\n"
+                   + text + "\n\n## Thuật ngữ khóa xuất hiện\n\n" + terms)
+    rows = ["| Model | Tài liệu | Mã | Trang |", "|---|---|---|---|"] + [
+        f"| {m['model']} | [[Tài liệu Sony/{names[m['id']]}\\|{m['kind']}]] | {m['code']} | {m['pages']} |" for m in corpus["docs"]]
+    links = [f"- [{l['title']}]({l['url']})" for l in corpus.get("links", [])]
+    dup = [f"- `{d['file']}` trùng với `{d['same_as']}` (bỏ qua)" for d in corpus.get("duplicates", [])]
+    write_note(root / "Tài liệu Sony.md", {"generated": True, "updated": _today(), "docs": len(corpus["docs"]), "tags": ["sony-alpha-viet"]},
+               "# Tài liệu Sony chính thức\n\nNguồn đối chiếu cách Sony Việt Nam diễn đạt. Tìm bằng công cụ `search_docs` "
+               "hoặc Obsidian search. Xem [[Đối chiếu thuật ngữ với Sony]].\n\n" + "\n".join(rows)
+               + ("\n\n## Help Guide trực tuyến\n\n" + "\n".join(links) if links else "") + ("\n\n## File trùng\n\n" + "\n".join(dup) if dup else ""))
+    r = docs.term_report(store)
+    b = ["# Đối chiếu thuật ngữ với tài liệu Sony", "", f"So glossary và quy tắc với {r['docs']} tài liệu tiếng Việt chính thức của Sony. "
+         "Đây là bằng chứng để bạn quyết định, công cụ không tự sửa gì.", "", "## Từ bị cấm nhưng Sony có dùng", ""]
+    for x in r["banned_forms_sony_uses"]:
+        models = ", ".join(f"{k} ({v})" for k, v in x["by_model"].items())
+        b += [f"### `{x['sony_uses']}`", f"Quy tắc: {x['why']} · Sony dùng ở: {models}", ""] + [f"> {e}" for e in x["examples"][:2]] + [""]
+    if not r["banned_forms_sony_uses"]:
+        b.append("_Không có._")
+    b += ["", "## Từ tiếng Anh Sony giữ trong văn bản tiếng Việt", "", "| Từ | Số lần | Số tài liệu |", "|---|---|---|"]
+    b += [f"| {k['word']} | {k['count']} | {k['models']} |" for k in r["english_kept_by_sony"]]
+    b += ["", "## Thuật ngữ khóa Sony có dùng", "", "| EN | VI | Số lần |", "|---|---|---|"]
+    b += [f"| [[Thuật ngữ/{note_name(x['en'])}\\|{x['en']}]] | {x['vi']} | {x['count']} |" for x in r["locked_terms_used_by_sony"]]
+    write_note(root / "Đối chiếu thuật ngữ với Sony.md", {"generated": True, "updated": _today(), "tags": ["sony-alpha-viet"]}, "\n".join(b))
+    return {"docs": len(corpus["docs"]), "banned_forms_sony_uses": len(r["banned_forms_sony_uses"])}
 
 
 # ---------------- import ----------------

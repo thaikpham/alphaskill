@@ -334,8 +334,11 @@ Thêm `--apply` vào `import` để ghi thật; mặc định chỉ xem trước
 | `Danh sách thuật ngữ`, `Bảng thuật ngữ` | Mục lục thuật ngữ khóa; bảng toàn bộ thuật ngữ (chỉ đọc) |
 | `Rà soát nhất quán` | Chuỗi đang có nhiều bản dịch, kèm độ rộng khung, để bạn chọn bản giữ |
 | `Giữ tiếng Anh`, `Nhật ký học` | Danh sách keep_english; những gì công cụ đã tự học |
+| `Tài liệu Sony/` | Mỗi tài liệu Sony đã nạp thành một note (model, mã, trang, thuật ngữ khóa xuất hiện) + `Đối chiếu thuật ngữ với Sony`: từ bị cấm mà Sony vẫn dùng (theo model), từ tiếng Anh Sony giữ |
 | `Skill/` | Bản sao chỉ đọc của SKILL.md, glossary, checklist, mẫu |
 | `Blog/`, `Mẫu/Bài blog SEO` | Bản nháp bài viết; `audit` ghi note `<tên> — SEO audit` và thuộc tính `seo_score`, `seo_complete`, `seo_audited` vào bản nháp |
+
+**Nạp tài liệu Sony:** bảo Claude "nạp tài liệu trong <thư mục>" (`ingest_docs`), rồi `export`. PDF chỉ được trích chữ, không có hình. Tài liệu lưu trong thư mục dữ liệu riêng (`<data>/docs/`) và vault, không vào repo.
 
 **An toàn dữ liệu:**
 - `export` không ghi đè note thuật ngữ bạn đang sửa mà chưa import.
@@ -357,6 +360,7 @@ Thêm `--apply` vào `import` để ghi thật; mặc định chỉ xem trước
 | Ghi nhớ | `record_term`, `record_feedback`, `remember_translation`, `ban_term`, `keep_english` | Lưu quyết định của bạn |
 | Tự cải tiến | `learn`, `review_memory`, `disable_rule`, `commit_memory` | Biến lần sửa thành quy tắc, rà soát, lưu lịch sử |
 | File Sony | `xls_read`, `xls_write` | Đọc/ghi `*_TranslationCheck_VN.xls` (chỉ cột AN/AU/AV) |
+| Tài liệu Sony | `ingest_docs`, `search_docs`, `docs_term_report` | Nạp PDF/DOCX chính thức của Sony (tự chuyển font VNI), tìm cách Sony Việt Nam diễn đạt, đối chiếu glossary với Sony |
 | Obsidian | `obsidian_export`, `obsidian_import`, `obsidian_audit_note`, `consistency_report` | Đồng bộ thuật ngữ với vault, chấm SEO bản nháp trong vault, rà soát bản dịch không nhất quán |
 | Blog | `slugify`, `count_words`, `style_lint`, `seo_audit`, `faq_schema` | Tạo slug, đếm từ (bỏ bảng, code, frontmatter), kiểm văn phong, chấm SEO/AIO, sinh JSON-LD |
 

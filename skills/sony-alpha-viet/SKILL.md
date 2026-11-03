@@ -31,6 +31,7 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 3. Giữ nguyên: Sony, Alpha, tên model, Zoom, Time Code, Preset, Firmware (keep_english — chỉ dịch khi tiếng Việt giúp hiểu hơn), ISO, S-Log3, S-Cinetone, XAVC S/HS/S-I, APS-C, RAW, HEIF, CFexpress, tên ứng dụng (danh sách đầy đủ ở glossary mục "Giữ nguyên").
 4. Menu: bản gốc ngắn → bản dịch 2–4 từ; giữ biến `${v1}`, icon `<cE660>`, số dòng.
 5. Không chắc → đưa 2–3 phương án, ghi rõ phương án khuyến nghị và lý do; người dùng chốt thì ghi nhớ (chế độ A: `record_term`).
+   Trước khi đề xuất, tra **tài liệu tiếng Việt chính thức của Sony** bằng `search_docs("<cụm tiếng Việt>")`. Nêu bằng chứng dạng "Sony dùng X ở ILCE-7M5 tr.1". Tài liệu đời mới (2022 trở đi) có trọng số cao hơn đời cũ. Nếu Sony mâu thuẫn với thuật ngữ đã khóa, báo người dùng, không tự đổi.
 6. Nguồn tiếng Nhật: dịch từ nghĩa, không qua tiếng Anh trung gian nếu có thể; đối chiếu tên mục với bản tiếng Anh của cùng model khi có. Cột JP trong glossary dùng để nhận diện.
 
 ## Nguyên tắc viết blog
@@ -44,7 +45,7 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 ## Quy trình
 **A. Menu** → làm theo `references/sony-menu-terms.md` (mcp__sony-alpha-viet__get_guidelines → mcp__sony-alpha-viet__prepare_batch → dịch → mcp__sony-alpha-viet__check_translation → bảng/CSV → ghi nhớ khi người dùng duyệt với record_term). MCP cũ `mcp__sony-vn-translator__*` vẫn còn dùng được nếu người dùng chạy server cũ.
 
-**B. Tài liệu** → giữ nguyên cấu trúc heading/danh sách/bảng → tên mục menu in đậm theo cột Menu OSD, lần đầu kèm tên gốc trong ngoặc nếu giúp người đọc tìm trên máy tiếng Anh → biên tập lại theo `writing-style-vi.md` (lượt chống văn dịch máy) → liệt kê thuật ngữ mới đề xuất. Nếu có MCP: dùng mcp__sony-alpha-viet__lookup_prose_term để tra thuật ngữ bài viết.
+**B. Tài liệu** → tra `search_docs` để dùng đúng câu chữ Sony Việt Nam đã công bố cho cùng nội dung (sạc pin, lắp thẻ, thiết lập ban đầu…) → giữ nguyên cấu trúc heading/danh sách/bảng → tên mục menu in đậm theo cột Menu OSD, lần đầu kèm tên gốc trong ngoặc nếu giúp người đọc tìm trên máy tiếng Anh → biên tập lại theo `writing-style-vi.md` (lượt chống văn dịch máy) → liệt kê thuật ngữ mới đề xuất. Nếu có MCP: dùng mcp__sony-alpha-viet__lookup_prose_term để tra thuật ngữ bài viết.
 
 **C. Blog** →
 1. Brief: search intent, từ khóa chính/phụ, câu hỏi kiểu People Also Ask, outline H2/H3, internal/external link dự kiến. Trình outline nếu bài > 1.000 từ và người dùng chưa duyệt hướng.
@@ -59,6 +60,7 @@ Vault đặt trong `~/.config/sony-alpha-viet/config.json` (`"vault"`, `"vault_f
 - **Blog (chế độ C):** lưu bản nháp vào `Blog/<slug>.md`, frontmatter theo mẫu (Obsidian đọc thành Properties). Viết xong gọi `obsidian_audit_note("Blog/<slug>.md")`: công cụ ghi note `<slug> — SEO audit` và thuộc tính `seo_score`/`seo_complete` vào bản nháp. Sửa theo báo cáo rồi chấm lại.
 - **Thuật ngữ:** người dùng sửa note trong `Thuật ngữ/` hoặc tạo note mới (thuộc tính `en`, `vi`, tùy chọn `short`, `locked`, `note`). Khi họ nói "import thuật ngữ từ Obsidian": gọi `obsidian_import()` → trình bảng thay đổi → chỉ `obsidian_import(apply=True)` khi họ đồng ý.
 - **Sau phiên dịch có thay đổi bộ nhớ** (record_term, keep_english, learn…): gọi `obsidian_export()` để vault cập nhật. Note người dùng đang sửa dở không bị ghi đè; báo lại các note trong `skipped_pending_edits`.
+- **Tài liệu Sony:** người dùng đưa thư mục PDF/DOCX của Sony → `ingest_docs(folder)` (tự chuyển font VNI, bỏ file trùng) → `obsidian_export()` tạo `Tài liệu Sony/` gồm mỗi tài liệu một note và note `Đối chiếu thuật ngữ với Sony` (lấy từ `docs_term_report()`). Tài liệu chỉ lưu trong dữ liệu riêng và vault, không đưa lên repo.
 - **Rà soát nhất quán:** `consistency_report()` (hoặc note `Rà soát nhất quán`) liệt kê chuỗi có nhiều bản dịch, kèm độ rộng khung. Bản ngắn ở khung hẹp thường là rút gọn hợp lệ, đừng tự "sửa". Áp dụng lựa chọn của người dùng bằng `remember_translation(..., tm_id=S#)`.
 
 ## Firmware — giới hạn cứng

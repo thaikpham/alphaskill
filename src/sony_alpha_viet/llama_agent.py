@@ -20,7 +20,7 @@ from mcp.client.stdio import stdio_client
 ROOT = Path(__file__).resolve().parents[2]
 # Small local models handle a short tool list far better than all 25 tools.
 DEFAULT_TOOLS = ["get_guidelines", "prepare_batch", "lookup_term", "search_memory", "check_translation", "suggest_short",
-                 "lookup_prose_term", "slugify", "count_words", "style_lint", "seo_audit", "faq_schema"]
+                 "lookup_prose_term", "search_docs", "slugify", "count_words", "style_lint", "seo_audit", "faq_schema"]
 TOOL_NOTE = """
 
 ## Công cụ
