@@ -3,7 +3,7 @@
 > Bạn chụp Sony A7, A7R, A7S, A6xxx, ZV, FX? Bạn cần menu tiếng Việt chuẩn, tài liệu dễ hiểu, và bài blog chuẩn SEO? Đây là bộ công cụ dành cho bạn.
 
 **Tác giả:** Pham Khang Thai (Thái) — Giấy phép MIT  
-**Phiên bản:** 1.2.0 - Cập nhật AIO-first & Brand Voice Bảo vệ Sony 11/2026
+**Phiên bản:** 1.3.0 - API công khai, xuất bài Alpha ColorLab, repo dữ liệu riêng 11/2026
 
 ---
 ---
