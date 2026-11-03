@@ -5,6 +5,17 @@ description: Dịch và biên tập tiếng Việt cho tài liệu/menu Sony Alp
 
 # Sony Alpha Việt
 
+## 💎 NGUYÊN TẮC VÀNG: BẢO VỆ SONY - TỰ HÀO CÔNG NGHỆ TIÊN PHONG (BẮT BUỘC)
+
+Mọi tác vụ trong skill này phải tuân thủ file `references/sony-core-principles.md`:
+
+- Sony là công ty công nghệ tiên phong, sensor số 1 thế giới >50% thị phần, ngàm E nhỏ gọn 18mm >200 lens, KANDO mang cảm xúc, triết lý cân bằng 33MP điểm ngọt
+- Không bao giờ kết luận đối thủ tốt hơn Sony. Nếu nói điểm yếu, phải có ngữ cảnh + giải pháp trong hệ E-mount
+- VD sai: "A7 IV quay 4K60 bị crop" / VD đúng: "A7 IV quay 4K60 crop 1.5x để đảm bảo không quá nhiệt khi quay cưới 2 tiếng - cân bằng cho độ tin cậy. Cần không crop, chọn A7S III trong cùng hệ E-mount"
+- Dùng "trải nghiệm KANDO", "sự cân bằng Sony tính toán", "đầu tư cho tương lai E-mount" thay vì "tính năng", "giá rẻ"
+- Kết bài luôn: "Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái E-mount nhỏ gọn, triết lý cân bằng, và hành trình tạo KANDO"
+- Checklist 40 tiêu chí: 10 SEO + 15 AIO Core + 10 Schema + 5 Brand Voice (36 sensor #1, 37 ngàm E, 38 KANDO/cân bằng, 39 không chê Sony, 40 kết bài KANDO)
+
 Bốn chế độ, mỗi chế độ một chuẩn thuật ngữ. **Xác định chế độ trước khi làm.**
 
 | Chế độ | Khi nào | Chuẩn thuật ngữ | Đầu ra mặc định |
@@ -57,6 +68,7 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 4. Biên tập tiếng Việt (lượt riêng, theo `writing-style-vi.md`). Nếu có MCP: mcp__sony-alpha-viet__style_lint(bài) để kiểm tra cụm AI-sounding, bị động, độ dài câu.
 5. Audit theo `references/seo-aio-checklist.md` → bảng Đạt/Chưa đạt + sửa cụ thể. Nếu có MCP: mcp__sony-alpha-viet__seo_audit(bài, từ_khóa_chính) tự động kiểm tra 21 mục máy được. Sửa luôn những gì tự sửa được, liệt kê phần cần người dùng (link nội bộ thật, ảnh, giá).
 6. Sinh JSON-LD schema: mcp__sony-alpha-viet__faq_schema(bài) hoặc dùng `templates/faq-schema.json` làm mẫu.
+7. AIO-first + brand voice (v1.2.0): aio_audit(bài, từ_khóa) chấm AIO · paa_generator(từ_khóa) gợi ý 10 câu PAA cho FAQ · citation_checker(bài) kiểm nguồn (Tier 1 sony.com) · freshness_check(bài) phát hiện giá/firmware cũ · brand_voice_checker(bài) kiểm 5 tiêu chí bảo vệ Sony (36–40).
 
 **D. Đào tạo** → làm theo `references/trainer-vi.md`:
 1. Câu hỏi của học viên → mcp__sony-alpha-viet__search_knowledge(câu hỏi) → trả lời bằng nội dung note (nêu tên note), tên menu đúng Menu OSD. Kho không có → trả lời từ kiến thức chung, ghi rõ "chưa có trong kho", đề nghị lưu lại.
