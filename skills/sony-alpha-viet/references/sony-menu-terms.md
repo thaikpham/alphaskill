@@ -26,6 +26,7 @@ Loại UI: `Tiêu đề menu` · `Mục menu` · `Giá trị` · `Nút` · `Thô
 ## File Sony *_VN.xls
 - **Rà toàn bộ một bộ file đã dịch:** đọc từng file bằng `xls_read`, chấm mọi dòng (AN nếu có, không thì cột VI). Chỉ ghi AN cho **lỗi thật**: sai nghĩa, sai thuật ngữ khóa, chính tả hay mã hóa, lệch bộ nhớ đã duyệt. Dòng BORDER/OVER/CHECK đưa vào file rà soát độ rộng (CSV, note Obsidian) kèm gợi ý; không ghi AN khi chưa xác nhận bằng SonyTool. Ghi kết quả ra thư mục mới.
 - Đọc: `mcp__sony-alpha-viet__xls_read(path, only_flagged=True)` lấy dòng vi phạm; layout lấy từ file.
+- **Không mở rồi lưu file Sony bằng LibreOffice/Excel**: lưu đè có thể cắt các dòng phụ của Sony (đã gặp: 7.094 → 2.002 dòng) và đổi `\r\n` trong tiêu đề. Nếu số dòng sheet VN giảm bất thường so với bản gốc, báo người dùng trước khi dùng file.
 - Ghi: `mcp__sony-alpha-viet__xls_write(src, out, proposals)` — chỉ ghi AN (đề xuất), AU (loại lỗi), AV (lý do bằng **tiếng Anh**, Sony Nhật đọc). Luôn ghi ra file mới. Chỉ đề xuất khi thực sự khác bản hiện tại.
 - AU hợp lệ: Suggest a better translation · By a fatal error as photographic terms · By a spelling error · By a grammatical error · By the other reason.
 
