@@ -28,7 +28,7 @@ Bốn chế độ, mỗi chế độ một chuẩn thuật ngữ. **Xác định
 ## Đọc trước khi làm (bắt buộc)
 - Mọi chế độ: `references/glossary-vi.md`, `references/writing-style-vi.md`.
 - Chế độ A: `references/sony-menu-terms.md` (quy trình + MCP + giới hạn firmware).
-- Chế độ C: `templates/blog-post-template.md`, `references/seo-aio-checklist.md`, `templates/faq-schema.json`.
+- Chế độ C: `templates/blog-post-template.md`, `references/seo-aio-checklist.md`, `templates/faq-schema.json`. Bài đăng lên alphacolorlab.com: thêm `references/colorlab-vi.md` (khối nội dung và luật riêng của site).
 - Chế độ D: `references/trainer-vi.md` (cách dùng kho kiến thức, khung câu trả lời, khung giáo án, mẫu note mới).
 - Mẫu đầu ra: `examples/`.
 
@@ -69,6 +69,8 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 5. Audit theo `references/seo-aio-checklist.md` → bảng Đạt/Chưa đạt + sửa cụ thể. Nếu có MCP: mcp__sony-alpha-viet__seo_audit(bài, từ_khóa_chính) tự động kiểm tra 21 mục máy được. Sửa luôn những gì tự sửa được, liệt kê phần cần người dùng (link nội bộ thật, ảnh, giá).
 6. Sinh JSON-LD schema: mcp__sony-alpha-viet__faq_schema(bài) hoặc dùng `templates/faq-schema.json` làm mẫu.
 7. AIO-first + brand voice (v1.2.0): aio_audit(bài, từ_khóa) chấm AIO · paa_generator(từ_khóa) gợi ý 10 câu PAA cho FAQ · citation_checker(bài) kiểm nguồn (Tier 1 sony.com) · freshness_check(bài) phát hiện giá/firmware cũ · brand_voice_checker(bài) kiểm 5 tiêu chí bảo vệ Sony (36–40).
+8. Đăng lên Alpha ColorLab: mcp__sony-alpha-viet__colorlab_article(bài.md) sửa đến khi `problems` rỗng → colorlab_html(bài.md) xem trước trang HTML (thêm fragment=True để lấy khối dán CMS) → colorlab_pack([bài.md], "<tên-pack>") ghi pack vào repo site. Không tự chạy `push:lab`. Chi tiết: `references/colorlab-vi.md`.
+9. Kịch bản video ngắn (TikTok, Reels, Shorts) hoặc caption quảng bá bài: dùng thêm skill `quy-luat-content-viet` nếu có.
 
 **D. Đào tạo** → làm theo `references/trainer-vi.md`:
 1. Câu hỏi của học viên → mcp__sony-alpha-viet__search_knowledge(câu hỏi) → trả lời bằng nội dung note (nêu tên note), tên menu đúng Menu OSD. Kho không có → trả lời từ kiến thức chung, ghi rõ "chưa có trong kho", đề nghị lưu lại.

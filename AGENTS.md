@@ -52,7 +52,8 @@ Plugin: sony-alpha-viet@alphaskill
 
 ## Dữ liệu
 
-MCP lưu dữ liệu ngoài repo:
+Dữ liệu (bộ nhớ dịch, glossary, kho kiến thức, tài liệu Sony đã ingest) là repo public riêng: https://github.com/thaikpham/alphaskill-data, gắn vào đây làm submodule `data/` (`git submodule update --init`). Repo code không chứa file dữ liệu.
+MCP tìm thư mục dữ liệu theo thứ tự:
 - Ưu tiên 1: $SONY_VN_DATA
 - Ưu tiên 2: ~/.config/sony-alpha-viet/config.json { "data": "/path" }
 - Ưu tiên 3: ~/.local/share/sony-alpha-viet/data (dữ liệu mẫu)
@@ -96,7 +97,7 @@ Nhóm 1 SEO Foundation 10, Nhóm 2 AIO Core 15, Nhóm 3 Schema 10, Nhóm 4 Brand
 - Firmware: chỉ dịch text, không sửa/flash firmware, không bật service mode. Can thiệp firmware có thể mất bảo hành, hỏng máy.
 - Độ rộng chữ là ước lượng
 - Thông số và giá phải đối chiếu nguồn chính thức
-- Dữ liệu Sony chỉ lưu local, không đưa vào repo
+- Dữ liệu chỉ commit vào repo dữ liệu (alphaskill-data), không commit thẳng vào repo code
 
 ## Khi thiếu thông tin
 
@@ -104,7 +105,7 @@ Nếu thiếu model máy, ngôn ngữ nguồn, từ khóa chính -> hỏi 1 lư�
 
 ## Tool MCP
 
-41 tool, theo chế độ:
+44 tool, theo chế độ:
 
 - **Dữ liệu:** data_info, get_guidelines
 - **A · Dịch menu:** lookup_term, search_memory, prepare_batch, check_translation, check_fit, suggest_short, consistency_report
@@ -112,6 +113,7 @@ Nếu thiếu model máy, ngôn ngữ nguồn, từ khóa chính -> hỏi 1 lư�
 - **Ghi nhớ, tự học:** record_term, record_feedback, remember_translation, ban_term, keep_english, learn, review_memory, disable_rule, commit_memory
 - **B · Tài liệu Sony:** lookup_prose_term, ingest_docs, search_docs, docs_term_report
 - **C · Blog SEO + AIO:** slugify, count_words, style_lint, seo_audit, faq_schema, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
+- **C · Đăng lên alphacolorlab.com:** colorlab_article (Markdown → khối của site + lỗi theo mã site), colorlab_html (trang HTML giống /blog, hoặc khối dán CMS), colorlab_pack (ghi content pack vào repo site + chạy cổng kiểm) — xem references/colorlab-vi.md
 - **D · Đào tạo:** search_knowledge, get_knowledge, add_knowledge
 - **Obsidian:** obsidian_export, obsidian_import, obsidian_audit_note
 
@@ -122,4 +124,6 @@ Prompts: /sony-alpha-viet:translate_menu, /sony-alpha-viet:write_blog, /sony-alp
 uv sync
 uv run pytest -q (bao gồm tests/test_aio.py 7 tests)
 Env: SONY_VN_DATA, SONY_VN_FONT
-HTTP: uv run sony-alpha-viet-mcp --http --read-only --port 8765 -> /mcp
+API công khai (chỉ đọc): https://api.alphacolorlab.com — `GET /v1` (danh sách tool + tham số), `GET /v1/<tool>?…` hoặc `POST /v1/<tool>` JSON, MCP ở `/mcp`. Chạy trên máy: `uv run sony-alpha-viet-mcp --http --read-only --port 8765`. Deploy: Vercel, entry `app.py`, đọc `data/`.
+
+Hook (`.claude/settings.json` → `scripts/claude_hook.py`): chặn commit/push file dữ liệu vào repo code (PDF, XLSX, tm.jsonl, LEARNING_LOG.md, knowledge/ — chúng thuộc alphaskill-data) và tự build lại `portable/` sau khi sửa `skills/sony-alpha-viet/`.

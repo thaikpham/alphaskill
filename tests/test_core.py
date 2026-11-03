@@ -1,6 +1,4 @@
 """Tests for core engine (adapted from sony-vn-translator)."""
-import json
-import pytest
 
 
 def test_fit(env):

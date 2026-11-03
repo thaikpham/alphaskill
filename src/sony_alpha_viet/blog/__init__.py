@@ -11,6 +11,7 @@ from typing import Optional
 from .aio_audit import aio_audit
 from .brand_voice_checker import brand_voice_checker
 from .citation_checker import citation_checker
+from .colorlab import md_to_article, write_pack
 from .freshness_check import freshness_check
 from .paa_generator import paa_generator
 
@@ -22,10 +23,12 @@ __all__ = [
     "faq_schema",
     "freshness_check",
     "lookup_prose_term",
+    "md_to_article",
     "paa_generator",
     "seo_audit",
     "slugify",
     "style_lint",
+    "write_pack",
 ]
 
 # Read skill resources at runtime
@@ -47,13 +50,10 @@ def _load_glossary_vi() -> dict:
     result = {}
 
     # Parse markdown tables: line with | separators after ## sections
-    in_table = False
     for line in content.split("\n"):
         if line.startswith("##"):
-            in_table = True
             continue
         if not line.startswith("|"):
-            in_table = False
             continue
 
         # Parse row: | EN | JP | Menu OSD | Bài viết/Tài liệu | Ghi chú |

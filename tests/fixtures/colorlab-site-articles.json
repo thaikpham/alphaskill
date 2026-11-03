@@ -1,0 +1,479 @@
+[
+ {
+  "id": "back-button-af",
+  "kind": "article",
+  "topic": "af",
+  "level": "mid",
+  "archetype": "technique",
+  "read": "7 phút đọc",
+  "title": "Lấy nét bằng ngón tay cái: bỏ nửa cò, dùng AF-ON",
+  "dek": "Tách việc lấy nét ra khỏi nút chụp. Ba thay đổi trong menu, và một buổi tập để tay quen.",
+  "blocks": [
+   {
+    "t": "tldr",
+    "items": [
+     "Gán AF On cho nút AEL (hoặc C1), rồi tắt AF w/ Shutter.",
+     "Ngón cái giữ nút là bám nét, nhả ra là khoá nét — ngón trỏ chỉ còn việc bấm chụp.",
+     "Đi cùng AF-C và Tracking: Zone thì mới phát huy hết."
+    ]
+   },
+   {
+    "t": "p",
+    "text": "Ở cách bấm mặc định, nửa cò làm hai việc cùng lúc: lấy nét và chờ chụp. Hệ quả là bạn luôn phải chọn giữa giữ nét và bấm chụp — và trong lúc do dự thì khoảnh khắc đã qua. Chuyển nét sang một nút riêng cho ngón cái là cách gỡ đúng cái xung đột đó."
+   },
+   {
+    "t": "h",
+    "text": "Ba thay đổi trong menu"
+   },
+   {
+    "t": "menu",
+    "old": "MENU → Camera Settings2 → Custom Key (Shoot) → AEL Button → AF ON",
+    "new": "MENU → Setup → Operation Customize → Custom Key/Dial Set. → AEL Button → AF On"
+   },
+   {
+    "t": "menu",
+    "old": "MENU → Camera Settings1 → AF w/ shutter → Off",
+    "new": "MENU → Focus → AF/MF → AF w/ Shutter → Off"
+   },
+   {
+    "t": "callout",
+    "label": "Vì sao phải tắt AF w/ Shutter",
+    "text": "Nếu để On, nửa cò vẫn lấy nét và bạn có hai nút làm cùng một việc — tay sẽ quay về thói quen cũ trong lúc gấp. Tắt nó là cách buộc thói quen mới hình thành."
+   },
+   {
+    "t": "h",
+    "text": "Tập trong một buổi"
+   },
+   {
+    "t": "p",
+    "text": "Đặt AF-C và Focus Area là Tracking: Zone. Đưa vùng nét lên chủ thể, giữ ngón cái để máy bắt và bám, rồi bố cục lại thoải mái — nét vẫn dính vào chủ thể. Muốn khoá nét tại một điểm để bố cục kiểu khác: nhả ngón cái ra, nét đứng lại ngay đó cho tới khi bạn bấm lại."
+   },
+   {
+    "t": "table",
+    "head": [
+     "Tình huống",
+     "Ngón cái",
+     "Ngón trỏ"
+    ],
+    "caption": "Cùng một cách bấm cho cả ba tình huống — đó là điểm mạnh của nó.",
+    "rows": [
+     [
+      "Chủ thể đứng yên",
+      "Bấm rồi nhả (khoá nét)",
+      "Bấm chụp"
+     ],
+     [
+      "Chủ thể di chuyển",
+      "Giữ liên tục",
+      "Bấm chụp nhiều lần"
+     ],
+     [
+      "Chụp qua vật cản",
+      "Nhả trước khi vật cản đi ngang",
+      "Bấm chụp"
+     ]
+    ]
+   },
+   {
+    "t": "compare",
+    "beforeLabel": "Nửa cò",
+    "afterLabel": "AF-ON",
+    "caption": "Cùng một cảnh có người bước qua trước ống kính: nửa cò dễ chuyển nét sang vật cản, AF-ON giữ nét ở chủ thể vì bạn chủ động nhả nút."
+   },
+   {
+    "t": "checklist",
+    "label": "Sau khi đổi, kiểm tra lại",
+    "items": [
+     "Nửa cò không còn lấy nét nữa",
+     "Nút AEL (hoặc C1) lấy nét khi giữ",
+     "Focus Mode đang là AF-C",
+     "Focus Area đang là Tracking: Zone"
+    ]
+   }
+  ],
+  "meta": {
+   "related": [
+    {
+     "kind": "product",
+     "id": "sony-ilce-6400-b-ap2"
+    },
+    {
+     "kind": "product",
+     "id": "sony-zv-e10-bq-ap2"
+    },
+    {
+     "kind": "product",
+     "id": "sony-ilce-6700-bqap2"
+    },
+    {
+     "kind": "product",
+     "id": "sony-zv-e10m2-bq-ap2"
+    }
+   ],
+   "prerequisites": [],
+   "concepts": [],
+   "sources": [],
+   "authorName": null,
+   "reviewedAt": null,
+   "section": null,
+   "order": null
+  }
+ },
+ {
+  "id": "body-ev-vs-flash-ev-sony-flash-ttl",
+  "kind": "article",
+  "topic": "exposure",
+  "level": "mid",
+  "archetype": "explainer",
+  "read": "8 phút đọc",
+  "title": "Body EV chỉnh background, Flash EV chỉnh chủ thể",
+  "dek": "Chụp flash mà background lúc cháy lúc tối thui. Trên máy Sony có hai thanh EV riêng biệt — một cho ánh sáng môi trường, một cho đèn — và đa số chỉ đụng tới một.",
+  "blocks": [
+   {
+    "t": "tldr",
+    "items": [
+     "Body EV lo background, Flash EV lo chủ thể — hai thanh chạy song song, không còn phải đánh đổi.",
+     "Đổi Exp.comp.set sang Ambient only trước, nếu không Body EV sẽ kéo tụt luôn công suất đèn.",
+     "Chế độ A, ISO Auto, shutter không nhanh hơn 1/160s, Flash Mode để Rear Sync."
+    ]
+   },
+   {
+    "t": "p",
+    "text": "Tấm đầu: mặt đẹp, background cháy trắng. Kéo sáng xuống chụp lại thì tấm sau background đúng ý, mặt tối thui. Vấn đề không nằm ở đèn. Một tấm ảnh có flash là hai lớp sáng chồng lên nhau, và máy Sony cho bạn một thanh bù sáng riêng cho từng lớp — đa số người dùng chỉ đụng tới một trong hai."
+   },
+   {
+    "t": "h",
+    "text": "Vì sao hai thanh tách được nhau"
+   },
+   {
+    "t": "p",
+    "text": "Lớp ambient là ánh sáng môi trường, phụ thuộc vào khẩu, tốc và ISO — bạn thấy nó rõ nhất ở background. Lớp flash chỉ kéo dài khoảng một phần nghìn giây, nên dù shutter là 1/160s hay 1/15s thì cú đèn vẫn lọt trọn vào bên trong: tốc độ màn trập không làm flash sáng hay tối đi. Shutter chậm hơn thì chỉ có ambient lọt vào nhiều hơn, background sáng lên còn chủ thể vẫn y nguyên. Đó là cần gạt tách biệt của bạn."
+   },
+   {
+    "t": "figure",
+    "alt": "Sơ đồ hai lớp sáng: dải ambient trải suốt thời gian phơi sáng, cú flash là một vạch hẹp nằm gọn bên trong",
+    "caption": "Cùng một khung ở 1/160s và 1/15s với công suất đèn giữ nguyên — chủ thể sáng như nhau, chỉ background đổi."
+   },
+   {
+    "t": "h",
+    "text": "Dựng máy và đổi Exp.comp.set"
+   },
+   {
+    "t": "p",
+    "text": "Chế độ A, ISO Auto, khẩu chọn theo ý, shutter không nhanh hơn 1/160s — đó là tốc độ đồng bộ đèn của ZV-E10, nhanh hơn mức này thì màn trập chưa mở hết mà đèn đã đánh xong và ảnh có một dải đen cắt ngang. Gắn đèn vào thì máy thường tự giới hạn giúp bạn, cứ biết con số để đỡ hoảng khi chụp nắng gắt. Nhưng có một mục mặc định sai phải sửa trước khi tin vào bất cứ thứ gì phía dưới: Sony để Exp.comp.set ở Ambient & Flash, nghĩa là bạn kéo Body EV xuống một stop thì máy hạ luôn công suất đèn một stop, và cả background lẫn mặt cùng tối đi."
+   },
+   {
+    "t": "menu",
+    "old": "MENU → Camera Settings1 → Exp.comp.set → Ambient only",
+    "new": "MENU → Exposure/Color → Flash → Exp.comp.set → Ambient only"
+   },
+   {
+    "t": "menu",
+    "old": "MENU → Camera Settings1 → Flash Mode → Rear Sync.",
+    "new": "MENU → Exposure/Color → Flash → Flash Mode → Rear Sync."
+   },
+   {
+    "t": "h",
+    "text": "Kéo Body EV để dìm background"
+   },
+   {
+    "t": "p",
+    "text": "Body EV xuống thì máy tăng tốc màn trập hoặc hạ ISO, ambient lọt vào ít đi và background thẫm lại, trong khi flash TTL vẫn tự đo và bơm đủ sáng cho mặt nên chủ thể gần như không đổi. Đây là cách làm ra background dramatic mà không cần thêm đèn: bạn không làm chủ thể sáng lên, bạn dìm môi trường xuống. ZV-E10 không có bánh xe EV riêng, nên gán Exposure Comp. ra Control Wheel hoặc nút C1 trong Custom Key (Shoot) — bạn sẽ đụng vào nó liên tục, đừng để nó nằm trong menu. Muốn thấy trước background mà không phải chụp thử, gán thêm Shot. Result Preview vào một nút Custom: giữ nút là máy hiện đúng kết quả với khẩu đã khép và tốc, ISO thực tế, thả ra là về bình thường."
+   },
+   {
+    "t": "compare",
+    "beforeLabel": "Body EV 0",
+    "afterLabel": "Body EV -1.7",
+    "caption": "Cùng khẩu, cùng đèn TTL, chỉ khác Body EV: mặt giữ nguyên độ sáng, còn trời sau lưng chuyển từ trắng bệch sang lại có màu."
+   },
+   {
+    "t": "h",
+    "text": "Kéo Flash EV để sửa chủ thể"
+   },
+   {
+    "t": "p",
+    "text": "Ở chế độ TTL, máy bắn một cú pre-flash, đo phản hồi rồi tự tính công suất — tính theo thuật toán, không theo gu của bạn. Flash Comp. là chỗ bạn nói thêm rằng tính xong thì cộng trừ giúp mình chừng này, trong dải ±3.0 EV. Nó chỉ tác động lên phần đèn chiếu tới, thường là mặt và thân trên, còn background ở xa nên gần như không nhận được gì. TTL vẫn là máy đoán: chủ thể mặc áo trắng thì nó giảm công suất và mặt bị tối, mặc đồ đen thì ngược lại — Flash EV chính là chỗ để sửa những lần đoán sai đó."
+   },
+   {
+    "t": "table",
+    "head": [
+     "Bạn muốn",
+     "Body EV",
+     "Flash EV"
+    ],
+    "caption": "Điểm xuất phát, không phải công thức — đo trên ZV-E10 với đèn TTL gắn hotshoe và Exp.comp.set để Ambient only. Mỗi lần xem lại ảnh chỉ cần hỏi hai câu: background thế nào, và mặt thế nào.",
+    "rows": [
+     [
+      "Dramatic, chủ thể nổi bật",
+      "-1 → -2",
+      "0 → +0.7"
+     ],
+     [
+      "Trong nhà, tự nhiên",
+      "-0.3 → 0",
+      "-1 → -0.7"
+     ],
+     [
+      "Chống ngược sáng ban ngày",
+      "-0.3 → -1",
+      "0 → +1"
+     ],
+     [
+      "Tông sáng, airy",
+      "0 → +0.7",
+      "-1.3 → -0.7"
+     ],
+     [
+      "Golden hour, giữ màu trời",
+      "-1 → -1.7",
+      "+0.3 → +1"
+     ]
+    ]
+   },
+   {
+    "t": "checklist",
+    "label": "Trước khi bấm tấm đầu tiên",
+    "items": [
+     "Chế độ A, ISO Auto",
+     "Shutter không nhanh hơn 1/160s",
+     "Flash Mode đang là Rear Sync.",
+     "Exp.comp.set đang là Ambient only",
+     "Exposure Comp. đã gán ra Control Wheel hoặc C1",
+     "Shot. Result Preview đã gán vào một nút Custom"
+    ]
+   }
+  ],
+  "meta": {
+   "related": [
+    {
+     "kind": "product",
+     "id": "sony-ilce-6400-b-ap2"
+    },
+    {
+     "kind": "product",
+     "id": "sony-zv-e10-bq-ap2"
+    },
+    {
+     "kind": "product",
+     "id": "sony-ilce-6700-bqap2"
+    },
+    {
+     "kind": "product",
+     "id": "sony-zv-e10m2-bq-ap2"
+    }
+   ],
+   "prerequisites": [
+    "iso-auto-min-ss"
+   ],
+   "concepts": [],
+   "sources": [],
+   "authorName": null,
+   "reviewedAt": null,
+   "section": null,
+   "order": null
+  }
+ },
+ {
+  "id": "white-balance-shift",
+  "kind": "knowledge",
+  "topic": "color",
+  "level": "newbie",
+  "archetype": "explainer",
+  "read": "6 phút đọc",
+  "title": "White Balance Shift: nhiệt độ màu và hai trục tinh chỉnh",
+  "dek": "Ba cách đặt White Balance, hai trục shift, và vì sao Kelvin cao lại cho ảnh ấm hơn.",
+  "meta": {
+   "related": [],
+   "prerequisites": [],
+   "concepts": [
+    "wb",
+    "wb.temperature",
+    "wb.shiftAb",
+    "wb.shiftGm"
+   ],
+   "sources": [
+    {
+     "url": "https://helpguide.sony.net/ilc/2110/v1/en/contents/TP1000640840.html",
+     "title": "ILCE-7M4 Help Guide — White Balance (still image/movie)",
+     "publisher": "Sony Help Guide",
+     "checkedAt": "2026-10-05",
+     "scope": "ILCE-7M4"
+    }
+   ],
+   "authorName": null,
+   "reviewedAt": null,
+   "section": "sony-color",
+   "order": 2
+  },
+  "blocks": [
+   {
+    "t": "p",
+    "text": "White Balance trong một công thức có hai phần: chế độ cân bằng trắng, và độ lệch WB Shift đặt chồng lên nó. Hai phần này dùng chung cho cả Picture Profile lẫn Creative Look."
+   },
+   {
+    "t": "h",
+    "text": "Ba cách đặt cân bằng trắng"
+   },
+   {
+    "t": "table",
+    "head": [
+     "Chế độ",
+     "Đặt gì",
+     "Ví dụ trong ColorLab"
+    ],
+    "rows": [
+     [
+      "Kelvin (C.Temp.)",
+      "Một nhiệt độ màu cụ thể",
+      "5600K"
+     ],
+     [
+      "Auto",
+      "Máy tự đo",
+      "AWB, AWB (Priority White), AWB (Priority Ambience)"
+     ],
+     [
+      "Preset nguồn sáng",
+      "Một nguồn sáng có sẵn trong menu",
+      "Daylight, Shade, Cloudy, Underwater Auto"
+     ]
+    ],
+    "caption": "Tên chế độ Auto giữ đúng cách ghi trong dữ liệu công thức; menu máy ghi là Auto, Auto: White và Auto: Ambience."
+   },
+   {
+    "t": "callout",
+    "label": "Custom 1–3 không có trong công thức",
+    "text": "Custom ghi lại một tấm card trắng đo trong một căn phòng cụ thể. Người khác không tái tạo được, nên ColorLab không dùng làm giá trị công thức."
+   },
+   {
+    "t": "h",
+    "text": "Kelvin cao cho ảnh ấm hơn, không phải lạnh hơn"
+   },
+   {
+    "t": "p",
+    "text": "Con số Kelvin mô tả ánh sáng bạn khai báo với máy, không mô tả ảnh ra. Khai báo 8000K — ánh sáng rất xanh — thì máy bù bằng cách thêm hổ phách, nên ảnh ra ấm. Đặt Kelvin cao hơn ánh sáng thật thì ảnh ấm lên; thấp hơn thì lạnh đi."
+   },
+   {
+    "t": "h",
+    "text": "Hai trục shift"
+   },
+   {
+    "t": "p",
+    "text": "Trục A–B lệch về hổ phách (A) hoặc xanh dương (B); trục G–M lệch về xanh lá (G) hoặc cánh sen (M). ColorLab ghi tối đa 7 mỗi phía với bước 0,25, lấy từ dữ liệu công thức hiện có. Help Guide của ILCE-7M4 không ghi giới hạn hay bước của hai trục này, cũng không ghi dải Kelvin — hãy đối chiếu trên máy của bạn."
+   },
+   {
+    "t": "callout",
+    "label": "Khi thấy Kelvin ấm đi kèm shift B",
+    "text": "Nhiệt độ màu và trục A–B thật ra là cùng một trục hổ phách–xanh dương, chỉ khác đơn vị. Kelvin ấm cộng shift B không mâu thuẫn: đó là đặt nền ấm rộng rồi kéo bớt lại. Trục G–M thì Kelvin không chạm tới."
+   },
+   {
+    "t": "checklist",
+    "label": "Khi nhập phần White Balance",
+    "items": [
+     "Đúng chế độ: Kelvin, Auto hay preset",
+     "Đúng giá trị Kelvin hoặc tên preset",
+     "Đúng hướng và mức shift A–B",
+     "Đúng hướng và mức shift G–M"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "so-sanh-hai-cau-hinh-cung-canh",
+  "kind": "article",
+  "topic": "color",
+  "level": "mid",
+  "archetype": "versus",
+  "read": "",
+  "title": "Thử nghiệm: Picture Profile và Creative Look trên cùng một cảnh",
+  "dek": "[CẦN BỔ SUNG: một câu kết luận sau khi có ảnh thử thật]",
+  "meta": {
+   "related": [
+    {
+     "kind": "knowledge",
+     "id": "picture-profile-va-creative-look"
+    }
+   ],
+   "prerequisites": [
+    "picture-profile-va-creative-look"
+   ],
+   "concepts": [],
+   "sources": [],
+   "authorName": null,
+   "reviewedAt": null,
+   "section": null,
+   "order": null
+  },
+  "blocks": [
+   {
+    "t": "tldr",
+    "items": [
+     "[CẦN BỔ SUNG: kết luận 1]",
+     "[CẦN BỔ SUNG: kết luận 2]",
+     "[CẦN BỔ SUNG: kết luận 3]"
+    ]
+   },
+   {
+    "t": "p",
+    "text": "Hai cấu hình — một công thức Picture Profile và một công thức Creative Look — chụp cùng một cảnh, cùng ánh sáng, cùng phơi sáng. Chỉ hệ màu thay đổi."
+   },
+   {
+    "t": "h",
+    "text": "Hai cấu hình được so"
+   },
+   {
+    "t": "p",
+    "text": "[CẦN BỔ SUNG: chọn một công thức PP và một công thức CL, gắn cả hai vào mục Liên kết liên quan]"
+   },
+   {
+    "t": "table",
+    "head": [
+     "Hạng mục",
+     "Picture Profile",
+     "Creative Look"
+    ],
+    "rows": [
+     [
+      "Tông da",
+      "",
+      ""
+     ],
+     [
+      "Vùng sáng",
+      "",
+      ""
+     ],
+     [
+      "Vùng tối",
+      "",
+      ""
+     ]
+    ],
+    "caption": "[CẦN BỔ SUNG: máy, ống kính, ánh sáng và thông số phơi sáng thật]"
+   },
+   {
+    "t": "h",
+    "text": "Cùng khung hình, hai hệ màu"
+   },
+   {
+    "t": "compare",
+    "beforeLabel": "[CẦN BỔ SUNG: tên công thức PP]",
+    "afterLabel": "[CẦN BỔ SUNG: tên công thức CL]",
+    "caption": "[CẦN BỔ SUNG: chú thích sau khi có cặp ảnh thật]"
+   },
+   {
+    "t": "p",
+    "text": "[CẦN BỔ SUNG: nhận xét dựa trên ảnh thật]"
+   },
+   {
+    "t": "checklist",
+    "label": "Điều kiện để so công bằng",
+    "items": [
+     "Cùng cảnh và cùng ánh sáng",
+     "Cùng phơi sáng thủ công",
+     "Picture Profile là Off khi chụp tấm Creative Look"
+    ]
+   }
+  ]
+ }
+]

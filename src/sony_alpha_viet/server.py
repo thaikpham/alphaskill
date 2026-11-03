@@ -8,7 +8,7 @@ from pathlib import Path
 from mcp.server.fastmcp import FastMCP
 
 from . import core, memory, blog
-from . import paths
+from . import obsidian, paths
 from .paths import DATA, ensure_data_dir
 from .core import Store
 
@@ -491,25 +491,103 @@ def add_knowledge(note: str, text: str, section: str = "Câu hỏi học viên h
     return knowledge.add(note, text, section)
 
 
+PUBLIC = False  # set by make_public(): callers' file paths are never read or written
+
+
+def _md_source(source: str) -> tuple[str, Path | None]:
+    """Markdown text, or a path to a .md file (relative paths resolve against the Obsidian vault folder)."""
+    if not PUBLIC and "\n" not in source and len(source) < 500:
+        for cand in (Path(source).expanduser(), *([obsidian.vault_dir() / source] if obsidian._cfg().get("vault") else [])):
+            if cand.is_file():
+                return cand.read_text(encoding="utf-8"), cand
+    return source, None
+
+
+@tool
+def colorlab_article(source: str, kind: str = "", topic: str = "", level: str = "", archetype: str = "") -> dict:
+    """Bài blog Markdown (text hoặc đường dẫn .md) → `Article` của Alpha ColorLab (10 loại khối) + problems.
+    problems dùng đúng mã của cổng kiểm site (`validateForPublish`, `packProblems`) + `unverified` ([cần xác minh]).
+    kind: article|knowledge · topic: setup|color|af|exposure|composition|lens|body|video|audio|post|gear|firmware
+    · level: newbie|mid|pro · archetype: setup-guide|versus|technique|explainer|fix|gear|recipe (ghi đè frontmatter)."""
+    from .blog import colorlab
+    text, _ = _md_source(source)
+    return colorlab.md_to_article(text, kind=kind, topic=topic, level=level, archetype=archetype)
+
+
+@tool
+def colorlab_html(source: str, out: str = "", fragment: bool = False) -> dict:
+    """Bài blog → HTML giống trang /blog của Alpha ColorLab (nền giấy, Noto Sans nhúng sẵn, JSON-LD).
+    fragment=True: chỉ khối <article class="clab"> + CSS phạm vi .clab để dán vào CMS.
+    out: đường dẫn file; trống thì ghi cạnh file .md (<slug>.html) hoặc trả HTML nếu nguồn là text."""
+    from .blog import colorlab
+    from .blog.colorlab_html import render_article
+    text, path = _md_source(source)
+    r = colorlab.md_to_article(text)
+    html = render_article(r["article"], standalone=not fragment)
+    target = None if PUBLIC else Path(out).expanduser() if out else (path.with_name(r["article"]["id"] + (".fragment" if fragment else "") + ".html") if path else None)
+    if target is None:
+        return {"html": html, "problems": r["problems"], "notes": r["notes"]}
+    target.write_text(html, encoding="utf-8")
+    return {"path": str(target), "bytes": len(html.encode()), "problems": r["problems"], "notes": r["notes"]}
+
+
+@tool
+def colorlab_pack(sources: list[str], name: str, repo: str = "", overwrite: bool = False) -> dict:
+    """Ghi các bài (Markdown/đường dẫn) thành content pack `src/lib/lab/packs/<name>.ts` trong repo site, đăng ký
+    vào PACKS rồi chạy cổng kiểm của site (`npx vitest run src/lib/lab/packs`). Từ chối nếu bài còn problems;
+    cổng trượt thì hoàn tác. Không bao giờ chạy push:lab — trả lệnh để chủ site tự chạy (bài vào dạng nháp).
+    repo trống: dùng "colorlab_repo" trong config.json."""
+    from .blog import colorlab
+    repo = repo or obsidian._cfg().get("colorlab_repo", "")
+    if not repo:
+        return {"ok": False, "problems": [f'thêm "colorlab_repo" vào {paths.CONFIG} hoặc truyền repo']}
+    results = [colorlab.md_to_article(_md_source(s)[0]) for s in sources]
+    blocked = {r["article"]["id"]: r["problems"] for r in results if r["problems"]}
+    if blocked:
+        return {"ok": False, "problems": blocked, "hint": "sửa bài rồi chạy lại; colorlab_article để xem chi tiết"}
+    packs = Path(repo).expanduser() / "src/lib/lab/packs"
+    index_before = (packs / "index.ts").read_text(encoding="utf-8") if (packs / "index.ts").exists() else None
+    existed = (packs / f"{name}.ts").exists()
+    out = colorlab.write_pack(results, repo, name, overwrite=overwrite)
+    if out.get("gate") == "failed":
+        if index_before is not None:
+            (packs / "index.ts").write_text(index_before, encoding="utf-8")
+        if not existed:
+            (packs / f"{name}.ts").unlink(missing_ok=True)
+        out["rolled_back"] = True
+    return out
+
+
 WRITE_TOOLS = ("record_term", "record_feedback", "remember_translation", "ban_term", "keep_english", "learn",
-               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs", "add_knowledge")
+               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs", "add_knowledge", "colorlab_pack")
+
+
+def make_public() -> None:
+    """Mode for a server open to the Internet: drop write tools, never touch callers' file paths,
+    never fetch URLs taken from callers' text (citation_checker then reports tiers only)."""
+    import os
+    global PUBLIC
+    PUBLIC = True
+    os.environ["SONY_VN_NO_NET"] = "1"
+    for name in WRITE_TOOLS:
+        mcp._tool_manager._tools.pop(name, None)
 
 
 def main():
     """stdio (Claude Code, Gemini CLI) by default; --http for remote clients (ChatGPT developer mode, other MCP hosts)."""
     import argparse
     ap = argparse.ArgumentParser(prog="sony-alpha-viet-mcp")
-    ap.add_argument("--http", action="store_true", help="chạy Streamable HTTP thay vì stdio (endpoint /mcp)")
+    ap.add_argument("--http", action="store_true", help="chạy HTTP thay vì stdio: MCP ở /mcp, REST JSON ở /v1/<tool>")
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--read-only", action="store_true", help="tắt các tool ghi dữ liệu và đọc/ghi file (nên bật khi mở ra Internet)")
     a = ap.parse_args()
     if a.read_only:
-        for name in WRITE_TOOLS:
-            mcp._tool_manager._tools.pop(name, None)
+        make_public()
     if a.http:
-        mcp.settings.host, mcp.settings.port = a.host, a.port
-        mcp.run(transport="streamable-http")
+        import uvicorn
+        from .api import build_app
+        uvicorn.run(build_app(), host=a.host, port=a.port)
     else:
         mcp.run()
 

@@ -11,7 +11,7 @@ Không cần internet, chỉ phân tích text.
 
 import re
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict
 
 def count_words(s: str) -> int:
     return len(s.split())
@@ -59,7 +59,6 @@ def check_faq(text: str) -> Dict:
     faq_section = re.search(r'(FAQ|Câu hỏi thường gặp)(.+?)(?=\n#|\Z)', text, re.IGNORECASE | re.DOTALL)
     if not faq_section:
         return {"pass": False, "evidence": "Không có FAQ", "fix": "Thêm FAQ 3-6 câu, mỗi đáp 40-70 từ, tự đứng được"}
-    faqs = re.findall(r'\?\?|\d+\.\s+.*\?', faq_section.group(0))
     # Đếm Q/A
     q_count = len(re.findall(r'(\?\?|Q:|Câu hỏi)', faq_section.group(0)))
     if q_count < 3:

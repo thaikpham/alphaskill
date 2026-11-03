@@ -7,7 +7,6 @@ import os
 import re
 import unicodedata
 from collections import defaultdict
-from pathlib import Path
 
 from .paths import DATA
 

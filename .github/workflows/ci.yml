@@ -24,11 +24,16 @@ jobs:
         run: uv sync --all-extras
         
       - name: Lint with ruff
-        run: uv run ruff check src/ tests/ || true
+        run: uv run ruff check --select F src/ tests/ scripts/
         
       - name: Run tests
         run: uv run pytest -q
-        
+
+      - name: Check portable/ is up to date
+        run: |
+          python3 scripts/build_portable.py
+          git diff --exit-code portable/
+
       - name: Check plugin.json & marketplace.json
         run: |
           uv run python -m json.tool .claude-plugin/plugin.json > /dev/null

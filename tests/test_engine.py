@@ -115,10 +115,10 @@ def test_remember_translation_keeps_each_icon(env, tmp_path):
     _seed_tm(tmp_path, [("<cE662>Focus Area", "<cE662>Vùng nét"), ("<cE6B1>Focus Area", "<cE6B1>Vùng nét"),
                         ("<cE628>Zoom<cE62B>", "<cE628>Zoom<cE62B>")])
     s = core.Store()
-    r = memory.remember_translation(s, "<cE662>Focus Area", "<cE662>Vùng lấy nét")
+    memory.remember_translation(s, "<cE662>Focus Area", "<cE662>Vùng lấy nét")
     vis = {e["en"]: e["vi"] for e in s.tm}
     assert vis["<cE662>Focus Area"] == "<cE662>Vùng lấy nét" and vis["<cE6B1>Focus Area"] == "<cE6B1>Vùng lấy nét"
-    r = memory.remember_translation(s, "<cE62A>Zoom", "<cE62A>Zoom")
+    memory.remember_translation(s, "<cE62A>Zoom", "<cE62A>Zoom")
     assert {e["en"]: e["vi"] for e in s.tm}["<cE628>Zoom<cE62B>"] == "<cE628>Zoom<cE62B>"
     memory.remember_translation(s, "<cE6B1>Focus Area", "<cE6B1>Vùng LN", tm_id="T1")
     vis = {e["en"]: e["vi"] for e in s.tm}

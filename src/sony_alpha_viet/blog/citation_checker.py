@@ -1,8 +1,9 @@
 
+import os
 import re
 import urllib.request
 import urllib.error
-from typing import Dict, List
+from typing import Dict
 from urllib.parse import urlparse
 
 TIER_1_DOMAINS = ["sony.com", "sony.co.jp", "alphauniverse.com", "imaging-edge.sony.net"]
@@ -26,6 +27,8 @@ def classify_domain(url: str) -> str:
         return "Khong xac dinh"
 
 def check_link_alive(url: str, timeout=3) -> Dict:
+    if os.environ.get("SONY_VN_NO_NET"):  # public server: never fetch URLs taken from a caller's text
+        return {"alive": None, "status": None, "evidence": "Không kiểm link trên server công khai"}
     try:
         req = urllib.request.Request(url, method='HEAD', headers={'User-Agent': 'SonyAlphaVietBot/1.1'})
         with urllib.request.urlopen(req, timeout=timeout) as resp:

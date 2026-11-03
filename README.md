@@ -40,6 +40,14 @@ Không có MCP, chỉ tra cứu + viết blog. Không đo khung, không đọc E
 Đọc https://github.com/thaikpham/alphaskill và làm theo AGENTS.md. Sau đó: [câu hỏi của bạn]
 ```
 
+### 🌐 Không cài gì: API dùng chung `https://api.alphacolorlab.com`
+Chỉ đọc, ai cũng dùng được (Sony staff, shop, web khác). Dữ liệu là repo public [alphaskill-data](https://github.com/thaikpham/alphaskill-data).
+- Danh sách tool và tham số: `GET /v1`
+- Gọi tool: `GET /v1/lookup_term?text=Focus%20Area` hoặc `POST /v1/check_translation` với JSON `{"en": "Focus Area", "vi": "Vùng lấy nét"}`
+- Client MCP (Claude, ChatGPT developer mode): thêm server `https://api.alphacolorlab.com/mcp`
+
+Các tool ghi dữ liệu (ghi nhớ, sửa file Sony, ghi Obsidian) chỉ có khi cài trên máy.
+
 ---
 
 ## Cài đặt 2 phút (cho người mới)

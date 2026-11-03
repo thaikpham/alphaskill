@@ -1,5 +1,19 @@
 .venv
 __pycache__
 .pytest_cache
-data/
 *.xls
+
+# private Sony data never goes in this repo
+*.pdf
+*.docx
+*.docm
+*.xlsx
+*.xlsm
+*.epub
+/tm.jsonl
+/feedback.jsonl
+/LEARNING_LOG.md
+/knowledge/
+
+# impeccable working files (decision page, mocks)
+.impeccable/
