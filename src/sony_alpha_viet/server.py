@@ -131,9 +131,10 @@ def record_feedback(en: str, wrong: str, right: str, reason: str = "", project: 
 
 
 @mcp.tool()
-def remember_translation(en: str, vi: str, project: str = "") -> dict:
-    """Lưu một cặp EN→VI đã được người dùng duyệt vào bộ nhớ dịch."""
-    return memory.remember_translation(store, en, vi, project)
+def remember_translation(en: str, vi: str, project: str = "", tm_id: str = "") -> dict:
+    """Lưu một cặp EN→VI đã được người dùng duyệt vào bộ nhớ dịch. Chuỗi chỉ khác icon đầu dòng giữ icon của chính nó;
+    chuỗi khác token ở giữa không bị đụng. tm_id (S#) để ghi đúng một dòng."""
+    return memory.remember_translation(store, en, vi, project, tm_id=tm_id)
 
 
 @mcp.tool()

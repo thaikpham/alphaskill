@@ -108,3 +108,18 @@ def test_suggest_short(env):
     over = {"max_w": 150, "font_w": 24, "font_h": 38, "rows": 1, "linefeed": "Off"}
     cands = core.suggest_short(s, "Anti-flicker Shoot Sel.", "Chọn chụp chống nhấp nháy", over, limit=5)
     assert any(c["text"] == "Chống nhấp nháy" for c in cands)
+
+
+def test_remember_translation_keeps_each_icon(env, tmp_path):
+    core, memory, _ = env
+    _seed_tm(tmp_path, [("<cE662>Focus Area", "<cE662>Vùng nét"), ("<cE6B1>Focus Area", "<cE6B1>Vùng nét"),
+                        ("<cE628>Zoom<cE62B>", "<cE628>Zoom<cE62B>")])
+    s = core.Store()
+    r = memory.remember_translation(s, "<cE662>Focus Area", "<cE662>Vùng lấy nét")
+    vis = {e["en"]: e["vi"] for e in s.tm}
+    assert vis["<cE662>Focus Area"] == "<cE662>Vùng lấy nét" and vis["<cE6B1>Focus Area"] == "<cE6B1>Vùng lấy nét"
+    r = memory.remember_translation(s, "<cE62A>Zoom", "<cE62A>Zoom")
+    assert {e["en"]: e["vi"] for e in s.tm}["<cE628>Zoom<cE62B>"] == "<cE628>Zoom<cE62B>"
+    memory.remember_translation(s, "<cE6B1>Focus Area", "<cE6B1>Vùng LN", tm_id="T1")
+    vis = {e["en"]: e["vi"] for e in s.tm}
+    assert vis["<cE6B1>Focus Area"] == "<cE6B1>Vùng LN" and vis["<cE662>Focus Area"] == "<cE662>Vùng lấy nét"

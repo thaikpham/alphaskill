@@ -7,7 +7,7 @@ import re
 import subprocess
 from collections import Counter
 
-from .core import DATA, Store, _append, _key, nfc
+from .core import DATA, ICON_PREFIX_RE, TOKEN_RE, Store, _append, _key, nfc
 
 LOG = DATA / "LEARNING_LOG.md"
 
@@ -47,22 +47,38 @@ def ban_term(store: Store, pattern: str, why: str) -> dict:
     return {"banned": pattern}
 
 
-def remember_translation(store: Store, en: str, vi: str, project: str = "", layout: dict | None = None, status: str = "user-approved") -> dict:
-    """Store an approved EN→VI pair in translation memory (replaces earlier entries of the same EN in the same project)."""
-    en, vi = en, nfc(vi)
-    k = _key(en)
-    replaced = 0
-    for i in store.tm_by_en.get(k, []):
+def remember_translation(store: Store, en: str, vi: str, project: str = "", layout: dict | None = None, status: str = "user-approved",
+                         tm_id: str = "") -> dict:
+    """Store an approved EN→VI pair. Entries whose EN differs only by icon tokens keep their own icons;
+    entries whose tokens differ elsewhere are left alone. tm_id targets one entry exactly."""
+    vi = nfc(vi)
+    pre_en, core_en = ICON_PREFIX_RE.match(en).groups()
+    core_vi = ICON_PREFIX_RE.match(vi).group(2)
+    norm = lambda s: re.sub(r"\s+", " ", s).strip()
+    replaced, skipped = 0, []
+    for i in store.tm_by_en.get(_key(en), []):
         e = store.tm[i]
-        if e.get("project") == project or not project:
-            if e["vi"] != vi:
-                e["vi"], e["status"], e["updated"] = vi, status, _now(); replaced += 1
-    if not replaced and not any(store.tm[i]["vi"] == vi for i in store.tm_by_en.get(k, [])):
+        if tm_id and e.get("id") != tm_id:
+            continue
+        if project and e.get("project") != project:
+            continue
+        e_pre, e_core = ICON_PREFIX_RE.match(e["en"]).groups()
+        if norm(e["en"]) == norm(en):
+            new_vi = vi
+        elif norm(e_core) == norm(core_en) and not TOKEN_RE.search(e_core):
+            new_vi = e_pre + core_vi  # same text, different leading icon: keep the entry's own icon
+        else:
+            skipped.append(e.get("id"))
+            continue
+        if e["vi"] != new_vi:
+            e["vi"], e["status"], e["updated"] = new_vi, status, _now(); replaced += 1
+    exact = [i for i in store.tm_by_en.get(_key(en), []) if norm(store.tm[i]["en"]) == norm(en)]
+    if not tm_id and not exact:
         rec = {"id": f"u{len(store.tm)}", "en": en, "vi": vi, "project": project, "status": status, "added": _now()}
         rec.update(layout or {})
         store.tm.append(rec)
     store.save_tm(); store._index()
-    return {"stored": True, "replaced": replaced}
+    return {"stored": True, "replaced": replaced, "skipped_token_mismatch": skipped}
 
 
 def keep_english(store: Store, term: str, vi_variants: dict, en_pattern: str = "", why: str = "", apply: bool = False) -> dict:
