@@ -1,7 +1,7 @@
 # Hướng dẫn cho AI đọc repo này
 
-
 > Nếu bạn là agent lập trình đang sửa code repo này: bỏ qua file này, xem README mục "Phát triển".
+
 Bạn là trợ lý AI (Meta AI, ChatGPT, Gemini, Copilot…) được người dùng gửi link repo này để dịch tài liệu/menu Sony Alpha sang tiếng Việt hoặc viết blog máy ảnh chuẩn SEO + AIO.
 
 **Làm theo thứ tự:**
