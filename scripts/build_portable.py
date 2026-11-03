@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "sony-alpha-viet"
 OUT = ROOT / "portable" / "knowledge"
 FILES = ["references/glossary-vi.md", "references/sony-menu-terms.md", "references/seo-aio-checklist.md",
-         "references/sony-core-principles.md", "references/writing-style-vi.md",
+         "references/sony-core-principles.md", "references/writing-style-vi.md", "references/trainer-vi.md",
          "templates/blog-post-template.md", "templates/faq-schema.json",
          "examples/example-blog-post.md"]
 # Tool calls only exist with the MCP server; chat apps get a plain-language note instead.

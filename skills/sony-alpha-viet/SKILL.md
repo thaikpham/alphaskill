@@ -1,28 +1,31 @@
 ---
 name: sony-alpha-viet
-description: Dịch và biên tập tiếng Việt cho tài liệu/menu Sony Alpha (nguồn Anh hoặc Nhật); viết và audit blog tiếng Việt tối ưu SEO + AIO (AI Overviews); chuẩn hóa thuật ngữ nhiếp ảnh. Dùng khi người dùng nói "dịch menu Sony", "dịch hướng dẫn/tài liệu Sony", "viết blog Sony Alpha", "SEO AIO tiếng Việt", "audit bài viết", hoặc nhắc tới OSD, ILDC, TranslationCheck, thuật ngữ máy ảnh tiếng Việt, A7/A7R/A7S/A6xxx/ZV/FX.
+description: Dịch và biên tập tiếng Việt cho tài liệu/menu Sony Alpha (nguồn Anh hoặc Nhật); viết và audit blog tiếng Việt tối ưu SEO + AIO (AI Overviews); chuẩn hóa thuật ngữ nhiếp ảnh; làm bộ não thứ hai cho Sony Camera Trainer (kiến thức nhiếp ảnh, giáo án, trả lời học viên). Dùng khi người dùng nói "dịch menu Sony", "dịch hướng dẫn/tài liệu Sony", "viết blog Sony Alpha", "SEO AIO tiếng Việt", "audit bài viết", "dạy nhiếp ảnh", "giáo án", "học viên hỏi", "bài thực hành", hoặc nhắc tới OSD, ILDC, TranslationCheck, thuật ngữ máy ảnh tiếng Việt, A7/A7R/A7S/A6xxx/ZV/FX.
 ---
 
 # Sony Alpha Việt
 
-Ba chế độ, mỗi chế độ một chuẩn thuật ngữ. **Xác định chế độ trước khi làm.**
+Bốn chế độ, mỗi chế độ một chuẩn thuật ngữ. **Xác định chế độ trước khi làm.**
 
 | Chế độ | Khi nào | Chuẩn thuật ngữ | Đầu ra mặc định |
 |---|---|---|---|
 | **A. Menu OSD** | Chuỗi menu, thông báo, help text trên máy; file `*_TranslationCheck_VN.xls` | Cột **Menu OSD** trong glossary — thuần Việt trừ ngoại lệ và danh sách keep_english; thuật ngữ khóa của MCP thắng mọi thứ | Bảng Markdown + CSV (`templates/menu-translation-table.csv`) |
 | **B. Tài liệu** | Hướng dẫn sử dụng, help guide, thông cáo, PDF/DOCX/EPUB, URL | Cột **Bài viết/Tài liệu**; tên mục menu trích đúng như cột Menu OSD | Markdown giữ cấu trúc gốc; PDF nếu được yêu cầu |
 | **C. Blog SEO + AIO** | Viết, biên tập, audit bài blog | Cột **Bài viết/Tài liệu** | Markdown + meta + slug + JSON-LD + bảng audit |
+| **D. Đào tạo (Trainer)** | Trả lời học viên, soạn giáo án/bài tập/câu hỏi kiểm tra, ôn kiến thức trước buổi dạy | Cột **Bài viết/Tài liệu**; tên mục menu theo cột Menu OSD (kèm tên tiếng Anh) | Câu trả lời ngắn + bước trên máy Sony; giáo án Markdown |
 
 ## Đọc trước khi làm (bắt buộc)
 - Mọi chế độ: `references/glossary-vi.md`, `references/writing-style-vi.md`.
 - Chế độ A: `references/sony-menu-terms.md` (quy trình + MCP + giới hạn firmware).
 - Chế độ C: `templates/blog-post-template.md`, `references/seo-aio-checklist.md`, `templates/faq-schema.json`.
+- Chế độ D: `references/trainer-vi.md` (cách dùng kho kiến thức, khung câu trả lời, khung giáo án, mẫu note mới).
 - Mẫu đầu ra: `examples/`.
 
 ## Hỏi trước khi tạo nội dung dài
 Thiếu một trong các mục sau thì hỏi (một lượt, gộp câu hỏi), không tự đoán:
 - A/B: **model máy** (A7 IV, A7R V, A6400, ZV-E1…), **ngôn ngữ nguồn** (Anh/Nhật), layout nếu cần kiểm độ rộng.
 - C: **từ khóa chính**, **độc giả**, **model liên quan**, độ dài; nguồn/URL tham khảo nếu có.
+- D (giáo án): **đối tượng** (mới cầm máy / đã biết P-A-S-M), **thời lượng**, **model máy của lớp**, trong nhà hay ngoài trời.
 Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cảnh đã rõ thì làm luôn.
 
 ## Nguyên tắc dịch
@@ -55,12 +58,18 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 5. Audit theo `references/seo-aio-checklist.md` → bảng Đạt/Chưa đạt + sửa cụ thể. Nếu có MCP: mcp__sony-alpha-viet__seo_audit(bài, từ_khóa_chính) tự động kiểm tra 21 mục máy được. Sửa luôn những gì tự sửa được, liệt kê phần cần người dùng (link nội bộ thật, ảnh, giá).
 6. Sinh JSON-LD schema: mcp__sony-alpha-viet__faq_schema(bài) hoặc dùng `templates/faq-schema.json` làm mẫu.
 
+**D. Đào tạo** → làm theo `references/trainer-vi.md`:
+1. Câu hỏi của học viên → mcp__sony-alpha-viet__search_knowledge(câu hỏi) → trả lời bằng nội dung note (nêu tên note), tên menu đúng Menu OSD. Kho không có → trả lời từ kiến thức chung, ghi rõ "chưa có trong kho", đề nghị lưu lại.
+2. Giáo án → mcp__sony-alpha-viet__get_knowledge() xem cây → mở giáo án gần nhất (`2 Giáo án/…`) → điều chỉnh theo đối tượng/thời lượng → kiểm `Đính chính slide` trước khi dùng số liệu trên slide.
+3. Sau buổi dạy: câu hỏi hay, ví dụ mới → mcp__sony-alpha-viet__add_knowledge(note, nội dung) khi trainer đồng ý → obsidian_export().
+
 ## Obsidian (khi người dùng đã cấu hình vault)
-Vault đặt trong `~/.config/sony-alpha-viet/config.json` (`"vault"`, `"vault_folder"`). Mọi thứ nằm trong `<vault>/<vault_folder>/`. Không có vault thì bỏ qua mục này.
-- **Blog (chế độ C):** lưu bản nháp vào `Blog/<slug>.md`, frontmatter theo mẫu (Obsidian đọc thành Properties). Viết xong gọi `obsidian_audit_note("Blog/<slug>.md")`: công cụ ghi note `<slug> — SEO audit` và thuộc tính `seo_score`/`seo_complete` vào bản nháp. Sửa theo báo cáo rồi chấm lại.
-- **Thuật ngữ:** người dùng sửa note trong `Thuật ngữ/` hoặc tạo note mới (thuộc tính `en`, `vi`, tùy chọn `short`, `locked`, `note`). Khi họ nói "import thuật ngữ từ Obsidian": gọi `obsidian_import()` → trình bảng thay đổi → chỉ `obsidian_import(apply=True)` khi họ đồng ý.
+Vault đặt trong `~/.config/sony-alpha-viet/config.json` (`"vault"`, `"vault_folder"`). Mọi thứ nằm trong `<vault>/<vault_folder>/`, theo cây đánh số: `1 Kiến thức/` · `2 Giáo án/` · `3 Thuật ngữ/` · `4 Dịch menu/` · `5 Tài liệu Sony/` · `6 Blog/` · `9 Skill/` (bản sao chỉ đọc). Export tự chuyển note từ bố cục cũ sang cây mới. Không có vault thì bỏ qua mục này.
+- **Kiến thức, giáo án (chế độ D):** `1 Kiến thức/` và `2 Giáo án/` là bản sao của kho `<data>/knowledge/`. Trainer sửa hoặc tạo note ở đó → "import Obsidian": `obsidian_import()` liệt kê note `edited`/`new` (cùng thay đổi thuật ngữ) → `obsidian_import(apply=True)` khi họ đồng ý. Note đang sửa dở không bị export ghi đè (`knowledge.pending_edits`).
+- **Blog (chế độ C):** lưu bản nháp vào `6 Blog/<slug>.md`, frontmatter theo mẫu (Obsidian đọc thành Properties). Viết xong gọi `obsidian_audit_note("6 Blog/<slug>.md")`: công cụ ghi note `<slug> — SEO audit` và thuộc tính `seo_score`/`seo_complete` vào bản nháp. Sửa theo báo cáo rồi chấm lại.
+- **Thuật ngữ:** người dùng sửa note trong `3 Thuật ngữ/` hoặc tạo note mới (thuộc tính `en`, `vi`, tùy chọn `short`, `locked`, `note`). Khi họ nói "import thuật ngữ từ Obsidian": gọi `obsidian_import()` → trình bảng thay đổi → chỉ `obsidian_import(apply=True)` khi họ đồng ý.
 - **Sau phiên dịch có thay đổi bộ nhớ** (record_term, keep_english, learn…): gọi `obsidian_export()` để vault cập nhật. Note người dùng đang sửa dở không bị ghi đè; báo lại các note trong `skipped_pending_edits`.
-- **Tài liệu Sony:** người dùng đưa thư mục PDF/DOCX của Sony → `ingest_docs(folder)` (tự chuyển font VNI, bỏ file trùng) → `obsidian_export()` tạo `Tài liệu Sony/` gồm mỗi tài liệu một note và note `Đối chiếu thuật ngữ với Sony` (lấy từ `docs_term_report()`). Tài liệu chỉ lưu trong dữ liệu riêng và vault, không đưa lên repo.
+- **Tài liệu Sony:** người dùng đưa thư mục PDF/DOCX của Sony → `ingest_docs(folder)` (tự chuyển font VNI, bỏ file trùng) → `obsidian_export()` tạo `5 Tài liệu Sony/` gồm mỗi tài liệu một note và note `Đối chiếu thuật ngữ với Sony` (lấy từ `docs_term_report()`). Tài liệu Sony và kho kiến thức chỉ lưu trong dữ liệu riêng và vault, không đưa lên repo công khai.
 - **Rà soát nhất quán:** `consistency_report()` (hoặc note `Rà soát nhất quán`) liệt kê chuỗi có nhiều bản dịch, kèm độ rộng khung. Bản ngắn ở khung hẹp thường là rút gọn hợp lệ, đừng tự "sửa". Áp dụng lựa chọn của người dùng bằng `remember_translation(..., tm_id=S#)`.
 
 ## Firmware — giới hạn cứng

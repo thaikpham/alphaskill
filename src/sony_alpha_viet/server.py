@@ -269,20 +269,8 @@ def aio_audit(text: str, primary_keyword: str = "") -> dict:
 
 
 @tool
-def aio_audit_tool(text: str, primary_keyword: str = "") -> dict:
-    """Chấm điểm AIO-first 35 tiêu chí cho bài blog Sony Alpha tiếng Việt (alias cho aio_audit)."""
-    return blog.aio_audit(text, primary_keyword)
-
-
-@tool
 def paa_generator(primary_keyword: str, audience: str = "thợ chụp cưới", models: list[str] = None) -> dict:
     """Gợi ý 10 câu People Also Ask (PAA) cho từ khóa Sony Alpha kèm gợi ý trả lời tự đứng 40-70 từ."""
-    return blog.paa_generator(primary_keyword, audience, models)
-
-
-@tool
-def paa_generator_tool(primary_keyword: str, audience: str = "thợ chụp cưới", models: list[str] = None) -> dict:
-    """Gợi ý 10 câu People Also Ask (PAA) cho từ khóa Sony Alpha (alias cho paa_generator)."""
     return blog.paa_generator(primary_keyword, audience, models)
 
 
@@ -293,32 +281,14 @@ def citation_checker(text: str) -> dict:
 
 
 @tool
-def citation_checker_tool(text: str) -> dict:
-    """Kiểm tra nguồn trích dẫn cho bài blog (alias cho citation_checker)."""
-    return blog.citation_checker(text)
-
-
-@tool
 def freshness_check(text: str) -> dict:
     """Kiểm tra độ mới của bài, phát hiện giá cũ/firmware cũ, gợi ý cập nhật 11/2026."""
     return blog.freshness_check(text)
 
 
 @tool
-def freshness_check_tool(text: str) -> dict:
-    """Kiểm tra độ mới của bài (alias cho freshness_check)."""
-    return blog.freshness_check(text)
-
-
-@tool
 def brand_voice_checker(text: str) -> dict:
     """Kiểm tra nguyên tắc bảo vệ Sony: sensor số 1 TG, ngàm E >200 lens, KANDO/cân bằng, không chê Sony, kết bài KANDO."""
-    return blog.brand_voice_checker(text)
-
-
-@tool
-def brand_voice_checker_tool(text: str) -> dict:
-    """Kiểm tra nguyên tắc bảo vệ Sony (alias cho brand_voice_checker)."""
     return blog.brand_voice_checker(text)
 
 
@@ -451,19 +421,19 @@ def consistency_report(limit: int = 50) -> list[dict]:
 
 @tool
 def obsidian_export() -> dict:
-    """Ghi/cập nhật vault Obsidian (thư mục cấu hình trong ~/.config/sony-alpha-viet/config.json): note thuật ngữ khóa,
-    bảng thuật ngữ, giữ tiếng Anh, rà soát nhất quán, nhật ký học, bản sao skill, mẫu blog. Note thuật ngữ người dùng
-    đã sửa mà chưa import sẽ không bị ghi đè (trả về trong skipped_pending_edits)."""
+    """Ghi/cập nhật vault Obsidian (cấu hình trong ~/.config/sony-alpha-viet/config.json) theo cây đánh số: 1 Kiến thức,
+    2 Giáo án (bản sao kho kiến thức), 3 Thuật ngữ, 4 Dịch menu, 5 Tài liệu Sony, 6 Blog, 9 Skill; tự chuyển note từ bố cục cũ.
+    Note người dùng đang sửa dở (thuật ngữ, kiến thức) không bị ghi đè: xem skipped_pending_edits, knowledge.pending_edits."""
     from . import obsidian
     return obsidian.export(store)
 
 
 @tool
 def obsidian_import(apply: bool = False) -> dict:
-    """Đọc note trong Thuật ngữ/ (đã sửa hoặc tạo mới trong Obsidian) → thay đổi thuật ngữ. apply=False xem trước;
-    apply=True ghi bằng record_term (khóa theo thuộc tính locked)."""
+    """Đưa thay đổi trong Obsidian về kho dữ liệu: note thuật ngữ (3 Thuật ngữ/, ghi bằng record_term) và note kiến thức/giáo án
+    sửa hoặc tạo mới (1 Kiến thức/, 2 Giáo án/). apply=False chỉ xem trước."""
     from . import obsidian
-    return obsidian.import_terms(store, apply)
+    return obsidian.import_all(store, apply)
 
 
 @tool

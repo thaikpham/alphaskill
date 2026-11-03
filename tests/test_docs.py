@@ -54,9 +54,10 @@ def test_vault_export_includes_docs(env, tmp_path, monkeypatch):
     import importlib
     import sony_alpha_viet.obsidian as obs
     importlib.reload(obs)
+    monkeypatch.setattr(obs.paths, "CONFIG", tmp_path / "config.json")  # never read the user's real config
     assert obs.export(s)["sony_docs"] == 2
-    root = tmp_path / "vault" / "AI Skills" / "Sony Alpha Việt" / "Tài liệu Sony"
+    root = tmp_path / "vault" / "AI Skills" / "Sony Alpha Việt" / "5 Tài liệu Sony"
     note = (root / "ILCE-7M5 — Hướng dẫn khởi động.md").read_text(encoding="utf-8")
-    assert "model: ILCE-7M5" in note and "[[Thuật ngữ/Shutter Button|Shutter Button]]" in note
+    assert "model: ILCE-7M5" in note and "[[3 Thuật ngữ/Shutter Button|Shutter Button]]" in note
     report = (root / "Đối chiếu thuật ngữ với Sony.md").read_text(encoding="utf-8")
     assert "`nút màn trập`" in report and "ILCE-6400 (1)" in report

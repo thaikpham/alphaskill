@@ -104,7 +104,16 @@ Nếu thiếu model máy, ngôn ngữ nguồn, từ khóa chính -> hỏi 1 lư�
 
 ## Tool MCP
 
-data_info, get_guidelines, lookup_term, search_memory, prepare_batch, lookup_prose_term, check_translation, check_fit, suggest_short, record_term, record_feedback, remember_translation, ban_term, keep_english, learn, review_memory, disable_rule, commit_memory, xls_read, xls_write, ingest_docs, search_docs, docs_term_report, obsidian_export, obsidian_import, obsidian_audit_note, consistency_report, slugify, count_words, style_lint, seo_audit, faq_schema, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
+41 tool, theo chế độ:
+
+- **Dữ liệu:** data_info, get_guidelines
+- **A · Dịch menu:** lookup_term, search_memory, prepare_batch, check_translation, check_fit, suggest_short, consistency_report
+- **A · File Sony *_VN.xls:** xls_read, xls_review, xls_write
+- **Ghi nhớ, tự học:** record_term, record_feedback, remember_translation, ban_term, keep_english, learn, review_memory, disable_rule, commit_memory
+- **B · Tài liệu Sony:** lookup_prose_term, ingest_docs, search_docs, docs_term_report
+- **C · Blog SEO + AIO:** slugify, count_words, style_lint, seo_audit, faq_schema, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
+- **D · Đào tạo:** search_knowledge, get_knowledge, add_knowledge
+- **Obsidian:** obsidian_export, obsidian_import, obsidian_audit_note
 
 Prompts: /sony-alpha-viet:translate_menu, /sony-alpha-viet:write_blog, /sony-alpha-viet:audit_post
 
