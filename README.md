@@ -124,7 +124,7 @@ Chỉ cần làm bước symlink ở trên. Claude vẫn dịch và viết theo 
 
 **Llama (Meta) có công cụ thật:** `uv run sony-alpha-viet-llama "Dịch menu: Focus Area, Silent Shooting" -v`. Lệnh này chạy model Llama qua Ollama (mặc định `llama3.2:3b`) hoặc Llama API của Meta (`--base-url https://api.llama.com/compat/v1`, biến `LLAMA_API_KEY`), và gọi công cụ MCP ở chế độ chỉ đọc. Cần tự tải model: `ollama pull llama3.2:3b`.
 
-> Thử thật (03/11/2026): `llama3.2:3b` gọi được công cụ và lấy đúng bản đã duyệt trong bộ nhớ, nhưng hay sinh JSON lỗi và dịch sai chuỗi mới (ví dụ "Range of Zoom Assist" → "Khối lượng zoom hỗ trợ"). Chỉ dùng 3B để thử kết nối. Để dịch thật, dùng `llama3.1:8b` trở lên (`--model llama3.1:8b`) hoặc Llama 4 qua Llama API, và luôn duyệt lại kết quả.
+> Thử thật (03/11/2026): `llama3.2:3b` gọi được công cụ và lấy đúng bản đã duyệt trong bộ nhớ, nhưng hay sinh JSON lỗi và dịch sai chuỗi mới (ví dụ "Range of Zoom Assist" → "Khối lượng zoom hỗ trợ"). Chỉ dùng 3B để thử kết nối. `llama3.1:8b` (`--model llama3.1:8b`, khoảng 35–45 giây/lần trên GPU 4 GB) dịch đúng cả 3 mục thử trong 4/4 lần, nhưng thường bỏ qua `check_translation` và tự nhận đã kiểm tra. Vì vậy agent luôn ghi cuối câu trả lời danh sách công cụ **thật sự** đã chạy, và cảnh báo nếu bản dịch chưa qua `check_translation`. Llama 4 qua Llama API sẽ tốt hơn. Luôn duyệt lại kết quả.
 
 Hướng dẫn từng bước và cảnh báo bảo mật khi mở MCP ra Internet: [`portable/README.md`](portable/README.md).
 

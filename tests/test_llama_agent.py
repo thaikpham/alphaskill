@@ -16,7 +16,8 @@ def test_agent_calls_mcp_tool_and_answers(env):
         return {"content": "Range of Zoom Assist = Dải hỗ trợ Zoom"}
 
     out = asyncio.run(llama_agent.run("Dịch: Range of Zoom Assist", "http://x", "fake", chat_fn=fake_chat))
-    assert out == "Range of Zoom Assist = Dải hỗ trợ Zoom"
+    assert out.startswith("Range of Zoom Assist = Dải hỗ trợ Zoom") and "Công cụ đã chạy: check_translation" in out
+    assert "CHƯA" not in out
     assert seen[-1]["role"] == "tool" and "Dải hỗ trợ Zoom" in seen[-1]["content"]
 
 
@@ -29,7 +30,8 @@ def test_agent_reports_bad_tool_arguments(env):
         assert "error" in messages[-1]["content"]
         return {"content": "ok"}
 
-    assert asyncio.run(llama_agent.run("x", "http://x", "fake", chat_fn=fake_chat)) == "ok"
+    out = asyncio.run(llama_agent.run("x", "http://x", "fake", chat_fn=fake_chat))
+    assert out.startswith("ok") and "không có" in out and "CHƯA qua check_translation" in out
 
 
 def test_text_tool_call_fallback():
@@ -46,3 +48,8 @@ def test_text_tool_call_repairs_stray_bracket():
     bad = '{"name":"prepare_batch","parameters":{"items":[{"en":"Focus Area"},{"en":"Silent Shooting"}]}]}'
     c = text_tool_calls(bad, {"prepare_batch"})
     assert c and '"Silent Shooting"' in c[0]["function"]["arguments"]
+
+
+def test_stringified_json_args_are_decoded():
+    from sony_alpha_viet.llama_agent import _drop_nulls
+    assert _drop_nulls({"items": '[{"en": "Focus Area", "max_width": null}]'}) == {"items": [{"en": "Focus Area"}]}

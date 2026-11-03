@@ -24,7 +24,7 @@ DEFAULT_TOOLS = ["get_guidelines", "prepare_batch", "lookup_term", "search_memor
 TOOL_NOTE = """
 
 ## Công cụ
-Bạn có công cụ MCP sony-alpha-viet. Dịch menu: gọi prepare_batch trước. Có exact_match thì dùng nguyên văn. Không có exact_match thì TỰ DỊCH theo nghĩa chuỗi tiếng Anh; các bản trong "memory" chỉ là chuỗi khác gần giống, KHÔNG chép (ví dụ "NR Shooting = Chụp giảm nhiễu" không phải bản dịch của "Silent Shooting"). Sau đó gọi check_translation cho từng chuỗi tự dịch và dùng trường "text" nó trả về. Xuất bảng EN | VI | Ghi chú. Blog: sau khi viết, gọi seo_audit và faq_schema thay vì tự đếm. Chỉ gọi công cụ khi cần; trả lời cuối cùng bằng tiếng Việt."""
+Bạn có công cụ MCP sony-alpha-viet. Dịch menu: gọi prepare_batch trước. Có exact_match thì dùng nguyên văn. Không có exact_match thì TỰ DỊCH theo nghĩa chuỗi tiếng Anh; các bản trong "memory" chỉ là chuỗi khác gần giống, KHÔNG chép (ví dụ "NR Shooting = Chụp giảm nhiễu" không phải bản dịch của "Silent Shooting"). Sau đó gọi check_translation cho từng chuỗi tự dịch và dùng trường "text" nó trả về. Xuất bảng EN | VI | Ghi chú. Blog: sau khi viết, gọi seo_audit và faq_schema thay vì tự đếm. Chỉ gọi công cụ khi cần; trả lời cuối cùng bằng tiếng Việt. Chỉ ghi "đã kiểm tra" cho chuỗi thật sự đã qua check_translation; chuỗi lấy từ exact_match ghi "bộ nhớ đã duyệt"; không bịa layout (max_width, font) nếu người dùng không cho."""
 
 
 def system_prompt() -> str:
@@ -33,6 +33,11 @@ def system_prompt() -> str:
 
 
 def _drop_nulls(v):
+    if isinstance(v, str) and v[:1] in "[{":  # models sometimes send a list/object as a JSON string
+        try:
+            return _drop_nulls(json.loads(v))
+        except json.JSONDecodeError:
+            return v
     if isinstance(v, dict):
         return {k: _drop_nulls(x) for k, x in v.items() if x is not None and x != "None"}
     if isinstance(v, list):
@@ -91,6 +96,15 @@ def text_tool_calls(content: str, names: set[str]) -> list[dict]:
     return calls
 
 
+def footer(used: list[str]) -> str:
+    """Ground truth on what was actually checked; models tend to claim verification they didn't do."""
+    names = list(dict.fromkeys(used))
+    line = "\n\n---\nCông cụ đã chạy: " + (", ".join(names) if names else "không có")
+    if "check_translation" not in names:
+        line += ". Bản dịch CHƯA qua check_translation — hãy duyệt lại."
+    return line
+
+
 def to_openai_tool(t) -> dict:
     return {"type": "function", "function": {"name": t.name, "description": (t.description or "")[:1000],
                                              "parameters": t.inputSchema or {"type": "object", "properties": {}}}}
@@ -116,12 +130,13 @@ async def run(prompt: str, base_url: str, model: str, api_key: str = "", tools: 
         wanted = set(tools or DEFAULT_TOOLS)
         oa_tools = [to_openai_tool(t) for t in available if t.name in wanted]
         messages = [{"role": "system", "content": system_prompt()}, {"role": "user", "content": prompt}]
+        used: list[str] = []
         for _ in range(max_steps):
             msg = await chat_fn(http, base_url, model, messages, oa_tools)
             calls = msg.get("tool_calls") or text_tool_calls(msg.get("content") or "", {t["function"]["name"] for t in oa_tools})
             messages.append({"role": "assistant", "content": "" if calls else msg.get("content") or "", **({"tool_calls": calls} if calls else {})})
             if not calls:
-                return msg.get("content") or ""
+                return (msg.get("content") or "") + footer(used)
             for c in calls:
                 name = c["function"]["name"]
                 raw = c["function"].get("arguments") or "{}"
@@ -129,12 +144,13 @@ async def run(prompt: str, base_url: str, model: str, api_key: str = "", tools: 
                     a = _drop_nulls(json.loads(raw) if isinstance(raw, str) else raw)
                     res = await session.call_tool(name, a)
                     out = "\n".join(getattr(x, "text", "") for x in res.content)
+                    used.append(name)
                 except Exception as e:  # bad arguments from the model: report back so it can retry
                     out = json.dumps({"error": str(e)}, ensure_ascii=False)
                 if verbose:
                     print(f"[tool] {name}({raw}) → {out[:300]}", file=sys.stderr)
                 messages.append({"role": "tool", "tool_call_id": c.get("id", name), "name": name, "content": out[:12000]})
-        return "(Dừng: quá số bước gọi công cụ cho phép.)"
+        return "(Dừng: quá số bước gọi công cụ cho phép.)" + footer(used)
 
 
 def main():
