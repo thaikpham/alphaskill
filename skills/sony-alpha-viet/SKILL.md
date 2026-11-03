@@ -43,7 +43,7 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 6. Sau khi viết: tự audit theo checklist, xuất bảng điểm + danh sách sửa.
 
 ## Quy trình
-**A. Menu** → làm theo `references/sony-menu-terms.md` (mcp__sony-alpha-viet__get_guidelines → mcp__sony-alpha-viet__prepare_batch → dịch → mcp__sony-alpha-viet__check_translation → bảng/CSV → ghi nhớ khi người dùng duyệt với record_term). MCP cũ `mcp__sony-vn-translator__*` vẫn còn dùng được nếu người dùng chạy server cũ.
+**A. Menu** → làm theo `references/sony-menu-terms.md` (mcp__sony-alpha-viet__get_guidelines → mcp__sony-alpha-viet__prepare_batch → dịch → mcp__sony-alpha-viet__check_translation → bảng/CSV → ghi nhớ khi người dùng duyệt với record_term). Rà lại cả bộ file `*_VN.xls` đã dịch: mcp__sony-alpha-viet__xls_review(thư_mục) trước, rồi mới sửa (xem mục "File Sony *_VN.xls" trong `references/sony-menu-terms.md`). MCP cũ `mcp__sony-vn-translator__*` vẫn còn dùng được nếu người dùng chạy server cũ.
 
 **B. Tài liệu** → tra `search_docs` để dùng đúng câu chữ Sony Việt Nam đã công bố cho cùng nội dung (sạc pin, lắp thẻ, thiết lập ban đầu…) → giữ nguyên cấu trúc heading/danh sách/bảng → tên mục menu in đậm theo cột Menu OSD, lần đầu kèm tên gốc trong ngoặc nếu giúp người đọc tìm trên máy tiếng Anh → biên tập lại theo `writing-style-vi.md` (lượt chống văn dịch máy) → liệt kê thuật ngữ mới đề xuất. Nếu có MCP: dùng mcp__sony-alpha-viet__lookup_prose_term để tra thuật ngữ bài viết.
 

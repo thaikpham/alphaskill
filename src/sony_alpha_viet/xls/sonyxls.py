@@ -33,8 +33,9 @@ def read_rows(path: str) -> list[dict]:
     return out
 
 
-def write_proposals(src: str, out: str, proposals: list[dict]) -> dict:
-    """proposals: [{row, sid, an, au, av}] (row is 1-based). Refuses on S# mismatch or AN without AU/AV."""
+def write_proposals(src: str, out: str, proposals: list[dict], overwrite: bool = False) -> dict:
+    """proposals: [{row, sid, an, au, av}] (row is 1-based). Refuses on S# mismatch or AN without AU/AV.
+    overwrite=True revises AN/AU/AV cells that already have a value (otherwise only blank cells are filled)."""
     import olefile
     import xlrd
     if os.path.abspath(src) == os.path.abspath(out):
@@ -54,7 +55,7 @@ def write_proposals(src: str, out: str, proposals: list[dict]) -> dict:
         targets[(ri, COL["av"])] = p.get("av", "")
     raw = open(src, "rb").read()
     wb = olefile.OleFileIO(src).openstream("Workbook").read()
-    new, st = biff.apply_cells(wb, targets)
+    new, st = biff.apply_cells(wb, targets, overwrite)
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
     open(out, "wb").write(biff.ole_replace_stream(raw, "Workbook", new))
     # verify

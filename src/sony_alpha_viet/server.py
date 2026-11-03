@@ -202,11 +202,21 @@ def xls_read(path: str, only_flagged: bool = False, limit: int = 0) -> dict:
 
 
 @tool
-def xls_write(src: str, out: str, proposals: list[dict]) -> dict:
+def xls_write(src: str, out: str, proposals: list[dict], overwrite: bool = False) -> dict:
     """Ghi đề xuất vào bản sao file xls (chỉ AN/AU/AV, giữ nguyên byte phần còn lại). proposals: [{row, sid, an, au, av}].
-    AU phải thuộc danh sách dropdown của Sony; AV là lý do bằng tiếng Anh. Không bao giờ ghi đè file gốc."""
+    AU phải thuộc danh sách dropdown của Sony; AV là lý do bằng tiếng Anh. Không bao giờ ghi đè file gốc.
+    overwrite=True: sửa lại ô AN/AU/AV đã có giá trị (rà soát lần 2); mặc định chỉ điền ô trống."""
     from .xls import sonyxls
-    return sonyxls.write_proposals(src, out, proposals)
+    return sonyxls.write_proposals(src, out, proposals, overwrite)
+
+
+@tool
+def xls_review(folder: str, out_csv: str = "") -> dict:
+    """Rà soát cả thư mục *TranslationCheck_VN.xls (chấm AN nếu có, không thì VI; kiểm lại cả chuỗi đã duyệt):
+    lỗi quy tắc, tràn khung, thuật ngữ khóa, lệch bộ nhớ, cùng chuỗi gốc mà chọn từ khác dù vừa khung.
+    Trả về {files, rows, counts, by_file, top}; out_csv → ghi toàn bộ phát hiện ra CSV."""
+    from . import review
+    return review.review_folder(folder, out_csv)
 
 
 # === Blog tools ===
@@ -426,7 +436,7 @@ def docs_term_report() -> dict:
 
 
 WRITE_TOOLS = ("record_term", "record_feedback", "remember_translation", "ban_term", "keep_english", "learn",
-               "disable_rule", "commit_memory", "xls_read", "xls_write", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs")
+               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs")
 
 
 def main():

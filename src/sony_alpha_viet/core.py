@@ -327,7 +327,7 @@ def _finish(old, new, applied, layout, en=""):
 
 
 # ---------------- audit ----------------
-def audit(store: Store, en: str, vi: str, layout: dict | None = None) -> dict:
+def audit(store: Store, en: str, vi: str, layout: dict | None = None, strict: bool = False) -> dict:
     """List rule violations in a Vietnamese string."""
     issues = []
     if vi and nfc(vi) != vi:  # combining diacritics (NFD) look identical but may render wrong in the camera font
@@ -398,6 +398,18 @@ def audit(store: Store, en: str, vi: str, layout: dict | None = None) -> dict:
         issues.append({"type": "exact_rule", "expected": exact[core_en]})
     if approved and vi not in approved:
         issues.append({"type": "inconsistent_with_memory", "approved_variants": sorted(set(approved))[:5]})
+    # locked_term (warn): the whole label is a locked glossary term but VI uses neither its vi nor short form.
+    # strict=False trusts approved memory (translating); strict=True re-checks approved strings too (reviewing).
+    label = lambda t: re.sub(r"\s+", " ", TOKEN_RE.sub(" ", ICON_PREFIX_RE.match(t).group(2))).strip().rstrip(".").lower()
+    locked = [g for g in store.glossary if g.get("locked") and g["en"].lower() == label(en)] if en else []
+    if locked and label(vi) not in {nfc(x).lower() for g in locked for x in (g["vi"], g.get("short") or "") if x} \
+            and (strict or vi not in approved):
+        issues.append({"type": "locked_term", "severity": "warn", "expected": locked[0]["vi"], "note": locked[0].get("note", "")})
+    # missing_period (warn): EN is a sentence (≥4 words) ending in '.', VI lost it; short labels like 'Color Temp.', 'Delete account info.' are abbreviations
+    m = re.search(r"(\S+)\.$", en.rstrip())
+    if m and not en.rstrip().endswith("..") and len(en.split()) >= 4 and m.group(1).isalpha() and m.group(1).islower() \
+            and len(m.group(1)) >= 4 and vi.strip() and not re.search(r"[.…?!:]$", vi.rstrip()):
+        issues.append({"type": "missing_period", "severity": "warn"})
     out = {"ok": not any(i.get("severity", "error") == "error" for i in issues), "issues": issues}
     if layout:
         lay = effective_layout(en, layout)

@@ -216,3 +216,99 @@ def test_audit_flags_decomposed_unicode(env):
     core, _, s = env
     a = core.audit(s, "Registered.", unicodedata.normalize("NFD", "Đã đăng ký."))
     assert not a["ok"] and a["issues"][0]["type"] == "not_nfc" and a["issues"][0]["fix"] == "Đã đăng ký."
+
+
+def test_audit_locked_term_fires(env, tmp_path):
+    """locked_term fires when VI doesn't match locked glossary entry."""
+    core, _, _ = env
+    _seed_tm(tmp_path, [])
+    import json
+    gl = json.loads((tmp_path / "data" / "glossary.json").read_text(encoding="utf-8"))
+    gl.append({"en": "Active", "vi": "chủ động", "short": "", "locked": True, "note": "SteadyShot"})
+    (tmp_path / "data" / "glossary.json").write_text(json.dumps(gl, ensure_ascii=False), encoding="utf-8")
+    s = core.Store()
+    a = core.audit(s, "Active", "Hoạt động")
+    assert any(i["type"] == "locked_term" and i.get("severity") == "warn" for i in a["issues"])
+
+
+def test_audit_locked_term_ok_when_vi_matches(env, tmp_path):
+    """locked_term doesn't fire when VI matches glossary entry."""
+    core, _, _ = env
+    _seed_tm(tmp_path, [])
+    import json
+    gl = json.loads((tmp_path / "data" / "glossary.json").read_text(encoding="utf-8"))
+    gl.append({"en": "Active", "vi": "chủ động", "short": "", "locked": True, "note": ""})
+    (tmp_path / "data" / "glossary.json").write_text(json.dumps(gl, ensure_ascii=False), encoding="utf-8")
+    s = core.Store()
+    a = core.audit(s, "Active", "Chủ động")
+    assert not any(i["type"] == "locked_term" for i in a["issues"])
+
+
+def test_audit_locked_term_ok_when_vi_matches_short(env, tmp_path):
+    """locked_term doesn't fire when VI matches glossary short form."""
+    core, _, _ = env
+    _seed_tm(tmp_path, [])
+    import json
+    gl = json.loads((tmp_path / "data" / "glossary.json").read_text(encoding="utf-8"))
+    gl.append({"en": "Active", "vi": "chủ động", "short": "Chủ", "locked": True, "note": ""})
+    (tmp_path / "data" / "glossary.json").write_text(json.dumps(gl, ensure_ascii=False), encoding="utf-8")
+    s = core.Store()
+    a = core.audit(s, "Active", "Chủ")
+    assert not any(i["type"] == "locked_term" for i in a["issues"])
+
+
+def test_audit_locked_term_ok_when_approved_in_tm(env, tmp_path):
+    """locked_term doesn't fire when VI is approved in TM."""
+    core, _, _ = env
+    _seed_tm(tmp_path, [("Active", "Hoạt động")])
+    # Mark the TM entry as approved
+    import json
+    tm = json.loads((tmp_path / "data" / "tm.jsonl").read_text(encoding="utf-8").splitlines()[0])
+    tm["status"] = "approved-test"
+    with open(tmp_path / "data" / "tm.jsonl", "w", encoding="utf-8") as f:
+        f.write(json.dumps(tm, ensure_ascii=False) + "\n")
+
+    gl = json.loads((tmp_path / "data" / "glossary.json").read_text(encoding="utf-8"))
+    gl.append({"en": "Active", "vi": "chủ động", "short": "", "locked": True, "note": ""})
+    (tmp_path / "data" / "glossary.json").write_text(json.dumps(gl, ensure_ascii=False), encoding="utf-8")
+
+    s = core.Store()
+    a = core.audit(s, "Active", "Hoạt động")
+    assert not any(i["type"] == "locked_term" for i in a["issues"])
+    a = core.audit(s, "Active", "Hoạt động", strict=True)  # reviewing re-checks approved strings
+    assert any(i["type"] == "locked_term" for i in a["issues"])
+
+
+def test_audit_missing_period_fires(env):
+    """missing_period fires when EN ends with . and VI doesn't end with punctuation."""
+    core, _, s = env
+    a = core.audit(s, "Displays 12 images on 1 screen.", "Hiển thị 12 ảnh trên 1 màn hình")
+    assert any(i["type"] == "missing_period" for i in a["issues"])
+
+
+def test_audit_missing_period_ok_on_abbreviation(env):
+    """missing_period doesn't fire for abbreviations like 'Color Temp.'."""
+    core, _, s = env
+    a = core.audit(s, "Color Temp.", "Nhiệt độ màu")
+    assert not any(i["type"] == "missing_period" for i in a["issues"])
+
+
+def test_audit_missing_period_ok_when_vi_has_punctuation(env):
+    """missing_period doesn't fire when VI ends with punctuation."""
+    core, _, s = env
+    a = core.audit(s, "Displays 12 images on 1 screen.", "Hiển thị 12 ảnh trên 1 màn hình.")
+    assert not any(i["type"] == "missing_period" for i in a["issues"])
+
+
+def test_review_word_choice_variants(env):
+    """Same EN, different VI: reported only when the majority form would fit the deviating row's frame."""
+    from sony_alpha_viet.review import norm, word_choice_variants
+    assert norm("Auto <c0000>  Mode ${v1}") == "Auto ◆ Mode ◆"
+    wide = {"max_w": 600, "font_w": 27, "font_h": 36, "rows": 1, "linefeed": "Off"}
+    narrow = {**wide, "max_w": 120}
+    rows = [{"en": "Monitor Off", "eff": "Tắt màn hình", "layout": wide},
+            {"en": "<cE381>Monitor Off", "eff": "<cE381>Tắt màn hình", "layout": wide},  # icon-only difference: same variant
+            {"en": "Monitor Off", "eff": "Màn hình tắt", "layout": wide},  # word choice → reported
+            {"en": "Monitor Off", "eff": "Tắt MH", "layout": narrow}]  # majority doesn't fit → valid short form
+    out = word_choice_variants(rows)
+    assert [(r["eff"], major) for r, major in out] == [("Màn hình tắt", "Tắt màn hình")]

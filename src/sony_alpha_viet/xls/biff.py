@@ -124,17 +124,18 @@ def enc_xlstring(s):
         if all(ord(ch)<256 for ch in s): return struct.pack("<HB",cch,0)+b
     except UnicodeEncodeError: pass
     return struct.pack("<HB",cch,1)+cu
-def apply_cells(stream, targets):
-    """targets: dict {(row0, col0): text} for the LAST sheet named 'VN'. Returns new stream bytes and stats."""
+def apply_cells(stream, targets, overwrite=False, sheet="VN"):
+    """targets: dict {(row0, col0): text} for the sheet named `sheet` (Sony review files: 'VN'). Returns new stream bytes and stats.
+    overwrite=True lets a target replace a cell that already holds a string (a later review pass revising AN/AU/AV)."""
     recs=parse(stream)
-    # find VN substream via BOUNDSHEET names
+    # find the target substream via BOUNDSHEET names
     subs=substreams(recs)
     bsi=[i for i,(t,d) in enumerate(recs) if t==T_BOUNDSHEET]
     names=[]
     for i in bsi:
         d=recs[i][1]; cch=d[6]; fl=d[7]
         names.append(d[8:8+cch*2].decode("utf-16-le") if fl&1 else d[8:8+cch].decode("latin-1"))
-    k=names.index("VN"); vs,ve=subs[k+1]
+    k=names.index(sheet); vs,ve=subs[k+1]
     # SST
     i_sst=[i for i,(t,d) in enumerate(recs) if t==T_SST][0]
     strings,locs,last,tot,uniq=sst_parse(recs,i_sst)
@@ -158,7 +159,7 @@ def apply_cells(stream, targets):
         if not tg: out.append([t,d]); continue
         if t==T_BLANK or t==T_LABELSST:
             if c0 in tg:
-                if t==T_LABELSST: raise RuntimeError(f"target cell already has a value: row {r} col {c0}")
+                if t==T_LABELSST and not overwrite: raise RuntimeError(f"target cell already has a value: row {r} col {c0} (pass overwrite=True to revise it)")
                 xf,=struct.unpack_from("<H",d,4)
                 out.append([T_LABELSST,struct.pack("<HHHI",r,c0,xf,tg[c0])]); done.add((r,c0)); nrefs+=1
                 if t==T_LABELSST: nrefs-=1  # replaced an existing reference
@@ -180,7 +181,7 @@ def apply_cells(stream, targets):
             else: seg.append((c,xfs[j]))
         flush()
     missing=[k for k in targets if k not in done]
-    if missing: raise RuntimeError(f"cells not found as BLANK/MULBLANK: {missing[:5]} ... ({len(missing)})")
+    if missing: raise RuntimeError(f"cells not found as BLANK/MULBLANK/LABELSST: {missing[:5]} ... ({len(missing)})")
     recs=out
     # append new strings to SST chain
     i_sst=[i for i,(t,d) in enumerate(recs) if t==T_SST][0]
