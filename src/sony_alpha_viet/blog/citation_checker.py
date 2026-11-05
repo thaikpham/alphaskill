@@ -1,10 +1,20 @@
 
 import os
 import re
+import socket
+import ipaddress
 import urllib.request
 import urllib.error
 from typing import Dict
 from urllib.parse import urlparse
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None  # surfaces 3xx as HTTPError instead of following it
+
+
+_NO_REDIRECT = urllib.request.build_opener(_NoRedirect)
 
 TIER_1_DOMAINS = ["sony.com", "sony.co.jp", "alphauniverse.com", "imaging-edge.sony.net"]
 TIER_2_DOMAINS = ["dpreview.com", "petapixel.com", "sonyalpharumors.com", "thephoblographer.com", "digitalcameraworld.com"]
@@ -12,15 +22,15 @@ TIER_3_DOMAINS = ["facebook.com", "youtube.com", "instagram.com"]
 
 def classify_domain(url: str) -> str:
     try:
-        domain = urlparse(url).netloc.lower()
+        host = urlparse(url).netloc.lower().split(":")[0]  # strip port
         for d in TIER_1_DOMAINS:
-            if d in domain:
+            if host == d or host.endswith("." + d):
                 return "Tier 1 - Chinh thong Sony (tot nhat cho AIO)"
         for d in TIER_2_DOMAINS:
-            if d in domain:
+            if host == d or host.endswith("." + d):
                 return "Tier 2 - Uy tin nganh anh"
         for d in TIER_3_DOMAINS:
-            if d in domain:
+            if host == d or host.endswith("." + d):
                 return "Tier 3 - Social"
         return "Tier 3 - Blog/shop khac"
     except:
@@ -30,10 +40,29 @@ def check_link_alive(url: str, timeout=3) -> Dict:
     if os.environ.get("SONY_VN_NO_NET"):  # public server: never fetch URLs taken from a caller's text
         return {"alive": None, "status": None, "evidence": "Không kiểm link trên server công khai"}
     try:
+        parsed = urlparse(url)
+        scheme = parsed.scheme.lower()
+        if scheme not in ("http", "https"):
+            return {"alive": None, "status": None, "evidence": f"Lược đồ không hỗ trợ: {scheme}"}
+
+        host = parsed.hostname or ""
+        try:
+            addrs = socket.getaddrinfo(host, None)
+            for family, socktype, proto, canonname, sockaddr in addrs:
+                ip_str = sockaddr[0]
+                ip = ipaddress.ip_address(ip_str)
+                if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved:
+                    return {"alive": None, "status": None, "evidence": f"Không cho phép địa chỉ {ip_str}"}
+        except (socket.gaierror, ValueError):
+            return {"alive": None, "status": None, "evidence": f"Không thể phân giải hostname: {host}"}
+
         req = urllib.request.Request(url, method='HEAD', headers={'User-Agent': 'SonyAlphaVietBot/1.1'})
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        with _NO_REDIRECT.open(req, timeout=timeout) as resp:
             return {"alive": True, "status": resp.status, "evidence": f"Status {resp.status}"}
     except urllib.error.HTTPError as e:
+        if 300 <= e.code < 400:
+            location = e.headers.get('Location', '?')[:80]
+            return {"alive": True, "status": e.code, "evidence": f"Redirect {e.code} -> {location}"}
         if e.code in (403, 429):
             return {"alive": True, "status": e.code, "evidence": f"Bi chan {e.code} nhung link ton tai"}
         return {"alive": False, "status": e.code, "evidence": f"Chet {e.code}"}

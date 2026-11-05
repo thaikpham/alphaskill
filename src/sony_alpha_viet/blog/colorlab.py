@@ -459,6 +459,12 @@ def write_pack(articles: list[dict], repo: str, name: str, overwrite: bool = Fal
     pages = [a.get("article", a) for a in articles]
     var = re.sub(r"-([a-z0-9])", lambda m: m[1].upper(), name)
     var = var if var[0].isalpha() else f"pack{var}"
+
+    # Backup before writing
+    pack_existed = pack_file.exists()
+    pack_backup = pack_file.read_text(encoding="utf-8") if pack_existed else None
+    index_backup = index.read_text(encoding="utf-8")
+
     pack_file.write_text(
         "import type { Article } from '../types'\n\n"
         "/** Written by alphaskill (sony-alpha-viet `colorlab_pack`) from Markdown. Edit the Markdown, then rewrite. */\n"
@@ -487,4 +493,11 @@ def write_pack(articles: list[dict], repo: str, name: str, overwrite: bool = Fal
         out["gate"] = "passed" if r.returncode == 0 else "failed"
         out["gate_log"] = "\n".join(log.strip().splitlines()[-30:])
         out["ok"] = r.returncode == 0
+        if r.returncode != 0:
+            if pack_existed:
+                pack_file.write_text(pack_backup, encoding="utf-8")
+            else:
+                pack_file.unlink(missing_ok=True)
+            index.write_text(index_backup, encoding="utf-8")
+            out["restored"] = True
     return out

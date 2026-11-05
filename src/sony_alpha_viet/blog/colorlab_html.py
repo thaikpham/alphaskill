@@ -130,12 +130,17 @@ def _sources(sources: list[dict]) -> str:
         return ""
     items = []
     for s in sources:
+        from urllib.parse import urlparse
         facts = " · ".join(x for x in (s.get("publisher"), s.get("section"), s.get("scope")) if x)
         when = f"kiểm tra {_day(s['checkedAt'])}" if s.get("checkedAt") else ""
         meta = f'<span class="meta block"><span lang="vi">{e(facts)}</span>{" · " if facts and when else ""}{e(when)}</span>' if facts or when else ""
-        items.append(f'<li class="text-body-sm leading-[1.5]"><a href="{e(s["url"])}" rel="noopener noreferrer" target="_blank" '
-                     f'lang="vi" class="font-semibold text-accent-400 underline decoration-accent-400/40 underline-offset-2 '
-                     f'transition-colors hover:decoration-accent-400 [overflow-wrap:anywhere]">{e(s["title"])}</a>{meta}</li>')
+        url_scheme = urlparse(s["url"]).scheme.lower()
+        if url_scheme in ("http", "https"):
+            items.append(f'<li class="text-body-sm leading-[1.5]"><a href="{e(s["url"])}" rel="noopener noreferrer" target="_blank" '
+                         f'lang="vi" class="font-semibold text-accent-400 underline decoration-accent-400/40 underline-offset-2 '
+                         f'transition-colors hover:decoration-accent-400 [overflow-wrap:anywhere]">{e(s["title"])}</a>{meta}</li>')
+        else:
+            items.append(f'<li class="text-body-sm leading-[1.5]"><span lang="vi" class="font-semibold text-accent-400">{e(s["title"])}</span>{meta}</li>')
     return f'<section aria-label="Nguồn"><h2 class="label">Nguồn</h2><ol class="mt-2 flex flex-col gap-2">{"".join(items)}</ol></section>'
 
 

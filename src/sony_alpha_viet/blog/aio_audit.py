@@ -59,21 +59,72 @@ def check_faq(text: str) -> Dict:
     faq_section = re.search(r'(FAQ|Câu hỏi thường gặp)(.+?)(?=\n#|\Z)', text, re.IGNORECASE | re.DOTALL)
     if not faq_section:
         return {"pass": False, "evidence": "Không có FAQ", "fix": "Thêm FAQ 3-6 câu, mỗi đáp 40-70 từ, tự đứng được"}
-    # Đếm Q/A
-    q_count = len(re.findall(r'(\?\?|Q:|Câu hỏi)', faq_section.group(0)))
-    if q_count < 3:
-        # fallback đếm dòng có ?
-        q_count = faq_section.group(0).count('?')
-    if q_count < 3:
-        return {"pass": False, "evidence": f"FAQ chỉ có {q_count} câu", "fix": "Thêm 3-6 câu hỏi người dùng thật sự gõ"}
-    # Check tự đứng: không chứa "xem ở trên", "như đã nói"
-    if re.search(r'(xem ở trên|như đã nói|đã đề cập)', faq_section.group(0), re.IGNORECASE):
-        return {"pass": False, "evidence": "FAQ có cụm 'xem ở trên / như đã nói' - không tự đứng", "fix": "Viết lại FAQ để mỗi đáp tự hiểu được, không tham chiếu"}
-    return {"pass": True, "evidence": f"FAQ có {q_count} câu, tự đứng được", "fix": ""}
+
+    faq_text = faq_section.group(0)
+    # Parse FAQ: questions are bold lines or headings ending with ?, answers until next question/heading
+    questions = []
+    # Match bold lines: **...?** or ### ...?
+    q_lines = re.findall(r'(?:\*\*(.+?)\*\*|###\s+(.+?))\s*\?', faq_text, re.IGNORECASE | re.MULTILINE)
+    if q_lines:
+        questions = [(q[0] or q[1]) for q in q_lines]
+    else:
+        # Fallback: count lines ending with ?
+        q_count = faq_text.count('?')
+        if q_count < 3:
+            return {"pass": False, "evidence": f"FAQ chỉ có {q_count} câu", "fix": "Thêm 3-6 câu hỏi người dùng thật sự gõ"}
+        questions = [None] * q_count  # placeholder for count
+
+    if len(questions) < 3:
+        return {"pass": False, "evidence": f"FAQ chỉ có {len(questions)} câu", "fix": "Thêm 3-6 câu hỏi người dùng thật sự gõ"}
+
+    # Parse Q/A pairs and check word count + forbidden phrases
+    failing = []
+    # Match all question/answer pairs: **Q?** or ### Q? followed by answer text
+    qa_matches = re.finditer(r'\*\*(.+?\?)\*\*\s*(.*?)(?=\*\*|###|$)', faq_text, re.DOTALL)
+    for match in qa_matches:
+        q_text = match.group(1).rstrip('?').strip()
+        a_text = match.group(2).strip()
+
+        word_count = count_words(a_text)
+        has_forbidden = re.search(r'(xem ở trên|như đã nói|đã đề cập|xem o tren|nhu da noi)', a_text, re.IGNORECASE)
+
+        if not (40 <= word_count <= 70):
+            failing.append(f"{q_text}? ({word_count} từ)")
+        if has_forbidden:
+            failing.append(f"{q_text}? (có 'xem ở trên'/'như đã nói')")
+
+    # Also check ### heading format
+    heading_qa = re.finditer(r'###\s+(.+?\?)\s*(.*?)(?=###|$)', faq_text, re.DOTALL)
+    for match in heading_qa:
+        q_text = match.group(1).rstrip('?').strip()
+        a_text = match.group(2).strip()
+
+        word_count = count_words(a_text)
+        has_forbidden = re.search(r'(xem ở trên|như đã nói|đã đề cập|xem o tren|nhu da noi)', a_text, re.IGNORECASE)
+
+        if not (40 <= word_count <= 70):
+            failing.append(f"{q_text}? ({word_count} từ)")
+        if has_forbidden:
+            failing.append(f"{q_text}? (có 'xem ở trên'/'như đã nói')")
+
+    if failing:
+        return {"pass": False, "evidence": f"FAQ lỗi: {failing[0]}", "fix": "Viết lại FAQ để mỗi đáp 40-70 từ, tự đứng được"}
+
+    return {"pass": True, "evidence": f"FAQ có {len(questions)} câu, tự đứng được", "fix": ""}
 
 def check_table(text: str) -> Dict:
-    if '|' in text and re.search(r'\|.*\|.*\|', text):
-        return {"pass": True, "evidence": "Có bảng so sánh", "fix": ""}
+    # Check for real markdown table: header row | separator row | data rows
+    # Separator row: ^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?\s*$
+    lines = text.split('\n')
+    for i in range(len(lines) - 1):
+        header = lines[i].strip()
+        separator = lines[i + 1].strip()
+        # Check if header is a pipe-delimited row
+        if header.startswith('|') and '|' in header:
+            # Check if next line is a separator matching pattern
+            if re.match(r'^\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?\s*$', separator):
+                header_text = header.strip('|').split('|')[0].strip()
+                return {"pass": True, "evidence": f"Có bảng so sánh (header: {header_text})", "fix": ""}
     return {"pass": False, "evidence": "Không có bảng", "fix": "Thêm bảng | Tiêu chí | A7 IV | A7R V | cho bài so sánh"}
 
 def check_ai_sounding(text: str) -> Dict:
