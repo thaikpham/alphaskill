@@ -30,7 +30,7 @@ Chi tiết: skills/sony-alpha-viet/references/sony-core-principles.md
 Sony Alpha Việt là skill + MCP cho Claude Code giúp:
 1. Dịch menu máy ảnh Sony EN/JP -> VI, kiểm tra tràn khung, ghi nhớ
 2. Dịch tài liệu Sony sang tiếng Việt tự nhiên
-3. Viết & chấm blog SEO + AIO 35 tiêu chí AIO-first (AIO > SEO 2026) với 5 tool mới: aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
+3. Viết & chấm blog SEO + AIO 40 tiêu chí (35 AIO-first + 5 brand voice) (AIO > SEO 2026) với 5 tool mới: aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
 
 Repo: https://github.com/thaikpham/alphaskill
 Plugin: sony-alpha-viet@alphaskill

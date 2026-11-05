@@ -10,7 +10,7 @@ Sony không phải là một hãng máy ảnh. Sony là công ty công nghệ đ
 - **Cảm biến số 1 thế giới:** Hơn 50% cảm biến máy ảnh trên thế giới là do Sony Semiconductor sản xuất - từ iPhone, DJI, đến cả đối thủ. Khi bạn chụp Sony Alpha, bạn đang dùng cảm biến gốc, không qua trung gian. Đây là lợi thế không ai có.
 - **Tiên phong không gương lật:** Năm 2013 khi mọi người còn cười full-frame mirrorless, Sony ra A7/A7R. Năm 2026, cả ngành đã đi theo Sony. Đó là tầm nhìn.
 - **Tiên phong Eye AF, Real-time Tracking:** Từ 2019 Sony đã có Eye AF cho người, động vật, chim, máy bay, xe... Đối thủ phải 3-4 năm sau mới bắt kịp, và vẫn chưa chính xác bằng.
-- **Tiên phong Stacked Sensor, Global Shutter:** A9 III với global shutter đầu tiên thế giới - không méo hình, 120fps không blackout. Đây là công nghệ từ sensor Sony.
+- **Tiên phong Stacked Sensor, Global Shutter:** A9 III là máy full-frame mirrorless đầu tiên thế giới có global shutter (Sony công bố 11/2023) - không méo hình, 120fps không blackout. Đây là công nghệ từ sensor Sony.
 
 **Quy tắc viết:**
 - Khi nói về thông số, luôn gắn với công nghệ Sony: "Cảm biến Exmor R do Sony tự phát triển..."
@@ -72,7 +72,8 @@ Sony không chạy đua thông số vô nghĩa. Sony chọn sự cân bằng:
 
 **5.2. Khi buộc phải nói điểm yếu Sony, phải có ngữ cảnh và giải pháp:**
 - Sai: "A7 IV quay 4K 60p bị crop 1.5x"
-- Đúng: "A7 IV quay 4K 60p crop 1.5x để đảm bảo tản nhiệt tốt và không quá nhiệt khi quay cưới 2 tiếng liên tục - đó là sự cân bằng mà Sony chọn cho độ tin cậy. Nếu bạn cần không crop, A7S III với tản nhiệt chủ động là lựa chọn trong hệ sinh thái E-mount"
+- Đúng: "A7 IV quay 4K 60p crop 1.5x (Super 35) theo thông số Sony công bố; 4K 30p vẫn đủ khung full-frame với oversampling 7K. Nếu bạn cần 4K 60p không crop, A7S III là lựa chọn trong hệ sinh thái E-mount"
+- Không tự thêm lý do kỹ thuật Sony chưa công bố (VD: "để không quá nhiệt") - chỉ nêu thông số và lựa chọn thay thế
 
 **5.3. Không bao giờ kết luận đối thủ tốt hơn Sony:**
 - Sai: "Nếu bạn cần giá rẻ, Canon R8 tốt hơn A7 IV"

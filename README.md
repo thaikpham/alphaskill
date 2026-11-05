@@ -18,7 +18,7 @@ Chi tiết đầy đủ: `skills/sony-alpha-viet/references/sony-core-principles
 | Bạn là | Ứng dụng |
 | :--- | :--- |
 | **Thợ dịch Sony** | Đọc `ILDC_TranslationCheck_VN.xls`, chỉ ra dòng lỗi, gợi ý bản vừa khung, xuất file mới AN/AU/AV đúng chuẩn Sony. |
-| **Blogger / YouTuber** | Viết bài "A7 IV hay A7R V cho thợ cưới?" có TL;DR, bảng so sánh, FAQ, tự chấm 35 tiêu chí AIO-first, sinh Schema để AI trích. |
+| **Blogger / YouTuber** | Viết bài "A7 IV hay A7R V cho thợ cưới?" có TL;DR, bảng so sánh, FAQ, tự chấm 40 tiêu chí AIO-first (35 AIO + 5 brand voice), sinh Schema để AI trích. |
 | **Shop máy ảnh** | Dịch mô tả, FAQ, hướng dẫn nhanh, đảm bảo 1 bộ thuật ngữ trên mọi kênh. |
 | **Người dùng thường** | Tra `Focus Area là gì?` → `Vùng lấy nét` + giải thích. |
 
@@ -76,9 +76,9 @@ gemini extensions install https://github.com/thaikpham/alphaskill
 ### Tại sao AIO quan trọng hơn SEO năm 2026?
 
 - **SEO cũ (2015-2023):** Viết để lên top 1 Google, người dùng click vào.
-- **AIO mới (2024-2026):** Viết để được **Google AI Overviews, ChatGPT, Perplexity, Gemini** trích dẫn thẳng trong câu trả lời. Người dùng không click, họ đọc luôn đáp án của AI. Nếu bài bạn không có cấu trúc để AI hiểu, bạn mất 68% traffic.
+- **AIO mới (2024-2026):** Viết để được **Google AI Overviews, ChatGPT, Perplexity, Gemini** trích dẫn thẳng trong câu trả lời. Người dùng không click, họ đọc luôn đáp án của AI. Nếu bài bạn không có cấu trúc để AI hiểu, AI sẽ trích bài khác.
 
-**Checklist cũ 23 tiêu chí → Checklist mới 35 tiêu chí AIO-first:**
+**Checklist 40 tiêu chí: 35 AIO-first dưới đây + 5 brand voice (xem `seo-aio-checklist.md`):**
 
 ### Nhóm 1: Nền tảng SEO (vẫn cần, 10 mục)
 1.  Từ khóa chính ở H1, slug, 100 từ đầu, 1 H2, meta description
@@ -102,7 +102,7 @@ gemini extensions install https://github.com/thaikpham/alphaskill
 17. **Không có `[cần xác minh]`:** AIO coi bài có placeholder là chưa hoàn chỉnh, không trích.
 18. **Checklist / Pros-Cons:** "Ưu điểm A7 IV: ..." dạng bullet, AI dễ trích thành list.
 19. **Ví dụ thực tế cho người Việt:** "Thợ cưới ở HCM chụp tiệc 5 tiếng với A7 IV + 35mm f/1.4..." — Tăng E-E-A-T.
-20. **Câu hỏi People Also Ask (PAA):** Tool mới `paa_generator` sẽ gợi ý 10 câu hỏi liên quan từ Google/Perplexity để bạn trả lời sẵn.
+20. **Câu hỏi People Also Ask (PAA):** Tool `paa_generator` gợi ý 10 câu hỏi liên quan theo mẫu (offline, không gọi Google) để bạn trả lời sẵn.
 21. **Ngôn ngữ tự nhiên, bỏ AI-sounding:** Cấm "Hãy cùng khám phá", "đưa trải nghiệm lên tầm cao mới", "tối ưu hóa". Tool `style_lint` sẽ bắt.
 22. **Entity rõ ràng:** Mỗi khi nhắc A7 IV, phải gắn với Sony, full-frame, 33MP. Để AI hiểu entity, không nhầm.
 23. **Freshness:** Ghi "Cập nhật 11/2026: Giá A7 IV hiện..." — AIO ưu tiên bài mới.
@@ -116,7 +116,7 @@ gemini extensions install https://github.com/thaikpham/alphaskill
 29. **Citation & Source:** Thêm `citation` trong Schema trỏ về Sony official. Tool mới `citation_checker` tự kiểm tra link sống/chết.
 30. **Author E-E-A-T:** Schema `Person` có `sameAs` link tới Facebook/Instagram/LinkedIn của tác giả, có `knowsAbout: ["Sony Alpha", "Wedding Photography"]`.
 31. **Entity linking:** Tự động link lần đầu nhắc "Eye AF" tới trang giải thích Eye AF trong glossary của bạn (internal entity graph).
-32. **AIO Score:** Tool mới `aio_audit` chấm điểm riêng cho AI Overviews (0-100), khác với `seo_audit`. Báo "Khả năng được AI Overviews trích: 78%".
+32. **AIO Score:** Tool `aio_audit` chấm 10 mục kiểm tự động được (TL;DR, FAQ, bảng, Key Takeaways...) ra điểm 0-100, khác với `seo_audit`. Điểm là tỉ lệ mục đạt, không phải xác suất AI trích.
 33. **Zero-click optimization:** Viết 1 đoạn "Key Takeaways" dạng bullet 3-5 ý ở cuối, để AI copy thẳng.
 34. **Multimodal:** Ảnh phải có `ImageObject` schema với `caption` mô tả chi tiết, để Gemini/ChatGPT Vision hiểu.
 35. **Bản tiếng Anh song song (tùy chọn):** Nếu có bản EN tóm tắt 200 từ ở cuối, Perplexity dễ trích hơn cho user quốc tế.
@@ -125,8 +125,8 @@ gemini extensions install https://github.com/thaikpham/alphaskill
 
 | Tool mới | Việc làm |
 | :--- | :--- |
-| `aio_audit` | Chấm 15 tiêu chí AIO Core + 10 Schema, trả về % được trích |
-| `paa_generator` | Gợi ý 10 câu PAA từ Google/Perplexity cho từ khóa |
+| `aio_audit` | Chấm 10 mục AIO kiểm tự động được, điểm 0-100 |
+| `paa_generator` | Gợi ý 10 câu PAA theo mẫu cho từ khóa (offline) |
 | `citation_checker` | Kiểm tra link nguồn sống/chết, có phải nguồn uy tín không |
 | `freshness_check` | Báo bài này cũ bao lâu, gợi ý cập nhật giá/thông số |
 | `brand_voice_checker` | Kiểm tra bài có bảo vệ Sony, đúng giọng thương hiệu |
@@ -180,7 +180,7 @@ Giữ tiếng Anh: Zoom, Time Code, Preset...
 ## Lộ trình cải tiến SEO/AIO đã cập nhật
 
 - [x] v1.0.0: Fix plugin.json + marketplace + CI
-- [x] v1.1.0: Rewrite README end-user + checklist 35 tiêu chí AIO-first
+- [x] v1.1.0: Rewrite README end-user + checklist AIO-first
 - [x] v1.2.0: Thêm 5 tool mới (`aio_audit`, `paa_generator`, `citation_checker`, `freshness_check`, `brand_voice_checker`) vào MCP + test CI
 - [x] v1.3.0: API công khai (REST + MCP), xuất bài Alpha ColorLab, tách dữ liệu Sony khỏi repo code
 - [ ] v1.4.0: Schema Product/HowTo/VideoObject, Obsidian AIO dashboard

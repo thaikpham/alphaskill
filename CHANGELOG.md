@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.3.1 — 2026-11-05
+- Sửa nguyên tắc Sony: A9 III là máy full-frame mirrorless đầu tiên có global shutter; bỏ lý do crop 4K60 chưa công bố. README ghi đúng bản chất `paa_generator` (offline) và `aio_audit` (10 mục, điểm = tỉ lệ đạt).
 - API công khai chuyển sang dữ liệu `data-sample/` đã lọc (không còn bộ nhớ dịch Sony); repo dữ liệu chuyển private.
 - Trang tra thuật ngữ tại `https://api.alphacolorlab.com/` (trước đây chỉ redirect `/v1`).
 - Bỏ workflow flake8 thừa luôn đỏ; README bỏ các tool chưa có (`entity_extractor`, `product_schema`, `speakable_generator`).
@@ -10,7 +11,7 @@
 - Xuất bài cho Alpha ColorLab: `colorlab_article`, `colorlab_html`, `colorlab_pack`.
 - Dữ liệu tách sang repo riêng, gắn submodule `data/`.
 
-## 1.2.0 — 2026-11-02
+## 1.2.0 — 2026-11-03
 - AIO-first 35 tiêu chí; 5 tool mới: `aio_audit`, `paa_generator`, `citation_checker`, `freshness_check`, `brand_voice_checker`.
 - Nguyên tắc "Luôn bảo vệ Sony" (`sony-core-principles.md`); kho kiến thức cho trainer; cây Obsidian đánh số.
 - Sửa cài đặt plugin (`plugin.json`, marketplace), `xls_review`, kiểm tra thuật ngữ khóa.
