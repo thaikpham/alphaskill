@@ -1,0 +1,32 @@
+name: ColorLab revalidate
+
+# After a knowledge publish lands on main, wait until api.alphacolorlab.com
+# serves it, then tell www.alphacolorlab.com to drop its /learn cache.
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'data-sample/knowledge/**' ]
+  workflow_dispatch:
+
+jobs:
+  revalidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Wait for the API to serve this commit's notes
+        run: |
+          LOCAL=$(find data-sample/knowledge -name '*.md' | wc -l)
+          for _ in $(seq 20); do
+            REMOTE=$(curl -fsS https://api.alphacolorlab.com/v1 | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"].get("knowledge_count", 0))' || echo 0)
+            [ "$REMOTE" = "$LOCAL" ] && { echo "api serves $REMOTE notes"; exit 0; }
+            echo "api: $REMOTE, repo: $LOCAL"; sleep 15
+          done
+          echo "api did not reach $LOCAL in 5 min"; exit 1
+
+      - name: Revalidate www.alphacolorlab.com/learn
+        env:
+          SECRET: ${{ secrets.COLORLAB_REVALIDATE_SECRET }}
+        run: |
+          test -n "$SECRET" || { echo "COLORLAB_REVALIDATE_SECRET is not set"; exit 1; }
+          curl -fsS -X POST -H "x-alphaskill-secret: $SECRET" https://www.alphacolorlab.com/api/revalidate/alphaskill

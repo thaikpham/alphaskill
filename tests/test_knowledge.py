@@ -29,8 +29,10 @@ def test_add_appends_to_section_and_creates_note(env):
 
 
 def test_tree_shape(env):
+    from pathlib import Path
     from sony_alpha_viet import knowledge
+    sample = Path(__file__).resolve().parents[1] / "data-sample" / "knowledge"
     t = knowledge.tree()
-    assert t["count"] == 2
-    assert t["1 Kiến thức"]["Phơi sáng"]["_notes"][0]["title"] == "Khẩu độ"
-    assert t["2 Giáo án"]["_notes"][0]["path"].startswith("2 Giáo án/")
+    assert t["count"] == len(list(sample.rglob("*.md")))
+    assert any(n["title"] == "Khẩu độ" for n in t["1 Kiến thức"]["Phơi sáng"]["_notes"])
+    assert all(n["path"].startswith("2 Giáo án/") for n in t["2 Giáo án"]["_notes"])
