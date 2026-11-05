@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sony Alpha Việt — tra thuật ngữ menu</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; padding: 1rem; }
+    .container { max-width: 640px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h1 { font-size: 1.5rem; margin-bottom: 1.5rem; color: #333; }
+    .form-group { margin-bottom: 1rem; }
+    input { width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid #ddd; border-radius: 4px; }
+    input:focus { outline: none; border-color: #0066cc; box-shadow: 0 0 0 2px rgba(0,102,204,0.1); }
+    button { width: 100%; padding: 0.75rem; font-size: 1rem; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #0052a3; }
+    button:active { background: #003d7a; }
+    #results { margin-top: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #eee; }
+    th { background: #f9f9f9; font-weight: 600; color: #333; }
+    .error { color: #d32f2f; margin-top: 1rem; padding: 0.75rem; background: #ffebee; border-radius: 4px; }
+    .empty { color: #666; margin-top: 1rem; padding: 0.75rem; text-align: center; }
+    .footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.9rem; color: #666; text-align: center; }
+    .footer a { color: #0066cc; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sony Alpha Việt — tra thuật ngữ menu</h1>
+    <div class="form-group">
+      <input type="text" id="q" placeholder="Focus Area" autocomplete="off">
+    </div>
+    <button onclick="search()">Tra</button>
+    <div id="results"></div>
+    <div class="footer">
+      <a href="/v1">Danh sách tool</a> · <a href="https://github.com/thaikpham/alphaskill">GitHub</a>
+    </div>
+  </div>
+
+  <script>
+    function search() {
+      const q = document.getElementById('q').value.trim();
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+      if (!q) return;
+
+      fetch(`/v1/lookup_term?text=${encodeURIComponent(q)}`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.error) {
+            resultsDiv.innerHTML = `<div class="error">${data.error}</div>`;
+            return;
+          }
+          const items = data.terms || [];
+          if (items.length === 0) {
+            resultsDiv.innerHTML = '<div class="empty">Không tìm thấy</div>';
+            return;
+          }
+          let html = '<table><tr><th>English</th><th>Tiếng Việt</th><th>Rút gọn</th></tr>';
+          for (const item of items) {
+            html += `<tr><td>${escape(item.en)}</td><td>${escape(item.vi)}</td><td>${escape(item.short || '')}</td></tr>`;
+          }
+          html += '</table>';
+          resultsDiv.innerHTML = html;
+        })
+        .catch(err => {
+          resultsDiv.innerHTML = `<div class="error">${err.message}</div>`;
+        });
+    }
+
+    function escape(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    document.getElementById('q').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') search();
+    });
+  </script>
+</body>
+</html>

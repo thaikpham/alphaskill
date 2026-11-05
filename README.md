@@ -3,16 +3,14 @@
 > Bạn chụp Sony A7, A7R, A7S, A6xxx, ZV, FX? Bạn cần menu tiếng Việt chuẩn, tài liệu dễ hiểu, và bài blog chuẩn SEO? Đây là bộ công cụ dành cho bạn.
 
 **Tác giả:** Pham Khang Thai (Thái) — Giấy phép MIT  
-**Phiên bản:** 1.3.0 - API công khai, xuất bài Alpha ColorLab, repo dữ liệu riêng 11/2026
+**Phiên bản:** 1.3.1 - API công khai + trang tra thuật ngữ, xuất bài Alpha ColorLab 11/2026
 
----
 ---
 
 ## 💎 Nguyên tắc cốt lõi: Luôn bảo vệ Sony - Tự hào công nghệ tiên phong
 
 Chi tiết đầy đủ: `skills/sony-alpha-viet/references/sony-core-principles.md`
 
----
 ---
 
 ## Dùng để làm gì?
@@ -41,7 +39,7 @@ Không có MCP, chỉ tra cứu + viết blog. Không đo khung, không đọc E
 ```
 
 ### 🌐 Không cài gì: API dùng chung `https://api.alphacolorlab.com`
-Chỉ đọc, ai cũng dùng được (Sony staff, shop, web khác). Dữ liệu là repo public [alphaskill-data](https://github.com/thaikpham/alphaskill-data).
+Chỉ đọc, ai cũng dùng được (Sony staff, shop, web khác). Mở `https://api.alphacolorlab.com` để tra thử ngay trên trình duyệt. Dữ liệu là bản public đã lọc trong `data-sample/` (glossary + quy tắc, không có bộ nhớ dịch Sony).
 - Danh sách tool và tham số: `GET /v1`
 - Gọi tool: `GET /v1/lookup_term?text=Focus%20Area` hoặc `POST /v1/check_translation` với JSON `{"en": "Focus Area", "vi": "Vùng lấy nét"}`
 - Client MCP (Claude, ChatGPT developer mode): thêm server `https://api.alphacolorlab.com/mcp`
@@ -73,7 +71,7 @@ gemini extensions install https://github.com/thaikpham/alphaskill
 
 ---
 
-## ⭐ NÂNG CẤP LỚN 1.1.0: AIO-first - Viết để AI trích dẫn bạn
+## ⭐ AIO-first - Viết để AI trích dẫn bạn
 
 ### Tại sao AIO quan trọng hơn SEO năm 2026?
 
@@ -123,16 +121,15 @@ gemini extensions install https://github.com/thaikpham/alphaskill
 34. **Multimodal:** Ảnh phải có `ImageObject` schema với `caption` mô tả chi tiết, để Gemini/ChatGPT Vision hiểu.
 35. **Bản tiếng Anh song song (tùy chọn):** Nếu có bản EN tóm tắt 200 từ ở cuối, Perplexity dễ trích hơn cho user quốc tế.
 
-### Tool mới đề xuất (đã thêm vào roadmap MCP)
+### Tool AIO trong MCP
 
 | Tool mới | Việc làm |
 | :--- | :--- |
 | `aio_audit` | Chấm 15 tiêu chí AIO Core + 10 Schema, trả về % được trích |
 | `paa_generator` | Gợi ý 10 câu PAA từ Google/Perplexity cho từ khóa |
-| `entity_extractor` | Trích entity (model máy, thông số) để đảm bảo đủ |
 | `citation_checker` | Kiểm tra link nguồn sống/chết, có phải nguồn uy tín không |
 | `freshness_check` | Báo bài này cũ bao lâu, gợi ý cập nhật giá/thông số |
-| `speakable_generator` | Sinh đoạn tóm tắt 30s cho Google Assistant đọc |
+| `brand_voice_checker` | Kiểm tra bài có bảo vệ Sony, đúng giọng thương hiệu |
 
 ---
 
@@ -162,10 +159,10 @@ Viết blog 1500 từ "Sony A7 IV hay A7R V cho thợ cưới", từ khóa "Sony
 AI sẽ:
 1. Gọi `paa_generator` lấy 10 câu hỏi PAA
 2. Viết outline có TL;DR, bảng so sánh, FAQ, Key Takeaways
-3. Gọi `entity_extractor` đảm bảo đủ thông số
-4. Gọi `style_lint` bỏ văn AI-sounding
-5. Gọi `seo_audit` + `aio_audit` → Bảng `Mục | Kết quả | Bằng chứng | Cách sửa` + điểm AIO Score
-6. Gọi `faq_schema` + `product_schema` sinh JSON-LD
+3. Gọi `style_lint` bỏ văn AI-sounding
+4. Gọi `seo_audit` + `aio_audit` → Bảng `Mục | Kết quả | Bằng chứng | Cách sửa` + điểm AIO Score
+5. Gọi `citation_checker` + `freshness_check` + `brand_voice_checker`
+6. Gọi `faq_schema` sinh JSON-LD Article + FAQPage
 
 ---
 
@@ -185,8 +182,10 @@ Giữ tiếng Anh: Zoom, Time Code, Preset...
 - [x] v1.0.0: Fix plugin.json + marketplace + CI
 - [x] v1.1.0: Rewrite README end-user + checklist 35 tiêu chí AIO-first
 - [x] v1.2.0: Thêm 5 tool mới (`aio_audit`, `paa_generator`, `citation_checker`, `freshness_check`, `brand_voice_checker`) vào MCP + test CI
-- [ ] v1.3.0: Thêm Schema Product/HowTo/VideoObject, tự sinh Speakable
-- [ ] v1.4.0: Tích hợp Obsidian AIO dashboard: xem bài nào AIO Score thấp
+- [x] v1.3.0: API công khai (REST + MCP), xuất bài Alpha ColorLab, tách dữ liệu Sony khỏi repo code
+- [ ] v1.4.0: Schema Product/HowTo/VideoObject, Obsidian AIO dashboard
+
+Chi tiết từng bản: [CHANGELOG.md](CHANGELOG.md)
 
 ---
 

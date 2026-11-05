@@ -59,3 +59,10 @@ def test_mcp_endpoint(client):
     r = client.post("/mcp", json={"jsonrpc": "2.0", "id": 2, "method": "tools/list"}, headers=headers)
     names = {t["name"] for t in json.loads(r.text)["result"]["tools"]}
     assert "search_knowledge" in names and "commit_memory" not in names
+
+
+def test_landing_page(client):
+    r = client.get("/")
+    assert r.status_code == 200
+    assert r.headers["content-type"].startswith("text/html")
+    assert "lookup_term" in r.text

@@ -52,7 +52,7 @@ Plugin: sony-alpha-viet@alphaskill
 
 ## Dữ liệu
 
-Dữ liệu (bộ nhớ dịch, glossary, kho kiến thức, tài liệu Sony đã ingest) là repo public riêng: https://github.com/thaikpham/alphaskill-data, gắn vào đây làm submodule `data/` (`git submodule update --init`). Repo code không chứa file dữ liệu.
+Dữ liệu thật (bộ nhớ dịch Sony, kho kiến thức, tài liệu Sony đã ingest) nằm trong repo private riêng (alphaskill-data), đặt ở máy qua `SONY_VN_DATA`. Repo code chỉ chứa `data-sample/` (glossary + quy tắc đã lọc bởi `scripts/export_public_data.py`), cũng là dữ liệu của API công khai.
 MCP tìm thư mục dữ liệu theo thứ tự:
 - Ưu tiên 1: $SONY_VN_DATA
 - Ưu tiên 2: ~/.config/sony-alpha-viet/config.json { "data": "/path" }
@@ -79,7 +79,7 @@ Liệt kê thuật ngữ mới
 2. Viết theo blog-post-template.md: TL;DR 40-70 từ dưới H1, mỗi H2 mở bằng 1-2 câu tự đứng, bảng so sánh, FAQ 3-6 câu tự đứng, Key Takeaways
 3. lookup_prose_term cho văn xuôi (full-frame, lấy nét mắt)
 4. style_lint, seo_audit, aio_audit (15 core), citation_checker (Tier 1 Sony), freshness_check (2026), brand_voice_checker (5 tiêu chí Sony)
-5. faq_schema + product_schema sinh JSON-LD, slugify
+5. faq_schema sinh JSON-LD Article + FAQPage, slugify
 
 Nguyên tắc cứng: không bịa thông số, giá, ngày ra mắt. Chưa kiểm chứng ghi [cần xác minh] -> seo_audit coi là chưa hoàn chỉnh. AIO phạt nặng.
 
@@ -97,7 +97,7 @@ Nhóm 1 SEO Foundation 10, Nhóm 2 AIO Core 15, Nhóm 3 Schema 10, Nhóm 4 Brand
 - Firmware: chỉ dịch text, không sửa/flash firmware, không bật service mode. Can thiệp firmware có thể mất bảo hành, hỏng máy.
 - Độ rộng chữ là ước lượng
 - Thông số và giá phải đối chiếu nguồn chính thức
-- Dữ liệu chỉ commit vào repo dữ liệu (alphaskill-data), không commit thẳng vào repo code
+- Dữ liệu chỉ commit vào repo dữ liệu private (alphaskill-data), không commit thẳng vào repo code
 
 ## Khi thiếu thông tin
 

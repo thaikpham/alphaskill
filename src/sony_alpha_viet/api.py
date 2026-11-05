@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 
 from starlette.requests import Request
-from starlette.responses import JSONResponse, RedirectResponse, Response
+from starlette.responses import HTMLResponse, JSONResponse, Response
 
 from . import server
 
@@ -77,7 +77,15 @@ async def call(request: Request) -> Response:
 def build_app():
     """The ASGI app (MCP + REST). `server.mcp` is a module singleton, so build once per process."""
     import os
+    from pathlib import Path
     from mcp.server.transport_security import TransportSecuritySettings
+
+    # Read landing page once at build time
+    landing_html = (Path(__file__).parent / "landing.html").read_text(encoding="utf-8")
+
+    def landing(request: Request) -> HTMLResponse:
+        return HTMLResponse(landing_html)
+
     mcp = server.mcp
     mcp.settings.stateless_http = True   # serverless: no session affinity between requests
     mcp.settings.json_response = True
@@ -90,5 +98,5 @@ def build_app():
                                               "http://localhost:*", "http://127.0.0.1:*"])
     mcp.custom_route("/v1", methods=["GET"])(index)
     mcp.custom_route("/v1/{tool}", methods=["GET", "POST", "OPTIONS"])(call)
-    mcp.custom_route("/", methods=["GET"])(lambda request: RedirectResponse("/v1"))
+    mcp.custom_route("/", methods=["GET"])(landing)
     return mcp.streamable_http_app()
