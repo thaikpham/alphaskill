@@ -59,6 +59,8 @@ def test_memory_and_learning(env):
     assert core.lookup_terms(s, "Foo Mode")[0]["vi"] == "chế độ foo"
     for en in ("Lens Reset", "Lens Reset All"):
         memory.record_feedback(s, en, "Thiết đặt ống kính", "Cài đặt ống kính", reason="test")
+    # Must call learn() explicitly to promote rules (after 2 corrections)
+    memory.learn(s, min_count=2)
     assert core.apply_rules(s, "Thiết đặt màn hình", "Monitor Setting")["text"] == "Cài đặt màn hình"
     assert core.search_tm(s, "Lens Reset")[0]["vi"] == "Cài đặt ống kính"
 
@@ -101,6 +103,30 @@ def test_feedback_keep_english_candidate(env):
     _, memory, s = env
     r = memory.record_feedback(s, "Range of Zoom Assist", "Dải hỗ trợ thu phóng", "Dải hỗ trợ Zoom")
     assert any(c.get("term") == "Zoom" for c in r.get("keep_english_candidates", []))
+
+
+def test_record_feedback_no_auto_promote_when_always_false(env):
+    """Verify that record_feedback with always=False does NOT auto-promote rules."""
+    core, memory, s = env
+    # Record same correction twice with always=False
+    memory.record_feedback(s, "Test Dung A", "Sai", "Dung", always=False)
+    memory.record_feedback(s, "Test Dung B", "Sai", "Dung", always=False)
+    # Rule should NOT be promoted automatically
+    result = core.apply_rules(s, "Sai", "Test Dung C")
+    assert result["text"] == "Sai"  # No rule applied
+    # Now call learn() to promote
+    memory.learn(s, min_count=2)
+    result = core.apply_rules(s, "Sai", "Test Dung C")
+    assert result["text"] == "Dung"  # Rule applied after learn()
+
+
+def test_record_feedback_always_true_promotes(env):
+    """Verify that record_feedback with always=True immediately promotes rule."""
+    core, memory, s = env
+    memory.record_feedback(s, "Test Dung X", "Sai X", "Dung X", always=True)
+    # Rule should be promoted immediately
+    result = core.apply_rules(s, "Sai X", "Test Dung Y")
+    assert result["text"] == "Dung X"  # Rule applied immediately
 
 
 def test_suggest_short(env):

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+- Bảo mật: `citation_checker` so khớp domain chính xác (hết nhận nhầm `notsony.com`), chặn IP nội bộ và không theo redirect; link nguồn trong HTML chỉ nhận http/https; MCP server tự bật read-only khi bind ngoài loopback; `colorlab_pack` khôi phục file cũ khi gate vitest fail.
+- Trung thực: `aio_audit` bảng phải có dòng `|---|`, FAQ kiểm 40-70 từ mỗi đáp; `freshness_check` bỏ giá/firmware cứng, lấy tháng hiện tại; `paa_generator` bỏ số liệu trong gợi ý; `record_feedback` không còn tự tạo quy tắc sau 2 lần sửa, gọi `learn` để duyệt.
+- CI chạy Python 3.10 và 3.13.
+
 ## 1.3.1 — 2026-11-05
 - Sửa nguyên tắc Sony: A9 III là máy full-frame mirrorless đầu tiên có global shutter; bỏ lý do crop 4K60 chưa công bố. README ghi đúng bản chất `paa_generator` (offline) và `aio_audit` (10 mục, điểm = tỉ lệ đạt).
 - API công khai chuyển sang dữ liệu `data-sample/` đã lọc (không còn bộ nhớ dịch Sony); repo dữ liệu chuyển private.

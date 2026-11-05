@@ -250,7 +250,10 @@ def _phrase_diffs(wrong: str, right: str):
 
 def record_feedback(store: Store, en: str, wrong: str, right: str, reason: str = "", project: str = "",
                     always: bool = False, layout: dict | None = None) -> dict:
-    """Log a user correction, update translation memory, and queue phrase-level rule candidates."""
+    """Log a user correction, update translation memory, and optionally promote phrase-level rules.
+
+    When always=True: immediately call learn(min_count=1) to promote corrections as rules.
+    Otherwise: record feedback but don't auto-promote; call learn() explicitly to review."""
     wrong, right = nfc(wrong), nfc(right)
     pairs, drops = _phrase_diffs(wrong, right)
 
@@ -271,7 +274,7 @@ def record_feedback(store: Store, en: str, wrong: str, right: str, reason: str =
     store.feedback.append(fb)
     remember_translation(store, en, right, project, layout)
     _log(f"Sửa: `{wrong}` → `{right}`" + (f" - {reason}" if reason else ""))
-    promoted = learn(store, min_count=1 if always else 2)["promoted"] if pairs or drops else []
+    promoted = learn(store, min_count=1)["promoted"] if always and (pairs or drops) else []
     return {
         "logged": True,
         "phrase_candidates": pairs,

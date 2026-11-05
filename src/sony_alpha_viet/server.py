@@ -142,7 +142,7 @@ def record_term(en: str, vi: str, short: str = "", note: str = "", locked: bool 
 @tool
 def record_feedback(en: str, wrong: str, right: str, reason: str = "", project: str = "", always: bool = False,
                     max_width: int = 0, font_w: int = 0, font_h: int = 0, rows: int = 1, linefeed: str = "Off") -> dict:
-    """Ghi nhớ một lần người dùng sửa bản dịch. Cập nhật bộ nhớ dịch; cụm từ bị sửa ≥2 lần (hoặc always=True) tự thành quy tắc."""
+    """Ghi nhớ một lần người dùng sửa bản dịch. Cập nhật bộ nhớ dịch; always=True tự thành quy tắc; các lần sửa lặp lại chờ bạn gọi learn (dry_run=True để xem trước)."""
     return memory.record_feedback(store, en, wrong, right, reason, project, always, _layout(max_width, font_w, font_h, rows, linefeed))
 
 
@@ -161,7 +161,7 @@ def ban_term(pattern: str, why: str) -> dict:
 
 @tool
 def learn(min_count: int = 2, dry_run: bool = False) -> dict:
-    """Tự cải tiến: biến các lần sửa lặp lại thành quy tắc thay thế. dry_run=True chỉ xem trước."""
+    """Tự cải tiến: biến các lần sửa lặp lại (≥min_count) thành quy tắc thay thế. dry_run=True chỉ xem trước không commit."""
     return memory.learn(store, min_count, dry_run)
 
 
@@ -576,6 +576,7 @@ def make_public() -> None:
 def main():
     """stdio (Claude Code, Gemini CLI) by default; --http for remote clients (ChatGPT developer mode, other MCP hosts)."""
     import argparse
+    import sys
     ap = argparse.ArgumentParser(prog="sony-alpha-viet-mcp")
     ap.add_argument("--http", action="store_true", help="chạy HTTP thay vì stdio: MCP ở /mcp, REST JSON ở /v1/<tool>")
     ap.add_argument("--host", default="127.0.0.1")
@@ -583,6 +584,9 @@ def main():
     ap.add_argument("--read-only", action="store_true", help="tắt các tool ghi dữ liệu và đọc/ghi file (nên bật khi mở ra Internet)")
     a = ap.parse_args()
     if a.read_only:
+        make_public()
+    elif a.host not in ("127.0.0.1", "localhost", "::1"):
+        print("Cảnh báo: write tools bị vô hiệu hóa trên non-loopback host", file=sys.stderr)
         make_public()
     if a.http:
         import uvicorn

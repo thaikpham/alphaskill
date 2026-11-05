@@ -5,6 +5,8 @@ Không cần internet, dùng template + entity Sony
 
 Cách dùng:
   paa_generator(primary_keyword, audience="thợ cưới", models=["A7 IV", "A7R V"]) -> list câu hỏi
+
+LƯU Ý: Tất cả hints là template. Mọi số liệu cụ thể (MP, shot, firmware, giá...) phải xác minh trước khi công bố.
 """
 
 from typing import List, Dict
@@ -47,21 +49,22 @@ def paa_generator(primary_keyword: str, audience: str = "thợ chụp cưới", 
         questions.append(q)
 
     # Gợi ý trả lời mẫu cho 3 câu đầu để AI hiểu format
+    # Lưu ý: không ghi số cụ thể, dùng placeholder [thông số từ sony.com.vn]
     suggestions = [
         {
             "question": questions[0],
-            "answer_hint": f"Có, {models[0]} rất tốt cho {audience} vì pin 580 shot, 2 khe thẻ, Eye AF mắt người chính xác 94% (nguồn: Sony). Nhược: nặng hơn ZV-E10.",
-            "word_count": "45 từ, tự đứng được"
+            "answer_hint": f"Có, {models[0]} tốt cho {audience} vì pin dùng được lâu, có [số khe thẻ từ sony.com.vn] khe thẻ, Eye AF chính xác. Xác minh pin shots, trọng lượng so với các model khác tại sony.com.vn.",
+            "word_count": "40-70 từ, tự đứng được"
         },
         {
             "question": questions[1],
-            "answer_hint": f"{models[0]} khác {other} ở độ phân giải: {models[0]} 33MP cân bằng, {other} 61MP chi tiết cao nhưng file RAW 120MB. Thợ cưới nên chọn {models[0]} để xử lý nhanh.",
-            "word_count": "42 từ"
+            "answer_hint": f"{models[0]} khác {other} ở độ phân giải: {models[0]} có [MP1 từ sony.com.vn] cân bằng, {other} có [MP2 từ sony.com.vn] chi tiết cao nhưng file nặng hơn. Xác minh thông số file size trên sony.com.vn.",
+            "word_count": "40-70 từ"
         },
         {
             "question": questions[2],
-            "answer_hint": "Có, cả 2 máy đều có IBIS 5 trục 5.5 stop, giúp chụp tốc 1/15s không rung khi chụp tiệc tối không flash.",
-            "word_count": "28 từ"
+            "answer_hint": "Có, cả 2 máy đều có chống rung IBIS với [thông số trục và stop từ sony.com.vn]. Xác minh khả năng chụp tốc độ thấp khi có ánh sáng tối.",
+            "word_count": "40-70 từ"
         }
     ]
 

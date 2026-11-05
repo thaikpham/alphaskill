@@ -190,3 +190,116 @@ def test_style_lint_terminology():
     from sony_alpha_viet import blog
     types = {i["type"] for i in blog.style_lint("Máy có cảm biến khung hình đầy đủ và nút màn trập mới.")["issues"]}
     assert "terminology" in types
+
+
+# Regression tests for security fixes (Task 5)
+
+def test_classify_domain_exact_match():
+    """Exact host or subdomain match for domain classification."""
+    from sony_alpha_viet.blog.citation_checker import classify_domain
+    assert "Tier 1" in classify_domain("https://www.sony.com/x")
+    assert "Tier 1" in classify_domain("https://imaging-edge.sony.net/page")
+    assert "Tier 1" not in classify_domain("https://notsony.com")
+    assert "Tier 1" not in classify_domain("https://sony.com.evil.io")
+
+
+def test_check_link_alive_refuses_private_ips():
+    """URL fetch should refuse private, loopback IPs."""
+    from sony_alpha_viet.blog.citation_checker import check_link_alive
+    import os
+    if not os.environ.get("SONY_VN_NO_NET"):
+        result = check_link_alive("http://127.0.0.1/")
+        assert result["alive"] is None
+        assert "Không cho phép" in result["evidence"]
+
+
+def test_check_link_alive_refuses_non_http():
+    """URL fetch should refuse non-http/https schemes."""
+    from sony_alpha_viet.blog.citation_checker import check_link_alive
+    import os
+    if not os.environ.get("SONY_VN_NO_NET"):
+        result = check_link_alive("file:///etc/passwd")
+        assert result["alive"] is None
+        assert "Lược đồ không hỗ trợ" in result["evidence"]
+
+
+def test_check_link_alive_redirect_allowed(monkeypatch):
+    """URL fetch with redirect to public URL is allowed (200 <= 300)."""
+    import importlib
+    import urllib.error
+    import os
+    if os.environ.get("SONY_VN_NO_NET"):
+        return
+    
+    cc = importlib.import_module("sony_alpha_viet.blog.citation_checker")
+    
+    def mock_getaddrinfo(host, port):
+        return [(2, 1, 6, '', ('8.8.8.8', 0))]
+    
+    call_count = [0]
+    def mock_open(req, timeout=3):
+        call_count[0] += 1
+        raise urllib.error.HTTPError(req.full_url, 302, "Found", {"Location": "http://169.254.169.254/"}, None)
+    
+    monkeypatch.setattr(cc.socket, "getaddrinfo", mock_getaddrinfo)
+    monkeypatch.setattr(cc._NO_REDIRECT, "open", mock_open)
+    
+    result = cc.check_link_alive("http://example.com/")
+    assert result["alive"] is True
+    assert result["status"] == 302
+    assert "169.254.169.254" in result["evidence"]
+    assert call_count[0] == 1
+
+
+def test_colorlab_html_sources_no_href_for_non_http():
+    """colorlab_html should render non-http/https sources as plain text."""
+    from sony_alpha_viet.blog import colorlab_html
+    sources = [
+        {"title": "Normal Link", "url": "https://example.com", "publisher": "Example"},
+        {"title": "JavaScript URL", "url": "javascript:alert(1)", "publisher": "Evil"}
+    ]
+    html_output = colorlab_html._sources(sources)
+    assert 'href="https://example.com"' in html_output
+    assert 'href="javascript:' not in html_output
+    assert ">JavaScript URL<" in html_output
+
+
+def test_colorlab_write_pack_restore_on_gate_failure(tmp_path, monkeypatch):
+    """write_pack should restore files if vitest gate fails."""
+    from sony_alpha_viet.blog import colorlab
+    import subprocess
+    
+    packs_dir = tmp_path / "src" / "lib" / "lab" / "packs"
+    packs_dir.mkdir(parents=True)
+    (packs_dir / "index.ts").write_text("import type { Article } from '../types'\n\nexport const PACKS = {}\n")
+    
+    def mock_run(*args, **kwargs):
+        class Result:
+            returncode = 1
+            stdout = "failed"
+            stderr = ""
+        return Result()
+    
+    monkeypatch.setattr(subprocess, "run", mock_run)
+    
+    articles = [{"id": "test-1", "title": "Test Article", "kind": "blog"}]
+    result = colorlab.write_pack(articles, str(tmp_path), "new-pack", check_gate=True)
+    
+    assert result.get("restored") is True
+    assert not (packs_dir / "new-pack.ts").exists()
+
+
+def test_server_main_forces_readonly_on_non_loopback(monkeypatch, capsys):
+    """server.main() forces read-only for non-loopback hosts."""
+    from sony_alpha_viet import server
+    import sys
+    
+    server.PUBLIC = False
+    monkeypatch.setattr(sys, "argv", ["prog", "--host", "0.0.0.0"])
+    monkeypatch.setattr("sony_alpha_viet.server.mcp.run", lambda: None)
+    
+    server.main()
+    
+    assert server.PUBLIC is True
+    captured = capsys.readouterr()
+    assert "Cảnh báo" in captured.err
