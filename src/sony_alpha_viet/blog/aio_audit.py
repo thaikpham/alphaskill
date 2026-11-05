@@ -128,11 +128,11 @@ def aio_audit(text: str, primary_keyword: str = "") -> Dict:
 
     # Dự đoán khả năng được AI Overviews trích
     if score >= 80:
-        verdict = "Rất cao (80-95%) - AI sẽ trích TL;DR + FAQ + bảng"
+        verdict = "Đạt - có TL;DR, FAQ, bảng để AI trích"
     elif score >= 60:
-        verdict = "Trung bình (50-70%) - Cần thêm bảng, FAQ tự đứng"
+        verdict = "Trung bình - cần thêm bảng, FAQ tự đứng"
     else:
-        verdict = "Thấp (<50%) - Thiếu TL;DR, FAQ, bảng - AI sẽ bỏ qua"
+        verdict = "Thấp - thiếu TL;DR, FAQ, bảng"
 
     table = []
     for name, res in checks.items():
