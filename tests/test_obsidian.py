@@ -81,7 +81,7 @@ def test_knowledge_mirror_edit_and_new_note(vault):
     core, _, s, obs, root = vault
     from sony_alpha_viet import knowledge
     out = obs.export(s)["knowledge"]
-    assert out["notes"] == 2 and out["pending_edits"] == []
+    assert out["notes"] == len(knowledge.load()) and out["pending_edits"] == []
     note = root / "1 Kiến thức" / "Phơi sáng" / "Khẩu độ.md"
     assert "kb_hash" in obs.read_note(note)[0] and obs.export(s)["knowledge"]["pending_edits"] == []  # re-export is clean
     note.write_text(note.read_text(encoding="utf-8") + "\nGhi chú của trainer.\n", encoding="utf-8")

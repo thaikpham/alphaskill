@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0 — 2026-11-05
+- API công khai phục vụ toàn bộ kho kiến thức (`knowledge/`); TM và S-number vẫn private.
+- `data_info.knowledge_count` cho phép theo dõi đồng bộ kho trên API.
+- `scripts/publish.sh`: quy trình một lệnh xuất bản vault (obsidian import → push data → export public → poll API).
+
 ## Unreleased
 - Bảo mật: `citation_checker` so khớp domain chính xác (hết nhận nhầm `notsony.com`), chặn IP nội bộ và không theo redirect; link nguồn trong HTML chỉ nhận http/https; MCP server tự bật read-only khi bind ngoài loopback; `colorlab_pack` khôi phục file cũ khi gate vitest fail.
 - Trung thực: `aio_audit` bảng phải có dòng `|---|`, FAQ kiểm 40-70 từ mỗi đáp; `freshness_check` bỏ giá/firmware cứng, lấy tháng hiện tại; `paa_generator` bỏ số liệu trong gợi ý; `record_feedback` không còn tự tạo quy tắc sau 2 lần sửa, gọi `learn` để duyệt.

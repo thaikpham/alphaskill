@@ -3,6 +3,7 @@
 import json
 import argparse
 import re
+import shutil
 from pathlib import Path
 
 def export_public_data(src_dir: Path, out_dir: Path):
@@ -75,12 +76,39 @@ def export_public_data(src_dir: Path, out_dir: Path):
         rules_md = (src_dir / "rules.md").read_text(encoding="utf-8")
         (out_dir / "rules.md").write_text(rules_md, encoding="utf-8")
 
+    # 8. knowledge/: copy all .md files recursively, check for S-numbers
+    knowledge_src = src_dir / "knowledge"
+    knowledge_out = out_dir / "knowledge"
+
+    # Delete previous knowledge export
+    if knowledge_out.exists():
+        shutil.rmtree(knowledge_out)
+
+    knowledge_count = 0
+    if knowledge_src.exists():
+        for md_file in sorted(knowledge_src.rglob("*.md")):
+            text = md_file.read_text(encoding="utf-8")
+            # Refuse entire export if any note contains S-number
+            if re.search(r"S\d{5,}", text):
+                raise ValueError(f"S-number found in {md_file.relative_to(knowledge_src)}")
+            # Copy preserving folder structure
+            rel_path = md_file.relative_to(knowledge_src)
+            out_path = knowledge_out / rel_path
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            out_path.write_text(text, encoding="utf-8")
+            knowledge_count += 1
+
+    print(f"✓ Exported {knowledge_count} knowledge notes")
     print(f"✓ Exported public data to {out_dir}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Export public data from private data dir")
-    parser.add_argument("--src", required=True, help="Source data directory")
-    parser.add_argument("--out", required=True, help="Output data directory")
+    parser.add_argument("src", help="Source data directory")
+    parser.add_argument("out", help="Output data directory")
     args = parser.parse_args()
 
-    export_public_data(Path(args.src), Path(args.out))
+    try:
+        export_public_data(Path(args.src), Path(args.out))
+    except ValueError as e:
+        print(f"✗ {e}", flush=True)
+        exit(1)

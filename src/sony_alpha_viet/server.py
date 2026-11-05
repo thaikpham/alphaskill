@@ -300,6 +300,11 @@ def data_info() -> dict:
     rules_count = len(store.rules.get("substitutions", []))
     keep_count = len(store.keep)
 
+    # Count knowledge notes
+    from . import knowledge
+    knowledge_notes = knowledge.load(DATA)
+    knowledge_count = len(knowledge_notes)
+
     is_sample = not (DATA / "LEARNING_LOG.md").exists() and len(store.tm) == 0
 
     return {
@@ -309,7 +314,8 @@ def data_info() -> dict:
         "glossary_count": glossary_count,
         "tm_count": tm_count,
         "rules_count": rules_count,
-        "keep_english_count": keep_count
+        "keep_english_count": keep_count,
+        "knowledge_count": knowledge_count
     }
 
 

@@ -3,7 +3,7 @@
 > Bạn chụp Sony A7, A7R, A7S, A6xxx, ZV, FX? Bạn cần menu tiếng Việt chuẩn, tài liệu dễ hiểu, và bài blog chuẩn SEO? Đây là bộ công cụ dành cho bạn.
 
 **Tác giả:** Pham Khang Thai (Thái) — Giấy phép MIT  
-**Phiên bản:** 1.3.1 - API công khai + trang tra thuật ngữ, xuất bài Alpha ColorLab 11/2026
+**Phiên bản:** 1.4.0 - API công khai phục vụ kho kiến thức, scripts/publish.sh 11/2026
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "name": "sony-alpha-viet",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Dịch menu máy ảnh Sony sang tiếng Việt (bộ nhớ dịch, đo độ rộng, tự học) và viết/chấm blog máy ảnh chuẩn SEO/AIO (AIO-first)",
   "contextFileName": "GEMINI.md",
   "mcpServers": {
