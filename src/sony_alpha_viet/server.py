@@ -459,6 +459,15 @@ def ingest_docs(folder: str) -> dict:
 
 
 @tool
+def ingest_helpguide(url: str) -> dict:
+    """Nạp Help Guide tiếng Anh từ Sony (HTML) vào dữ liệu riêng (DATA/docs). Lấy tất cả trang từ index,
+    chuyển sang markdown với định dạng "## Trang N" để search() dùng được. Hữu ích để tra nghĩa tiếng Anh
+    khi dịch tài liệu. Tài liệu không bao giờ đưa lên repo công khai."""
+    from . import docs
+    return docs.ingest_helpguide(url)
+
+
+@tool
 def search_docs(query: str, limit: int = 10) -> list[dict]:
     """Tìm cụm từ trong tài liệu tiếng Việt chính thức của Sony (theo model, trang). Dùng để xem Sony Việt Nam diễn đạt thế nào
     trước khi đề xuất thuật ngữ mới hoặc khi dịch tài liệu."""
@@ -565,7 +574,7 @@ def colorlab_pack(sources: list[str], name: str, repo: str = "", overwrite: bool
 
 
 WRITE_TOOLS = ("record_term", "record_feedback", "remember_translation", "ban_term", "keep_english", "learn",
-               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs", "add_knowledge", "colorlab_pack")
+               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs", "ingest_helpguide", "add_knowledge", "colorlab_pack")
 
 
 def make_public() -> None:

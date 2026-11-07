@@ -16,8 +16,39 @@ Giọng: chuyên gia nhiếp ảnh nói chuyện với người chơi máy — c
 | Từ Hán Việt nặng khi có từ thường: "tiến hành thao tác", "thực hiện việc chụp" | "chụp", "bấm" |
 | Câu > 35 chữ | Tách đôi |
 
+## Lượt humanizer (chống văn AI)
+
+Chuyển thể từ humanizer (blader/humanizer, MIT). Dùng khi bài viết xong, trước style_lint.
+
+**3 quy trình cốt lõi:**
+- Không thêm/bớt dữ kiện (số, tên, ngày, nguồn).
+- Đọc to và thay đổi độ dài câu.
+- Giữ nguyên code, tên menu (in đậm), link.
+
+**NGOẠI LỆ:** Câu kết "Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái E-mount…" và cụm "trải nghiệm KANDO" từ sony-core-principles.md là bắt buộc, giữ nguyên dù khớp §1/§6.
+
+| Dấu hiệu AI-sounding | Cách sửa |
+|---|---|
+| "Không phải X mà là Y" hay "không chỉ… mà còn" lặp lại | Nói thẳng: "X có Y." Chỉ giữ khi nó sửa niềm tin người đọc thực sự có |
+| Câu kết lặp ý đoạn trên: "Đó mới là điều quan trọng." | Xóa hoặc gộp vào đoạn trước |
+| "Suy cho cùng", "điều thực sự quan trọng", "hơn hết" | Bỏ để nói thẳng thừa |
+| Mở màn dàn dựng: "Hãy cùng tìm hiểu", "Nói thật nhé", "Heads up" | Xóa, nói thẳng câu chứa thông tin |
+| "Đừng hiểu lầm", "Một điều cần nói", "Nhớ rằng" (cãi với người vô hình) | Xóa nếu không sửa niềm tin cụ thể |
+| Ba tính từ/danh từ liền: "công nghệ, tính năng, giải pháp" | Giữ 1-2 item có thật sự khác nhau, phát triển cái tốt nhất |
+| Gạch nối/dấu phẩy thừa: "máy ảnh — công cụ mạnh" | Thay bằng dấu chấm, phẩy, hay hai chấm; viết lại câu nếu cần |
+| "Rào đón chồng" (các từ: "cũng", "cũng lại", "vẫn", "tuy…nhưng") | Xóa những cái thừa; viết lại cấu trúc câu |
+| Từ AI hay dùng: "đóng vai trò then chốt", "minh chứng cho", "đột phá" (nghĩa bóng), "vô cùng", "tuyệt vời" | Dùng từ cụ thể hoặc thường gặp hơn trong máy ảnh: "quan trọng", "ví dụ", "thay đổi", "rất", "tốt" |
+| Thổi phồng ý: "bước ngoặt lịch sử", "hành trình tuyệt vời" | Nêu sự kiện hoặc bước cụ thể; nếu đó là bước quan trọng thì giải thích tại sao |
+| Ngôn ngữ bán hàng: "tuyệt đẹp", "đỉnh cao", "phải có" | Mô tả cụ thể hoặc nói "tốt cho nhu cầu X" |
+| Dẫn nguồn mơ hồ: "nhiều chuyên gia cho rằng", "như mọi người biết" | Ghi tên hoặc bỏ; nếu từ Sony, viết "Sony nêu" và đính kèm link |
+| In đậm trang trí (trừ tên menu): **"Quan trọng nhất"** | Xóa bold; tên menu **Vùng lấy nét** vẫn giữ |
+| Câu hỏi tu từ mở/kết bài: "Bạn có bao giờ…?", "Phải không?" | Xóa hoặc viết câu tường thuật |
+| Dư âm chatbot: "Hy vọng bài viết hữu ích", "Chúc bạn…", "Có gì cần hỏi không?" | Xóa; kết bài bằng lời khuyến nghị hay hành động cụ thể |
+| "Bảng dưới đây so sánh" (viết về tài liệu thay vì chủ đề) | Bỏ; cho bảng vào dòng và mô tả kết quả trực tiếp |
+| Định nghĩa rỗng: "X được hiểu là một khái niệm", "Y là sự kết hợp của…" | Nêu định nghĩa cụ thể hoặc ví dụ thực |
+
 ## Cụm "AI-sounding" cần tránh
-"Trong thế giới nhiếp ảnh ngày nay", "Hãy cùng khám phá", "không thể phủ nhận", "đưa trải nghiệm lên một tầm cao mới", "hoàn hảo cho mọi nhu cầu", "bậc thầy", "cuộc cách mạng", mở/kết đoạn bằng câu hỏi tu từ, ba tính từ liền nhau, kết bài "Tóm lại" lặp lại thân bài.
+"Trong thế giới nhiếp ảnh ngày nay", "Hãy cùng khám phá", "không thể phủ nhận", "đưa trải nghiệm lên một tầm cao mới", "hoàn hảo cho mọi nhu cầu", "bậc thầy", "cuộc cách mạng", "Hãy cùng tìm hiểu", "Nói thật nhé", "Đừng hiểu lầm", "Suy cho cùng", "Đó mới là điều", "đóng vai trò then chốt", "minh chứng cho", "đột phá" (khi dùng nghĩa bóng), "vô cùng", "tuyệt vời", "tuyệt đẹp", "đỉnh cao", "không thể bỏ lỡ", "Hy vọng bài viết", "Chúc bạn", "bảng dưới đây", "một trong những", mở/kết đoạn bằng câu hỏi tu từ, ba tính từ liền nhau, kết bài "Tóm lại" lặp lại thân bài.
 
 ## Thuật ngữ trong văn xuôi
 - Theo cột **Bài viết/Tài liệu** trong glossary.

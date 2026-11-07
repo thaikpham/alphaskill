@@ -17,7 +17,7 @@ Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — b
 ## Quy trình
 1. **Đầu vào.** Nhận chuỗi gốc, ảnh chụp màn hình, CSV/JSON, file `*_TranslationCheck_VN.xls` hoặc đoạn trích resource. Hỏi model máy và ngôn ngữ nguồn nếu chưa rõ.
 2. **Gom theo màn hình/menu.** Giữ thứ tự cây menu (tab → trang → mục → giá trị). Không dịch rời rạc khi ngữ cảnh quyết định nghĩa (ví dụ "Off", "Mode", "Area").
-3. **Tra.** `mcp__sony-alpha-viet__get_guidelines()` một lần mỗi phiên → `mcp__sony-alpha-viet__prepare_batch(items)` (≤ ~60 chuỗi/lần, kèm `max_width/font_w/font_h/rows/linefeed` nếu có). Có `exact_match` → dùng nguyên văn trừ khi người dùng yêu cầu dịch lại.
+3. **Tra.** `mcp__sony-alpha-viet__get_guidelines()` một lần mỗi phiên → `mcp__sony-alpha-viet__prepare_batch(items)` (≤ ~60 chuỗi/lần, kèm `max_width/font_w/font_h/rows/linefeed` nếu có). Có `exact_match` → dùng nguyên văn trừ khi người dùng yêu cầu dịch lại. Để tra nghĩa tiếng Anh của một menu item trước khi dịch, dùng `mcp__sony-alpha-viet__search_docs("<item>")` (cần phải ingest help guide trước bằng `ingest_helpguide(url)`; ví dụ `ingest_helpguide("https://helpguide.sony.net/ilc/2230/v1/en/index.html")` cho α7RV).
 4. **Dịch** phần còn lại, bám `terms` (ưu tiên `locked`) và bản `memory` gần giống. Nguồn tiếng Nhật: dùng cột JP trong glossary để nhận diện; nếu có bản tiếng Anh cùng model thì đối chiếu tên mục.
 5. **Kiểm.** `mcp__sony-alpha-viet__check_translation(en, vi, layout…)` từng chuỗi (autofix bật) đến khi `ok`. `fit.verdict` = BORDER/OVER → rút gọn theo quy tắc 3.
 6. **Xuất** bảng `STT | Nguồn (EN/JP) | Tiếng Việt | Loại UI | Ghi chú` + CSV theo `templates/menu-translation-table.csv`. Ghi chú chỉ khi có lý do (thuật ngữ mới, độ rộng, ngoại lệ, phương án thay thế).

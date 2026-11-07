@@ -165,15 +165,54 @@ BANNED_PROSE = [
 ]
 
 
+def _strip_special_regions(text: str) -> tuple[str, dict]:
+    """Return (stripped text, {region_id: (start, end)}) for code/inline/urls to skip checks."""
+    regions = {}
+    stripped = text
+    offset = 0
+
+    # Fenced code blocks
+    for m in re.finditer(r"```.*?```", text, re.DOTALL):
+        rid = f"code_{len(regions)}"
+        regions[rid] = (m.start(), m.end())
+
+    # Inline code
+    for m in re.finditer(r"`[^`]+`", text):
+        if not any(m.start() >= r[0] and m.end() <= r[1] for r in regions.values()):
+            rid = f"inline_{len(regions)}"
+            regions[rid] = (m.start(), m.end())
+
+    # URLs
+    for m in re.finditer(r"https?://[^\s\)\]>\"']+", text):
+        if not any(m.start() >= r[0] and m.end() <= r[1] for r in regions.values()):
+            rid = f"url_{len(regions)}"
+            regions[rid] = (m.start(), m.end())
+
+    # Markdown table rows
+    for m in re.finditer(r"^\|[^|]*\|.*$", text, re.MULTILINE):
+        if not any(m.start() >= r[0] and m.end() <= r[1] for r in regions.values()):
+            rid = f"table_{len(regions)}"
+            regions[rid] = (m.start(), m.end())
+
+    return text, regions
+
+def _is_in_region(pos: int, regions: dict) -> bool:
+    """Check if position is inside any protected region."""
+    return any(r[0] <= pos < r[1] for r in regions.values())
+
+
 def style_lint(text: str) -> dict:
     """Lint for style issues: AI-sounding phrases, passive voice, sentence length, etc."""
     issues = []
     ai_phrases = _load_ai_sounding_phrases()
+    _, protected_regions = _strip_special_regions(text)
 
     # Check for AI-sounding phrases
     for phrase in ai_phrases:
         pattern = re.compile(re.escape(phrase), re.IGNORECASE)
         for match in pattern.finditer(text):
+            if _is_in_region(match.start(), protected_regions):
+                continue
             line_no = text[:match.start()].count("\n") + 1
             issues.append({
                 "type": "ai_sounding",
@@ -184,12 +223,43 @@ def style_lint(text: str) -> dict:
 
     # Check for passive voice: "được ... bởi"
     for match in re.finditer(r"được\s+\w+\s+bởi", text):
+        if _is_in_region(match.start(), protected_regions):
+            continue
         line_no = text[:match.start()].count("\n") + 1
         issues.append({
             "type": "passive",
             "match": match.group(0),
             "line": line_no,
             "hint": "Dùng chủ động thay vì bị động"
+        })
+
+    # Em dash, or spaced en dash, as a clause connector; unspaced en dash is a range (F8–F11, 5–15s)
+    for match in re.finditer(r"—|(?<= )–(?= )", text):
+        if _is_in_region(match.start(), protected_regions):
+            continue
+        if text[max(0, match.start() - 2):match.start()].strip() or text[match.end():match.end() + 2].strip():
+            line_no = text[:match.start()].count("\n") + 1
+            issues.append({
+                "type": "dash",
+                "match": match.group(0),
+                "line": line_no,
+                "hint": "Dùng dấu chấm, phẩy, hoặc hai chấm thay vì gạch dài"
+            })
+
+    # Check for "không phải...mà là" and "không chỉ...mà còn" patterns
+    for match in re.finditer(r"không\s+(?:phải|chỉ)\s*(?:là)?\s*[^.!?]*?\s+mà\s+(?:là|còn)\s+", text, re.IGNORECASE):
+        if _is_in_region(match.start(), protected_regions):
+            continue
+        # Skip if this is part of the brand closer "Chọn Sony không chỉ"
+        start_context = max(0, match.start() - 50)
+        if "Chọn Sony không chỉ" in text[start_context:match.start() + 100]:
+            continue
+        line_no = text[:match.start()].count("\n") + 1
+        issues.append({
+            "type": "not_x_but_y",
+            "match": match.group(0)[:40],
+            "line": line_no,
+            "hint": "Cấu trúc 'không phải...mà là' lặp lại. Nói thẳng thay vì dùng cấu trúc đối lập."
         })
 
     # Check for "Việc " at start of sentence

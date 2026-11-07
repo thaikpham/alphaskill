@@ -192,6 +192,61 @@ def test_style_lint_terminology():
     assert "terminology" in types
 
 
+def test_style_lint_dash_flagged():
+    """Test that em/en dashes used as sentence connectors are flagged."""
+    from sony_alpha_viet import blog
+    text = "Máy ảnh rất mạnh — nó có Eye AF tuyệt vời."
+    result = blog.style_lint(text)
+    dash_issues = [i for i in result["issues"] if i["type"] == "dash"]
+    assert len(dash_issues) > 0, f"Should flag em dash, but got: {result['issues']}"
+
+
+def test_style_lint_dash_in_code_not_flagged():
+    """Test that dashes in code blocks are not flagged."""
+    from sony_alpha_viet import blog
+    text = "```\nvar x = a — b\n```\nMáy ảnh — công cụ tuyệt vời."
+    result = blog.style_lint(text)
+    dash_issues = [i for i in result["issues"] if i["type"] == "dash"]
+    # Should only flag the one outside code block
+    assert len(dash_issues) == 1
+
+
+def test_style_lint_dash_in_table_not_flagged():
+    """Test that dashes in markdown tables are not flagged."""
+    from sony_alpha_viet import blog
+    text = "| Tiêu chí | Mô tả |\n|---|---|\n| A — B | Kết quả |"
+    result = blog.style_lint(text)
+    dash_issues = [i for i in result["issues"] if i["type"] == "dash"]
+    assert len(dash_issues) == 0, "Should not flag dash in table"
+
+
+def test_style_lint_not_x_but_y_flagged():
+    """Test that 'không phải...mà là' patterns are flagged."""
+    from sony_alpha_viet import blog
+    text = "Không phải A7 IV yếu, mà là nó có cân bằng khác."
+    result = blog.style_lint(text)
+    issues = [i for i in result["issues"] if i["type"] == "not_x_but_y"]
+    assert len(issues) > 0, f"Should flag 'không phải...mà là', but got: {result['issues']}"
+
+
+def test_style_lint_not_x_but_y_brand_closer_not_flagged():
+    """Test that brand closer 'Chọn Sony không chỉ' is not flagged."""
+    from sony_alpha_viet import blog
+    text = "Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái E-mount."
+    result = blog.style_lint(text)
+    issues = [i for i in result["issues"] if i["type"] == "not_x_but_y"]
+    assert len(issues) == 0, "Should not flag brand closer"
+
+
+def test_style_lint_new_ai_phrase_flagged():
+    """Test that new AI-sounding phrases are flagged."""
+    from sony_alpha_viet import blog
+    text = "Hãy cùng tìm hiểu về máy ảnh Sony A7 IV."
+    result = blog.style_lint(text)
+    ai_issues = [i for i in result["issues"] if i["type"] == "ai_sounding"]
+    assert len(ai_issues) > 0, f"Should flag 'Hãy cùng tìm hiểu', but got: {result['issues']}"
+
+
 # Regression tests for security fixes (Task 5)
 
 def test_classify_domain_exact_match():
@@ -303,3 +358,9 @@ def test_server_main_forces_readonly_on_non_loopback(monkeypatch, capsys):
     assert server.PUBLIC is True
     captured = capsys.readouterr()
     assert "Cảnh báo" in captured.err
+
+
+def test_style_lint_range_en_dash_not_flagged():
+    from sony_alpha_viet import blog
+    issues = blog.style_lint("Khẩu F8–F11, tốc độ 5–15s.")["issues"]
+    assert not [i for i in issues if i["type"] == "dash"]
