@@ -351,15 +351,33 @@ def export_docs(store: core.Store) -> dict:
         text = corpus["texts"].get(m["id"], "")
         name = f"{m['model']} — {m['kind']}"
         names[m["id"]] = name
-        low = docs._fold(text)
-        seen = [g for g in locked if re.search(r"(?<!\w)" + re.escape(docs._fold(g["vi"])) + r"(?!\w)", low)]
-        terms = "\n".join(f"- [[{TERMS}/{note_name(g['en'])}|{g['en']}]] → {g['vi']}" for g in seen) or "_Không có._"
-        write_note(root / f"{name}.md", {"model": m["model"], "kind": m["kind"], "code": m["code"], "pages": m["pages"],
-                                          "source_file": m["file"], "encoding": m["encoding"], "language": "vi",
-                                          "tags": ["sony-alpha-viet/tai-lieu"], "updated": _today()},
-                   f"# {m['model']} — {m['kind']}\n\nBản chính thức tiếng Việt của Sony ({m['code'] or 'không mã'}, {m['pages']} trang"
-                   + (", chuyển từ font VNI" if m["encoding"] == "vni" else "") + "). Văn bản trích từ PDF, hình minh họa không có.\n\n"
-                   + text + "\n\n## Thuật ngữ khóa xuất hiện\n\n" + terms)
+        lang = m.get("lang", "vi")
+
+        # Only check Vietnamese glossary for Vietnamese docs
+        if lang == "vi":
+            low = docs._fold(text)
+            seen = [g for g in locked if re.search(r"(?<!\w)" + re.escape(docs._fold(g["vi"])) + r"(?!\w)", low)]
+            terms = "\n".join(f"- [[{TERMS}/{note_name(g['en'])}|{g['en']}]] → {g['vi']}" for g in seen) or "_Không có._"
+            source_info = f"Bản chính thức tiếng Việt của Sony ({m['code'] or 'không mã'}, {m['pages']} trang" \
+                         + (", chuyển từ font VNI" if m.get("encoding") == "vni" else "") + "). Văn bản trích từ PDF, hình minh họa không có."
+        else:
+            terms = ""
+            source_info = f"Sony Help Guide (tiếng Anh, {m['pages']} trang). Dùng để tra nghĩa tiếng Anh khi dịch tài liệu."
+
+        note_body = f"# {m['model']} — {m['kind']}\n\n{source_info}\n\n" + text
+        if terms:
+            note_body += f"\n\n## Thuật ngữ khóa xuất hiện\n\n{terms}"
+
+        meta = {"model": m["model"], "kind": m["kind"], "code": m["code"], "pages": m["pages"],
+                "language": lang, "tags": ["sony-alpha-viet/tai-lieu"], "updated": _today()}
+        if m.get("source_url"):
+            meta["source_url"] = m["source_url"]
+        if m.get("file"):
+            meta["source_file"] = m["file"]
+        if m.get("encoding"):
+            meta["encoding"] = m["encoding"]
+
+        write_note(root / f"{name}.md", meta, note_body)
     rows = ["| Model | Tài liệu | Mã | Trang |", "|---|---|---|---|"] + [
         f"| {m['model']} | [[{DOCS}/{names[m['id']]}\\|{m['kind']}]] | {m['code']} | {m['pages']} |" for m in corpus["docs"]]
     links = [f"- [{l['title']}]({l['url']})" for l in corpus.get("links", [])]

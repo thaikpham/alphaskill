@@ -6,6 +6,8 @@
 - `scripts/publish.sh`: quy trình một lệnh xuất bản vault (obsidian import → push data → export public → poll API).
 
 ## Unreleased
+- Lượt humanizer cho blog (chống văn AI): `writing-style-vi.md` mục "Lượt humanizer" với 18 dấu hiệu (cấu trúc "không phải…mà là", câu kết lặp, dàn dựng mở bài, gạch dài, từ AI thổi phồng); `style_lint` kiểm "dash" và "not_x_but_y"; ~15 cụm AI-sounding mới.
+- `ingest_helpguide(url)`: nạp Help Guide tiếng Anh từ Sony (HTML) vào kho tài liệu; dùng `search_docs` để tra nghĩa tiếng Anh của menu item trước khi dịch. Docs tự động thêm trường `lang` ("vi" hoặc "en"); `term_report` và Obsidian bỏ qua docs tiếng Anh (không phản ánh cách dùng tiếng Việt).
 - Bảo mật: `citation_checker` so khớp domain chính xác (hết nhận nhầm `notsony.com`), chặn IP nội bộ và không theo redirect; link nguồn trong HTML chỉ nhận http/https; MCP server tự bật read-only khi bind ngoài loopback; `colorlab_pack` khôi phục file cũ khi gate vitest fail.
 - Trung thực: `aio_audit` bảng phải có dòng `|---|`, FAQ kiểm 40-70 từ mỗi đáp; `freshness_check` bỏ giá/firmware cứng, lấy tháng hiện tại; `paa_generator` bỏ số liệu trong gợi ý; `record_feedback` không còn tự tạo quy tắc sau 2 lần sửa, gọi `learn` để duyệt.
 - CI chạy Python 3.10 và 3.13.
