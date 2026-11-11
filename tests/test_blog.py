@@ -116,11 +116,11 @@ def test_seo_audit_example(example_post):
     assert "items" in result
     assert "required_failed" in result
 
-    # Check that item 15 is failed (has [cần xác minh])
+    # Item 15 đạt: ví dụ không còn [cần xác minh]
     item_15 = next((i for i in result["items"] if i["id"] == 15), None)
     assert item_15 is not None
-    # Item 15 should be "Chưa đạt" because example has [cần xác minh] markers
-    assert item_15["status"] == "Chưa đạt"
+    assert item_15["status"] == "Đạt"
+    assert "[cần xác minh" not in example_post
 
 
 def test_faq_schema_basic():
@@ -162,8 +162,8 @@ def test_seo_audit_example_items(example_post):
     st = {i["id"]: i["status"] for i in r["items"]}
     assert st[1] == "Đạt" and st[2] == "Đạt" and st[3] == "Đạt" and st[6] == "Đạt" and st[11] == "Đạt"
     assert st[19] == "Đạt"  # FAQ in article == FAQ in JSON-LD
-    assert st[15] == "Chưa đạt" and 15 in r["required_failed"] and not r["complete"]
-    assert st[17] == "Đạt"  # placeholder [link nội bộ: …] tính là link nội bộ (2 cái)
+    assert st[15] == "Đạt" and 15 not in r["required_failed"] and r["complete"]
+    assert st[17] == "Đạt"  # placeholder [link nội bộ: …] tính là link nội bộ (3 cái)
 
 
 def test_faq_schema_roundtrip_and_mismatch(example_post):
@@ -171,13 +171,13 @@ def test_faq_schema_roundtrip_and_mismatch(example_post):
     body = example_post.split("```html")[0]
     rebuilt = body + "\n" + blog.faq_schema(body, url="https://example.vn/a", site_name="Example")
     assert next(i for i in blog.seo_audit(rebuilt)["items"] if i["id"] == 19)["status"] == "Đạt"
-    tampered = rebuilt.replace("Không hẳn. Sony A7R V", "Không. Sony A7R V", 1)  # edit article FAQ only
+    tampered = rebuilt.replace("Có. Theo thông số Sony Việt Nam, A7 IV", "Không. Theo thông số Sony Việt Nam, A7 IV", 1)  # edit article FAQ only
     items = {i["id"]: i for i in blog.seo_audit(tampered)["items"]}
     assert items[19]["status"] == "Đạt"  # 19 chỉ kiểm kiểu schema (tiêu chí 26)
     assert items[26]["status"] == "Chưa đạt" and "lệch" in items[26]["evidence"]  # Q/A khớp nguyên văn (tiêu chí 27)
     js = json.loads(re.search(r"\{.*\}", rebuilt.split("<script")[-1], re.S).group())
     art = js["@graph"][0]
-    assert art["mainEntityOfPage"] == "https://example.vn/a" and art["publisher"]["name"] == "Example" and art["datePublished"] == "2026-11-02"
+    assert art["mainEntityOfPage"] == "https://example.vn/a" and art["publisher"]["name"] == "Example" and art["datePublished"] == "2026-11-11"
 
 
 def test_faq_multi_paragraph_answer():

@@ -125,8 +125,14 @@ Thay vì nói: | Hãy nói:
 ## 2. Checklist SEO và AIO 40 tiêu chí
 
 > Dùng để tự audit sau khi viết blog/tài liệu, hoặc audit bài người dùng gửi.
-> Điểm = số mục Đạt / tổng số mục áp dụng.
-> Các tool hỗ trợ: `seo_audit` (chấm tiêu chí SEO), `aio_audit` (chấm 10 mục tự động trong checklist 40 tiêu chí), `citation_checker` (nguồn link Tier 1), `freshness_check` (kiểm tra độ mới 11/2026), `brand_voice_checker` (5 tiêu chí bảo vệ Sony).
+> Điểm = số mục Đạt / tổng số mục áp dụng. Mục "Cần người duyệt" và "Không áp dụng" không tính vào mẫu số.
+> Công cụ chính: `blog_audit` chạy một lượt, gồm `seo_audit` và `aio_audit`. Gọi riêng được: `citation_checker` (nguồn link Tier 1), `freshness_check` (độ mới so với tháng hiện tại), `brand_voice_checker` (5 tiêu chí bảo vệ Sony).
+
+**Bands điểm `blog_audit`** (ghi một lần tại đây, các tài liệu khác trỏ về đây):
+- ≥ 80: **Đạt**
+- 60–79: **Cần sửa**
+- < 60: **Thấp**
+- Nếu mục bắt buộc 1, 11, 14, 15 hoặc 17 không đạt thì không được xếp Đạt, dù điểm đủ (bị hạ xuống Cần sửa).
 
 ---
 
@@ -140,7 +146,7 @@ Thay vì nói: | Hãy nói:
 - [ ] **6. Tối ưu hình ảnh:** Ảnh có alt text tiếng Việt mô tả + từ khóa tự nhiên; tên file không dấu; ưu tiên định dạng WebP < 100KB.
 - [ ] **7. Tốc độ & Mobile-friendly:** Bài viết định dạng sạch, câu ngắn (≤ 4 câu/đoạn), hiển thị tốt trên thiết bị di động.
 - [ ] **8. Slug chuẩn SEO:** Slug không dấu, nối bằng gạch ngang, ≤ 6 từ (ví dụ: `sony-a7-iv-hay-a7r-v`).
-- [ ] **9. Ngày tháng minh bạch:** Có ngày xuất bản và ngày cập nhật mới nhất (ví dụ: 11/2026).
+- [ ] **9. Ngày tháng minh bạch:** Có ngày xuất bản và ngày cập nhật mới nhất (ví dụ: dd/mm/yyyy).
 - [ ] **10. Tác giả & E-E-A-T:** Tác giả rõ ràng, có thông tin chuyên môn/kinh nghiệm thực tế về máy ảnh Sony.
 
 ---
@@ -152,14 +158,14 @@ Thay vì nói: | Hãy nói:
 - [ ] **13. Định nghĩa một câu:** Có định nghĩa 1 câu dạng "X là..." cho mọi khái niệm hoặc thuật ngữ chính trong bài.
 - [ ] **14. [bắt buộc] FAQ 3–6 câu tự đứng:** Mỗi câu trả lời dài 40–70 từ, trả lời thẳng vấn đề, tuyệt đối không dùng cụm tham chiếu mơ hồ ("xem ở trên", "như đã nói").
 - [ ] **15. [bắt buộc] Bảng so sánh hoặc checklist:** Ít nhất một bảng Markdown so sánh thông số/tính năng hoặc danh sách checklist bullet. AI cực kỳ ưu tiên trích dẫn bảng dữ liệu.
-- [ ] **16. Số liệu kèm chủ thể & nguồn:** Mọi con số (61MP, 33MP, 580 shot) phải nêu rõ chủ thể và nguồn (ví dụ: theo công bố chính thức từ Sony).
-- [ ] **17. [bắt buộc] Không còn placeholder:** Không còn sót lại cụm `[cần xác minh]` trong bản hoàn chỉnh.
+- [ ] **16. Số liệu kèm chủ thể & nguồn:** Mọi con số (61MP, 33MP, 759 điểm AF) phải nêu rõ chủ thể và nguồn (ví dụ: theo công bố chính thức từ Sony). `blog_audit` liệt kê số liệu chưa có nguồn để người duyệt; mục này thuộc nhóm Cần người duyệt.
+- [ ] **17. [bắt buộc] Không còn placeholder, thông số đã kiểm:** Không còn sót lại cụm `[cần xác minh]`. Mỗi thông số phải đối chiếu trên trang Sony chính thức; không kiểm được thì xóa khỏi bài, không để placeholder.
 - [ ] **18. Danh sách ưu/nhược điểm (Pros/Cons):** Trình bày dạng bullet rõ ràng, thực tế.
 - [ ] **19. Trải nghiệm thực tế tại Việt Nam:** Có bối cảnh người dùng Việt Nam (thời tiết nóng ẩm, chụp cưới tại HCM/HN, dịch vụ bảo hành Sony VN).
 - [ ] **20. Bao quát câu hỏi PAA (People Also Ask):** Trả lời các thắc mắc phổ biến mà người dùng hay tìm kiếm (gợi ý qua `paa_generator`).
 - [ ] **21. Không văn phong AI-sounding:** Loại bỏ hoàn toàn các cụm sáo rỗng: "Hãy cùng khám phá", "đưa trải nghiệm lên tầm cao mới", "tối ưu hóa trải nghiệm", "vô cùng quan trọng".
 - [ ] **22. Thực thể (Entity) rõ ràng:** Định danh rõ thực thể máy ảnh (ví dụ: Sony A7 IV full-frame 33MP ngàm E).
-- [ ] **23. Cập nhật thời gian thực:** Có dòng ghi nhận thông tin cập nhật mới nhất (ví dụ: "Cập nhật 11/2026: [thông tin đã kiểm, ghi nguồn và ngày kiểm]").
+- [ ] **23. Cập nhật thời gian thực:** Có dòng ghi nhận thông tin cập nhật mới nhất (ví dụ: "Cập nhật [ngày kiểm]: [thông tin đã kiểm, ghi nguồn]").
 - [ ] **24. Video / Đa phương tiện:** Có mô tả hoặc tóm tắt nội dung video nếu có chèn video.
 - [ ] **25. Khách quan, trung thực:** Không viết quảng cáo thô thiển, phân tích điểm mạnh và điểm cần cân nhắc rõ ràng.
 
@@ -173,7 +179,7 @@ Thay vì nói: | Hãy nói:
 - [ ] **29. Liên kết nguồn (Citations) sống:** Link dẫn nguồn ngoại vi còn hoạt động (Tier 1 Sony official, Tier 2 review uy tín), kiểm tra qua `citation_checker`.
 - [ ] **30. Thông tin tác giả định danh:** Author Person có `sameAs` tới trang mạng xã hội và `knowsAbout` máy ảnh Sony Alpha.
 - [ ] **31. Liên kết thực thể nội bộ:** Kết nối các bài viết trong cùng hệ sinh thái ngàm E Sony.
-- [ ] **32. Điểm AIO Score:** Đạt AIO score ≥ 70% qua công cụ `aio_audit`.
+- [ ] **32. Điểm tổng `blog_audit`:** Không chấm riêng từng mục. Đây là band điểm tổng ở đầu file: Đạt khi ≥ 80 và không có mục bắt buộc nào không đạt.
 - [ ] **33. Tóm tắt trọng tâm (Key Takeaways):** 3–5 bullet tóm gọn ở cuối bài cho người đọc lướt.
 - [ ] **34. Chú thích hình ảnh (Image Caption):** Chú thích ảnh đầy đủ thông số máy, ống kính và bối cảnh chụp.
 - [ ] **35. Tóm tắt tiếng Anh 200 từ (Tùy chọn):** Phần tóm tắt ngắn bằng tiếng Anh giúp các AI quốc tế (Perplexity, ChatGPT) dễ trích dẫn cho người dùng đa ngôn ngữ.
@@ -185,7 +191,7 @@ Thay vì nói: | Hãy nói:
 - [ ] **36. Sensor Sony số 1 thế giới:** Nhắc đến cảm biến Exmor do Sony tự phát triển — nhà sản xuất sensor số 1 toàn cầu (>50% thị phần máy ảnh/smartphone).
 - [ ] **37. Hệ sinh thái ngàm E nhỏ gọn:** Nhấn mạnh ngàm E (E-mount) nhỏ gọn, khoảng cách buồng tối 18mm, hơn 200 lựa chọn ống kính chính hãng và bên thứ ba, 1 ngàm duy nhất cho mọi thân máy từ A7C đến FX6.
 - [ ] **38. Triết lý KANDO & Cân bằng:** Nhắc đến triết lý KANDO (cảm xúc lay động, khoảnh khắc tim đập nhanh) và triết lý cân bằng (Balanced Experience — ví dụ 33MP là điểm ngọt hoàn hảo giữa tốc độ và chi tiết).
-- [ ] **39. Không kết luận đối thủ tốt hơn:** Không hạ thấp Sony. Nếu đề cập điểm hạn chế (VD: A7 IV quay 4K 60p crop 1.5x), nêu thông số Sony công bố, không thêm lý do kỹ thuật Sony chưa công bố (như "để không quá nhiệt"), và giải pháp trong cùng hệ E-mount (A7S III).
+- [ ] **39. Không kết luận đối thủ tốt hơn:** Không hạ thấp Sony. Nếu đề cập điểm hạn chế (VD: theo thông số Sony công bố, A7 IV quay 4K 60p crop Super 35), nêu đúng thông số đó, không thêm lý do kỹ thuật Sony chưa công bố (như "để không quá nhiệt"), và giải pháp trong cùng hệ E-mount (A7S III).
 - [ ] **40. Kết bài KANDO:** Kết luận nhấn mạnh thông điệp: "Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái ngàm E nhỏ gọn, triết lý cân bằng và hành trình tạo KANDO".
 
 ## 3. Khung bài blog
@@ -303,101 +309,106 @@ schema: [Article, FAQPage]   # thêm HowTo nếu là bài hướng dẫn
 
 ---
 meta_title: "Sony A7 IV hay A7R V: nên chọn máy nào trong năm 2026?"
-meta_description: "Sony A7 IV hay A7R V? So sánh cảm biến, lấy nét, chống rung, video và chi phí thực tế để nhiếp ảnh gia Việt Nam chọn đúng máy cho công việc của mình."
+meta_description: "Sony A7 IV hay A7R V? So sánh cảm biến, lấy nét, chống rung và video theo thông số Sony Việt Nam để bạn chọn đúng máy cho công việc của mình."
 slug: "sony-a7-iv-hay-a7r-v"
 primary_keyword: "Sony A7 IV hay A7R V"
 secondary_keywords: ["so sánh A7 IV và A7R V", "A7R V có đáng mua", "máy ảnh Sony full-frame cho chụp cưới"]
 author: "Thai Pham"
-updated: "02/11/2026"
+updated: "11/11/2026"
 schema: [Article, FAQPage]
 ---
 
 
-*Thai Pham · Cập nhật 02/11/2026 · Chuyên viết nội dung tiếng Việt về hệ máy Sony Alpha*
+*Thai Pham · Cập nhật 11/11/2026 · Chuyên viết nội dung tiếng Việt về hệ máy Sony Alpha*
 
-**TL;DR:** Chọn **Sony A7 IV** nếu bạn chụp sự kiện, cưới hỏi, chân dung và quay video thường xuyên: file 33 MP nhẹ, máy rẻ hơn, đủ cho hầu hết công việc. Chọn **Sony A7R V** nếu bạn chụp phong cảnh, kiến trúc, sản phẩm hoặc cần crop sâu: cảm biến 61 MP, lấy nét AI và chống rung tốt hơn rõ rệt, đổi lại file nặng và giá cao.
+**TL;DR:** Chọn Sony A7 IV nếu bạn chụp cưới, sự kiện, chân dung và quay video thường xuyên, vì cảm biến 33 MP cho file gọn và máy cân bằng giữa ảnh với video. Chọn Sony A7R V nếu bạn chụp phong cảnh, kiến trúc, sản phẩm hoặc in khổ lớn, vì cảm biến 61 MP và chống rung 8,0 stop.
 
 #### Sony A7 IV hay A7R V: khác nhau ở điểm nào?
-Khác biệt cốt lõi là **độ phân giải và mục đích sử dụng**. A7 IV là máy "lai" cân bằng giữa ảnh và video; A7R V là máy độ phân giải cao, ưu tiên chi tiết ảnh tĩnh.
+Khác biệt lớn nhất là độ phân giải: A7 IV có cảm biến khoảng 33 MP, còn A7R V khoảng 61 MP. Cả hai đều dùng cảm biến Exmor do Sony tự phát triển và chung ngàm E nhỏ gọn, nên phần lớn ống kính ngàm E dùng được cho cả hai máy.
 
-Cả hai cùng dùng cảm biến full-frame, ngàm E, pin NP-FZ100 và hệ thống menu mới của Sony, nên chuyển qua lại giữa hai máy gần như không phải học lại. Điểm khác nằm ở cảm biến, bộ xử lý lấy nét, chống rung, kính ngắm và màn hình.
-
-#### So sánh nhanh thông số chính
 | Tiêu chí | Sony A7 IV | Sony A7R V |
 |---|---|---|
-| Cảm biến | Full-frame 33 MP | Full-frame 61 MP |
+| Cảm biến | Khoảng 33 MP | Khoảng 61,0 MP |
 | Điểm lấy nét theo pha | 759 điểm | 693 điểm |
-| Nhận dạng chủ thể | Người, động vật, chim | Người (kể cả tư thế cơ thể), động vật, chim, côn trùng, xe, tàu, máy bay — nhờ bộ xử lý AI riêng |
-| Chụp liên tiếp | 10 fps | 10 fps [cần xác minh theo chế độ RAW] |
-| Chống rung trên thân máy (IBIS) | 5,5 stop | Tới 8 stop |
-| Video tối đa | 4K 60p (crop Super 35), 4K 30p toàn khung lấy mẫu 7K | 8K 24/25p, 4K 60p [cần xác minh mức crop] |
-| Kính ngắm | 3,68 triệu điểm [cần xác minh] | 9,44 triệu điểm |
-| Màn hình | Xoay lật đa góc | Xoay lật 4 trục [cần xác minh] |
-| Ra mắt | Cuối 2021 | Cuối 2022 |
-| Giá tại Việt Nam | [cần xác minh] | [cần xác minh] |
+| Chống rung (chuẩn CIPA) | 5,5 stop | 8,0 stop |
+| Kính ngắm | Khoảng 3,69 triệu điểm | Khoảng 9,44 triệu điểm |
+| Màn hình | Xoay lật, góc mở khoảng 176°, góc xoay khoảng 270° | Lật lên 98°, xuống 40°, sang bên 180°, xoay 270° |
 
-*Thông số theo công bố của Sony và các trang đánh giá uy tín; mục ghi [cần xác minh] phải đối chiếu trang Sony trước khi đăng.*
+Nguồn: [trang thông số Sony Việt Nam, A7 IV](https://www.sony.com.vn/interchangeable-lens-cameras/products/ilce-7m4/spec) và [trang thông số Sony Việt Nam, A7R V](https://www.sony.com.vn/interchangeable-lens-cameras/products/ilce-7rm5/spec).
 
 #### Độ phân giải 61 MP của A7R V có thật sự cần?
-Chỉ cần khi bạn **in khổ lớn hoặc crop mạnh**. Với ảnh đăng mạng xã hội, album cưới hay giao file cho khách, 33 MP của A7 IV đã dư.
+Chỉ cần khi bạn in khổ lớn hoặc crop mạnh. Với ảnh đăng mạng xã hội, album cưới hay file giao khách, 33 MP của A7 IV đã đủ chi tiết.
 
-61 MP có lợi rõ khi chụp phong cảnh Hà Giang, Tà Xùa để in tranh khổ lớn, chụp kiến trúc cần chỉnh phối cảnh, hay chụp sản phẩm cho thương mại điện tử cần nhiều phương án cắt cúp từ một khung hình. Một ống kính 85mm trên A7R V khi crop APS-C vẫn cho file khoảng 26 MP [cần xác minh], gần như có thêm một tiêu cự.
+Phong cảnh Hà Giang hay Tà Xùa để in tranh khổ lớn cần nhiều điểm ảnh. Kiến trúc cần chỉnh phối cảnh, sản phẩm cần nhiều cách cắt cúp từ một khung hình: A7R V cho dư địa lớn hơn. Ở chế độ APS-C cỡ M, A7R V vẫn ghi ảnh 6240 x 4160, khoảng 26 MP, nên bạn còn đủ điểm ảnh để crop khi tiêu cự chưa đủ dài.
 
-Mặt trái: file RAW lớn gần gấp đôi, cần thẻ nhớ nhanh hơn, ổ cứng lớn hơn và máy tính mạnh hơn để hậu kỳ. Một đám cưới 2.000 tấm với A7R V sẽ chiếm dung lượng đáng kể, thời gian nhập và xuất file cũng lâu hơn.
+#### Video: A7 IV hay A7R V khi quay phim?
+Với người quay video thường xuyên, A7 IV là lựa chọn cân bằng hơn. Theo thông số Sony công bố, A7 IV quay 4K 60p với crop Super 35. Còn 4K 30p lấy toàn khung, được lấy mẫu từ mức 7K, phù hợp quay phóng sự cưới hay nội dung mạng xã hội.
 
-#### Lấy nét: A7R V vượt trội ở đâu?
-A7R V có **bộ xử lý AI riêng** để nhận dạng chủ thể, nên bám mắt tốt hơn khi người mẫu quay nghiêng, cúi đầu hoặc bị che một phần. A7 IV vẫn lấy nét mắt (Eye AF) rất tốt cho người, động vật và chim.
+Nếu cần 4K 60p không crop, A7S III trong cùng hệ E-mount là giải pháp đáng cân nhắc. Nếu video không phải ưu tiên, độ phân giải của A7R V vẫn là lợi thế cho ảnh tĩnh.
 
-Trong thực tế chụp cưới, khác biệt lộ rõ ở các khoảnh khắc khó: cô dâu cúi đầu, khách đứng ngược sáng, chủ thể đi xuyên đám đông. A7R V giữ khung theo dõi ổn định hơn nhờ nhận dạng tư thế cơ thể. Với chân dung studio hay sự kiện ánh sáng tốt, A7 IV gần như không thua.
+#### Chống rung: 8,0 stop hay 5,5 stop có khác biệt?
+Có. A7R V đạt 8,0 stop, còn A7 IV đạt 5,5 stop, theo chuẩn CIPA. Mức chống rung cao hơn giúp chụp cầm tay ở tốc độ màn trập chậm hơn, ví dụ trong nhà thờ, quán cà phê hay phố cổ Hội An buổi tối.
 
-Nếu bạn chụp xe, máy bay hoặc côn trùng, A7R V có chế độ nhận dạng riêng cho các chủ thể này; A7 IV thì không.
+#### Ưu điểm và nhược điểm của từng máy
+Triết lý cân bằng của Sony thể hiện ở chỗ mỗi máy có thế mạnh riêng, và điểm cần cân nhắc của máy này thường được bù bằng máy kia trong cùng hệ E-mount.
 
-#### Video: A7 IV có phải lựa chọn tốt hơn?
-Có, với đa số người quay video. A7 IV quay 4K 30p toàn khung lấy mẫu 7K cho hình sắc nét, hỗ trợ S-Log3, S-Cinetone và quay 10-bit, phù hợp quay phóng sự cưới, vlog, nội dung mạng xã hội.
+**Ưu điểm của Sony A7 IV**
+- Cảm biến khoảng 33 MP cho file gọn, dễ lưu trữ và xử lý khi làm nhiều buổi liên tiếp.
+- 759 điểm lấy nét theo pha, phù hợp chụp người, sự kiện và chân dung.
+- Màn hình xoay lật giúp chụp góc thấp hoặc góc cao, phù hợp khi vừa chụp ảnh vừa tự quay hình.
 
-A7R V quay được 8K, hữu ích khi cần crop hoặc ổn định hình ảnh trong hậu kỳ, nhưng phần lớn khách hàng Việt Nam nhận sản phẩm 4K hoặc Full HD. Nếu video chiếm hơn một nửa công việc, A7 IV (hoặc các máy chuyên video như FX3) hợp lý hơn về chi phí.
+**Nhược điểm của Sony A7 IV**
+- Video 4K 60p quay với crop Super 35 theo thông số Sony công bố. Nếu cần 4K 60p không crop, A7S III trong cùng hệ E-mount là giải pháp phù hợp hơn.
+- Cảm biến 33 MP cho ít dư địa crop hơn khi chụp phong cảnh cần in khổ lớn. Trường hợp này, A7R V trong cùng hệ E-mount là lựa chọn đáng cân nhắc.
 
-#### Chống rung và chụp thiếu sáng
-A7R V có IBIS tới **8 stop**, so với **5,5 stop** của A7 IV. Khác biệt này giúp chụp cầm tay ở tốc độ màn trập chậm, ví dụ trong nhà thờ, quán cà phê, phố cổ Hội An về đêm.
+**Ưu điểm của Sony A7R V**
+- Cảm biến khoảng 61,0 MP cho nhiều chi tiết, lợi thế khi in khổ lớn hoặc crop mạnh.
+- Chống rung 8,0 stop, hữu ích khi chụp cầm tay trong không gian thiếu sáng.
+- Chụp liên tục Hi+ 10 hình/giây theo thông số Sony Việt Nam.
 
-Cần lưu ý: cảm biến 61 MP nhạy với rung hơn, nên lợi thế chống rung của A7R V phần nào bù lại cho chính độ phân giải cao của nó. Về nhiễu ở ISO cao, khi thu về cùng kích thước ảnh, hai máy khá tương đương [cần xác minh bằng ảnh thử].
+**Nhược điểm của Sony A7R V**
+- File RAW lớn hơn vì số điểm ảnh nhiều hơn, nên cần thẻ nhớ, ổ lưu trữ và máy tính đủ mạnh để hậu kỳ. Nếu công việc chủ yếu là cưới hay sự kiện, A7 IV trong cùng hệ E-mount giúp quy trình gọn hơn.
+- Độ phân giải cao đòi hỏi kỹ thuật cầm máy và ống kính tốt hơn để tận dụng hết chi tiết. Chống rung 8,0 stop của máy hỗ trợ phần này, và các ống kính G Master trong hệ E-mount là lựa chọn đi kèm phù hợp.
 
 #### Nên chọn máy nào theo nhu cầu?
-1. **Chụp cưới, sự kiện, phóng sự, chân dung** → A7 IV: file nhẹ, nhanh xử lý, đủ chi tiết, ngân sách còn dư cho ống kính tốt.
-2. **Phong cảnh, kiến trúc, sản phẩm, in khổ lớn** → A7R V: chi tiết vượt trội, crop thoải mái.
-3. **Lai ảnh + video, ngân sách vừa phải** → A7 IV.
-4. **Chụp động vật hoang dã, chim, thể thao nhẹ cần crop** → A7R V, nếu chấp nhận 10 fps.
-5. **Mua máy mới cuối 2026** → cân nhắc thêm **Sony A7 V** (ra mắt 02/12/2025): cảm biến 33 MP bán xếp chồng, chụp tới 30 fps, bộ xử lý BIONZ XR2 có AI. A7 IV có thể giảm giá mạnh, nên là lựa chọn tiết kiệm.
+Hãy chọn theo việc bạn làm nhiều nhất, thay vì con số độ phân giải lớn nhất.
 
-**Checklist trước khi mua:**
-- [ ] Ước tính tỉ lệ ảnh/video trong công việc của bạn.
-- [ ] Kiểm tra máy tính có xử lý mượt file RAW 61 MP không.
-- [ ] Tính chi phí thẻ nhớ CFexpress Type A và ổ cứng lưu trữ.
-- [ ] So giá chính hãng và xách tay, kiểm tra chính sách bảo hành tại Việt Nam.
-- [ ] Nếu có thể, thuê thử cả hai máy một buổi chụp thực tế.
+1. **Cưới, sự kiện, phóng sự, chân dung:** A7 IV, vì file gọn và máy cân bằng giữa ảnh với video. Xem thêm [link nội bộ: cài đặt Eye AF cho chụp cưới].
+2. **Phong cảnh, kiến trúc, sản phẩm, in khổ lớn:** A7R V, vì cảm biến 61 MP cho nhiều chi tiết để crop.
+3. **Vừa chụp ảnh vừa quay video:** A7 IV.
 
-#### Kết luận: Sony A7 IV hay A7R V?
-Phần lớn nhiếp ảnh gia Việt Nam làm dịch vụ (cưới, sự kiện, chân dung, video) nên chọn **A7 IV** và dồn ngân sách vào ống kính. Chọn **A7R V** khi độ phân giải mang lại tiền: in ấn, phong cảnh, kiến trúc, sản phẩm. Trước khi quyết định, xem thêm [link nội bộ: hướng dẫn cài đặt AF cho chụp cưới trên Sony] và [link nội bộ: chọn ống kính G Master đầu tiên].
+#### Mua ở đâu và kiểm tra thế nào?
+Giá bán thay đổi theo thời điểm và đại lý, nên bạn cần kiểm tra trực tiếp trước khi quyết định.
+
+- Đối chiếu giá trên trang Sony Việt Nam và tại đại lý ủy quyền, rồi so với hàng xách tay.
+- Hỏi rõ chính sách bảo hành tại Việt Nam trước khi thanh toán.
+- Tính thêm chi phí thẻ nhớ và ổ lưu trữ theo số ảnh bạn chụp mỗi tháng.
 
 #### Câu hỏi thường gặp
 
 ##### Sony A7 IV có đủ dùng cho chụp cưới chuyên nghiệp không?
-Có. Sony A7 IV có cảm biến full-frame 33 MP, lấy nét mắt cho người và động vật, hai khe thẻ nhớ và chống rung 5,5 stop. Đây là cấu hình đủ cho chụp cưới, phóng sự và chân dung chuyên nghiệp. File 33 MP còn giúp xử lý hàng nghìn ảnh mỗi buổi nhanh hơn so với máy 61 MP.
+Có. Theo thông số Sony Việt Nam, A7 IV có cảm biến khoảng 33 MP, 759 điểm lấy nét theo pha và chống rung 5,5 stop theo chuẩn CIPA. Cấu hình này đủ cho chụp cưới, phóng sự và chân dung chuyên nghiệp, đồng thời cho file gọn hơn, giúp việc nhập và hậu kỳ hàng nghìn ảnh mỗi buổi nhẹ nhàng hơn.
 
-##### A7R V có tốt hơn A7 IV khi quay video không?
-Không hẳn. Sony A7R V quay được 8K và có chống rung tốt hơn, nhưng A7 IV cho 4K toàn khung lấy mẫu 7K với file nhẹ hơn, đủ cho hầu hết sản phẩm cưới, vlog và mạng xã hội. Nếu video là công việc chính, A7 IV hoặc máy chuyên quay như Sony FX3 thường hợp lý hơn về chi phí.
+##### Nên chọn A7 IV hay A7R V nếu công việc chủ yếu là quay video?
+A7 IV là lựa chọn cân bằng hơn cho người quay video thường xuyên. Theo thông số Sony công bố, máy quay 4K 60p với crop Super 35 và 4K 30p lấy toàn khung từ mức lấy mẫu 7K. Nếu cần 4K 60p không crop, A7S III trong cùng hệ E-mount là hướng đi đáng cân nhắc.
 
-##### Máy tính cần cấu hình thế nào để xử lý file A7R V?
-File RAW 61 MP của Sony A7R V nặng gần gấp đôi file 33 MP. Để hậu kỳ mượt trong Lightroom hoặc Capture One, bạn nên có tối thiểu 32 GB RAM, ổ SSD NVMe và card đồ họa rời hoặc chip Apple M-series đời mới. Ổ lưu trữ cũng cần dung lượng lớn hơn đáng kể.
+##### 61 MP của A7R V có cần thiết cho người chụp cưới không?
+Thường là không. Độ phân giải 61 MP chỉ thật sự có lợi khi bạn in khổ lớn hoặc crop mạnh, như phong cảnh và kiến trúc. Với album cưới, ảnh đăng mạng xã hội và file giao khách, 33 MP của A7 IV đã đủ chi tiết. Dung lượng lưu trữ và thời gian hậu kỳ cũng gọn hơn đáng kể.
 
-##### Có nên chờ Sony A7 V thay vì mua A7 IV?
-Tùy ngân sách. Sony A7 V ra mắt tháng 12/2025 với cảm biến 33 MP bán xếp chồng, chụp tới 30 fps và chống rung tới 7,5 stop. Nếu cần tốc độ cho thể thao hay sự kiện nhanh, A7 V đáng cân nhắc. Nếu muốn tiết kiệm, A7 IV giảm giá vẫn là lựa chọn rất tốt cho chụp cưới và chân dung.
+##### Máy tính cần chuẩn bị gì để xử lý file RAW của A7R V?
+File RAW của A7R V có nhiều điểm ảnh hơn nên dung lượng lớn hơn. Bạn cần máy tính đủ RAM, ổ SSD tốc độ cao và ổ lưu trữ dung lượng dư. Trước khi mua, hãy thử mở vài chục tấm RAW của chính mình trong phần mềm hậu kỳ để kiểm tra tốc độ làm việc thực tế.
 
-#### Nguồn tham khảo
-- Sony Electronics — trang sản phẩm ILCE-7M4 và ILCE-7RM5 (electronics.sony.com)
-- DPReview — Sony a7 IV review: https://www.dpreview.com/reviews/sony-a7-iv-review
-- DPReview — Sony a7R V in-depth review: https://www.dpreview.com/reviews/sony-a7rv-review
-- Wikipedia — Sony α7 V: https://en.wikipedia.org/wiki/Sony_%CE%B17_V
+#### Key Takeaways
+- A7 IV, khoảng 33 MP và 759 điểm lấy nét theo pha, phù hợp cưới, sự kiện, chân dung và video thường xuyên.
+- A7R V, khoảng 61,0 MP và chống rung 8,0 stop theo chuẩn CIPA, phù hợp phong cảnh, kiến trúc, sản phẩm và in khổ lớn.
+- Độ phân giải cao kéo theo file lớn, nên hãy tính trước chi phí thẻ nhớ, ổ lưu trữ và máy tính.
+- Với video, A7 IV là lựa chọn cân bằng hơn; cần 4K 60p không crop thì xem A7S III trong cùng hệ E-mount.
+- Chọn theo việc bạn làm nhiều nhất, không theo con số lớn nhất.
+
+#### Kết luận: Sony A7 IV hay A7R V?
+Phần lớn người làm dịch vụ như cưới, sự kiện, chân dung và video nên chọn A7 IV, rồi dành ngân sách cho ống kính tốt. A7R V đáng chọn khi độ phân giải thật sự mang lại giá trị cho công việc, như in ấn, phong cảnh, kiến trúc hay sản phẩm. Trước khi quyết định, bạn có thể đọc thêm [link nội bộ: hướng dẫn cài đặt AF cho chụp cưới] và [link nội bộ: chọn ống kính đầu tiên trong hệ E-mount].
+
+Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái E-mount nhỏ gọn, triết lý cân bằng, và hành trình tạo KANDO.
 
 ```html
 <script type="application/ld+json">
@@ -407,15 +418,14 @@ Tùy ngân sách. Sony A7 V ra mắt tháng 12/2025 với cảm biến 33 MP bá
     {
       "@type": "Article",
       "headline": "Sony A7 IV hay A7R V: nên chọn máy nào?",
-      "description": "Sony A7 IV hay A7R V? So sánh cảm biến, lấy nét, chống rung, video và chi phí thực tế để nhiếp ảnh gia Việt Nam chọn đúng máy cho công việc của mình.",
+      "description": "Sony A7 IV hay A7R V? So sánh cảm biến, lấy nét, chống rung và video theo thông số Sony Việt Nam để bạn chọn đúng máy cho công việc của mình.",
       "inLanguage": "vi-VN",
-      "author": { "@type": "Person", "name": "Thai Pham" },
-      "datePublished": "2026-11-02",
-      "dateModified": "2026-11-02",
-      "about": [
-        { "@type": "Product", "name": "Sony A7 IV", "brand": { "@type": "Brand", "name": "Sony" } },
-        { "@type": "Product", "name": "Sony A7R V", "brand": { "@type": "Brand", "name": "Sony" } }
-      ]
+      "author": {
+        "@type": "Person",
+        "name": "Thai Pham"
+      },
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11"
     },
     {
       "@type": "FAQPage",
@@ -423,22 +433,34 @@ Tùy ngân sách. Sony A7 V ra mắt tháng 12/2025 với cảm biến 33 MP bá
         {
           "@type": "Question",
           "name": "Sony A7 IV có đủ dùng cho chụp cưới chuyên nghiệp không?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Có. Sony A7 IV có cảm biến full-frame 33 MP, lấy nét mắt cho người và động vật, hai khe thẻ nhớ và chống rung 5,5 stop. Đây là cấu hình đủ cho chụp cưới, phóng sự và chân dung chuyên nghiệp. File 33 MP còn giúp xử lý hàng nghìn ảnh mỗi buổi nhanh hơn so với máy 61 MP." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. Theo thông số Sony Việt Nam, A7 IV có cảm biến khoảng 33 MP, 759 điểm lấy nét theo pha và chống rung 5,5 stop theo chuẩn CIPA. Cấu hình này đủ cho chụp cưới, phóng sự và chân dung chuyên nghiệp, đồng thời cho file gọn hơn, giúp việc nhập và hậu kỳ hàng nghìn ảnh mỗi buổi nhẹ nhàng hơn."
+          }
         },
         {
           "@type": "Question",
-          "name": "A7R V có tốt hơn A7 IV khi quay video không?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Không hẳn. Sony A7R V quay được 8K và có chống rung tốt hơn, nhưng A7 IV cho 4K toàn khung lấy mẫu 7K với file nhẹ hơn, đủ cho hầu hết sản phẩm cưới, vlog và mạng xã hội. Nếu video là công việc chính, A7 IV hoặc máy chuyên quay như Sony FX3 thường hợp lý hơn về chi phí." }
+          "name": "Nên chọn A7 IV hay A7R V nếu công việc chủ yếu là quay video?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A7 IV là lựa chọn cân bằng hơn cho người quay video thường xuyên. Theo thông số Sony công bố, máy quay 4K 60p với crop Super 35 và 4K 30p lấy toàn khung từ mức lấy mẫu 7K. Nếu cần 4K 60p không crop, A7S III trong cùng hệ E-mount là hướng đi đáng cân nhắc."
+          }
         },
         {
           "@type": "Question",
-          "name": "Máy tính cần cấu hình thế nào để xử lý file A7R V?",
-          "acceptedAnswer": { "@type": "Answer", "text": "File RAW 61 MP của Sony A7R V nặng gần gấp đôi file 33 MP. Để hậu kỳ mượt trong Lightroom hoặc Capture One, bạn nên có tối thiểu 32 GB RAM, ổ SSD NVMe và card đồ họa rời hoặc chip Apple M-series đời mới. Ổ lưu trữ cũng cần dung lượng lớn hơn đáng kể." }
+          "name": "61 MP của A7R V có cần thiết cho người chụp cưới không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thường là không. Độ phân giải 61 MP chỉ thật sự có lợi khi bạn in khổ lớn hoặc crop mạnh, như phong cảnh và kiến trúc. Với album cưới, ảnh đăng mạng xã hội và file giao khách, 33 MP của A7 IV đã đủ chi tiết. Dung lượng lưu trữ và thời gian hậu kỳ cũng gọn hơn đáng kể."
+          }
         },
         {
           "@type": "Question",
-          "name": "Có nên chờ Sony A7 V thay vì mua A7 IV?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Tùy ngân sách. Sony A7 V ra mắt tháng 12/2025 với cảm biến 33 MP bán xếp chồng, chụp tới 30 fps và chống rung tới 7,5 stop. Nếu cần tốc độ cho thể thao hay sự kiện nhanh, A7 V đáng cân nhắc. Nếu muốn tiết kiệm, A7 IV giảm giá vẫn là lựa chọn rất tốt cho chụp cưới và chân dung." }
+          "name": "Máy tính cần chuẩn bị gì để xử lý file RAW của A7R V?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "File RAW của A7R V có nhiều điểm ảnh hơn nên dung lượng lớn hơn. Bạn cần máy tính đủ RAM, ổ SSD tốc độ cao và ổ lưu trữ dung lượng dư. Trước khi mua, hãy thử mở vài chục tấm RAW của chính mình trong phần mềm hậu kỳ để kiểm tra tốc độ làm việc thực tế."
+          }
         }
       ]
     }
@@ -449,37 +471,16 @@ Tùy ngân sách. Sony A7 V ra mắt tháng 12/2025 với cảm biến 33 MP bá
 
 ---
 
-#### Tự audit (sinh bằng `seo_audit`, `*` = bắt buộc)
-
-Điểm **14/18** (77.8%) · 1383 từ · mục bắt buộc chưa đạt: 15.
-
-| # | Mục | Kết quả | Bằng chứng | Cách sửa |
-|---|---|---|---|---|
-| 1* | Từ khóa chính ở H1, slug, 100 từ đầu, H2, meta description | Đạt | H1=có; slug=có; 100 từ đầu=có; H2=có; meta description=có |  |
-| 2 | Meta title 50–60 ký tự | Đạt | 54 ký tự |  |
-| 3 | Meta description 140–160 ký tự | Đạt | 149 ký tự |  |
-| 4 | Slug không dấu, gạch nối, ≤ 6 từ | Đạt | 'sony-a7-iv-hay-a7r-v' |  |
-| 5 | Không nhồi từ khóa (≤ 1,5%) | Đạt | 3 lần / 1383 từ = 0,22% |  |
-| 6* | TL;DR 40–70 từ ngay sau H1 | Đạt | 69 từ |  |
-| 7 | Một H1; heading không nhảy cấp | Đạt | 1 H1 |  |
-| 8* | Có bảng, checklist hoặc danh sách | Đạt | bảng=có; danh sách=có |  |
-| 9 | Đoạn ≤ 4 câu; mỗi H2 mở bằng câu trả lời ngắn | Một phần | 1 đoạn > 4 câu | Tách đoạn dài; mở mỗi H2 bằng câu trả lời 1–2 câu |
-| 10 | Kết luận có hành động cụ thể | Cần người duyệt | Có H2 kết luận | Kết thúc bằng khuyến nghị theo nhóm người dùng + bước tiếp theo |
-| 11* | FAQ 3–6 câu, mỗi câu trả lời 40–70 từ, tự đứng được | Đạt | 4 câu; số từ=[61, 62, 57, 64] |  |
-| 12 | Có định nghĩa một câu cho khái niệm chính | Đạt |  |  |
-| 13 | Câu số liệu nêu rõ chủ thể và đơn vị | Cần người duyệt |  | Kiểm các câu có số: tránh 'nó', 'máy này' |
-| 14 | Có trải nghiệm/bối cảnh riêng (Việt Nam) | Cần người duyệt |  | Thêm ví dụ thực tế: địa điểm, giá, dịch vụ, thói quen chụp |
-| 15* | Không có thông số/giá chưa kiểm chứng | Chưa đạt | 9 chỗ [cần xác minh] | Đối chiếu nguồn chính thức rồi bỏ đánh dấu |
-| 16 | Link ngoài 1–3 nguồn uy tín | Đạt | 3 link: https://en.wikipedia.org/wiki/Sony_%CE%B17_V, https://www.dpreview.com/reviews/sony-a7-iv-review, https://www.dpreview.com/reviews/s |  |
-| 17 | Link nội bộ 2–5 | Một phần | 0 URL thật, 2 placeholder | Thay placeholder [link nội bộ: …] bằng URL thật |
-| 18 | Tác giả và ngày cập nhật | Đạt | author=Thai Pham; updated=02/11/2026 |  |
-| 19* | JSON-LD Article + FAQPage (+ HowTo nếu hướng dẫn), FAQ trùng nguyên văn | Đạt | types=['Article', 'FAQPage'] |  |
-| 20 | Ảnh có alt text | N/A | 0 ảnh, 0 thiếu alt | Thêm alt mô tả tiếng Việt |
-| 21* | Thuật ngữ đúng glossary | Đạt |  |  |
-| 22 | Không văn dịch máy / cụm AI-sounding | Một phần | 3 vấn đề: long_sentence:Chọn **Sony A7R V** nếu bạn ch; long_sentence:61 MP có lợi rõ khi chụp phong; long_sentence:Sony A7R V quay được 8K  | Sửa theo style_lint() |
-| 23 | Không khuyến nghị y tế/tài chính/pháp lý thiếu căn cứ | Cần người duyệt |  |  |
-
-Mục "Cần người duyệt" (10, 13, 14, 23) máy không tự chấm được. Bài chưa đăng được cho tới khi xử lý hết `[cần xác minh]` (mục 15) và thay link nội bộ thật (mục 17).
+```text
+Điểm tổng: 100/100, Đạt
+Mục đạt: 28/28
+Bắt buộc không đạt: không
+Chưa đạt: không
+Cần người duyệt: 16, 20, 24, 25, 28, 30, 31, 34, 35
+Không áp dụng: 6, 32
+Chưa kiểm link sống: 29
+Công cụ: blog_audit(text, "Sony A7 IV hay A7R V", today="2026-11-11")
+```
 
 ## 6. Quy tắc đăng ColorLab
 

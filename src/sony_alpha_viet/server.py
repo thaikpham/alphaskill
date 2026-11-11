@@ -26,9 +26,9 @@ mcp = FastMCP("sony-alpha-viet", instructions=(
     "\n\n"
     "**Quy trình B: Blog/Tài liệu (AIO-first 2026)**: lookup_prose_term (tra thuật ngữ chuẩn từ glossary) "
     "→ paa_generator (10 câu PAA) → viết theo template → style_lint (cụm AI-sounding, bị động, câu dài, thuật ngữ) "
-    "→ seo_audit (SEO foundation) → aio_audit (chấm tự động 13 tiêu chí AIO máy đo được) → citation_checker (check link Tier 1) "
-    "→ freshness_check (kiểm tra độ mới 11/2026) → brand_voice_checker (bảo vệ Sony, sensor #1, ngàm E, KANDO) "
-    "→ blog_audit (gom các tool trên, chấm 40 tiêu chí một lượt, chỉ đọc) → faq_schema (tạo JSON-LD Article+FAQPage). "
+    "→ blog_audit (chạy seo_audit + aio_audit + các mục còn lại; sửa theo kết quả; band Đạt ≥ 80; chỉ đọc) "
+    "→ citation_checker (check link Tier 1) → freshness_check (kiểm tra độ mới so với tháng hiện tại) "
+    "→ brand_voice_checker (bảo vệ Sony, sensor #1, ngàm E, KANDO) → faq_schema (tạo JSON-LD Article+FAQPage). "
     "Nếu MCP không có, thực hiện kiểm tra thủ công từ checklist."))
 store = Store()
 
@@ -284,7 +284,7 @@ def citation_checker(text: str, check_links: bool = True) -> dict:
 
 @tool
 def freshness_check(text: str, today: str = "") -> dict:
-    """Kiểm tra độ mới của bài, phát hiện giá cũ/firmware cũ, gợi ý cập nhật 11/2026. today: YYYY-MM-DD, trống = hôm nay."""
+    """Kiểm tra độ mới của bài, phát hiện giá cũ/firmware cũ, gợi ý cập nhật so với tháng hiện tại. today: YYYY-MM-DD, trống = hôm nay."""
     return blog.freshness_check(text, today)
 
 

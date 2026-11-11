@@ -267,7 +267,7 @@ def test_example_post_audit_runs_on_sample():
     res = blog_audit(EXAMPLE.read_text(encoding="utf-8"), "Sony A7 IV hay A7R V", today="2026-11-11")
     assert res["keyword"] == "Sony A7 IV hay A7R V" and res["today"] == "2026-11-11"
     assert res["verdict"] == _expected_verdict(res)
-    assert 17 in res["required_failed"]  # ví dụ còn [cần xác minh] trong bảng
+    assert res["verdict"] == "Đạt" and res["required_failed"] == [] and res["overall_score"] >= 80  # chi tiết: test_example_post.py
 
 
 def test_howto_fixture_audit_has_groups_and_unique_ids():
@@ -298,3 +298,14 @@ def test_blog_audit_is_registered_and_not_write_tool():
     from sony_alpha_viet.server import WRITE_TOOLS, mcp
     assert "blog_audit" in mcp._tool_manager._tools
     assert "blog_audit" not in WRITE_TOOLS
+
+
+def test_brand_36_38_need_claim_in_same_sentence():
+    from sony_alpha_viet.blog.brand_voice_checker import check_kando, check_ngam_e, check_sensor
+
+    weak = "Sony A7 IV có cảm biến 33 MP. Máy dùng ngàm E. Trải nghiệm chụp rất vui."
+    strong = ("Cả hai dùng cảm biến do Sony tự phát triển. Ngàm E nhỏ gọn nên dùng chung ống kính. "
+              "Đây là triết lý cân bằng của Sony.")
+    for fn in (check_sensor, check_ngam_e, check_kando):
+        assert fn(strong)["pass"] is True, fn.__name__
+        assert fn(weak)["pass"] is False, fn.__name__

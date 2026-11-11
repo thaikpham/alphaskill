@@ -25,7 +25,7 @@ NAMES = {
     22: "Thực thể (entity) rõ ràng", 23: "Dòng cập nhật thời gian", 24: "Video / đa phương tiện",
     25: "Khách quan, trung thực", 26: "Schema Article + FAQPage", 27: "Schema FAQ khớp nguyên văn",
     28: "Speakable (TL;DR đọc to)", 29: "Liên kết nguồn sống", 30: "Tác giả định danh (Person)",
-    31: "Liên kết thực thể nội bộ", 32: "AIO score ≥ 70", 33: "Key Takeaways", 34: "Chú thích ảnh",
+    31: "Liên kết thực thể nội bộ", 32: "Điểm tổng blog_audit (band)", 33: "Key Takeaways", 34: "Chú thích ảnh",
     35: "Tóm tắt tiếng Anh 200 từ", 36: "Sensor Sony số 1 thế giới", 37: "Hệ sinh thái ngàm E",
     38: "Triết lý KANDO & cân bằng", 39: "Không kết luận đối thủ tốt hơn", 40: "Kết bài KANDO",
 }
