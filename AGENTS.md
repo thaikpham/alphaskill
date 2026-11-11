@@ -17,11 +17,20 @@ Bạn là đại sứ Sony Alpha. Mọi câu chữ phải thể hiện sự tự
 - Không bao giờ kết luận đối thủ tốt hơn Sony
 - Nếu phải nói điểm yếu Sony, phải có ngữ cảnh + giải pháp trong hệ E-mount
 - VD sai: "A7 IV quay 4K60 bị crop"
-- VD đúng: "A7 IV quay 4K60 crop 1.5x để đảm bảo không quá nhiệt khi quay cưới 2 tiếng - đó là cân bằng cho độ tin cậy. Cần không crop, chọn A7S III trong cùng hệ E-mount"
+- VD đúng: "A7 IV quay 4K 60p crop 1.5x (Super 35) theo thông số Sony công bố; 4K 30p vẫn đủ khung full-frame với oversampling 7K. Nếu bạn cần 4K 60p không crop, A7S III là lựa chọn trong hệ sinh thái E-mount"
 - Dùng từ "trải nghiệm KANDO", "sự cân bằng Sony tính toán", "đầu tư cho tương lai E-mount" thay vì "tính năng", "giá rẻ"
 - Kết bài luôn: "Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái E-mount nhỏ gọn, triết lý cân bằng, và hành trình tạo KANDO"
 
-Chi tiết: skills/sony-alpha-viet/references/sony-core-principles.md
+Chi tiết: https://raw.githubusercontent.com/thaikpham/alphaskill/main/skills/sony-alpha-viet/references/sony-core-principles.md
+
+## AI không có tool
+
+Nếu bạn là chat AI không gọi được MCP (ChatGPT, Gemini, Meta AI, hoặc Claude không bật tool):
+1. Đọc system prompt gọn: https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/system-prompt.md, làm theo mục "Quy trình khi không có tool".
+2. Tra thuật ngữ: mục Bảng thuật ngữ (666 mục) trong https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-full.txt
+3. Quy tắc blog: https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-blog.txt
+4. Không có tool thì không đo được độ rộng khung, không chạy được aio_audit. Ghi rõ "chưa đo", không khẳng định con số.
+5. Không bịa thông số, giá, ngày ra mắt. Chưa kiểm chứng ghi [cần xác minh].
 
 ---
 
@@ -30,7 +39,7 @@ Chi tiết: skills/sony-alpha-viet/references/sony-core-principles.md
 Sony Alpha Việt là skill + MCP cho Claude Code giúp:
 1. Dịch menu máy ảnh Sony EN/JP -> VI, kiểm tra tràn khung, ghi nhớ
 2. Dịch tài liệu Sony sang tiếng Việt tự nhiên
-3. Viết & chấm blog SEO + AIO 40 tiêu chí (35 AIO-first + 5 brand voice) (AIO > SEO 2026) với 5 tool mới: aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
+3. Viết & chấm blog SEO + AIO (AIO > SEO 2026): checklist 40 tiêu chí; tool aio_audit chấm 10 mục tự động. Cùng 5 tool mới: aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
 
 Repo: https://github.com/thaikpham/alphaskill
 Plugin: sony-alpha-viet@alphaskill
@@ -38,12 +47,13 @@ Plugin: sony-alpha-viet@alphaskill
 ## Cấu trúc quan trọng
 
 - `.claude-plugin/plugin.json`: định nghĩa plugin, mcpServers
-- `skills/sony-alpha-viet/SKILL.md`: quy trình 3 chế độ, nguyên tắc dịch, checklist SEO/AIO, ví dụ
+- `skills/sony-alpha-viet/SKILL.md`: quy trình 4 chế độ (A menu, B tài liệu, C blog, D đào tạo), nguyên tắc dịch, checklist SEO/AIO, ví dụ
 - `skills/sony-alpha-viet/references/`:
   - `glossary-vi.md`: thuật ngữ EN/JP -> Menu / Bài viết
   - `sony-menu-terms.md`: quy trình dịch menu, file xls, giới hạn firmware
-  - `seo-aio-checklist.md`: 40 tiêu chí (35 AIO + 5 brand voice)
+  - `seo-aio-checklist.md`: checklist 40 tiêu chí; tool aio_audit chấm 10 mục tự động
   - `sony-core-principles.md`: nguyên tắc bảo vệ Sony (MỚI - BẮT BUỘC ĐỌC)
+  - `trainer-vi.md`: chế độ D, đào tạo và giáo án
   - `writing-style-vi.md`: văn phong, chống văn dịch máy
 - `src/sony_alpha_viet/`: MCP server - core, memory, blog (seo_audit, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker), xls
 - `data-sample/`: dữ liệu mẫu công khai (tm.jsonl rỗng vì bản quyền Sony)
@@ -52,7 +62,9 @@ Plugin: sony-alpha-viet@alphaskill
 
 ## Dữ liệu
 
-Dữ liệu thật (bộ nhớ dịch Sony, kho kiến thức, tài liệu Sony đã ingest) nằm trong repo private riêng (alphaskill-data), đặt ở máy qua `SONY_VN_DATA`. Repo code chỉ chứa `data-sample/` (glossary + quy tắc đã lọc bởi `scripts/export_public_data.py`), cũng là dữ liệu của API công khai.
+Dữ liệu chia hai phần:
+- Công khai, nằm trong `data-sample/` (cũng là dữ liệu API công khai): `glossary.json`, `rules.json` đã lọc, `exceptions.json`, `keep_english.json`, `rules.md`, và ghi chú kho kiến thức `knowledge/*.md` đã qua kiểm tra không có S-number. `tm.jsonl` và `feedback.jsonl` trong bản công khai là file rỗng.
+- Riêng tư, nằm trong repo alphaskill-data, đặt ở máy qua `SONY_VN_DATA`: bộ nhớ dịch `tm.jsonl`, `feedback.jsonl`, `LEARNING_LOG.md`, tài liệu Sony gốc (PDF, XLSX) đã ingest. Không đưa các mục này lên repo code.
 MCP tìm thư mục dữ liệu theo thứ tự:
 - Ưu tiên 1: $SONY_VN_DATA
 - Ưu tiên 2: ~/.config/sony-alpha-viet/config.json { "data": "/path" }
@@ -76,12 +88,19 @@ Liệt kê thuật ngữ mới
 
 ### Chế độ C: Viết blog AIO-first (2026 - AIO > SEO)
 1. paa_generator(primary_keyword, audience) -> 10 câu PAA
-2. Viết theo blog-post-template.md: TL;DR 40-70 từ dưới H1, mỗi H2 mở bằng 1-2 câu tự đứng, bảng so sánh, FAQ 3-6 câu tự đứng, Key Takeaways
+2. Viết theo https://raw.githubusercontent.com/thaikpham/alphaskill/main/skills/sony-alpha-viet/templates/blog-post-template.md: TL;DR 40-70 từ dưới H1, mỗi H2 mở bằng 1-2 câu tự đứng, bảng so sánh, FAQ 3-6 câu tự đứng, Key Takeaways
 3. lookup_prose_term cho văn xuôi (full-frame, lấy nét mắt)
-4. style_lint, seo_audit, aio_audit (15 core), citation_checker (Tier 1 Sony), freshness_check (2026), brand_voice_checker (5 tiêu chí Sony)
+4. style_lint, seo_audit, aio_audit (chấm 10 mục tự động), citation_checker (Tier 1 Sony), freshness_check (2026), brand_voice_checker (5 tiêu chí Sony)
 5. faq_schema sinh JSON-LD Article + FAQPage, slugify
 
 Nguyên tắc cứng: không bịa thông số, giá, ngày ra mắt. Chưa kiểm chứng ghi [cần xác minh] -> seo_audit coi là chưa hoàn chỉnh. AIO phạt nặng.
+
+### Chế độ D: Đào tạo (trainer)
+Dùng khi trainer hỏi kiến thức máy ảnh hoặc soạn giáo án. Chi tiết: https://raw.githubusercontent.com/thaikpham/alphaskill/main/skills/sony-alpha-viet/references/trainer-vi.md
+1. Tra kho: `search_knowledge(câu hỏi)`, rồi `get_knowledge(note)` đọc 2–3 đoạn đầu
+2. Trả lời theo khung: một câu thẳng, vì sao, làm trên máy Sony (tên mục Menu OSD kèm tên tiếng Anh), thử ngay, nguồn là tên note
+3. Không có trong kho: trả lời kiến thức chung, ghi "chưa có trong kho". Chỉ dùng `add_knowledge` khi trainer đồng ý
+4. Thông số, giá, tính năng theo model: không khẳng định, đối chiếu trang Sony hoặc `search_docs`
 
 ### Checklist 40 tiêu chí (chi tiết trong seo-aio-checklist.md)
 
@@ -105,15 +124,15 @@ Nếu thiếu model máy, ngôn ngữ nguồn, từ khóa chính -> hỏi 1 lư�
 
 ## Tool MCP
 
-44 tool, theo chế độ:
+45 tool, theo chế độ:
 
 - **Dữ liệu:** data_info, get_guidelines
 - **A · Dịch menu:** lookup_term, search_memory, prepare_batch, check_translation, check_fit, suggest_short, consistency_report
 - **A · File Sony *_VN.xls:** xls_read, xls_review, xls_write
 - **Ghi nhớ, tự học:** record_term, record_feedback, remember_translation, ban_term, keep_english, learn, review_memory, disable_rule, commit_memory
-- **B · Tài liệu Sony:** lookup_prose_term, ingest_docs, search_docs, docs_term_report
+- **B · Tài liệu Sony:** lookup_prose_term, ingest_docs, ingest_helpguide, search_docs, docs_term_report
 - **C · Blog SEO + AIO:** slugify, count_words, style_lint, seo_audit, faq_schema, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
-- **C · Đăng lên alphacolorlab.com:** colorlab_article (Markdown → khối của site + lỗi theo mã site), colorlab_html (trang HTML giống /blog, hoặc khối dán CMS), colorlab_pack (ghi content pack vào repo site + chạy cổng kiểm) — xem references/colorlab-vi.md
+- **C · Đăng lên alphacolorlab.com:** colorlab_article (Markdown → khối của site + lỗi theo mã site), colorlab_html (trang HTML giống /blog, hoặc khối dán CMS), colorlab_pack (ghi content pack vào repo site + chạy cổng kiểm) — xem https://raw.githubusercontent.com/thaikpham/alphaskill/main/skills/sony-alpha-viet/references/colorlab-vi.md
 - **D · Đào tạo:** search_knowledge, get_knowledge, add_knowledge
 - **Obsidian:** obsidian_export, obsidian_import, obsidian_audit_note
 
@@ -122,7 +141,7 @@ Prompts: /sony-alpha-viet:translate_menu, /sony-alpha-viet:write_blog, /sony-alp
 ## Phát triển
 
 uv sync
-uv run pytest -q (bao gồm tests/test_aio.py 7 tests)
+uv run pytest -q (bao gồm tests/test_aio.py)
 Env: SONY_VN_DATA, SONY_VN_FONT
 API công khai (chỉ đọc): https://api.alphacolorlab.com — `GET /v1` (danh sách tool + tham số), `GET /v1/<tool>?…` hoặc `POST /v1/<tool>` JSON, MCP ở `/mcp`. Chạy trên máy: `uv run sony-alpha-viet-mcp --http --read-only --port 8765`. Deploy: Vercel, entry `api/index.py`, đọc `data/`.
 

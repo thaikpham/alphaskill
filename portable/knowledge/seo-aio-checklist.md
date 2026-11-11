@@ -2,7 +2,7 @@
 
 > Dùng để tự audit sau khi viết blog/tài liệu, hoặc audit bài người dùng gửi.
 > Điểm = số mục Đạt / tổng số mục áp dụng.
-> Các tool hỗ trợ: `seo_audit` (chấm tiêu chí SEO), `aio_audit` (chấm 10-15 tiêu chí AIO Core), `citation_checker` (nguồn link Tier 1), `freshness_check` (kiểm tra độ mới 11/2026), `brand_voice_checker` (5 tiêu chí bảo vệ Sony).
+> Các tool hỗ trợ: `seo_audit` (chấm tiêu chí SEO), `aio_audit` (chấm 10 mục tự động trong checklist 40 tiêu chí), `citation_checker` (nguồn link Tier 1), `freshness_check` (kiểm tra độ mới 11/2026), `brand_voice_checker` (5 tiêu chí bảo vệ Sony).
 
 ---
 
@@ -35,7 +35,7 @@
 - [ ] **20. Bao quát câu hỏi PAA (People Also Ask):** Trả lời các thắc mắc phổ biến mà người dùng hay tìm kiếm (gợi ý qua `paa_generator`).
 - [ ] **21. Không văn phong AI-sounding:** Loại bỏ hoàn toàn các cụm sáo rỗng: "Hãy cùng khám phá", "đưa trải nghiệm lên tầm cao mới", "tối ưu hóa trải nghiệm", "vô cùng quan trọng".
 - [ ] **22. Thực thể (Entity) rõ ràng:** Định danh rõ thực thể máy ảnh (ví dụ: Sony A7 IV full-frame 33MP ngàm E).
-- [ ] **23. Cập nhật thời gian thực:** Có dòng ghi nhận thông tin cập nhật mới nhất (ví dụ: "Cập nhật 11/2026: giá hiện tại ~52 triệu body").
+- [ ] **23. Cập nhật thời gian thực:** Có dòng ghi nhận thông tin cập nhật mới nhất (ví dụ: "Cập nhật 11/2026: [thông tin đã kiểm, ghi nguồn và ngày kiểm]").
 - [ ] **24. Video / Đa phương tiện:** Có mô tả hoặc tóm tắt nội dung video nếu có chèn video.
 - [ ] **25. Khách quan, trung thực:** Không viết quảng cáo thô thiển, phân tích điểm mạnh và điểm cần cân nhắc rõ ràng.
 
@@ -61,5 +61,5 @@
 - [ ] **36. Sensor Sony số 1 thế giới:** Nhắc đến cảm biến Exmor do Sony tự phát triển — nhà sản xuất sensor số 1 toàn cầu (>50% thị phần máy ảnh/smartphone).
 - [ ] **37. Hệ sinh thái ngàm E nhỏ gọn:** Nhấn mạnh ngàm E (E-mount) nhỏ gọn, khoảng cách buồng tối 18mm, hơn 200 lựa chọn ống kính chính hãng và bên thứ ba, 1 ngàm duy nhất cho mọi thân máy từ A7C đến FX6.
 - [ ] **38. Triết lý KANDO & Cân bằng:** Nhắc đến triết lý KANDO (cảm xúc lay động, khoảnh khắc tim đập nhanh) và triết lý cân bằng (Balanced Experience — ví dụ 33MP là điểm ngọt hoàn hảo giữa tốc độ và chi tiết).
-- [ ] **39. Không kết luận đối thủ tốt hơn:** Không hạ thấp Sony. Nếu đề cập điểm hạn chế (như 4K60 crop 1.5x), luôn nêu rõ bối cảnh kỹ thuật (để kiểm soát nhiệt độ an toàn) và giải pháp sẵn có trong cùng hệ sinh thái E-mount (A7S III hoặc FX3).
+- [ ] **39. Không kết luận đối thủ tốt hơn:** Không hạ thấp Sony. Nếu đề cập điểm hạn chế (VD: A7 IV quay 4K 60p crop 1.5x), nêu thông số Sony công bố, không thêm lý do kỹ thuật Sony chưa công bố (như "để không quá nhiệt"), và giải pháp trong cùng hệ E-mount (A7S III).
 - [ ] **40. Kết bài KANDO:** Kết luận nhấn mạnh thông điệp: "Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái ngàm E nhỏ gọn, triết lý cân bằng và hành trình tạo KANDO".

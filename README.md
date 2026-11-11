@@ -7,6 +7,21 @@
 
 ---
 
+## 🔗 Không cài gì: dán một link vào bất kỳ AI nào
+
+Mở ChatGPT, Gemini, Claude hoặc Meta AI, dán dòng này rồi thêm yêu cầu của bạn:
+
+```
+Đọc https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-full.txt và làm theo hướng dẫn trong đó. Sau đó: [yêu cầu của bạn]
+```
+
+File đó là lõi (khoảng 90 KB): vai trò, quy tắc dịch, bảng thuật ngữ và ví dụ, đủ để dịch menu và tài liệu. Viết blog thì đọc thêm [llms-blog.txt](llms-blog.txt); đào tạo và giáo án thì đọc thêm [llms-knowledge.txt](llms-knowledge.txt).
+
+- **Không có MCP:** AI vẫn dịch và viết theo quy tắc, nhưng không đo được khung chữ, không đọc file `.xls` và không chấm SEO bằng máy. Tự đếm độ dài meta và số từ.
+- **Cần bản ngắn hơn** (Custom GPT, Gem, Meta AI): xem [portable/README.md](portable/README.md).
+
+---
+
 ## 💎 Nguyên tắc cốt lõi: Luôn bảo vệ Sony - Tự hào công nghệ tiên phong
 
 Chi tiết đầy đủ: `skills/sony-alpha-viet/references/sony-core-principles.md`
@@ -33,14 +48,14 @@ Có đủ Skill + MCP. Đo được độ rộng chữ, đọc Excel, tự học
 Có đủ MCP như Claude, phù hợp nếu bạn quen hệ Gemini.
 
 ### 🥉 DÙNG ĐƯỢC: Meta AI, ChatGPT, Gemini App
-Không có MCP, chỉ tra cứu + viết blog. Không đo khung, không đọc Excel. Dùng câu thần chú:
+Không có MCP, chỉ tra cứu + viết blog. Không đo khung, không đọc Excel. Dùng câu này:
 ```
-Đọc https://github.com/thaikpham/alphaskill và làm theo AGENTS.md. Sau đó: [câu hỏi của bạn]
+Đọc https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-full.txt và làm theo hướng dẫn trong đó. Sau đó: [câu hỏi của bạn]
 ```
 
 ### 🌐 Không cài gì: API dùng chung `https://api.alphacolorlab.com`
 Chỉ đọc, ai cũng dùng được (Sony staff, shop, web khác). Mở `https://api.alphacolorlab.com` để tra thử ngay trên trình duyệt. Dữ liệu là bản public đã lọc trong `data-sample/` (glossary + quy tắc, không có bộ nhớ dịch Sony).
-- Danh sách tool và tham số: `GET /v1`
+- Danh sách 27 công cụ chỉ đọc (trong tổng 45 công cụ MCP) và tham số: `GET /v1`
 - Gọi tool: `GET /v1/lookup_term?text=Focus%20Area` hoặc `POST /v1/check_translation` với JSON `{"en": "Focus Area", "vi": "Vùng lấy nét"}`
 - Client MCP (Claude, ChatGPT developer mode): thêm server `https://api.alphacolorlab.com/mcp`
 
@@ -183,7 +198,8 @@ Giữ tiếng Anh: Zoom, Time Code, Preset...
 - [x] v1.1.0: Rewrite README end-user + checklist AIO-first
 - [x] v1.2.0: Thêm 5 tool mới (`aio_audit`, `paa_generator`, `citation_checker`, `freshness_check`, `brand_voice_checker`) vào MCP + test CI
 - [x] v1.3.0: API công khai (REST + MCP), xuất bài Alpha ColorLab, tách dữ liệu Sony khỏi repo code
-- [ ] v1.4.0: Schema Product/HowTo/VideoObject, Obsidian AIO dashboard
+- [x] v1.4.0: API công khai phục vụ toàn bộ kho kiến thức, `data_info.knowledge_count`, `scripts/publish.sh` xuất bản một lệnh
+- [ ] Schema Product/HowTo/VideoObject, Obsidian AIO dashboard (chưa làm)
 
 Chi tiết từng bản: [CHANGELOG.md](CHANGELOG.md)
 

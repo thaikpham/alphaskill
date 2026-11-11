@@ -4,10 +4,13 @@ Gói này giúp các trợ lý AI khác làm việc theo cùng quy tắc với s
 
 | File | Dùng làm |
 |---|---|
-| `system-prompt.md` | Hướng dẫn hệ thống (khoảng 5.800 ký tự, dưới giới hạn 8.000 của Custom GPT) |
-| `knowledge/` | File kiến thức: glossary, quy trình menu, checklist SEO/AIO, văn phong, mẫu bài, mẫu Schema, bài mẫu |
+| `system-prompt.md` | Hướng dẫn hệ thống (khoảng 6.700 ký tự, dưới giới hạn 8.000 của Custom GPT) |
+| `knowledge/` | 12 file kiến thức: glossary, bảng thuật ngữ đầy đủ (`glossary-full.md`), quy trình menu, checklist SEO/AIO, văn phong, mẫu bài, mẫu Schema, bài mẫu |
+| `../llms-full.txt` | Lõi (khoảng 90 KB): vai trò, quy tắc dịch menu và tài liệu, bảng thuật ngữ, ví dụ dịch. Dùng khi AI chỉ nhận được một link hoặc một file |
+| `../llms-blog.txt` | Thêm cho viết blog: bảo vệ Sony, checklist 40 tiêu chí, khung bài, FAQ schema, quy tắc đăng ColorLab |
+| `../llms-knowledge.txt` | Thêm cho đào tạo và giáo án: vai trò trainer, kiến thức nền |
 
-`knowledge/` được sinh tự động từ `skills/sony-alpha-viet/`. Sau khi sửa skill, chạy lại:
+`knowledge/` và các file `../llms-*.txt` được sinh tự động từ `skills/sony-alpha-viet/`. Sau khi sửa skill, chạy lại:
 ```bash
 uv run python scripts/build_portable.py
 ```
@@ -49,7 +52,7 @@ Cần gói ChatGPT có quyền tạo GPT.
 1. Vào chatgpt.com → **GPTs** → **Create** → tab **Configure**.
 2. **Name:** Sony Alpha Việt. **Description:** Dịch menu Sony và viết blog máy ảnh chuẩn SEO/AIO.
 3. **Instructions:** dán toàn bộ `system-prompt.md`.
-4. **Knowledge:** tải lên 7 file trong `knowledge/`.
+4. **Knowledge:** tải lên 12 file trong `knowledge/`, hoặc `../llms-full.txt` (lõi, đã gộp sẵn). Thêm `../llms-blog.txt` khi viết blog và `../llms-knowledge.txt` khi đào tạo.
 5. **Capabilities:** bật Code Interpreter để GPT đếm ký tự meta và số từ chính xác. Bật Web Search nếu muốn đối chiếu thông số.
 6. **Conversation starters** gợi ý:
    - Dịch các mục menu này sang tiếng Việt: …
@@ -77,7 +80,7 @@ ChatGPT chỉ kết nối được MCP server **từ xa qua HTTPS**, qua develop
 1. Vào gemini.google.com → **Gems** → **New Gem**.
 2. **Name:** Sony Alpha Việt.
 3. **Instructions:** dán `system-prompt.md`.
-4. **Knowledge:** tải lên các file trong `knowledge/`. Nếu bị giới hạn số file, ưu tiên `glossary-vi.md`, `seo-aio-checklist.md`, `writing-style-vi.md`, `blog-post-template.md`.
+4. **Knowledge:** tải lên `../llms-full.txt`, thêm `../llms-blog.txt` khi viết blog và `../llms-knowledge.txt` khi đào tạo. Không cần tải cả thư mục `knowledge/`.
 5. Lưu, rồi mở Gem để dùng.
 
 ## Meta AI
@@ -88,7 +91,7 @@ ChatGPT chỉ kết nối được MCP server **từ xa qua HTTPS**, qua develop
 
 1. Mở cuộc trò chuyện mới tại meta.ai (hoặc trong WhatsApp, Messenger, Instagram).
 2. Gửi tin nhắn đầu tiên: `Trong cuộc trò chuyện này, hãy làm theo hướng dẫn sau:` rồi dán toàn bộ `system-prompt.md`.
-3. Gửi yêu cầu như bình thường. Nếu cần thuật ngữ ngoài bảng tóm tắt, dán thêm phần liên quan của `knowledge/glossary-vi.md`.
+3. Gửi yêu cầu như bình thường. Nếu cần thuật ngữ ngoài bảng lõi, dán thêm phần liên quan của `knowledge/glossary-full.md`.
 
 Lưu ý:
 - Hướng dẫn chỉ có hiệu lực trong cuộc trò chuyện đó.
@@ -99,6 +102,6 @@ Lưu ý:
 
 Nguồn duy nhất là `skills/sony-alpha-viet/`.
 1. Khi chốt thuật ngữ mới, sửa `references/glossary-vi.md`.
-2. Nếu thuật ngữ quan trọng, cập nhật thêm bảng tóm tắt trong `system-prompt.md`.
+2. Không sửa tay `glossary-full.md` hay mục Bảng thuật ngữ: chúng sinh từ `data-sample/glossary.json`.
 3. Chạy `scripts/build_portable.py`.
-4. Tải lại file lên Custom GPT và Gem.
+4. Tải lại `system-prompt.md` và các file `../llms-*.txt` lên Custom GPT và Gem.

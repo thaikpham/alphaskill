@@ -1,15 +1,40 @@
 # Sony Alpha Việt
 
-> Skill + MCP dịch menu/tài liệu Sony Alpha sang tiếng Việt và viết blog máy ảnh chuẩn SEO + AIO. AI đọc repo này: làm theo AGENTS.md.
+> Skill và MCP dịch menu máy ảnh Sony EN/JP sang tiếng Việt, viết blog SEO/AIO theo quy tắc của dự án. Không có MCP vẫn dùng được: đưa link llms-full.txt cho bất kỳ AI nào.
 
-## Hướng dẫn chính
-- [AGENTS.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/AGENTS.md): thứ tự đọc file và quy tắc bắt buộc
-- [system-prompt.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/system-prompt.md): toàn bộ quy tắc 3 chế độ
+## Core
 
-## Kiến thức
-- [glossary-vi.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/glossary-vi.md): thuật ngữ EN/JP → menu / bài viết
-- [sony-menu-terms.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/sony-menu-terms.md): quy trình dịch menu
-- [seo-aio-checklist.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/seo-aio-checklist.md): 40 tiêu chí SEO/AIO/Brand Voice
-- [writing-style-vi.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/writing-style-vi.md): văn phong
-- [blog-post-template.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/blog-post-template.md): khung bài blog
-- [example-blog-post.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/example-blog-post.md): bài mẫu kèm bảng audit
+- [llms-full.txt](https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-full.txt): lõi: vai trò, quy tắc dịch menu và tài liệu, bảng thuật ngữ, ví dụ dịch. Đọc trước
+
+## Blog
+
+- [llms-blog.txt](https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-blog.txt): thêm cho viết blog SEO/AIO: bảo vệ Sony, checklist, khung bài, FAQ schema
+
+## Knowledge
+
+- [llms-knowledge.txt](https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-knowledge.txt): thêm cho đào tạo và giáo án: vai trò trainer, kiến thức nền
+
+## Individual files
+
+- [system-prompt.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/system-prompt.md): Sony Alpha Việt - System Prompt cho ChatGPT / Gemini App / Meta AI
+- [AGENTS.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/AGENTS.md): AGENTS.md - Chỉ dẫn cho AI đọc repo qua link (Meta AI, ChatGPT, Gemini, Claude)
+- [SKILL.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/skills/sony-alpha-viet/SKILL.md): Sony Alpha Việt
+- [blog-post-template.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/blog-post-template.md): Khung bài blog AIO-first: TL;DR, H2, bảng so sánh, FAQ, Key Takeaways
+- [colorlab-vi.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/colorlab-vi.md): Xuất bài sang Alpha ColorLab (alphacolorlab.com)
+- [example-blog-post.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/example-blog-post.md): Sony A7 IV hay A7R V: nên chọn máy nào?
+- [example-menu-translation.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/example-menu-translation.md): Ví dụ: dịch chuỗi menu (chế độ A)
+- [faq-schema.json](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/faq-schema.json): Mẫu JSON-LD Article + FAQPage cho bài blog
+- [glossary-full.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/glossary-full.md): Bảng thuật ngữ đầy đủ
+- [glossary-vi.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/glossary-vi.md): Glossary Sony Alpha — Việt
+- [seo-aio-checklist.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/seo-aio-checklist.md): Checklist SEO + AIO + Brand Voice (40 tiêu chí) — Sony Alpha Việt v1.2.0
+- [sony-core-principles.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/sony-core-principles.md): Nguyên tắc cốt lõi: Bảo vệ Sony - Tự hào công nghệ tiên phong
+- [sony-menu-terms.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/sony-menu-terms.md): Dịch menu Sony (chế độ A)
+- [trainer-vi.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/trainer-vi.md): Đào tạo — bộ não thứ hai của Sony Camera Trainer (chế độ D)
+- [writing-style-vi.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/writing-style-vi.md): Văn phong tiếng Việt
+
+## API công khai
+
+- Gốc: https://api.alphacolorlab.com (chỉ đọc)
+- `GET https://api.alphacolorlab.com/v1`: danh sách công cụ và tham số
+- `GET https://api.alphacolorlab.com/v1/<tên>?…` hoặc `POST https://api.alphacolorlab.com/v1/<tên>` với JSON
+- MCP: https://api.alphacolorlab.com/mcp

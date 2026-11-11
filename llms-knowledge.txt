@@ -1,0 +1,851 @@
+# Sony Alpha Việt: đào tạo và kiến thức nền (v1.4.0)
+
+> Vai trò trainer và kiến thức nền để trả lời học viên và soạn giáo án.
+
+Đọc [llms-full.txt](https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-full.txt) trước khi dùng kiến thức này để dịch hoặc viết.
+
+Bộ file cùng phiên bản:
+- [llms-full.txt](https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-full.txt): lõi: vai trò, quy tắc dịch menu và tài liệu, bảng thuật ngữ, ví dụ dịch. Đọc trước
+- [llms-blog.txt](https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-blog.txt): thêm cho viết blog SEO/AIO: bảo vệ Sony, checklist, khung bài, FAQ schema
+
+File này sinh tự động từ `skills/sony-alpha-viet/`, `data-sample/` và `portable/system-prompt.md` bởi `scripts/build_portable.py`. Không sửa tay.
+
+## Mục lục
+
+- [1. Vai trò trainer](#1-vai-trò-trainer)
+- [2. Kiến thức nền](#2-kiến-thức-nền)
+
+## 1. Vai trò trainer
+
+Kho kiến thức nằm ở `<data>/knowledge/` (dữ liệu riêng, không lên repo công khai), mirror vào vault Obsidian:
+- `1 Kiến thức/` — Phơi sáng · Lấy nét và xóa phông · Màu sắc · Bố cục và góc nhìn · Kỹ thuật sáng tạo · Quy trình làm việc
+- `2 Giáo án/` — khóa học, bài thực hành, cài đặt nhanh, đính chính slide
+
+Công cụ: `search_knowledge(câu hỏi)` (không phân biệt dấu, xếp hạng theo đoạn) · `get_knowledge()` (cây) / `get_knowledge("Bù sáng")` (cả note) · `add_knowledge(note, nội dung, section)` (ghi; chỉ khi trainer đồng ý). Không có MCP: hỏi trainer nội dung note, hoặc trả lời từ kiến thức chung và ghi "chưa kiểm bằng kho kiến thức".
+
+### Trả lời câu hỏi học viên
+1. `search_knowledge` với chính câu hỏi (nguyên văn, có thể không dấu). Đọc 2–3 đoạn đầu; cần thêm thì `get_knowledge(note)`.
+2. Trả lời theo khung:
+   - **Một câu trả lời thẳng.**
+   - **Vì sao** (1–3 ý, ví dụ dễ hình dung: vòi nước và cái cốc, núm âm lượng…).
+   - **Làm trên máy Sony:** chế độ, tên mục menu theo **Menu OSD** tiếng Việt kèm tên tiếng Anh trong ngoặc (danh sách `menu:` trong thuộc tính note), giá trị gợi ý.
+   - **Thử ngay:** một bài tập 1–2 phút.
+   - Nguồn: tên note (`[[Bù sáng]]`).
+3. Kho không có hoặc chỉ có một phần: trả lời từ kiến thức chung, ghi rõ "chưa có trong kho", đề nghị `add_knowledge`.
+4. Note có ghi `[cần xác minh]`, hoặc câu hỏi về thông số/giá/tính năng theo model: không khẳng định; đối chiếu trang Sony hoặc `search_docs`.
+5. Trước khi dùng số liệu từ slide, xem `Đính chính slide` (ví dụ: gấp đôi số f là **giảm** ánh sáng còn 1/4).
+
+### Soạn giáo án
+1. Hỏi (một lượt): đối tượng, thời lượng, model máy của lớp, địa điểm (trong nhà/ngoài trời, giờ trong ngày).
+2. `get_knowledge()` → chọn giáo án gần nhất (`Khóa Photo Basic 3 giờ`, `Khóa Essential Photography`) → điều chỉnh, không viết lại từ đầu.
+3. Khung bắt buộc: **Mục tiêu** (học viên làm được gì khi rời lớp) · **Mạch bài** có mốc phút · **Demo** (trainer làm gì trên máy) · **Thực hành** (bài nào, thiết lập chính) · **Tiêu chí đạt** · **Chuẩn bị** (thiết bị, địa điểm) · liên kết tới note kiến thức.
+4. Bài thực hành lấy từ `8 bài thực hành`; mỗi bài đã có thiết lập và tiêu chí đạt.
+5. Câu hỏi kiểm tra: 5–10 câu, mỗi câu một tình huống thực tế ("chụp cô dâu áo trắng ngược sáng, ảnh xám tối → chỉnh gì?") kèm đáp án và note nguồn.
+
+### Làm giàu kho sau buổi dạy
+- Câu hỏi hay của học viên → `add_knowledge("<note>", "- *Câu hỏi?* Trả lời.")` (mặc định vào mục "Câu hỏi học viên hay hỏi").
+- Kiến thức mới chưa có note → tạo note mới bằng `add_knowledge("1 Kiến thức/<Nhóm>/<Tên>", nội dung, section="Hiểu nhanh")`, rồi bổ sung theo mẫu dưới.
+- Trainer sửa trong Obsidian → "import Obsidian" (`obsidian_import`) → `obsidian_export()`.
+
+### Mẫu note kiến thức
+```markdown
+---
+title: <Tên>
+aliases: [<tên tiếng Anh>, <cách gọi khác>]
+level: cơ bản | nâng cao
+sources: [<nguồn>]
+menu: ["<EN menu> → <Menu OSD tiếng Việt>"]
+tags: [sony-alpha-viet/kien-thuc]
+---
+
+# <Tên>
+
+**<Định nghĩa một câu, trích riêng được.>**
+
+## Hiểu nhanh
+## Trên máy Sony
+## Giảng thế nào
+## Câu hỏi học viên hay hỏi
+## Liên quan
+[[Note khác]] · [[Note khác]]
+```
+Tên menu: tra `lookup_term` / `search_memory` (bộ nhớ dịch ILDC), không tự dịch. Tên và vị trí mục khác nhau theo model; ghi "tùy model" khi không chắc.
+
+## 2. Kiến thức nền
+
+### Bố cục
+
+**Bố cục là cách sắp xếp các thành phần tạo ảnh trong một khung cố định để dẫn mắt người xem tới chủ thể và tạo cảm giác mình muốn.**
+
+#### Các bố cục cơ bản
+- **Trung tâm / đối xứng**: chủ thể giữa khung hoặc hai bên một trục. Vững chãi, trang trọng, nhưng dễ nhàm nếu chủ thể không đủ mạnh. (Ví dụ kinh điển: chân dung của Irving Penn.)
+- **Một phần ba (1/3)**: chia khung 3×3, đặt chủ thể ở giao điểm hoặc dọc đường kẻ. Ảnh sống động hơn. Đường chân trời hoặc ranh giới màu chia khung theo tỷ lệ 1:2.
+  - Để **khoảng trống về phía chủ thể nhìn hoặc đi tới** (line of sight).
+- **Đường chéo**: đặt đường thẳng nghiêng hoặc dòng phối cảnh theo đường chéo. Tạo chiều sâu, tính liên tục, cảm giác lạ; tận dụng tối đa góc nhìn của ống kính.
+- **Đường dẫn** (leading line): đường ray, bờ tường, con đường dẫn mắt vào chủ thể.
+- **Họa tiết và nhịp điệu** (pattern): lặp lại hình dạng; phá nhịp bằng một chi tiết khác biệt.
+- **Phản chiếu**: mặt nước, kính, vũng nước sau mưa.
+- **Khung trong khung**, **lớp cảnh**: xem [[Khung trong khung]], [[Săn màu, phối màu và lớp cảnh]].
+
+#### Cắt hay không cắt (crop)
+- Chân dung: **lệch khỏi tâm**, **đừng chừa quá nhiều khoảng trống trên đầu**; cắt một phần đầu/mặt vẫn được nếu có chủ đích (quảng cáo TV hay làm vậy để tập trung vào phần muốn khoe).
+- Chụp toàn thân cũng tốt. Cuối cùng vẫn là *mình muốn kể điều gì*. Cùng một người mẫu, bố cục khác cho cảm giác khác hẳn.
+- Tránh cắt ngay khớp (cổ tay, đầu gối, cổ chân).
+
+#### Trên máy Sony
+**Đường lưới** (Grid Line) hiện trên màn hình và kính ngắm: lưới 1/3, lưới ô vuông, đường chéo + ô vuông, hoặc tắt. Bật lưới 1/3 cho người mới.
+
+#### Giảng thế nào
+- Đưa 3 bố cục cơ bản trước (đối xứng, 1/3, đường chéo), các kiểu còn lại để buổi thực hành.
+- Bài tập: chụp cùng một chủ thể theo 3 bố cục, so sánh cảm giác.
+
+#### Liên quan
+[[Chủ thể chính]] · [[Góc máy và khung hình]] · [[Khung trong khung]] · [[8 bài thực hành]]
+
+### Chủ thể chính
+
+**Bước đầu tiên của một bức ảnh ấn tượng là quyết định "diễn viên chính": chụp cái gì, và quan trọng không kém, không chụp cái gì.**
+
+#### Hai loại ảnh
+- **Ảnh ghi lại**: để nhớ sự kiện, giải thích, làm bằng chứng. Điện thoại và chế độ Auto làm tốt việc này.
+- **Ảnh truyền cảm xúc** ("biểu đạt"): khiến người xem rung động. Đây là mục tiêu của khóa học: cùng ánh sáng, cùng máy, chỉ cần đổi bố cục và độ sáng là ảnh đã khác hẳn.
+- Hai yếu tố quan trọng nhất của nhiếp ảnh theo giáo trình Sony: **khung hình** (framing) và **phơi sáng** (exposure).
+
+#### Cách làm
+1. Chọn **chủ thể chính**: thứ mình muốn người xem nhìn đầu tiên.
+2. Chọn **vai phụ và hậu cảnh** giúp chủ thể nổi bật: dọn bớt, đổi góc, xóa phông ([[Độ sâu trường ảnh và xóa phông]]).
+3. Tự hỏi: *trong ảnh hai chiếc xe, chiếc nào là vai chính?* Nếu không trả lời được thì người xem cũng không biết nhìn vào đâu.
+
+#### Giảng thế nào
+- Mở bài: "Bạn đã từng chụp…" (Essential Photography) — chiếu những ảnh hỏng quen thuộc: chụp cả nhóm bé tí giữa khung, flash chụp thẳng, nền rối. Câu chốt: **"Chúng ta ai cũng từng như vậy."**
+- Trích dẫn tạo động lực: Henri Cartier-Bresson cho rằng **10.000 tấm ảnh đầu tiên là những tấm tệ nhất**. "Hãy chụp thêm, ngay cả khi bạn đã thấy đủ."
+- Giáo trình Sony khuyên: có một chủ đề yêu thích (thú cưng, con nhỏ, đồ ăn…) giúp học nhanh hơn. Trainer nên dùng ảnh của chính mình làm ví dụ.
+
+#### Liên quan
+[[Bố cục]] · [[Góc máy và khung hình]] · [[Khóa Photo Basic 3 giờ]]
+
+### Góc máy và khung hình
+
+**Đổi chỗ đứng, độ cao máy và chiều khung (ngang/dọc) là cách rẻ nhất để ảnh khác người khác: cùng cảnh vật, góc nhìn mới cho cảm giác mới.**
+
+#### Góc máy
+- **Ngang tầm mắt** (eye level): tự nhiên, gần gũi.
+- **Góc cao** (high angle): nhìn xuống, chủ thể nhỏ lại, hợp đồ ăn, toàn cảnh.
+- **Góc thấp** (low angle): nhìn lên, chủ thể oai hơn, bầu trời làm nền gọn. Hạ máy **ngang tầm mắt trẻ em/thú cưng** sẽ mở ra "một thế giới khác".
+- **Cận cảnh**: đến thật gần một chi tiết cũng là cách tạo ảnh ấn tượng.
+
+#### Khung ngang và khung dọc
+- **Ngang**: tự nhiên với mắt, diễn tả bề rộng, sự trải dài.
+- **Dọc**: diễn tả chiều cao, chiều sâu; hợp chân dung, kiến trúc, đăng điện thoại.
+- Chọn chiều khung là bước đơn giản nhưng quyết định, dựa vào hình dạng chủ thể và cảm giác muốn tạo.
+
+#### Cầm máy
+- **Qua kính ngắm**: khép hai khuỷu tay sát người, áp kính ngắm vào mí mắt trên, bấm bằng ngón trỏ. Thêm một điểm tựa nên ít rung hơn.
+- **Qua màn hình (Live View)**: tay trái đỡ ống kính và thân máy, lật màn hình theo góc mong muốn, có thể bấm bằng ngón cái. Màn hình lật giúp chụp góc thấp/góc cao mà không phải nằm bò.
+
+#### Giảng thế nào
+- Bài tập 3 góc: cùng chủ thể chụp ngang tầm mắt, góc cao, góc thấp. Bài tập ngang–dọc: mỗi cảnh chụp cả hai chiều.
+
+#### Liên quan
+[[Bố cục]] · [[Chủ thể chính]] · [[Silhouette]]
+
+### Chồng ảnh
+
+**Chồng ảnh là ghép hai hay nhiều khung hình thành một ảnh: chân dung chồng cảnh vật, chồng tán cây, hiệu ứng "hồn ma", chuyển động phân mảnh.**
+
+#### Lưu ý quan trọng
+- Máy Sony Alpha **không có chế độ chồng ảnh trong máy**. Dòng cũ (A7 II, A6000) từng có ứng dụng Multiple Exposure qua PlayMemories Camera Apps, nhưng dịch vụ này đã đóng. Dữ liệu menu ILDC đã dịch (8.346 chuỗi) cũng không có chức năng này.
+- Vì vậy bài này làm bằng **hậu kỳ**.
+
+#### Chụp để ghép
+- RAW, chế độ M, cân bằng trắng cố định, ISO 100.
+- Mỗi khung cố tình **thiếu sáng khoảng −1 EV** để khi chồng không bị cháy.
+- Khung 1: chân dung hoặc [[Silhouette]] trên nền sáng đều (trời, tường trắng).
+- Khung 2: họa tiết tương phản mạnh: tán cây, kiến trúc, đèn phố.
+
+#### Ghép
+Lightroom/Photoshop: chế độ hòa trộn **Screen** (nền tối) hoặc **Multiply** (nền sáng), chỉnh Opacity.
+
+#### Mẹo
+Ảnh chồng đẹp cần **một khung có mảng tối lớn** để khung kia "chui" vào. Hai ảnh đều sáng chồng lên nhau sẽ thành một mớ hỗn độn.
+
+#### Tiêu chí đạt
+Chủ thể chính vẫn đọc được · hai lớp có quan hệ ý nghĩa (người – nơi chốn, người – thiên nhiên) · không cháy vùng sáng.
+
+#### Liên quan
+[[Silhouette]] · [[RAW, JPEG và HEIF]] · [[8 bài thực hành]]
+
+### Khung trong khung
+
+**Khung trong khung là dùng vật ở tiền cảnh (ô cửa, vòm cổng, cành cây, khe hẹp) bao quanh chủ thể để dẫn mắt người xem và tạo chiều sâu.**
+
+#### Cài đặt Sony Alpha
+- Chế độ **A**, khẩu **F5.6–F8** để cả khung và chủ thể đủ nét.
+- Muốn khung mờ mềm: **F1.8–F2.8**, lấy nét vào chủ thể.
+- **AF-S** + Vùng lấy nét: **Điểm** (S/M). Tránh máy bắt nét nhầm vào tiền cảnh.
+- Ống góc rộng đến trung bình (16–35mm, 24–70mm).
+- Bật **Đường lưới** để canh khung cho cân.
+
+#### Cách chụp
+1. Tìm vật tiền cảnh có hình dạng rõ: cửa sổ, gương, hành lang, tán lá.
+2. Đặt chủ thể lệch tâm theo quy tắc 1/3, không đặt chính giữa.
+3. Khung bị cắt cụt → lùi lại hoặc dùng tiêu cự dài hơn.
+4. Để tiền cảnh **tối hơn chủ thể**: mắt tự tìm tới vùng sáng.
+
+#### Mẹo
+Dùng **Phóng to lấy nét** (Focus Magnifier) để kiểm tra chủ thể thật nét. Tiền cảnh ở gần rất dễ đánh lừa AF.
+
+#### Tiêu chí đạt
+Khung bao rõ, không cắt cụt vô lý · chủ thể nét và sáng hơn khung · chủ thể không bị khung che.
+
+#### Liên quan
+[[Bố cục]] · [[Độ sâu trường ảnh và xóa phông]] · [[Lấy nét]] · [[8 bài thực hành]]
+
+### Panning
+
+**Panning là lia máy bám theo chủ thể đang chạy ở tốc độ màn trập chậm: chủ thể nét, hậu cảnh nhòe thành vệt ngang, tạo cảm giác tốc độ.**
+
+#### Cài đặt Sony Alpha
+- Chế độ **S**, ISO AUTO.
+- Tốc độ khởi điểm: người đi bộ 1/30s · xe đạp 1/60s · ô tô, xe máy 1/125s.
+- **AF-C** + Vùng lấy nét: **Vùng** (Zone).
+- Kiểu chụp: chụp liên tục tốc độ cao (Continuous Hi).
+- Ống kính có công tắc OSS Mode 1/2 → chọn **Mode 2** (chỉ chống rung theo chiều dọc, không cản cú lia ngang).
+
+#### Cách chụp
+1. Đứng vuông góc với hướng di chuyển, chọn hậu cảnh nhiều chi tiết (cây, biển hiệu, hàng rào) để vệt nhòe rõ.
+2. **Xoay từ hông**, không xoay bằng tay.
+3. Bám chủ thể *trước* khi bấm, giữ nó ở nguyên một vị trí trong khung.
+4. **Lia tiếp sau khi chụp xong**. Dừng đột ngột là lỗi hay gặp nhất.
+
+#### Mẹo
+- Bắt đầu 1/125s, giảm dần để hậu cảnh nhòe nhiều hơn.
+- Chụp nhiều: tỷ lệ đạt chỉ khoảng **1–2/10 tấm** là bình thường.
+
+#### Tiêu chí đạt (khi chấm bài)
+Phần chính của chủ thể (mặt người, đầu xe) nét · hậu cảnh thành vệt ngang rõ · vệt cùng hướng di chuyển.
+
+#### Liên quan
+[[Tốc độ màn trập]] · [[Lấy nét]] · [[8 bài thực hành]]
+
+### Phơi sáng dài
+
+**Phơi sáng dài là mở màn trập nhiều giây để ghi chuyển động thành vệt mượt: nước như sương, mây kéo dài, đèn xe thành dải sáng, người qua lại biến mất.**
+
+#### Cài đặt Sony Alpha
+- Chế độ **M**, ISO 100, khẩu **F8–F11**.
+- Tốc độ: vệt đèn xe 5–15s · nước/mây 30s đến vài phút (dùng **BULB** + điều khiển từ xa).
+- Ban ngày: kính lọc **ND64 / ND1000**.
+- Lấy nét **MF**, hoặc AF-S rồi khóa nét; tắt AF trước khi phơi.
+- **Tắt SteadyShot** khi gắn chân máy.
+- Kiểu chụp: **Hẹn giờ 2s**, hoặc bấm qua ứng dụng điện thoại (Creators' App trên máy đời mới; Imaging Edge Mobile trên máy đời cũ).
+- **Giảm nhiễu phơi sáng dài** (Long Exposure NR): máy chụp thêm một khung tối để trừ nhiễu, nên mất thêm thời gian bằng thời gian phơi. Chức năng áp dụng từ khoảng 1 giây trở lên; deck khuyên bật khi phơi trên 1 phút để đỡ chờ ở các tấm ngắn.
+
+#### Cách chụp
+1. Chân máy chắc; trời gió thì treo balo vào móc giữa chân máy.
+2. **Bố cục và lấy nét trước khi gắn ND**: gắn rồi khung ngắm gần như tối đen.
+3. ND đậm: che kính ngắm để ánh sáng không lọt vào (máy mirrorless ít bị, nhưng nên lưu ý).
+4. Xem **Biểu đồ** sau mỗi tấm, tránh cháy vùng đèn.
+
+#### Mẹo
+**Giờ xanh** (khoảng 20–30 phút sau hoàng hôn) dễ nhất: đủ sáng để không cần ND, đủ tối để phơi 10–30s.
+
+#### Tiêu chí đạt
+Vật đứng yên nét hoàn toàn (không rung chân máy) · chuyển động thành vệt mượt có chủ đích · vùng đèn không cháy trắng.
+
+#### Liên quan
+[[Tốc độ màn trập]] · [[Chế độ chụp P-A-S-M]] · [[8 bài thực hành]]
+
+### Silhouette
+
+**Silhouette là đo sáng theo nền trời sáng để chủ thể thành một khối đen tuyền; ảnh sống nhờ hình dáng, không nhờ chi tiết.**
+
+#### Cài đặt Sony Alpha
+- Chế độ **M**, hoặc **A** với bù sáng **−1.5 đến −2.5 EV**.
+- ISO 100, khẩu F8–F11.
+- Đo sáng **Điểm**, chấm vào vùng trời sáng nhất (không chấm vào mặt trời).
+- AF-S + Điểm; máy khó bắt nét thì chuyển MF.
+- Creative Look **VV** cho trời rực màu hơn. Cân bằng trắng **Trời nhiều mây / Bóng râm** để trời ngả vàng cam.
+- Tắt đèn flash; **tắt DRO/Auto HDR** (chúng sẽ kéo sáng chủ thể lên).
+
+#### Cách chụp
+1. Đặt chủ thể giữa mình và nguồn sáng: mặt trời, cửa sổ, đèn sân khấu.
+2. Hạ máy thấp, hướng lên để chủ thể nằm trọn trên nền trời, không dính vào cây cối, nhà cửa phía sau.
+3. Chọn dáng có đường viền rõ: tay giơ, chân bước, mặt nghiêng lấy profile. Tay ép sát thân sẽ thành một khối đen khó đọc.
+4. Nhiều chủ thể thì phải tách rời nhau, không chồng lấn.
+
+#### Mẹo
+Chụp RAW và cố tình để tối hơn mức muốn. Kéo sáng lại khi hậu kỳ dễ hơn nhiều so với cứu vùng trời đã cháy.
+
+#### Tiêu chí đạt
+Viền chủ thể rõ, đọc được dáng · nền trời có màu, không cháy trắng · chủ thể không dính vào vật khác.
+
+#### Liên quan
+[[Bù sáng]] · [[Đo sáng]] · [[Cân bằng trắng và nhiệt độ màu]] · [[Góc máy và khung hình]] · [[8 bài thực hành]]
+
+### Săn màu, phối màu và lớp cảnh
+
+**Ba bài tập rèn mắt nhìn: săn ảnh theo một tông màu chủ đạo, mượn nguyên tắc phối màu của thiết kế đồ họa, và xếp tiền cảnh – trung cảnh – hậu cảnh thành nhiều lớp.**
+
+#### Săn màu (Color Hunting)
+- Chọn **một tông màu chủ đạo** (đỏ, vàng, xanh…) cho cả buổi, chỉ chụp những cảnh màu đó chiếm phần lớn khung.
+- Kết quả là một bộ ảnh đồng nhất; học viên buộc phải quan sát màu thay vì chỉ nhìn chủ thể.
+
+#### Phối màu (Color Harmony)
+- Mượn kiến thức phối màu của thiết kế đồ họa: màu tương đồng (cạnh nhau trên bánh xe màu), màu bổ túc (đối diện: cam–xanh dương, đỏ–xanh lá), bộ ba màu.
+- Kết hợp với [[Cân bằng trắng và nhiệt độ màu]] và [[Creative Look]] để đẩy tông ngay khi chụp.
+
+#### Lớp cảnh (Layering)
+- Tìm và phối hợp **tiền cảnh – trung cảnh – hậu cảnh** để các yếu tố trước–sau xếp chồng thú vị hoặc hài hước.
+- Dùng quy luật thị giác: gần lớn – xa nhỏ, vật này che vật kia, lặp hình ở nhiều lớp.
+
+#### Tiêu chí đạt
+Săn màu: bộ 5–10 ảnh cùng tông rõ ràng. Phối màu: đặt tên được cách phối đã dùng. Lớp cảnh: có ít nhất 3 lớp, mỗi lớp góp ý nghĩa.
+
+#### Liên quan
+[[Bố cục]] · [[Độ sâu trường ảnh và xóa phông]] · [[8 bài thực hành]]
+
+### Đồng bộ màn sau
+
+**Đồng bộ màn sau là cho đèn flash nổ ở cuối thời gian phơi sáng thay vì đầu: vệt sáng chuyển động nằm phía sau chủ thể, đúng chiều chuyển động.**
+
+#### Vì sao
+- Mặc định (đồng bộ màn trước), flash nổ ngay đầu: chủ thể được "đóng băng" trước, vệt mờ ghi sau nên nằm **phía trước** chủ thể, trông như đang đi lùi.
+- Đồng bộ màn sau: vệt ghi trước, flash "đóng băng" chủ thể ở cuối → đuôi vệt kéo dài **phía sau**, như đang lao tới.
+
+#### Cài đặt Sony Alpha
+- Flash rời gắn hotshoe: HVL-F46RM, HVL-F60RM, hoặc Godox TT685S/V860S.
+- Menu: **Chế độ flash → Đồng bộ sau** (biểu tượng flash kèm chữ REAR).
+- Chế độ **M** hoặc **S**; tốc độ **1/15–1/4s** (đủ dài để ghi vệt).
+- Khẩu F5.6–F8, ISO 400–800.
+- **Bù flash −1 EV** để ánh sáng flash hòa với đèn nền, không bị "dán" lên nền tối.
+- Cân bằng trắng **Đèn sợi đốt** hoặc nhập K ~3.200K: vệt đèn nền ngả xanh lạnh.
+
+#### Cách chụp
+1. Chụp nơi có đèn nền màu: đèn phố, bảng hiệu neon, sàn nhảy.
+2. Đo sáng cho hậu cảnh trước (chưa tính flash): nền phải hơi thiếu sáng.
+3. Chủ thể di chuyển, hoặc mình lia nhẹ máy trong lúc màn trập mở.
+4. **Giữ máy đến khi nghe flash nổ** mới hạ xuống. Flash nổ xong mới hết khung.
+
+#### Mẹo khi dạy
+Chụp cùng một cảnh hai kiểu, Đồng bộ màn trước và Đồng bộ sau, đặt cạnh nhau. Hướng vệt sáng khác nhau là minh họa thuyết phục nhất.
+
+#### Tiêu chí đạt
+Chủ thể nét nhờ flash · vệt sáng nằm phía sau theo chiều chuyển động · flash không lấn át ánh sáng nền.
+
+#### Liên quan
+[[Tốc độ màn trập]] · [[Cân bằng trắng và nhiệt độ màu]] · [[8 bài thực hành]]
+
+### Lấy nét
+
+**Lấy nét là đặt mặt phẳng nét đúng vào phần quan trọng nhất của chủ thể (thường là mắt); ảnh trượt nét gần như không cứu được bằng hậu kỳ.**
+
+#### Hiểu nhanh
+- Câu hỏi đầu tiên khi xem ảnh: *nét có rơi đúng chỗ mình muốn khoe không?* Nét vào tai thay vì mắt, hay ảnh nhòe vì rung tay, đều làm mất cảm xúc.
+- **Chế độ lấy nét** (Focus Mode):
+  - **AF-S** (lấy nét đơn): bấm nửa nút chụp là khóa nét. Hợp chủ thể đứng yên.
+  - **AF-C** (lấy nét liên tục): máy bám nét suốt khi giữ nửa nút chụp. Hợp người, trẻ em, thú cưng, hoặc khi chính người chụp di chuyển.
+  - **DMF**: lấy nét tự động rồi xoay vòng nét chỉnh tay.
+  - **MF**: lấy nét tay; dùng cho [[Phơi sáng dài]], macro, chụp qua kính.
+- **Vùng lấy nét** (Focus Area): **Rộng** (Wide, cả khung) · **Vùng** (Zone) · **Trung tâm** (Center Fix) · **Điểm** / **Điểm linh hoạt** (Spot / Flexible Spot, một điểm nhỏ, dời được) · **Điểm mở rộng** (Expand Spot), và các biến thể **Theo dõi** (Tracking) bám chủ thể di chuyển trong khung. Tên đúng theo từng model.
+- **Nhận dạng chủ thể** (Subject Recognition) — người, động vật, chim… tùy model — tự tìm mắt/đầu/thân để lấy nét.
+
+#### Khóa nét (focus lock)
+Khi chủ thể không nằm giữa khung: đặt điểm nét lên chủ thể → bấm nửa nút (nghe "bíp") → giữ nguyên, bố cục lại → bấm hết. Dùng với AF-S.
+
+#### Tách lấy nét khỏi nút chụp (back-button)
+Gán **AF-ON** cho một nút phía sau và tắt lấy nét theo nút chụp (AF w/ shutter: Off). Ngón cái lo lấy nét, ngón trỏ lo chụp. Có thể giữ nét qua nhiều tấm mà không phải chuyển AF-S/AF-C.
+
+#### Giảng thế nào
+- Cấu hình khởi đầu (Essential Photography): **AF-C + Vùng lấy nét: Theo dõi (Zone) + Nhận dạng chủ thể: Người + AF-ON**.
+- Khi vật ở gần (tiền cảnh trong [[Khung trong khung]]) dễ đánh lừa AF: dùng Điểm nhỏ và **Phóng to lấy nét** để kiểm tra.
+- Giáo trình Sony khuyên người mới bắt đầu với vùng Center hoặc Flexible Spot để hiểu máy đang nét vào đâu.
+
+#### Liên quan
+[[Độ sâu trường ảnh và xóa phông]] · [[Cài đặt nhanh trước buổi chụp]] · [[Tốc độ màn trập]]
+
+### Độ sâu trường ảnh và xóa phông
+
+**Độ sâu trường ảnh là khoảng trước–sau điểm lấy nét mà mắt người còn thấy nét; vùng này càng mỏng thì hậu cảnh và tiền cảnh càng mờ (xóa phông).**
+
+#### Hiểu nhanh
+- Về lý thuyết chỉ có **một mặt phẳng nét**. Phần trước và sau "trông như nét" với mắt người, đó là độ sâu trường ảnh.
+- **Sâu (rộng)**: nét từ bông hoa tới chậu cây phía sau, kể được bối cảnh. **Nông (hẹp)**: chỉ chủ thể nét, nền mờ, chủ thể nổi bật.
+- Càng xa điểm nét, độ mờ càng tăng. Mờ có cả **phía sau** (hậu cảnh) và **phía trước** (tiền cảnh) chủ thể.
+
+#### 4 cách xóa phông mạnh hơn
+1. **Mở khẩu** (số f nhỏ): F2.8 mờ hơn F16. Đây là yếu tố "phần cứng" chỉnh nhanh nhất ở chế độ A. → [[Khẩu độ]]
+2. **Tiêu cự dài** (zoom về tele): 250mm mờ hơn 35mm.
+3. **Đến gần chủ thể**: đứng cách 0,5m mờ hơn đứng cách 1,5m.
+4. **Đẩy hậu cảnh ra xa chủ thể**: chủ thể đứng cách tường 3m mờ hơn đứng sát tường.
+
+Hai yếu tố đầu thuộc ống kính, hai yếu tố sau thuộc khoảng cách. Câu dễ nhớ (Essential Photography): **"Càng mở khẩu, càng gần, càng zoom thì càng xóa phông."**
+
+#### Dùng độ mờ để diễn đạt
+- **Hậu cảnh mờ**: làm gọn nền rối, đẩy chủ thể lên. Đèn điểm phía sau thành bóng tròn (bokeh) làm ảnh lộng lẫy hơn.
+- **Tiền cảnh mờ**: phải cố ý tạo ra. Đặt lá cây, hoa, kính sát ống kính để tạo chiều sâu hoặc như một lớp lọc màu.
+
+#### Giảng thế nào
+- Demo 4 yếu tố bằng 4 cặp ảnh: F2.8/F22 · 35mm/250mm · 0,5m/1,5m · nền sát/nền xa.
+- Sai lầm hay gặp: mở F1.4 chụp nhóm 3 người đứng lệch hàng → người thứ hai đã mờ. Chụp nhóm nên dùng F4–F5.6.
+- Lưu ý chính xác cho lớp nâng cao: nếu giữ nguyên khung hình (lùi ra khi zoom tele), độ sâu trường ảnh gần như không đổi nhưng hậu cảnh vẫn mờ và to hơn vì bị phóng đại. Lớp cơ bản không cần đi sâu.
+
+#### Liên quan
+[[Khẩu độ]] · [[Lấy nét]] · [[Bố cục]] · [[Chế độ chụp P-A-S-M]]
+
+### Creative Look
+
+**Creative Look là bộ "màu máy" của Sony áp vào ảnh JPEG/HEIF và video ngay khi chụp; mỗi look có thể chỉnh thêm 8 thông số để thành màu riêng của mình.**
+
+#### Các look
+- Cơ bản: **ST** (Standard, trung tính, dùng mặc định) · **PT** (Portrait, da mềm) · **NT** (Neutral, nhạt, để hậu kỳ) · **VV** (Vivid, rực).
+- Mở rộng trên máy đời mới: **VV2** · **FL** (Film look) · **IN** (Instant, tông nhạt kiểu ảnh lấy liền) · **SH** (Soft High-key, sáng mềm) · **BW** (đen trắng) · **SE** (Sepia). Danh sách cụ thể tùy model.
+- Máy đời cũ dùng **Creative Style** (Standard, Vivid, Portrait…). Picture Profile (PP1…PP11, S-Log3, S-Cinetone) là hệ màu cho quay phim, tách riêng.
+
+#### 8 thông số chỉnh
+Contrast (tương phản) · Highlights (vùng sáng) · Shadows (vùng tối) · Fade (bạc màu) · Saturation (độ bão hòa) · Sharpness (độ sắc nét) · Sharpness Range (phạm vi làm sắc) · Clarity (độ rõ).
+
+#### Công thức mẫu: chân dung (Essential Photography)
+Look **PT**: Contrast +1 · Highlights −6 · Shadows +3 · Fade +1 · Saturation 0 · Sharpness 0 · Sharpness Range 1 · Clarity 0.
+Đi kèm: **Làm mịn da: Bật – Thấp**, cân bằng trắng AWB chỉnh tinh (xem [[Cài đặt nhanh trước buổi chụp]]).
+Ý đồ: kéo vùng sáng xuống để giữ chi tiết da và áo trắng, nâng vùng tối cho mặt sáng đều, fade nhẹ cho cảm giác film.
+
+#### Giảng thế nào
+- Lợi ích khi dùng ảnh nén: thấy màu cuối cùng ngay khi bấm máy, đăng ngay không cần hậu kỳ, việc chụp vui hơn.
+- Chụp RAW vẫn nên đặt Creative Look: màu xem trên màn hình theo look đó, và Imaging Edge đọc được look khi mở file.
+- Tham khảo công thức màu cộng đồng: sonycolorlab.app.
+
+#### Liên quan
+[[RAW, JPEG và HEIF]] · [[Cân bằng trắng và nhiệt độ màu]] · [[Cài đặt nhanh trước buổi chụp]]
+
+### Cân bằng trắng và nhiệt độ màu
+
+**Cân bằng trắng là chỉnh để vật màu trắng ra đúng màu trắng dưới mọi nguồn sáng; ngoài ra nó còn là công cụ tạo cảm giác ấm hay lạnh cho ảnh.**
+
+#### Vì sao cần
+- Mỗi nguồn sáng có tỷ lệ đỏ/xanh lá/xanh dương khác nhau: dưới đèn vàng, đĩa trắng ra màu vàng; tuyết trong bóng râm ra màu xanh.
+- Mắt và não người tự bù trừ (quả táo dưới đèn nào cũng thấy đỏ), cảm biến thì không. Máy cần được báo nguồn sáng là gì.
+
+#### Nhiệt độ màu (K)
+- Đo bằng độ Kelvin: **K thấp = ánh sáng đỏ/cam, K cao = ánh sáng xanh**.
+- Mốc tham khảo (giáo trình Sony): nến ~1.800–2.000K · bình minh/hoàng hôn ~2.000–3.000K · đèn sợi đốt ~2.850–3.000K · huỳnh quang 4.000–6.500K tùy loại · nắng ban ngày ~5.300–5.800K · trời mây ~6.000–7.500K · bóng râm/trời xanh ~7.500–12.000K.
+- Đèn huỳnh quang thường lệch **xanh lá**, nằm ngoài trục đỏ–xanh dương của nhiệt độ màu → cần chỉnh thêm trục G–M.
+
+#### Trên máy Sony
+- **Cân bằng trắng**: Tự động (AWB), các mức đặt sẵn (Ánh sáng ban ngày, Bóng râm, Trời nhiều mây, Đèn sợi đốt, 4 loại Huỳnh quang: trắng ấm, trắng lạnh, trung tính, ban ngày), nhiệt độ màu nhập tay (K), và tùy chỉnh bằng tấm trắng/xám.
+- Mỗi mức đều có **chỉnh tinh** theo trục A–B (hổ phách–xanh dương) và G–M (xanh lá–đỏ tím).
+- Mốc K của các mức đặt sẵn trong giáo trình: Đèn sợi đốt ~3.200K · Huỳnh quang ~4.000K · Ban ngày ~5.000K · Trời nhiều mây ~6.000K · Bóng râm ~7.000K. Giá trị chính xác của từng model [cần xác minh].
+
+#### Mẹo dễ nhầm — dạy kỹ
+- Đặt **K trên máy** là báo cho máy biết nguồn sáng, máy sẽ bù ngược lại: **đặt K thấp → ảnh xanh hơn; đặt K cao → ảnh vàng ấm hơn**.
+- Vì vậy chọn "Trời nhiều mây"/"Bóng râm" khi trời nắng sẽ làm ảnh ấm lên. [[Silhouette]] dùng mẹo này để trời hoàng hôn vàng cam hơn; [[Đồng bộ màn sau]] dùng Đèn sợi đốt (~3.200K) để vệt đèn nền ngả xanh.
+
+#### Giảng thế nào
+- Giáo trình Sony chốt: **không có đáp án đúng**, màu ảnh là lựa chọn diễn đạt. Demo: chụp cùng chậu cẩm tú cầu ở AWB, Trời nhiều mây, Đèn sợi đốt rồi hỏi học viên thích tấm nào và vì sao.
+
+#### Liên quan
+[[Creative Look]] · [[RAW, JPEG và HEIF]] · [[Săn màu, phối màu và lớp cảnh]]
+
+### RAW, JPEG và HEIF
+
+**RAW là dữ liệu thô từ cảm biến, giữ nhiều thông tin nhất nhưng bắt buộc phải hậu kỳ; JPEG và HEIF là ảnh đã được chip BIONZ của máy xử lý màu, nét, nhiễu, dùng được ngay.**
+
+#### So sánh nhanh
+| | RAW (.ARW) | JPEG | HEIF |
+|---|---|---|---|
+| Xử lý | Chưa; cần phần mềm (Imaging Edge, Lightroom, Capture One) | Máy xử lý theo Creative Look | Máy xử lý theo Creative Look |
+| Độ sâu màu | 12–14 bit | 8 bit | 10 bit |
+| Kéo sáng/tối, đổi cân bằng trắng | Thoải mái | Hạn chế | Tốt hơn JPEG |
+| Dung lượng | Lớn | Nhỏ | Nhỏ hơn JPEG cùng chất lượng |
+| Mở được ở đâu | Phần mềm hỗ trợ | Mọi nơi | Thiết bị/phần mềm mới; đôi khi phải chuyển đổi |
+
+- Máy Sony Alpha ghi RAW đuôi **.ARW** (có tùy chọn nén, không nén, nén không mất dữ liệu tùy model). **DNG** là định dạng RAW mở của Adobe, có được khi chuyển đổi trong phần mềm.
+
+#### Khi nào chọn gì
+- **JPEG/HEIF**: sự kiện, du lịch, cần đăng nhanh, người chưa biết hậu kỳ. Chọn đúng Creative Look và cân bằng trắng ngay khi chụp.
+- **RAW**: ánh sáng khó (ngược sáng, đèn hỗn hợp), [[Silhouette]], [[Chồng ảnh]], khi muốn hậu kỳ sâu. Đòi hỏi kiến thức và thời gian xử lý.
+- **RAW + JPEG**: vừa có ảnh dùng ngay, vừa có file dự phòng. Tốn thẻ nhớ gấp đôi.
+- Không gian màu: **sRGB** cho ảnh đăng mạng và người mới; Adobe RGB chỉ khi cả quy trình in ấn hỗ trợ.
+
+#### Giảng thế nào
+- Ví dụ dễ hiểu: RAW là nguyên liệu tươi, JPEG/HEIF là món đã nấu. Món đã nấu ăn được ngay nhưng khó nấu lại.
+- Cấu hình khởi đầu cho người mới (Essential Photography): **JPEG – 24M – sRGB**.
+
+#### Liên quan
+[[Creative Look]] · [[Cân bằng trắng và nhiệt độ màu]] · [[Đặt tên và lọc ảnh]]
+
+### Bù sáng
+
+**Bù sáng là lệnh bảo máy chụp sáng hơn (+EV) hoặc tối hơn (−EV) so với mức máy tự đo, dùng khi máy đo sai hoặc khi muốn diễn đạt khác.**
+
+#### Vì sao cần bù sáng
+- Máy chỉ biết cảnh "sáng" hay "tối" và luôn kéo về **xám trung tính**: cảnh sáng thì chụp tối đi, cảnh tối thì chụp sáng lên.
+- Cảnh nhiều màu trắng (tuyết, áo cưới, đĩa trắng trên bàn trắng) → ảnh xám, tối → **bù +** (+0.7 đến +2).
+- Cảnh nhiều màu đen/màu đậm (áo đen, nền tối, sân khấu) → ảnh bệch, sáng quá → **bù −** (−0.7 đến −1).
+- Cảnh ngược sáng, có đèn/điểm sáng trong khung → chủ thể tối → bù +.
+
+#### Bù sáng để diễn đạt
+- **High-key** (+1.3 đến +2): ảnh trong trẻo, nhẹ nhàng, hợp chân dung nữ, đồ ăn, hoa.
+- **Low-key** (−0.7 trở xuống): tương phản rõ, màu đậm hơn, nhấn chất liệu và khối.
+- Giáo trình Sony nhấn mạnh: không có mức nào "đúng" tuyệt đối, chỉ có cách diễn đạt khác nhau.
+
+#### Trên máy Sony
+- Vòng bù sáng trên thân máy (đa số máy full-frame), hoặc nút ▼ / bánh xe điều khiển, hoặc menu **Bù sáng** (Exposure Comp.). Bước 1/3 EV; phạm vi tùy model.
+- Có tác dụng ở P, A, S và **M khi dùng ISO AUTO**. Ở M với ISO cố định, bù sáng không thay đổi ảnh.
+- Kiểm tra bằng **Biểu đồ** (Histogram): đỉnh dồn sát mép phải là cháy sáng, sát mép trái là mất chi tiết vùng tối.
+
+#### Giảng thế nào
+- Demo: chụp tờ giấy trắng và tấm vải đen ở chế độ A, EV 0 → cả hai thành xám. Sau đó bù +1.7 / −1 để trả về đúng màu.
+- Bài tập: chọn 1 cảnh, chụp 5 mức −1, −0.3, 0, +0.7, +1.3; học viên chọn tấm mình thích và giải thích.
+
+#### Liên quan
+[[Đo sáng]] · [[Tam giác phơi sáng]] · [[Stop và EV]] · [[Silhouette]]
+
+### Chế độ chụp P-A-S-M
+
+**Bốn chế độ P, A, S, M quyết định ai chọn khẩu độ và tốc độ: máy, người chụp, hay cả hai. Chọn chế độ là chọn mình muốn kiểm soát điều gì.**
+
+#### Bảng: người chụp chỉnh được gì
+| Chế độ | Khẩu độ | Tốc độ | ISO | Bù sáng | Cân bằng trắng |
+|---|---|---|---|---|---|
+| Tự động thông minh / Chọn cảnh (SCN) | Không | Không | Không | Không | Không |
+| **P** – Tự động chương trình | Không* | Không* | Có | Có | Có |
+| **A** (Av) – Ưu tiên khẩu độ | Có | Không | Có | Có | Có |
+| **S** (Tv) – Ưu tiên tốc độ màn trập | Không | Có | Có | Có | Có |
+| **M** – Phơi sáng thủ công | Có | Có | Có | Chỉ khi ISO AUTO | Có |
+
+\* P cho phép **Program Shift**: xoay bánh xe để đổi cặp khẩu–tốc mà vẫn giữ độ sáng.
+
+#### Khi nào dùng
+- **P**: du lịch, chụp nhanh nhiều cảnh. Nhược: máy có thể chọn tốc độ không đủ nhòe hoặc không đủ dính.
+- **A**: chân dung, phong cảnh, macro — mọi lúc cần kiểm soát xóa phông. **Chế độ khuyên dùng cho người mới** (giáo trình Sony: "không dùng Auto nữa").
+- **S**: thể thao, thú cưng, trẻ em chạy nhảy (tốc độ nhanh); nước chảy, [[Panning]] (tốc độ chậm).
+- **M**: cảnh đêm, pháo hoa, sao, chụp trong studio, khi cần độ sáng cố định giữa các tấm (ví dụ trăng: F8 – 5s theo giáo trình). [[Phơi sáng dài]] dùng BULB ở M.
+
+#### Giảng thế nào
+Demo thao tác (giáo trình Sony):
+1. **S + ISO cố định**: tăng tốc độ → máy tự mở khẩu; dùng vòng bù sáng để đổi độ sáng.
+2. **M + ISO cố định**: đặt khẩu và tốc, đổi độ sáng bằng ISO.
+3. **M + ISO AUTO**: đặt khẩu và tốc, chỉnh bù sáng → máy tự đổi ISO.
+
+#### Câu hỏi học viên hay hỏi
+- *Dân chuyên nghiệp có phải luôn dùng M?* Không. A + ISO AUTO + bù sáng nhanh và chính xác cho phần lớn tình huống; M dùng khi ánh sáng cố định hoặc cần nhất quán giữa các tấm.
+
+#### Liên quan
+[[Tam giác phơi sáng]] · [[Khẩu độ]] · [[Tốc độ màn trập]] · [[ISO]] · [[Cài đặt nhanh trước buổi chụp]]
+
+### ISO
+
+**ISO là mức khuếch đại tín hiệu ánh sáng trong máy: tăng ISO giúp ảnh sáng hơn khi thiếu sáng, đổi lại ảnh nhiễu hơn.**
+
+#### Hiểu nhanh
+- Khẩu độ và tốc độ quyết định *bao nhiêu ánh sáng vào máy*; ISO quyết định *khuếch đại ánh sáng đó bao nhiêu lần*.
+- **Gấp đôi ISO = +1 stop**: ISO 200 chỉ cần một nửa lượng sáng so với ISO 100 để ra cùng độ sáng.
+- Dùng ISO khi khẩu độ đã mở hết và tốc độ không thể chậm hơn (sợ rung tay, chủ thể nhòe).
+- Ví dụ của giáo trình Sony: ISO giống **núm âm lượng**. Vặn to thì nghe rõ hơn, nhưng tiếng rè cũng to theo.
+- Ảnh hưởng hình ảnh: ISO thấp (100–400) mịn; ISO cao (6400 trở lên) hạt màu đỏ/xanh lá/xanh dương, giảm chi tiết và dải tương phản động.
+
+#### Trên máy Sony
+- **ISO AUTO** với khoảng giới hạn (ví dụ 100–6400) và tốc độ tối thiểu (ISO AUTO Min. SS, ví dụ 1/125s khi chụp người). Đây là cấu hình khởi đầu khuyên dùng cho người mới. Xem [[Cài đặt nhanh trước buổi chụp]].
+- Chế độ M + ISO AUTO: khóa cả khẩu và tốc độ, máy tự lo độ sáng bằng ISO, và **bù sáng vẫn có tác dụng** (máy đổi ISO).
+
+#### Giảng thế nào
+- Demo (giáo trình Sony): giữ F3.5 – 1/60s, chụp lần lượt ISO 100 → 6400, phóng to 100% để so nhiễu.
+- Nhắc: nhiễu ở ảnh thiếu sáng rồi kéo sáng hậu kỳ còn tệ hơn nhiễu do tăng ISO lúc chụp. Đủ sáng ngay khi chụp quan trọng hơn giữ ISO thấp bằng mọi giá.
+
+#### Câu hỏi học viên hay hỏi
+- *ISO bao nhiêu thì "chịu được"?* Tùy cảm biến và mục đích đăng ảnh; full-frame đời mới thường ổn tới 6400–12800 cho ảnh mạng xã hội. Nên tự chụp thử máy mình để biết giới hạn.
+
+#### Liên quan
+[[Tam giác phơi sáng]] · [[Tốc độ màn trập]] · [[Chế độ chụp P-A-S-M]]
+
+### Khẩu độ
+
+**Khẩu độ là độ mở của lỗ sáng trong ống kính, ghi bằng số f (F2.8, F8…): số f càng nhỏ thì lỗ càng to, ảnh càng sáng và hậu cảnh càng mờ.**
+
+#### Hiểu nhanh
+- Dãy số f chuẩn, mỗi bước là **1 stop** (giảm một nửa ánh sáng): F1.4 → F2 → F2.8 → F4 → F5.6 → F8 → F11 → F16 → F22. Mỗi bước nhân số f với khoảng 1,4 (√2).
+- Vì sao √2: số f là tỷ lệ tiêu cự / đường kính lỗ, còn lượng sáng tỷ lệ với **diện tích** lỗ. Đường kính nhỏ đi √2 lần thì diện tích nhỏ đi 2 lần.
+- **Gấp đôi số f (F2.8 → F5.6) = 2 stop = ánh sáng chỉ còn 1/4.**
+- Mở khẩu (số f nhỏ): sáng hơn, độ sâu trường ảnh nông, xóa phông mạnh. Khép khẩu (số f lớn): tối hơn, nét sâu từ trước ra sau.
+- Máy hiện nay chỉnh theo bước 1/3 stop: F5.6 → F6.3 → F7.1 → F8.
+
+#### Trên máy Sony
+- Chế độ **A (Ưu tiên khẩu độ)** hoặc **M (Phơi sáng thủ công)**: xoay bánh xe trước/sau để đổi số f. Một số ống kính có vòng khẩu, đặt về "A" thì thân máy điều khiển.
+- Gợi ý nhanh: chân dung F1.8–F2.8 · nhóm người F4–F5.6 · phong cảnh F8–F11. Khép quá F16 ảnh có thể mềm đi do nhiễu xạ.
+
+#### Giảng thế nào
+- Câu dễ nhớ (slide Essential Photography): **"Càng mở khẩu, càng xóa phông."**
+- Demo: cùng một chủ thể chụp F2.8 và F16 ở chế độ A, đặt hai ảnh cạnh nhau. Chỉ cho học viên thấy tốc độ màn trập máy tự đổi để giữ độ sáng.
+- Lỗi hay gặp: nhầm "khẩu lớn" (lỗ to, số f nhỏ) với "số f lớn". Khi giảng nên nói "số f nhỏ / lỗ to" thay vì "khẩu lớn".
+
+#### Câu hỏi học viên hay hỏi
+- *Ống kính F1.8 có luôn tốt hơn F4?* Sáng hơn 2⅓ stop và xóa phông mạnh hơn, nhưng thường to/nặng/đắt hơn; ở F1.8 vùng nét rất mỏng, chụp nhóm dễ trượt nét.
+
+#### Liên quan
+[[Tam giác phơi sáng]] · [[Độ sâu trường ảnh và xóa phông]] · [[Chế độ chụp P-A-S-M]] · [[Stop và EV]]
+
+### Stop và EV
+
+**Stop là đơn vị chung để so ánh sáng giữa khẩu độ, tốc độ và ISO: +1 stop là gấp đôi ánh sáng, −1 stop là giảm một nửa.**
+
+#### Hiểu nhanh
+- Ba yếu tố đo bằng ba đơn vị khác nhau (số f, giây, ISO), nên người ta đặt ra "stop" để quy đổi. Tiếng Nhật gọi là 段 (đoạn/bậc).
+- +1 stop: tốc độ 1/250 → 1/125 · khẩu F8 → F5.6 · ISO 100 → 200.
+- Máy hiện đại chỉnh theo **1/3 stop**: 1/60 → 1/80 → 1/100 → 1/125 · F5.6 → F6.3 → F7.1 → F8.
+- **EV (Exposure Value)** theo hệ APEX: EV = Av + Tv, với Av = 2·log₂(số f), Tv = log₂(1/thời gian). Ví dụ: F5.6 (Av 5) + 1/125s (Tv 7) = **EV 12**; F2.8 (Av 3) + 1/500s (Tv 9) cũng = EV 12 → **cùng độ sáng**.
+- Bảng EV (ở ISO 100) cho thấy rất nhiều cặp khẩu–tốc cùng ra một độ sáng; chọn cặp nào là chọn **cách diễn đạt** (xóa phông hay nét sâu, bắt dính hay nhòe).
+
+#### Hai nghĩa của "EV" — dễ nhầm
+- **EV tuyệt đối** (hệ APEX): mô tả độ sáng của cảnh/cặp thông số. EV cao = cảnh sáng.
+- **±EV khi bù sáng**: số stop sáng/tối hơn so với mức máy đo. "+1 EV" = sáng hơn 1 stop. Xem [[Bù sáng]].
+
+#### Giảng thế nào
+- Đưa bảng cặp tương đương: F2.8–1/2000 · F4–1/1000 · F5.6–1/500 · F8–1/250 · F11–1/125 (cùng độ sáng). Hỏi học viên: cặp nào xóa phông nhất, cặp nào bắt dính chuyển động nhất.
+- Phần APEX chỉ dạy cho lớp nâng cao; lớp cơ bản chỉ cần "1 stop = gấp đôi / một nửa".
+
+#### Liên quan
+[[Tam giác phơi sáng]] · [[Khẩu độ]] · [[Tốc độ màn trập]] · [[ISO]] · [[Bù sáng]]
+
+### Tam giác phơi sáng
+
+**Độ sáng của ảnh do ba yếu tố quyết định: khẩu độ (lượng ánh sáng đi qua ống kính), tốc độ màn trập (thời gian cảm biến nhận sáng) và ISO (mức khuếch đại tín hiệu).**
+
+#### Hiểu nhanh
+- **Đúng sáng** (correct exposure): lượng sáng vừa đủ, ảnh giữ được chi tiết từ vùng tối đến vùng sáng. **Thiếu sáng** (under): ảnh tối, mất chi tiết vùng tối. **Thừa sáng** (over): ảnh cháy, mất chi tiết vùng sáng.
+- Khẩu độ và màn trập là hai "cơ cấu" thật: khẩu độ nằm trong ống kính (thân máy điều khiển), màn trập nằm trước cảm biến trong thân máy. ISO là cách thứ ba khi hai cơ cấu kia đã chạm giới hạn.
+- Mỗi yếu tố đổi 1 stop là gấp đôi hoặc giảm một nửa ánh sáng. Vì cùng đơn vị stop nên có thể đổi qua lại: mở khẩu thêm 1 stop + tăng tốc thêm 1 stop = độ sáng không đổi. Xem [[Stop và EV]].
+- Mỗi yếu tố còn có "tác dụng phụ" về hình ảnh: khẩu độ → độ sâu trường ảnh ([[Độ sâu trường ảnh và xóa phông]]); tốc độ → bắt dính hoặc làm nhòe chuyển động ([[Tốc độ màn trập]]); ISO → nhiễu ([[ISO]]).
+
+#### Giảng thế nào
+- **Ví dụ vòi nước và cái cốc** (giáo trình Sony): nước = ánh sáng, vòi = khẩu độ, thời gian mở vòi = tốc độ màn trập, cốc = cảm biến, cốc đầy vừa = đúng sáng. Mở vòi to thì đóng nhanh; mở vòi nhỏ thì phải chờ lâu. Hai cách đều đầy một cốc.
+- ISO trong ví dụ này là "cốc nhỏ hơn": cần ít nước hơn để đầy, nhưng nước (tín hiệu) bị khuếch đại nên lẫn nhiễu.
+- Cho học viên chụp cùng một cảnh ở 3 mức: thiếu, đúng, thừa, rồi so trên màn hình với [[Bù sáng|biểu đồ (histogram)]].
+
+#### Câu hỏi học viên hay hỏi
+- *"Đúng sáng" có phải lúc nào cũng đẹp nhất?* Không. Đúng sáng là điểm xuất phát; ảnh high-key hay low-key cố ý lệch sáng để tạo cảm xúc. Xem [[Bù sáng]].
+- *Nên chỉnh yếu tố nào trước?* Chọn theo ý đồ: cần xóa phông → khẩu độ (chế độ A); cần bắt dính/làm nhòe chuyển động → tốc độ (chế độ S); ISO để máy tự lo (ISO AUTO) trừ khi cần khóa nhiễu.
+
+#### Liên quan
+[[Khẩu độ]] · [[Tốc độ màn trập]] · [[ISO]] · [[Stop và EV]] · [[Chế độ chụp P-A-S-M]]
+
+### Tốc độ màn trập
+
+**Tốc độ màn trập là khoảng thời gian cảm biến nhận ánh sáng, ghi bằng giây (1/1000s, 1/60s, 2s…): nhanh thì bắt dính chuyển động, chậm thì làm chuyển động nhòe thành vệt.**
+
+#### Hiểu nhanh
+- Mỗi lần gấp đôi thời gian (1/250 → 1/125) là **+1 stop** ánh sáng.
+- **Màn trập mặt phẳng tiêu cự** (focal-plane) gồm màn trước và màn sau. Ánh sáng đi qua khe hở giữa hai màn; tốc độ càng nhanh, khe càng hẹp.
+- Nhanh (1/1000s trở lên): đóng băng thể thao, chim bay, giọt nước. Chậm (1/15s trở xuống): nước chảy mượt, vệt đèn xe, cảm giác hỗn loạn. Xem [[Panning]], [[Phơi sáng dài]].
+- Mốc an toàn khi cầm tay: không chậm hơn **1/tiêu cự** (ống 50mm → 1/50s; máy APS-C nhân thêm 1,5). Chống rung SteadyShot cho chậm thêm vài stop, nhưng **chỉ chống rung tay, không cứu được chủ thể chuyển động**.
+- Mốc tham khảo cho người: đứng yên 1/125s · đi lại 1/250s · chạy nhảy, thể thao 1/1000s trở lên.
+
+#### Trên máy Sony
+- Chế độ **S (Ưu tiên tốc độ màn trập)** hoặc **M**. BULB (giữ nút chụp bao lâu mở bấy lâu) có ở chế độ M.
+- **Loại màn trập** (Shutter Type): màn trập cơ, điện tử hoặc tự động. Màn trập điện tử chụp im lặng và nhanh hơn, nhưng có thể méo vật chuyển động nhanh và sọc dưới đèn LED/huỳnh quang (trừ cảm biến global shutter).
+- ISO AUTO có tham số **tốc độ tối thiểu** (ISO AUTO Min. SS): máy sẽ tăng ISO trước khi để tốc độ chậm hơn mức này. Xem [[Cài đặt nhanh trước buổi chụp]].
+
+#### Giảng thế nào
+- Câu dễ nhớ: **"Nhanh để bắt dính, chậm để kể chuyển động."** Giáo trình Sony nhấn mạnh: nhòe phải đủ nhiều mới thành dụng ý; nhòe ít trông như chụp hỏng.
+- Demo: quay quạt, vòi nước hoặc người đi bộ ở 1/2000s, 1/60s, 1/4s.
+
+#### Câu hỏi học viên hay hỏi
+- *Ảnh bị nhòe là do rung tay hay chủ thể di chuyển?* Nhòe cả khung (kể cả vật đứng yên) là rung tay; chỉ chủ thể nhòe là chủ thể di chuyển → tăng tốc độ màn trập.
+
+#### Liên quan
+[[Tam giác phơi sáng]] · [[Stop và EV]] · [[ISO]] · [[Đồng bộ màn sau]]
+
+### Đo sáng
+
+**Đo sáng là cách máy đọc độ sáng của cảnh để tự chọn thông số phơi sáng; chế độ đo sáng quyết định máy "nhìn" vùng nào trong khung.**
+
+#### Các chế độ trên Sony
+- **Đa điểm** (Multi): chia khung thành nhiều vùng và cân bằng chung. Dùng mặc định cho hầu hết tình huống. Bật **Ưu tiên mặt khi đo đa điểm** để máy lấy khuôn mặt làm chuẩn, rất hợp chụp người.
+- **Trung tâm** (Center): ưu tiên vùng giữa nhưng vẫn tính cả khung.
+- **Điểm** (Spot): chỉ đo một vùng nhỏ. Dùng cho [[Silhouette]] (chấm vào vùng trời sáng), sân khấu, chủ thể nhỏ trên nền rất sáng/tối.
+- **Trung bình toàn khung** (Entire Screen Avg.): ổn định khi bố cục thay đổi, hợp quay phim.
+- **Vùng sáng** (Highlight): giữ chi tiết vùng sáng nhất, hợp sân khấu, cảnh có đèn mạnh.
+
+#### Hiểu nhanh
+- Mọi chế độ đo sáng đều nhắm tới mức xám trung tính, nên vẫn cần [[Bù sáng]] khi cảnh chủ yếu trắng hoặc đen.
+- Ở chế độ M, thước đo phơi sáng trên màn hình cho biết thông số đang lệch bao nhiêu stop so với mức máy đo.
+
+#### Giảng thế nào
+- Cấu hình khởi đầu cho người mới (Essential Photography): **Đa điểm + Ưu tiên mặt khi đo đa điểm: Bật**.
+- Demo: chụp người đứng trước cửa sổ sáng ở Đa điểm rồi ở Điểm (chấm vào mặt) và so sánh.
+
+#### Liên quan
+[[Bù sáng]] · [[Tam giác phơi sáng]] · [[Cài đặt nhanh trước buổi chụp]]
+
+### Đặt tên và lọc ảnh
+
+**Sau buổi chụp, đặt tên thư mục theo một quy ước cố định rồi lọc ảnh ngay giúp tìm lại nhanh và không bao giờ mất ảnh đẹp giữa hàng nghìn tấm.**
+
+#### Quy ước đặt tên thư mục
+`NămThángNgày - Địa điểm - Ngày N - Thẻ N - Chi tiết 1 - Chi tiết 2`
+
+Ví dụ: `20260430 - Dalat - Day 1 - Card 1 - HoTuyenLam - Wedding - HungYen`
+- Ngày viết **YYYYMMDD** để thư mục tự sắp theo thời gian.
+- Ghi số ngày và số thẻ khi chụp nhiều ngày hoặc nhiều thẻ, để biết thiếu thẻ nào.
+- Không dấu, không ký tự đặc biệt: dễ đồng bộ đám mây, ổ NAS, chép sang máy khác.
+
+#### Lọc ảnh (culling)
+- Phần mềm miễn phí: **Imaging Edge Viewer** (của Sony, đọc được ARW, xem thông số chụp) · **Adobe Bridge**.
+- Có thể đánh **Xếp hạng** ngay trên máy (gán vào nút tùy chỉnh) để lọc sơ trong lúc chụp; phần mềm đọc được xếp hạng đó.
+- Gợi ý quy trình 2 vòng: vòng 1 loại ảnh nhắm mắt, trượt nét, rung tay; vòng 2 chọn tấm tốt nhất của mỗi khoảnh khắc.
+
+#### Giảng thế nào
+- Cuối buổi workshop (giáo trình Sony): mỗi học viên **chọn 1 tấm đẹp nhất và tự giải thích** chủ thể, bố cục, 3 thiết lập đã dùng. Lọc ảnh cũng là một kỹ năng.
+
+#### Liên quan
+[[RAW, JPEG và HEIF]] · [[Khóa Photo Basic 3 giờ]]
+
+### 8 bài thực hành
+
+**Tám bài tập rèn tư duy hình ảnh về ánh sáng, bố cục và màu cho người mới; năm bài đầu thuộc nhóm "Light Composer", sáng tạo với ánh sáng.**
+
+| # | Bài | Mục tiêu | Thiết lập chính | Note |
+|---|---|---|---|---|
+| 1 | Panning | Cảm giác tốc độ | S, 1/30–1/125s, AF-C Vùng, chụp liên tục | [[Panning]] |
+| 2 | Khung trong khung | Dẫn mắt, chiều sâu | A, F5.6–F8, AF-S Điểm, đường lưới | [[Khung trong khung]] |
+| 3 | Phơi sáng dài | Ghi chuyển động thành vệt | M, ISO 100, F8–F11, 5s–BULB, chân máy, ND | [[Phơi sáng dài]] |
+| 4 | Silhouette | Kể bằng hình dáng | M hoặc A −1.5 đến −2.5 EV, đo sáng Điểm | [[Silhouette]] |
+| 5 | Chồng ảnh | Ghép ý nghĩa hai lớp | M, RAW, −1 EV mỗi khung, ghép Screen/Multiply | [[Chồng ảnh]] |
+| 6 | Đồng bộ màn sau | Vệt sáng đúng chiều | M/S, 1/15–1/4s, flash Đồng bộ sau, bù flash −1 | [[Đồng bộ màn sau]] |
+| 7 | Săn màu + phối màu | Quan sát màu | Creative Look, cân bằng trắng | [[Săn màu, phối màu và lớp cảnh]] |
+| 8 | Lớp cảnh | Tiền–trung–hậu cảnh | A, F5.6–F11 hoặc khẩu lớn cho tiền cảnh mờ | [[Săn màu, phối màu và lớp cảnh]] |
+
+#### Tổ chức buổi thực hành
+- Chia nhóm 3–4 người, mỗi nhóm 2–3 bài phù hợp địa điểm và giờ (phơi sáng dài, đồng bộ màn sau cần trời tối; silhouette cần ngược sáng mạnh).
+- Mỗi bài: trainer demo 1 tấm → học viên chụp 15–20 phút → chọn 1 tấm, chấm theo **tiêu chí đạt** trong từng note.
+- Nhắc: Panning tỷ lệ đạt chỉ khoảng 1–2/10. Chụp nhiều là một phần của bài.
+
+#### Liên quan
+[[Khóa Essential Photography]] · [[Cài đặt nhanh trước buổi chụp]]
+
+### Cài đặt nhanh trước buổi chụp
+
+**Cấu hình khởi đầu cho người mới dùng Sony Alpha: chế độ A + ISO AUTO + AF-C bám chủ thể; đủ để chụp người, du lịch, sự kiện mà không phải nghĩ về menu.**
+
+#### 10 cài đặt cần kiểm tra
+1. Chế độ **A** (Ưu tiên khẩu độ): tự chọn độ xóa phông, chỉnh sáng bằng **bù sáng**.
+2. **ISO AUTO 100–6400**: máy tự cân bằng giữa độ sáng và nhiễu.
+3. **Tốc độ tối thiểu của ISO AUTO** (ISO AUTO Min. SS) **1/125s** (hoặc "nhanh hơn" một nấc): hạn chế nhòe khi chụp người.
+4. **AF-C** (lấy nét liên tục) cho chủ thể hoặc người chụp di chuyển.
+5. Vùng lấy nét **Theo dõi: Vùng** (Tracking: Zone): máy bám nét ổn định.
+6. Tùy chọn: gán **AF-ON** và tắt lấy nét theo nút chụp (AF w/ shutter: Off) → [[Lấy nét]].
+7. Đo sáng **Đa điểm** + **Ưu tiên mặt khi đo đa điểm: Bật** → [[Đo sáng]].
+8. Creative Look **ST** cho JPEG trung tính, hoặc **PT** khi chụp chân dung → [[Creative Look]].
+9. **Độ sáng màn hình: Sunny Weather** (trời nắng) để dễ nhìn ngoài trời.
+10. **Chất lượng hiển thị: Cao** (High) để xem chi tiết, kiểm tra nét.
+
+#### Tối ưu menu Sony Alpha, 4 bước
+**Bước 1 — Phong cách chụp, chất lượng ảnh:** chế độ A, EV 0 · khẩu độ tự chọn · tốc độ Auto · ISO 100–6400, tốc độ tối thiểu 1/125s · ảnh JPEG 24M · Không gian màu sRGB.
+
+**Bước 2 — Đo sáng và màu:** ISO AUTO 100–6400, tốc độ tối thiểu "nhanh hơn 1/125" · Làm mịn da: Bật – Thấp · Creative Look PT (Contrast +1, Highlights −6, Shadows +3, Fade +1, Saturation 0, Sharpness 0, Sharpness Range 1, Clarity 0) · Cân bằng trắng AWB, chỉnh tinh A 3.5 / G 3 (xem [[Đính chính slide]]) · Đo sáng Đa điểm · Ưu tiên mặt khi đo đa điểm: Bật.
+
+**Bước 3 — Lấy nét chuyên nghiệp:** Vùng lấy nét Vùng (Theo dõi) · AF-C · Nhận dạng chủ thể: Bật – Người · Nút tùy chỉnh: gán AF-ON.
+
+**Bước 4 — Hiển thị:** Chất lượng hiển thị Cao · Độ sáng màn hình Sunny Weather.
+
+#### Ví dụ cấu hình trên slide
+- Chân dung ngoài trời: Mode A · F3.5 · tốc độ Auto · ISO 100–6400 · tốc độ tối thiểu 1/125s.
+- Thêm flash: flash TTL, đồng bộ **REAR** (xem [[Đồng bộ màn sau]]), gán xem trước hiệu ứng phơi sáng vào một nút tùy chỉnh.
+
+#### Giảng thế nào
+- Làm "cầm tay chỉ việc" trên máy của học viên, theo đúng thứ tự 4 bước; mỗi bước nói lý do một câu.
+- Tên mục và vị trí menu khác nhau giữa các model. Khi dạy máy để menu tiếng Việt, dùng tên trong ngoặc ở đây (theo bộ nhớ dịch ILDC); máy tiếng Anh thì dùng tên tiếng Anh.
+- Bài viết chi tiết: sonycolorlab.app/vi/blog/setup.
+
+#### Liên quan
+[[Khóa Essential Photography]] · [[Chế độ chụp P-A-S-M]] · [[ISO]] · [[Lấy nét]]
+
+### Khóa Essential Photography
+
+**Bài giảng nhiếp ảnh căn bản của Sony Alpha Vietnam (@thaikpham): đi từ góc nhìn và bố cục, qua 8 bài thực hành sáng tạo, tới phơi sáng, màu sắc, quy trình hậu kỳ và tối ưu menu máy Sony.**
+
+#### Mạch bài giảng
+1. **Mở bài, "Bạn đã từng…?"**: chuỗi ảnh hỏng quen thuộc → "Chúng tôi cũng vậy!" → câu của Cartier-Bresson về 10.000 tấm đầu tiên → "Hãy chụp thêm, ngay cả khi bạn đã thấy đủ." → [[Chủ thể chính]]
+2. **Chủ thể và góc máy**: ngang tầm mắt, góc cao, góc thấp → [[Góc máy và khung hình]]
+3. **Bố cục**: định nghĩa (sắp xếp thành phần trong một khung cố định) · trung tâm · 1/3 · đường dẫn · họa tiết và nhịp điệu · phản chiếu · khung trong khung · cắt hay không cắt → [[Bố cục]]
+4. **8 bài thực hành**: rèn tư duy hình ảnh về ánh sáng, bố cục, màu → [[8 bài thực hành]]
+5. **Chụp đúng sáng**: thiếu / đúng / thừa · khẩu độ, tốc độ, ISO · 3 cách xóa phông · tốc độ nhanh bắt dính, chậm tạo chuyển động · bảng chế độ P/A/S/M → [[Tam giác phơi sáng]], [[Khẩu độ]], [[Tốc độ màn trập]], [[ISO]], [[Chế độ chụp P-A-S-M]]
+6. **10 cài đặt cần kiểm tra trước khi chụp** + ví dụ chế độ A (F3.5, ISO 100–6400, tốc độ tối thiểu 1/125s) và flash TTL đồng bộ sau → [[Cài đặt nhanh trước buổi chụp]]
+7. **RAW và ảnh nén** → [[RAW, JPEG và HEIF]]
+8. **Màu cá nhân hóa**: Creative Look, 8 thông số, sonycolorlab.app → [[Creative Look]]
+9. **Quy trình sau chụp**: đặt tên thư mục, lọc ảnh → [[Đặt tên và lọc ảnh]]
+10. **Tối ưu menu Sony Alpha, 4 bước** → [[Cài đặt nhanh trước buổi chụp]]
+11. Kết: "Tụi em cảm ơn!"
+
+#### Gợi ý phân bổ (buổi 3 giờ)
+Mở bài + bố cục 40' · thực hành ngoài trời 60' · phơi sáng + màu 45' · cài đặt menu cầm tay 25' · chia sẻ ảnh 10'. Đây là gợi ý, chỉnh theo lớp.
+
+#### Ghi chú cho trainer
+- Xem [[Đính chính slide]] trước khi đứng lớp: slide có một câu ghi ngược chiều về số f và một tiêu đề bị trùng.
+- Bài viết chi tiết về cài đặt: sonycolorlab.app/vi/blog/setup.
+
+#### Liên quan
+[[Khóa Photo Basic 3 giờ]] · [[8 bài thực hành]]
+
+### Khóa Photo Basic 3 giờ
+
+**Khóa nhập môn chuẩn của Sony Global Training Program: học viên rời lớp biết cân nhắc gì khi chụp, tự chụp ở chế độ A theo ý mình (không dùng Auto nữa), và hiểu vì sao máy hoạt động như vậy.**
+
+#### Mục tiêu
+1. Biết những điều cần cân nhắc khi chụp: **3 kỹ năng cơ bản**.
+2. Tự tin chụp ở **chế độ A** với cách diễn đạt riêng: **3 thiết lập cơ bản**.
+3. Hiểu máy ảnh hoạt động thế nào và vì sao.
+
+#### Phần 1 — Bài giảng (1 giờ)
+1. **Giới thiệu** (5'): trainer giới thiệu bằng ảnh của chính mình, nói về chủ đề yêu thích. Học viên kể: máy đang dùng, phong cách/chủ đề thích, đang chụp ở chế độ nào (Auto, A…).
+2. **Khái niệm** (10'): hai loại ảnh, ghi lại và truyền cảm xúc → [[Chủ thể chính]]. Ví dụ so sánh ảnh điện thoại với ảnh máy ảnh + ống một tiêu cự khẩu lớn. Ảnh chụp Auto + flash so với ảnh đổi ánh sáng, góc nhìn, bố cục, độ sáng. Hai yếu tố quan trọng nhất: **khung hình và phơi sáng**.
+3. **3 kỹ năng cơ bản** (20'): ① chủ thể chính → [[Chủ thể chính]] · ② bố cục: đối xứng, 1/3, đường chéo, bật đường lưới, mẹo chân dung → [[Bố cục]] · ③ góc nhìn: ngang/dọc, cận cảnh, góc thấp, cách cầm máy → [[Góc máy và khung hình]].
+4. **3 thiết lập cơ bản** (25'): muốn chỉnh gì → gọi trên máy là gì:
+   - Độ mờ hậu cảnh → **khẩu độ ở chế độ A** → [[Lấy nét]], [[Độ sâu trường ảnh và xóa phông]]
+   - Độ sáng → **bù sáng** → [[Bù sáng]]
+   - Tông màu → **cân bằng trắng** → [[Cân bằng trắng và nhiệt độ màu]]
+   Chốt: "Auto → mờ hơn → sáng hơn → chỉnh màu".
+
+#### Phần 2 — Đào sâu (1 giờ)
+1. Độ sâu trường ảnh: 4 yếu tố, tiền cảnh/hậu cảnh mờ → [[Độ sâu trường ảnh và xóa phông]]
+2. Bù sáng: vì sao máy đo sai, high-key/low-key → [[Bù sáng]]
+3. Cân bằng trắng: nhiệt độ màu, mức đặt sẵn, dùng màu để diễn đạt → [[Cân bằng trắng và nhiệt độ màu]]
+4. Nền tảng phơi sáng: khẩu độ, màn trập, ví dụ vòi nước, stop/EV, chế độ P/A/S/M → [[Tam giác phơi sáng]], [[Stop và EV]], [[Chế độ chụp P-A-S-M]]
+5. ISO → [[ISO]]
+6. **Demo thao tác**: S + ISO cố định → M + ISO cố định → M + ISO AUTO + bù sáng.
+
+#### Phần 3 — Workshop chụp (1 giờ)
+- Chụp ở **chế độ A**, mỗi tấm cân nhắc **3 thiết lập** (nét và độ mờ, độ sáng, màu) và **3 kỹ năng** (chủ thể và hậu cảnh, bố cục, khung và góc).
+- Sau khi chụp: mỗi người **chọn 1 tấm đẹp nhất** → chia sẻ kèm giải thích. Trainer nhận xét theo đúng 6 điểm trên.
+
+#### Ghi chú cho trainer
+- Giáo trình gốc dặn **thay ảnh mẫu bằng ảnh của chính trainer**.
+- Các mốc thời gian trong phần 1 là gợi ý chia nhỏ; giáo trình chỉ quy định mỗi phần 1 giờ.
+- Slide gốc có lỗi chính tả nhỏ (ví dụ "Fasten shutter speed" nghĩa là tăng tốc độ màn trập). Xem [[Đính chính slide]].
+
+#### Liên quan
+[[Khóa Essential Photography]] · [[8 bài thực hành]] · [[Cài đặt nhanh trước buổi chụp]]
+
+### Đính chính slide
+
+**Danh sách điểm cần sửa hoặc nói rõ thêm khi dùng hai bộ slide; rà ngày 03/11/2026. Sửa slide xong thì đánh dấu [x].**
+
+#### ESSENTIAL PHOTO
+- [ ] **Số f (slide khẩu độ):** câu "Mỗi lần gấp đôi số khẩu, lượng sáng (F-Stop) tăng gấp x4" bị **ngược chiều**. Đúng là: gấp đôi số f (F2.8 → F5.6) thì ánh sáng **giảm còn 1/4** (−2 stop); mỗi bước ×1,4 (√2) là −1 stop. → [[Khẩu độ]]
+- [ ] **Bước 4 menu:** tiêu đề lặp lại "Cách lấy nét chuyên nghiệp"; nội dung là hiển thị → đổi thành "Hiển thị".
+- [ ] **RAW:** slide ghi ".ARW / .DNG" như hai định dạng của máy. Sony Alpha ghi **ARW**; DNG chỉ có khi chuyển đổi bằng phần mềm. → [[RAW, JPEG và HEIF]]
+- [ ] **Phơi sáng dài:** "Imaging Edge Mobile". Máy đời mới dùng **Creators' App** (menu ILDC có thông báo chuyển sang Creators' App). Nên ghi cả hai.
+- [ ] **Long Exposure NR:** slide ghi "bật nếu phơi trên 1 phút". Chức năng tác động từ khoảng 1 giây trở lên; "trên 1 phút" là khuyến nghị để đỡ chờ. Nên nói rõ khi giảng.
+- [ ] **AWB "A:3.5 / G:3"** ở bước 2: kiểm lại trên máy là G (xanh lá) hay M (đỏ tím). Da người thường cần nghiêng về M; nếu đúng là G thì ghi lý do.
+- [ ] **"Exp. Effect Sellect"** (slide cấu hình flash): sai chính tả; ghi đúng tên mục trên model đang dạy (xem trước hiệu ứng phơi sáng gán vào nút tùy chỉnh).
+- [ ] **Bảng chế độ chụp:** ô ISO ở dòng P ghi "Auto 100–6400". Ở P người chụp vẫn chỉnh được ISO; "Auto" chỉ là cấu hình gợi ý. Hai bản sao của bảng có ô gõ thiếu "es" thay vì "Yes".
+- [ ] Chồng ảnh: nhận định "Sony Alpha không có chồng ảnh trong máy" khớp với dữ liệu menu ILDC hiện có; kiểm lại khi có model mới.
+
+#### Sony GTP Photo Basic v2.1
+- [ ] "Fasten shutter speed" → nghĩa là **tăng tốc độ màn trập** (faster). Dịch đúng ý khi giảng tiếng Việt.
+- [ ] Bảng "3 yếu tố xóa phông" thực ra liệt kê 4 (thêm khoảng cách tới hậu cảnh). Nên dạy là 4. → [[Độ sâu trường ảnh và xóa phông]]
+- [ ] Mốc K của mức đặt sẵn "Daylight 5000K" trong slide là số tròn; đối chiếu với model đang dạy trước khi khẳng định. → [[Cân bằng trắng và nhiệt độ màu]]
+- [ ] Ảnh mẫu là ảnh của Sony Nhật (NEX-7, Xperia Arc, đời 2010): giáo trình dặn thay bằng ảnh của trainer, nên cập nhật sang máy hiện hành.
+
+#### Liên quan
+[[Khóa Essential Photography]] · [[Khóa Photo Basic 3 giờ]]
