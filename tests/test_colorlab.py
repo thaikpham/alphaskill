@@ -48,7 +48,8 @@ def test_alphaskill_post_converts_clean():
 
 def test_example_post_reports_site_problems():
     r = md_to_article((ROOT / "skills/sony-alpha-viet/examples/example-blog-post.md").read_text(encoding="utf-8"))
-    assert {"tableRows", "unverified", "mustCloseWithChecklistOrFigure"} <= set(r["problems"])
+    assert "unverified" not in r["problems"]  # ví dụ không còn [cần xác minh]
+    assert "mustCloseWithChecklistOrFigure" in r["problems"]
 
 
 def _fake_site(tmp_path, packs="{}"):

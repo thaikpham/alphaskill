@@ -58,7 +58,7 @@ def test_audit_note_writes_report_and_props(vault):
     draft.write_text(src, encoding="utf-8")
     r = obs.audit_note("6 Blog/a7iv-vs-a7rv")
     props, body = obs.read_note(draft)
-    assert props["seo_score"] == r["score"] and props["seo_complete"] is False and props["meta_title"].startswith("Sony A7 IV")
+    assert props["seo_score"] == r["score"] and props["seo_complete"] is True and props["meta_title"].startswith("Sony A7 IV")
     assert "## Câu hỏi thường gặp" in body
     rep = (root / "6 Blog" / "a7iv-vs-a7rv — SEO audit.md").read_text(encoding="utf-8")
     assert "[[a7iv-vs-a7rv]]" in rep and "| 15* |" in rep

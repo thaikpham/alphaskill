@@ -72,7 +72,7 @@ Dán `portable/system-prompt.md` vào phần Instructions và tải các file tr
 
 `https://api.alphacolorlab.com` chỉ đọc, không cần tài khoản. Dữ liệu là bản công khai trong `data-sample/`.
 
-- Danh sách công cụ và tham số: `GET /v1` (27 công cụ chỉ đọc trong tổng 45 công cụ MCP)
+- Danh sách công cụ và tham số: `GET /v1` (28 công cụ chỉ đọc trong tổng 46 công cụ MCP)
 - Tra thuật ngữ: `GET /v1/lookup_term?text=Focus%20Area`
 - Kiểm bản dịch: `POST /v1/check_translation` với JSON `{"en": "Focus Area", "vi": "Vùng lấy nét"}`
 - Client MCP: thêm server `https://api.alphacolorlab.com/mcp`
@@ -133,8 +133,9 @@ Checklist đầy đủ 40 tiêu chí (10 SEO nền tảng, 15 AIO cốt lõi, 10
 |---|---|
 | `paa_generator` | Gợi ý 10 câu hỏi People Also Ask theo mẫu (offline) |
 | `style_lint` | Bắt cụm văn AI, bị động, câu dài, sai thuật ngữ |
+| `blog_audit` | Chấm một lượt toàn bộ checklist 40 tiêu chí (gồm seo_audit và aio_audit), trả band Đạt / Cần sửa / Thấp. Gọi sau style_lint |
 | `seo_audit` | Chấm nền tảng SEO |
-| `aio_audit` | Chấm tự động 10 mục AIO cốt lõi, điểm 0–100. Điểm là tỉ lệ mục đạt, không phải xác suất được AI trích |
+| `aio_audit` | Chấm tự động 13 mục AIO máy đo được, điểm 0–100. Điểm là tỉ lệ mục đạt, không phải xác suất được AI trích |
 | `citation_checker` | Kiểm link nguồn còn sống và có phải nguồn uy tín |
 | `freshness_check` | Báo bài cũ bao lâu, gợi ý cập nhật |
 | `brand_voice_checker` | Kiểm 5 tiêu chí giọng thương hiệu Sony |

@@ -39,7 +39,7 @@ Nếu bạn là chat AI không gọi được MCP (ChatGPT, Gemini, Meta AI, ho�
 Sony Alpha Việt là skill + MCP cho Claude Code giúp:
 1. Dịch menu máy ảnh Sony EN/JP -> VI, kiểm tra tràn khung, ghi nhớ
 2. Dịch tài liệu Sony sang tiếng Việt tự nhiên
-3. Viết & chấm blog SEO + AIO (AIO > SEO 2026): checklist 40 tiêu chí; tool aio_audit chấm 10 mục tự động. Cùng 5 tool mới: aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
+3. Viết & chấm blog SEO + AIO (AIO > SEO 2026): checklist 40 tiêu chí; tool blog_audit chấm một lượt (bands điểm: xem seo-aio-checklist.md). Cùng 5 tool mới: aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
 
 Repo: https://github.com/thaikpham/alphaskill
 Plugin: sony-alpha-viet@alphaskill
@@ -51,11 +51,11 @@ Plugin: sony-alpha-viet@alphaskill
 - `skills/sony-alpha-viet/references/`:
   - `glossary-vi.md`: thuật ngữ EN/JP -> Menu / Bài viết
   - `sony-menu-terms.md`: quy trình dịch menu, file xls, giới hạn firmware
-  - `seo-aio-checklist.md`: checklist 40 tiêu chí; tool aio_audit chấm 10 mục tự động
+  - `seo-aio-checklist.md`: checklist 40 tiêu chí, band điểm ở đầu file; tool blog_audit chấm một lượt
   - `sony-core-principles.md`: nguyên tắc bảo vệ Sony (MỚI - BẮT BUỘC ĐỌC)
   - `trainer-vi.md`: chế độ D, đào tạo và giáo án
   - `writing-style-vi.md`: văn phong, chống văn dịch máy
-- `src/sony_alpha_viet/`: MCP server - core, memory, blog (seo_audit, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker), xls
+- `src/sony_alpha_viet/`: MCP server - core, memory, blog (blog_audit, seo_audit, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker), xls
 - `data-sample/`: dữ liệu mẫu công khai (tm.jsonl rỗng vì bản quyền Sony)
 - `portable/`: system-prompt.md + knowledge/ cho ChatGPT, Gemini, Meta AI
 - `llms.txt`: tóm tắt cho AI đọc nhanh
@@ -90,7 +90,7 @@ Liệt kê thuật ngữ mới
 1. paa_generator(primary_keyword, audience) -> 10 câu PAA
 2. Viết theo https://raw.githubusercontent.com/thaikpham/alphaskill/main/skills/sony-alpha-viet/templates/blog-post-template.md: TL;DR 40-70 từ dưới H1, mỗi H2 mở bằng 1-2 câu tự đứng, bảng so sánh, FAQ 3-6 câu tự đứng, Key Takeaways
 3. lookup_prose_term cho văn xuôi (full-frame, lấy nét mắt)
-4. style_lint, seo_audit, aio_audit (chấm 10 mục tự động), citation_checker (Tier 1 Sony), freshness_check (2026), brand_voice_checker (5 tiêu chí Sony)
+4. style_lint, blog_audit (chạy seo_audit + aio_audit; bands điểm: xem seo-aio-checklist.md), citation_checker (Tier 1 Sony), freshness_check (2026), brand_voice_checker (5 tiêu chí Sony)
 5. faq_schema sinh JSON-LD Article + FAQPage, slugify
 
 Nguyên tắc cứng: không bịa thông số, giá, ngày ra mắt. Chưa kiểm chứng ghi [cần xác minh] -> seo_audit coi là chưa hoàn chỉnh. AIO phạt nặng.
@@ -124,14 +124,14 @@ Nếu thiếu model máy, ngôn ngữ nguồn, từ khóa chính -> hỏi 1 lư�
 
 ## Tool MCP
 
-45 tool, theo chế độ:
+46 tool, theo chế độ:
 
 - **Dữ liệu:** data_info, get_guidelines
 - **A · Dịch menu:** lookup_term, search_memory, prepare_batch, check_translation, check_fit, suggest_short, consistency_report
 - **A · File Sony *_VN.xls:** xls_read, xls_review, xls_write
 - **Ghi nhớ, tự học:** record_term, record_feedback, remember_translation, ban_term, keep_english, learn, review_memory, disable_rule, commit_memory
 - **B · Tài liệu Sony:** lookup_prose_term, ingest_docs, ingest_helpguide, search_docs, docs_term_report
-- **C · Blog SEO + AIO:** slugify, count_words, style_lint, seo_audit, faq_schema, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
+- **C · Blog SEO + AIO:** slugify, count_words, style_lint, blog_audit, seo_audit, faq_schema, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker
 - **C · Đăng lên alphacolorlab.com:** colorlab_article (Markdown → khối của site + lỗi theo mã site), colorlab_html (trang HTML giống /blog, hoặc khối dán CMS), colorlab_pack (ghi content pack vào repo site + chạy cổng kiểm) — xem https://raw.githubusercontent.com/thaikpham/alphaskill/main/skills/sony-alpha-viet/references/colorlab-vi.md
 - **D · Đào tạo:** search_knowledge, get_knowledge, add_knowledge
 - **Obsidian:** obsidian_export, obsidian_import, obsidian_audit_note

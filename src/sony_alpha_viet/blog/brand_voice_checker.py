@@ -11,9 +11,13 @@ import re
 
 from ._doc import as_article, band, finding, fold, quote
 
-SENSOR_RX = r"(?:sensor|cam bien).*sony|sony.*(?:sensor|cam bien)|exmor|50%.*cam bien|so 1.*the gioi"
-NGAM_RX = r"ngam e|e-mount|200\+?\s*(?:lens|ong kinh)"
-KANDO_RX = r"kando|cam dong|khoanh khac|trai nghiem|can bang(?!\s+(?:trang|sang|mau))"
+# 36-38: hai vế phải nằm trong CÙNG một câu, không chấm theo từ khóa rời.
+SENSOR_RX = r"sensor|cam bien|exmor"
+SENSOR_CLAIM_RX = r"\bsony\b.*(?:tu phat trien|tu san xuat|so 1|so mot|hang dau|lon nhat|thi phan|50\s*%)|(?:tu phat trien|tu san xuat|so 1|so mot|hang dau|lon nhat|thi phan|50\s*%).*\bsony\b"
+NGAM_RX = r"ngam e\b|e-mount"
+NGAM_CLAIM_RX = r"nho gon|200|mot ngam|1 ngam|he sinh thai|18\s*mm|dung chung|chung ngam"
+KANDO_RX = r"kando|can bang(?!\s+(?:trang|sang|mau))"
+KANDO_CLAIM_RX = r"kando|triet ly|sony|diem ngot|tinh toan|giua"
 COMP = r"\b(?:canon|nikon|fuji\w*|panasonic|lumix|leica|olympus|hasselblad|dji|doi thu|hang khac)\b"
 COMP_WIN_RX = rf"{COMP}[^.!?\n]{{0,50}}?(?:tot hon|vuot troi|hon han|vuot)[^.!?\n]{{0,20}}?\bsony\b"
 SONY_LOSE_RX = rf"\bsony\b[^.!?\n]{{0,30}}?(?<!khong )(?:kem hon|thua|kem xa)[^.!?\n]{{0,40}}?{COMP}"
@@ -23,33 +27,37 @@ SOLUTION_RX = r"e-mount|ngam e|giai phap|(?:lua chon|chon)[^.!?]{0,60}?trong[^.!
 CLOSE_RX = r"chon sony|kando"
 
 
-def _presence(a, criterion: int, name: str, pattern: str, missing: str, fix: str) -> dict:
-    hits = a.grep(pattern)
-    if hits:
-        ln, raw = hits[0]
-        return finding(criterion, name, True, f"Dòng {ln}: {quote(raw, 80)}")
+def _presence(a, criterion: int, name: str, pattern: str, missing: str, fix: str, claim: str = "") -> dict:
+    for ln, raw in a.grep(pattern):
+        for sent in re.split(r"(?<=[.!?])\s+", raw):
+            f = fold(sent)
+            if re.search(pattern, f) and (not claim or re.search(claim, f)):
+                return finding(criterion, name, True, f"Dòng {ln}: {quote(sent, 100)}")
     return finding(criterion, name, False, missing, fix)
 
 
 def check_sensor(text) -> dict:
     """Criterion 36: có câu nêu sensor Sony (Exmor, cảm biến Sony, hoặc số 1 thế giới)."""
     return _presence(as_article(text), 36, "Sensor Sony số 1 TG", SENSOR_RX,
-                     "Chưa có câu nêu sensor Sony hoặc số 1 thế giới",
-                     "Thêm câu: Cảm biến Exmor do Sony tự phát triển, Sony là nhà sản xuất sensor số 1 thế giới.")
+                     "Chưa có câu gắn cảm biến với Sony (tự phát triển hoặc vị thế dẫn đầu)",
+                     "Thêm một câu trong ngữ cảnh bài: cảm biến do Sony tự phát triển, hoặc vị thế nhà sản xuất cảm biến của Sony kèm nguồn.",
+                     SENSOR_CLAIM_RX)
 
 
 def check_ngam_e(text) -> dict:
     """Criterion 37: có câu nêu ngàm E nhỏ gọn hoặc hơn 200 ống kính."""
     return _presence(as_article(text), 37, "Ngàm E nhỏ gọn >200 lens", NGAM_RX,
-                     "Chưa nhắc ngàm E hoặc hơn 200 ống kính",
-                     "Thêm câu: Hệ sinh thái ngàm E nhỏ gọn với hơn 200 ống kính, một ngàm cho mọi máy từ A7C đến FX6.")
+                     "Chưa có câu nêu lợi ích ngàm E (nhỏ gọn, dùng chung ống kính, hơn 200 ống kính)",
+                     "Thêm một câu nêu lợi ích ngàm E cho người đọc: nhỏ gọn, dùng chung ống kính giữa các thân máy, hơn 200 ống kính.",
+                     NGAM_CLAIM_RX)
 
 
 def check_kando(text) -> dict:
     """Criterion 38: có KANDO, cân bằng hoặc trải nghiệm. 'Cân bằng trắng' (white balance) không tính."""
     return _presence(as_article(text), 38, "KANDO / cân bằng / trải nghiệm", KANDO_RX,
-                     "Chưa có KANDO, cân bằng hoặc trải nghiệm (cân bằng trắng không tính)",
-                     "Thêm câu: Đây là sự cân bằng Sony tính toán, mang đến trải nghiệm KANDO.")
+                     "Chưa có câu nêu KANDO hoặc triết lý cân bằng (cân bằng trắng không tính)",
+                     "Thêm một câu nêu triết lý cân bằng của Sony hoặc KANDO gắn với nội dung bài.",
+                     KANDO_CLAIM_RX)
 
 
 def _clause(raw: str, rxs: tuple) -> str:
