@@ -26,9 +26,10 @@ mcp = FastMCP("sony-alpha-viet", instructions=(
     "\n\n"
     "**Quy trình B: Blog/Tài liệu (AIO-first 2026)**: lookup_prose_term (tra thuật ngữ chuẩn từ glossary) "
     "→ paa_generator (10 câu PAA) → viết theo template → style_lint (cụm AI-sounding, bị động, câu dài, thuật ngữ) "
-    "→ seo_audit (SEO foundation) → aio_audit (chấm AIO-first 35 tiêu chí) → citation_checker (check link Tier 1) "
+    "→ seo_audit (SEO foundation) → aio_audit (chấm tự động 13 tiêu chí AIO máy đo được) → citation_checker (check link Tier 1) "
     "→ freshness_check (kiểm tra độ mới 11/2026) → brand_voice_checker (bảo vệ Sony, sensor #1, ngàm E, KANDO) "
-    "→ faq_schema (tạo JSON-LD Article+FAQPage). Nếu MCP không có, thực hiện kiểm tra thủ công từ checklist."))
+    "→ blog_audit (gom các tool trên, chấm 40 tiêu chí một lượt, chỉ đọc) → faq_schema (tạo JSON-LD Article+FAQPage). "
+    "Nếu MCP không có, thực hiện kiểm tra thủ công từ checklist."))
 store = Store()
 
 
@@ -249,7 +250,7 @@ def style_lint(text: str) -> dict:
 
 @tool
 def seo_audit(markdown: str, primary_keyword: str = "", secondary_keywords: list[str] = None) -> dict:
-    """SEO + AIO audit: kiểm tra 21 mục máy được từ seo-aio-checklist.md. Trả về score, failed items, chi tiết."""
+    """SEO + AIO audit: kiểm tra các mục máy đo được (id 1–26, đánh số cũ, khác số tiêu chí checklist). Trả về score, failed items, chi tiết. Muốn chấm 40 tiêu chí dùng blog_audit."""
     if secondary_keywords is None:
         secondary_keywords = []
     return blog.seo_audit(markdown, primary_keyword, secondary_keywords)
@@ -262,34 +263,47 @@ def faq_schema(markdown: str, url: str = "", site_name: str = "", image: str = "
 
 
 @tool
-def aio_audit(text: str, primary_keyword: str = "") -> dict:
-    """Chấm điểm AIO-first 35 tiêu chí cho bài blog Sony Alpha tiếng Việt (AIO > SEO 2026).
-    Trả về aio_score (0-100), verdict (khả năng AI Overviews/ChatGPT trích), và bảng chi tiết."""
-    return blog.aio_audit(text, primary_keyword)
+def aio_audit(text: str, primary_keyword: str = "", article_type: str = "review", today: str = "") -> dict:
+    """Chấm tự động 13 tiêu chí AIO máy đo được (checklist 11–19, 21–23, 33) cho bài blog Sony Alpha tiếng Việt (AIO > SEO 2026).
+    Trả về aio_score (0-100), verdict (khả năng AI Overviews/ChatGPT trích), và bảng chi tiết. today: YYYY-MM-DD, trống = hôm nay."""
+    return blog.aio_audit(text, primary_keyword, article_type, today)
 
 
 @tool
-def paa_generator(primary_keyword: str, audience: str = "thợ chụp cưới", models: list[str] = None) -> dict:
+def paa_generator(primary_keyword: str, audience: str = "người chụp ảnh", models: list[str] = None) -> dict:
     """Gợi ý 10 câu People Also Ask (PAA) cho từ khóa Sony Alpha kèm gợi ý trả lời tự đứng 40-70 từ."""
     return blog.paa_generator(primary_keyword, audience, models)
 
 
 @tool
-def citation_checker(text: str) -> dict:
-    """Kiểm tra nguồn trích dẫn cho bài blog: link Tier 1 Sony official, Tier 2 uy tín, kiểm tra link sống/chết."""
-    return blog.citation_checker(text)
+def citation_checker(text: str, check_links: bool = True) -> dict:
+    """Kiểm tra nguồn trích dẫn cho bài blog: link Tier 1 Sony official (gồm sony.com.vn), Tier 2 uy tín, link sống/chết (HEAD, timeout 5s).
+    check_links=False chỉ đếm và phân loại link, không gọi mạng."""
+    return blog.citation_checker(text, check_links=check_links)
 
 
 @tool
-def freshness_check(text: str) -> dict:
-    """Kiểm tra độ mới của bài, phát hiện giá cũ/firmware cũ, gợi ý cập nhật 11/2026."""
-    return blog.freshness_check(text)
+def freshness_check(text: str, today: str = "") -> dict:
+    """Kiểm tra độ mới của bài, phát hiện giá cũ/firmware cũ, gợi ý cập nhật 11/2026. today: YYYY-MM-DD, trống = hôm nay."""
+    return blog.freshness_check(text, today)
 
 
 @tool
 def brand_voice_checker(text: str) -> dict:
     """Kiểm tra nguyên tắc bảo vệ Sony: sensor số 1 TG, ngàm E >200 lens, KANDO/cân bằng, không chê Sony, kết bài KANDO."""
     return blog.brand_voice_checker(text)
+
+
+@tool
+def blog_audit(markdown: str, primary_keyword: str = "", secondary_keywords: list[str] = None,
+               check_links: bool = False, today: str = "") -> dict:
+    """Chấm bài blog một lượt theo 40 tiêu chí checklist (SEO 1–10, AIO 11–25, Schema 26–35, Brand 36–40). Chỉ đọc, không ghi file.
+    Trả về overall_score, verdict (Đạt ≥80 / Cần sửa 60–79 / Thấp <60; tiêu chí bắt buộc fail thì không Đạt, kèm verdict_reason),
+    groups, aio_group_score, failed (chỉ fail: id, line, quote, fix), manual_review (người duyệt), not_applicable (kèm lý do),
+    not_checked (chưa có bộ kiểm), required_failed. check_links=True mới gọi mạng kiểm link sống. today: YYYY-MM-DD, trống = hôm nay."""
+    if secondary_keywords is None:
+        secondary_keywords = []
+    return blog.blog_audit(markdown, primary_keyword, secondary_keywords, check_links, today)
 
 
 @tool
@@ -364,7 +378,7 @@ def prompt_translate_menu(model: str = "Claude", source_lang: str = "English", s
 @mcp.prompt("write_blog")
 def prompt_write_blog(topic: str = "", primary_keyword: str = "", audience: str = "",
                       models: str = "", length: str = "") -> str:
-    """Hướng dẫn viết blog Sony: template → style_lint → seo_audit → faq_schema."""
+    """Hướng dẫn viết blog Sony: template → style_lint → blog_audit → faq_schema."""
     return f"""Viết bài blog tiếng Việt về máy ảnh Sony.
 
 **Chủ đề:** {topic}
@@ -378,8 +392,8 @@ def prompt_write_blog(topic: str = "", primary_keyword: str = "", audience: str 
 2. Dùng template từ `mcp__sony-alpha-viet__template("blog-post-template.md")`
 3. Viết bài, sử dụng `mcp__sony-alpha-viet__lookup_prose_term(word)` để xác minh thuật ngữ
 4. Gọi `mcp__sony-alpha-viet__style_lint(bài)` để kiểm tra văn phong (tránh AI-sounding, bị động, v.v.)
-5. Gọi `mcp__sony-alpha-viet__seo_audit(bài, primary_keyword)` để kiểm tra 21 mục SEO/AIO
-6. Sửa cho đến khi audit xanh
+5. Gọi `mcp__sony-alpha-viet__blog_audit(bài, primary_keyword)` để chấm 40 tiêu chí (Đạt ≥80)
+6. Sửa cho đến khi overall_score ≥80 và required_failed rỗng
 7. Gọi `mcp__sony-alpha-viet__faq_schema(bài)` để tạo JSON-LD schema
 
 **Cấu trúc bài:**
@@ -393,7 +407,7 @@ def prompt_write_blog(topic: str = "", primary_keyword: str = "", audience: str 
 
 @mcp.prompt("audit_post")
 def prompt_audit_post(path_or_text: str = "") -> str:
-    """Hướng dẫn audit bài blog hiện có: đọc → style_lint → seo_audit → sửa."""
+    """Hướng dẫn audit bài blog hiện có: blog_audit trước (40 tiêu chí) → style_lint → sửa theo failed."""
     return f"""Audit bài blog/tài liệu Sony hiện có.
 
 **Đường dẫn hoặc nội dung:**
@@ -401,21 +415,22 @@ def prompt_audit_post(path_or_text: str = "") -> str:
 
 **Quy trình:**
 1. Đọc bài (nếu là đường dẫn, mở file)
-2. Gọi `mcp__sony-alpha-viet__style_lint(bài)` → xem danh sách issue văn phong
-3. Gọi `mcp__sony-alpha-viet__seo_audit(bài, primary_keyword)` → xem score, mục failed
-4. Sửa từng issue:
-   - Văn phong: loại AI-sounding, thay bị động, tách câu dài, etc.
-   - SEO: thêm từ khóa, sửa meta title/description, thêm link, v.v.
-5. Lặp lại audit cho đến khi style ✓, seo score ≥90%, mục bắt buộc xanh
+2. Gọi `mcp__sony-alpha-viet__blog_audit(bài, primary_keyword)` trước để chấm 40 tiêu chí một lượt
+   - overall_score ≥80: Đạt · 60–79: Cần sửa · <60: Thấp. Có `verdict_reason` khi tiêu chí bắt buộc chưa đạt (khi đó không thể Đạt)
+   - Đọc `failed` (id, item, line, quote, fix), chỉ mục fail. `manual_review`: người duyệt, không tính điểm. `not_applicable`: bỏ qua, có lý do. `not_checked`: chưa có bộ kiểm; chạy lại với check_links=True để kiểm link sống
+3. Gọi `mcp__sony-alpha-viet__style_lint(bài)` → xem issue văn phong
+4. Sửa theo `failed`, ưu tiên `required_failed`. Sửa đúng đoạn được trích dẫn, không viết lại cả bài:
+   - Văn phong: loại AI-sounding, thay bị động, tách câu dài
+   - Nội dung: thêm từ khóa, nguồn, bối cảnh; bỏ [cần xác minh] khi đã kiểm chứng
+5. Lặp lại blog_audit cho đến khi overall_score ≥80, required_failed rỗng, style_lint sạch
 6. Gọi `mcp__sony-alpha-viet__faq_schema(bài)` để sinh schema JSON-LD nếu chưa có
 
-**Checklist item quan trọng:**
-- #1: Từ khóa ở H1, slug, 100w, H2, meta_description
-- #6: TL;DR 40–70 từ
-- #8: Bảng/checklist/danh sách
-- #11: FAQ 3–6 câu, 40–70 từ
-- #15: Không [cần xác minh]
-- #19: JSON-LD Article + FAQPage hợp lệ"""
+**Mục bắt buộc (required):**
+- #1: Từ khóa chính ở H1, slug, meta, H2
+- #11: TL;DR 40–70 từ dưới H1
+- #14: FAQ 3–6 câu tự đứng
+- #15: Bảng so sánh hoặc checklist
+- #17: Không còn placeholder hay [cần xác minh]"""
 
 
 @tool

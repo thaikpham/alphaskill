@@ -376,8 +376,8 @@ def disable_rule(store: Store, rule_id: str, why: str = "") -> dict:
 def commit_memory(message: str = "Cập nhật bộ nhớ dịch") -> dict:
     """git-commit the data dir (its own repo, or the enclosing one) so every learned change is reversible."""
     try:
-        subprocess.run(["git", "-C", str(DATA), "add", "-A", "."], check=True, capture_output=True)
-        r = subprocess.run(["git", "-C", str(DATA), "commit", "-m", message, "--", "."], capture_output=True, text=True)
+        subprocess.run(["git", "-C", str(DATA), "add", "-A", "."], check=True, capture_output=True, timeout=30)
+        r = subprocess.run(["git", "-C", str(DATA), "commit", "-m", message, "--", "."], capture_output=True, text=True, timeout=30)
         return {"ok": r.returncode == 0, "output": (r.stdout or r.stderr).strip()[-500:]}
     except Exception as e:  # git missing or not a repo
         return {"ok": False, "output": str(e)}

@@ -14,29 +14,33 @@ def test_aio_audit_has_tldr():
     good = """
 # Sony A7 IV hay A7R V cho tho cuoi?
 
-TL;DR: A7 IV tot hon cho tho cuoi vi pin lau 580 shot, file nhe 33MP xu ly nhanh, 2 khe the an toan. A7R V tot hon cho phong canh vi 61MP chi tiet cao nhung file RAW 120MB nang may.
+TL;DR: A7 IV tot hon cho tho cuoi vi pin lau 580 shot, file nhe 33MP xu ly nhanh, 2 khe the an toan. A7R V tot hon cho phong canh vi 61MP chi tiet cao nhung file RAW 120MB nang may. Ca hai deu la full-frame ngam E, nen chon theo nhu cau chup chinh cua ban.
+
+Cap nhat 11/2026: thong so theo Sony official, gia tham khao khoang 52 trieu body.
 
 ## A7 IV la gi?
-A7 IV la may full-frame 33MP ra mat 2021, co IBIS 5.5 stop, Eye AF mat nguoi. Tho cuoi o HCM dung 2 nam thay rat ben.
+A7 IV la may full-frame 33MP ra mat 2021, co IBIS va Eye AF nhan dien mat nguoi (nguon: Sony official). Tho cuoi o HCM dung hai nam van thay rat ben.
 
 ## So sanh chi tiet
-Bang so sanh giup AI trich:
+Bang duoi day tom tat thong so theo cong bo chinh thuc cua Sony.
 
 | Tieu chi | A7 IV | A7R V |
+| --- | --- | --- |
 | Pin | 580 shot | 530 shot |
 | Do phan giai | 33MP | 61MP |
 
 ## FAQ
 
-A7 IV co chong rung khong? Co, IBIS 5 truc 5.5 stop giup chup toc 1/15s khong rung khi chup tiec toi.
+### A7 IV co chong rung khong?
+Co, A7 IV co IBIS 5 truc giup chup cam tay o toc do cham ma anh van net. Tho chup tiec trong nha thieu sang thuong dua vao dieu nay de giu toc do an toan ma khong can flash. Khi di chuyen nhieu, ban van nen ket hop gimbal hoac gay chup de anh video on dinh hon.
 
-Gia A7 IV bao nhieu 2026? Khoang 52 trieu body, cap nhat 11/2026.
+### Gia A7 IV bao nhieu nam 2026?
+Gia tham khao thay doi theo kenh ban va thoi diem, nen kiem tra tren trang san pham chinh thuc cua Sony truoc khi mua. Tai thoi diem cap nhat bai viet, may duoc ban o dang body va kit ong kinh. Neu ngan sach hep, hay can nhac may da qua su dung con bao hanh.
 
-A7 IV co 2 khe the nho khong? Co, 1 khe CFexpress Type A + 1 SD UHS-II.
-
-Cap nhat 11/2026: Gia hien tai 52tr
+### A7 IV co 2 khe the nho khong?
+Co, A7 IV co hai khe the nho gom mot khe CFexpress Type A va mot khe SD UHS-II, giup luu du phong khi quay va chup lien tuc. Tho cuoi thuong ghi file song song vao hai the de an toan du lieu. Nen chon the co toc do ghi du cao de tranh that tiep khi quay video dai.
 """
-    res = aio_audit(good, "Sony A7 IV hay A7R V")
+    res = aio_audit(good, "Sony A7 IV hay A7R V", today="2026-11-11")
     # Sample này phải >=60
     assert res["aio_score"] >= 60, f"Expected >=60, got {res['aio_score']}"
     print(f"test_aio_audit_has_tldr PASS score={res['aio_score']}")
@@ -54,6 +58,7 @@ def test_check_table_with_separator():
 | Tieu chi | A7 IV | A7R V |
 | --- | --- | --- |
 | Pin | 580 shot | 530 shot |
+| Do phan giai | 33MP | 61MP |
 """
     res = check_table(good)
     assert res["pass"] is True
@@ -93,7 +98,7 @@ def test_check_faq_with_short_answer():
 **Cau 3?** Co IBIS.
 """
     res = check_faq(bad)
-    assert res["pass"] is False and "tù" in res["evidence"] or "từ" in res["evidence"]
+    assert res["pass"] is False and "từ" in res["evidence"]
     print("test_check_faq_with_short_answer PASS")
 
 def test_check_faq_with_forbidden_phrase():
@@ -108,7 +113,7 @@ def test_check_faq_with_forbidden_phrase():
 **Cau 3?** Co, ca hai may deu co 2 khe the nho, an toan cho luu tru du phong co backup. The nho la phu kien quan trong dua theo sau may.
 """
     res = check_faq(bad)
-    assert res["pass"] is False and ("xem o tren" in res["evidence"].lower() or "xem ở trên" in res["evidence"].lower() or "xem" in res["evidence"].lower())
+    assert res["pass"] is False and "xem o tren" in res["evidence"].lower()
     print("test_check_faq_with_forbidden_phrase PASS")
 
 def test_paa_generator():
@@ -129,7 +134,7 @@ def test_paa_hints_no_concrete_numbers():
     assert "33MP" not in hint_text
     assert "61MP" not in hint_text
     # Check placeholder usage
-    assert "[thông số từ sony.com.vn]" in hint_text or "[" in hint_text
+    assert "[" in hint_text
     print("test_paa_hints_no_concrete_numbers PASS")
 
 def test_citation_checker_with_links():
@@ -138,7 +143,7 @@ def test_citation_checker_with_links():
 A7R V 61MP (nguon: Sony official) https://www.sony.com/en/interchangeable-lens-cameras/ilce-7rm5
 DPReview https://www.dpreview.com/reviews/sony-a7r-v
 """
-    res = citation_checker(text)
+    res = citation_checker(text, check_links=False)
     assert res["total_links"] == 2
     assert res["tier1_count"] >= 1
     print(f"test_citation_checker PASS tier1={res['tier1_count']}")
@@ -167,7 +172,7 @@ def test_freshness_check_fresh():
     fresh = """
 # Sony A7 IV review
 
-Cap nhat 11/2026: Xac minh gia va thong so tren sony.com.vn
+Cập nhật 11/2026: Xác minh giá và thông số trên sony.com.vn
 
 Bai viet 2026.
 """
