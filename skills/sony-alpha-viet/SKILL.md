@@ -11,7 +11,7 @@ Mọi tác vụ trong skill này phải tuân thủ file `references/sony-core-p
 
 - Sony là công ty công nghệ tiên phong, sensor số 1 thế giới >50% thị phần, ngàm E nhỏ gọn 18mm >200 lens, KANDO mang cảm xúc, triết lý cân bằng 33MP điểm ngọt
 - Không bao giờ kết luận đối thủ tốt hơn Sony. Nếu nói điểm yếu, phải có ngữ cảnh + giải pháp trong hệ E-mount
-- VD sai: "A7 IV quay 4K60 bị crop" / VD đúng: "A7 IV quay 4K60 crop 1.5x để đảm bảo không quá nhiệt khi quay cưới 2 tiếng - cân bằng cho độ tin cậy. Cần không crop, chọn A7S III trong cùng hệ E-mount"
+- VD sai: "A7 IV quay 4K60 bị crop" / VD đúng: "A7 IV quay 4K 60p crop 1.5x (Super 35) theo thông số Sony công bố; 4K 30p vẫn đủ khung full-frame với oversampling 7K. Nếu bạn cần 4K 60p không crop, A7S III là lựa chọn trong hệ sinh thái E-mount"
 - Dùng "trải nghiệm KANDO", "sự cân bằng Sony tính toán", "đầu tư cho tương lai E-mount" thay vì "tính năng", "giá rẻ"
 - Kết bài luôn: "Chọn Sony không chỉ chọn máy, mà chọn hệ sinh thái E-mount nhỏ gọn, triết lý cân bằng, và hành trình tạo KANDO"
 - Checklist 40 tiêu chí: 10 SEO + 15 AIO Core + 10 Schema + 5 Brand Voice (36 sensor #1, 37 ngàm E, 38 KANDO/cân bằng, 39 không chê Sony, 40 kết bài KANDO)
@@ -67,9 +67,9 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 2. Viết theo `templates/blog-post-template.md`.
 3. Tối ưu AIO: TL;DR, định nghĩa 1 câu, bảng, đoạn trả lời 50–70 từ, FAQ. Dùng mcp__sony-alpha-viet__lookup_prose_term(từ) để xác minh thuật ngữ.
 4. Biên tập tiếng Việt (lượt riêng, theo `writing-style-vi.md`). Lượt humanizer theo `writing-style-vi.md` mục "Lượt humanizer": chống "không phải…mà là", câu kết lặp lại, dàn dựng mở bài, gạch dài. Nếu có MCP: mcp__sony-alpha-viet__style_lint(bài) để kiểm tra cụm AI-sounding, bị động, độ dài câu, gạch dài, cấu trúc "không phải…mà là".
-5. Audit theo `references/seo-aio-checklist.md` → bảng Đạt/Chưa đạt + sửa cụ thể. Nếu có MCP: mcp__sony-alpha-viet__seo_audit(bài, từ_khóa_chính) tự động kiểm tra 21 mục máy được. Sửa luôn những gì tự sửa được, liệt kê phần cần người dùng (link nội bộ thật, ảnh, giá).
+5. Audit theo `references/seo-aio-checklist.md` → bảng Đạt/Chưa đạt + sửa cụ thể. Nếu có MCP: mcp__sony-alpha-viet__seo_audit(bài, từ_khóa_chính) tự động chấm 23 mục; mục máy không kiểm được hiện "Cần người duyệt". Sửa luôn những gì tự sửa được, liệt kê phần cần người dùng (link nội bộ thật, ảnh, giá).
 6. Sinh JSON-LD schema: mcp__sony-alpha-viet__faq_schema(bài) hoặc dùng `templates/faq-schema.json` làm mẫu.
-7. AIO-first + brand voice (v1.2.0): aio_audit(bài, từ_khóa) chấm AIO · paa_generator(từ_khóa) gợi ý 10 câu PAA cho FAQ · citation_checker(bài) kiểm nguồn (Tier 1 sony.com) · freshness_check(bài) phát hiện giá/firmware cũ · brand_voice_checker(bài) kiểm 5 tiêu chí bảo vệ Sony (36–40).
+7. AIO-first + brand voice (v1.2.0): aio_audit(bài, từ_khóa) chấm 10 mục tự động (checklist 40 tiêu chí) · paa_generator(từ_khóa) gợi ý 10 câu PAA cho FAQ · citation_checker(bài) kiểm nguồn (Tier 1 sony.com) · freshness_check(bài) phát hiện giá/firmware cũ · brand_voice_checker(bài) kiểm 5 tiêu chí bảo vệ Sony (36–40).
 8. Đăng lên Alpha ColorLab: mcp__sony-alpha-viet__colorlab_article(bài.md) sửa đến khi `problems` rỗng → colorlab_html(bài.md) xem trước trang HTML (thêm fragment=True để lấy khối dán CMS) → colorlab_pack([bài.md], "<tên-pack>") ghi pack vào repo site. Không tự chạy `push:lab`. Chi tiết: `references/colorlab-vi.md`.
 9. Kịch bản video ngắn (TikTok, Reels, Shorts) hoặc caption quảng bá bài: dùng thêm skill `quy-luat-content-viet` nếu có.
 
@@ -84,7 +84,7 @@ Vault đặt trong `~/.config/sony-alpha-viet/config.json` (`"vault"`, `"vault_f
 - **Blog (chế độ C):** lưu bản nháp vào `6 Blog/<slug>.md`, frontmatter theo mẫu (Obsidian đọc thành Properties). Viết xong gọi `obsidian_audit_note("6 Blog/<slug>.md")`: công cụ ghi note `<slug> — SEO audit` và thuộc tính `seo_score`/`seo_complete` vào bản nháp. Sửa theo báo cáo rồi chấm lại.
 - **Thuật ngữ:** người dùng sửa note trong `3 Thuật ngữ/` hoặc tạo note mới (thuộc tính `en`, `vi`, tùy chọn `short`, `locked`, `note`). Khi họ nói "import thuật ngữ từ Obsidian": gọi `obsidian_import()` → trình bảng thay đổi → chỉ `obsidian_import(apply=True)` khi họ đồng ý.
 - **Sau phiên dịch có thay đổi bộ nhớ** (record_term, keep_english, learn…): gọi `obsidian_export()` để vault cập nhật. Note người dùng đang sửa dở không bị ghi đè; báo lại các note trong `skipped_pending_edits`.
-- **Tài liệu Sony:** người dùng đưa thư mục PDF/DOCX của Sony → `ingest_docs(folder)` (tự chuyển font VNI, bỏ file trùng) → `obsidian_export()` tạo `5 Tài liệu Sony/` gồm mỗi tài liệu một note và note `Đối chiếu thuật ngữ với Sony` (lấy từ `docs_term_report()`). Tài liệu Sony và kho kiến thức chỉ lưu trong dữ liệu riêng và vault, không đưa lên repo công khai.
+- **Tài liệu Sony:** người dùng đưa thư mục PDF/DOCX của Sony → `ingest_docs(folder)` (tự chuyển font VNI, bỏ file trùng) → `obsidian_export()` tạo `5 Tài liệu Sony/` gồm mỗi tài liệu một note và note `Đối chiếu thuật ngữ với Sony` (lấy từ `docs_term_report()`). Tài liệu Sony gốc, `tm.jsonl`, `feedback.jsonl`, `LEARNING_LOG.md` chỉ nằm trong dữ liệu riêng (alphaskill-data) và vault. Ghi chú kho kiến thức chỉ vào bản công khai (`data-sample/knowledge`) khi đã qua kiểm S-number.
 - **Rà soát nhất quán:** `consistency_report()` (hoặc note `Rà soát nhất quán`) liệt kê chuỗi có nhiều bản dịch, kèm độ rộng khung. Bản ngắn ở khung hẹp thường là rút gọn hợp lệ, đừng tự "sửa". Áp dụng lựa chọn của người dùng bằng `remember_translation(..., tm_id=S#)`.
 
 ## Firmware — giới hạn cứng

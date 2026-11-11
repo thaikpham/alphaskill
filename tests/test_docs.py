@@ -208,7 +208,6 @@ def test_ingest_helpguide_merges_with_pdf_ingest(tmp_path, monkeypatch):
     (docs_dir / "index.json").write_text(json.dumps(idx_data, ensure_ascii=False), encoding="utf-8")
 
     # Mock PDF ingest - create a fake PDF environment
-    import hashlib
     pdf_dir = tmp_path / "pdfs"
     pdf_dir.mkdir()
     pdf_file = pdf_dir / "test.pdf"
@@ -221,7 +220,7 @@ def test_ingest_helpguide_merges_with_pdf_ingest(tmp_path, monkeypatch):
     monkeypatch.setattr("sony_alpha_viet.docs._pdf_pages", mock_pdf_pages)
 
     # Run ingest - should preserve the helpguide entry
-    result = docs.ingest(str(pdf_dir), data=data_dir)
+    docs.ingest(str(pdf_dir), data=data_dir)
 
     # Check that helpguide entry is still there
     final_idx = json.loads((docs_dir / "index.json").read_text(encoding="utf-8"))

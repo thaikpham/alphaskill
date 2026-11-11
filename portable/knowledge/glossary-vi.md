@@ -1,10 +1,8 @@
-> Ghi chú: các lệnh `mcp__…`/tên công cụ trong file này chỉ có khi dùng MCP server sony-alpha-viet. Không có công cụ thì làm thủ công theo cùng quy tắc và ghi "chưa kiểm bằng MCP".
-
 # Glossary Sony Alpha — Việt
 
-Đọc file này trước mọi bản dịch hoặc bài viết.
+Đọc file này trước mọi bản dịch hoặc bài viết. Đây là bảng rút gọn. Bảng đầy đủ: mục Bảng thuật ngữ trong llms-full.txt (sinh từ data-sample/glossary.json).
 
-- **Menu OSD**: chuỗi hiển thị trên máy (chế độ A). Đối chiếu bộ nhớ dịch ILDC Rev.3 (MCP `sony-vn-translator`, 02/11/2026). Nếu MCP trả về khác bảng này → **MCP thắng** (dữ liệu sống), rồi báo người dùng để cập nhật file này.
+- **Menu OSD**: chuỗi hiển thị trên máy (chế độ A). Đối chiếu bộ nhớ dịch ILDC Rev.3 (MCP `sony-alpha-viet`, 02/11/2026). Nếu MCP trả về khác bảng này → **MCP thắng** (dữ liệu sống), rồi báo người dùng để cập nhật file này.
 - **Bài viết/Tài liệu**: văn xuôi trong blog, hướng dẫn (chế độ B, C). Được giữ thuật ngữ tiếng Anh mà nhiếp ảnh gia Việt quen dùng; lần đầu xuất hiện nên kèm giải nghĩa.
 - 🔒 = thuật ngữ khóa trong MCP, không tự đổi.
 - Viết hoa: menu viết hoa chữ đầu chuỗi; trong văn xuôi viết thường trừ tên riêng.
@@ -58,7 +56,6 @@
 | Shutter Type | シャッター方式 | Loại màn trập | loại màn trập | |
 | Electronic Shutter | 電子シャッター | Màn trập điện tử 🔒 | màn trập điện tử | |
 | Mechanical Shutter | メカシャッター | Màn trập cơ 🔒 | màn trập cơ | Cấm "màn trập cơ học" (duyệt 02/11/2026) |
-| Silent Shooting | サイレント撮影 | Chụp im lặng | chụp im lặng | Chưa có trong bộ nhớ; check_translation OK 02/11/2026 |
 | Drive Mode | ドライブモード | Kiểu chụp | kiểu chụp | Khác Shoot Mode (chế độ chụp) |
 | Image Stabilization / IBIS | 手ブレ補正 / ボディ内手ブレ補正 | Ổn định hình ảnh; tên tính năng: SteadyShot | chống rung trên thân máy (IBIS) | Menu Sony gọi SteadyShot; "IBIS" chỉ dùng trong văn xuôi |
 | SteadyShot | — | SteadyShot | SteadyShot | Tên Sony |
@@ -89,5 +86,69 @@ Cấm: "thu phóng" (khi EN là Zoom), "mã thời gian", "đặt trước".
 ## 7. Giữ nguyên (mọi chế độ)
 Sony, Alpha, α, Firmware, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, ISO, RAW, JPEG, HEIF, S-Log2/3, S-Gamut3(.Cine), S-Cinetone, HLG, XAVC (S/HS/S-I), CFexpress, SDXC, UHS-I/II, Wi-Fi, Bluetooth, HDMI, USB, FTP, Creators' App, Imaging Edge Mobile, Monitor & Control, Transfer & Tagging. Danh sách đầy đủ cho menu: `get_guidelines("exceptions")`.
 
-## 8. Thuật ngữ mới đề xuất
+## 8. Flash
+
+| EN | JP | Menu OSD | Bài viết/Tài liệu | Ghi chú |
+|---|---|---|---|---|
+| Flash | — | Đèn flash | đèn flash | |
+| Flash Mode | — | Chế độ flash | chế độ flash | |
+| Flash Off | — | Tắt flash | tắt flash | |
+| Flash Control | — | Điều khiển flash | điều khiển flash | |
+| Flash Power | — | Công suất flash | công suất flash | Cấm: "nguồn điện đèn flash" |
+| Flash Comp. | — | Bù flash | bù flash | |
+| Fill-flash | — | Flash cưỡng bức | flash cưỡng bức | |
+| External Flash | — | Flash ngoài | flash ngoài | |
+| Red Eye Reduction | — | Giảm mắt đỏ | giảm mắt đỏ | |
+| Slow Sync. | — | Đồng bộ chậm | đồng bộ chậm | |
+| Rear Sync. | — | Đồng bộ sau | đồng bộ sau | |
+| Trigger | — | Bộ kích | bộ kích | |
+
+## 9. Ống kính
+
+| EN | JP | Menu OSD | Bài viết/Tài liệu | Ghi chú |
+|---|---|---|---|---|
+| Lens | — | Ống kính | ống kính | |
+| Lens Comp. | — | Hiệu chỉnh ống kính | hiệu chỉnh ống kính | |
+| Chromatic Aberration Comp. | — | Hiệu chỉnh sắc sai | hiệu chỉnh sắc sai | |
+| Distortion Comp. | — | Hiệu chỉnh méo hình | hiệu chỉnh méo hình | |
+| Shading Comp. | — | Hiệu chỉnh tối góc | hiệu chỉnh tối góc | |
+| Macro | — | Cận cảnh | cận cảnh | |
+| Image Stabilization Settings | — | Cài đặt ổn định hình ảnh | cài đặt ổn định hình ảnh | |
+| Zoom Ring | — | Vòng zoom | vòng zoom | Zoom giữ tiếng Anh |
+
+## 10. Âm thanh
+
+| EN | JP | Menu OSD | Bài viết/Tài liệu | Ghi chú |
+|---|---|---|---|---|
+| Audio | — | Âm thanh | âm thanh | |
+| Audio Recording | — | Ghi âm | ghi âm | |
+| Audio Rec Level | — | Mức ghi âm | mức ghi âm | |
+| Audio Level Display | — | Hiển thị mức âm thanh | hiển thị mức âm thanh | |
+| Audio NR | — | Giảm ồn âm thanh | giảm ồn âm thanh | |
+| Wind Noise Reduction | — | Giảm tiếng gió | giảm tiếng gió | |
+| Int Mic | — | Mic trong | mic trong | |
+| Ext Mic | — | Mic ngoài | mic ngoài | |
+| Headphone | — | Tai nghe | tai nghe | |
+| Monitoring | — | Giám sát | giám sát | |
+| Audio signals | — | Âm báo | âm báo | |
+| Directivity | — | Hướng thu | hướng thu | |
+
+## 11. Mạng (Network)
+
+| EN | JP | Menu OSD | Bài viết/Tài liệu | Ghi chú |
+|---|---|---|---|---|
+| Network | — | Mạng | mạng | |
+| Wi-Fi | — | Wi-Fi | Wi-Fi | Giữ nguyên (mục 7) |
+| Wireless LAN | — | LAN không dây | LAN không dây | |
+| Wired LAN | — | LAN có dây | LAN có dây | |
+| Bluetooth | — | Bluetooth | Bluetooth | Giữ nguyên (mục 7) |
+| Access Point | — | Điểm truy cập | điểm truy cập | |
+| Airplane Mode | — | Chế độ máy bay | chế độ máy bay | |
+| Pairing | — | Ghép đôi | ghép đôi | |
+| Password | — | Mật khẩu | mật khẩu | |
+| IP Address | — | Địa chỉ IP | địa chỉ IP | |
+| FTP Server | — | Máy chủ FTP | máy chủ FTP | Giữ FTP (mục 7) |
+| Smartphone Connect | — | Kết nối smartphone | kết nối smartphone | |
+
+## 12. Thuật ngữ mới đề xuất
 Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xuất, chưa chốt]` cho tới lúc đó.

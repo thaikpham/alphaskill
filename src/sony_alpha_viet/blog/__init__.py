@@ -168,8 +168,6 @@ BANNED_PROSE = [
 def _strip_special_regions(text: str) -> tuple[str, dict]:
     """Return (stripped text, {region_id: (start, end)}) for code/inline/urls to skip checks."""
     regions = {}
-    stripped = text
-    offset = 0
 
     # Fenced code blocks
     for m in re.finditer(r"```.*?```", text, re.DOTALL):
