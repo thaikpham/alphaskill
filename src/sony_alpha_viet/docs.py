@@ -54,11 +54,12 @@ def vni_to_unicode(text: str) -> str:
 
 # ---------------- extraction ----------------
 def _pdf_pages(path: Path) -> list[str]:
-    info = subprocess.run(["pdfinfo", str(path)], capture_output=True, text=True).stdout
-    n = int(re.search(r"Pages:\s+(\d+)", info).group(1)) if "Pages:" in info else 1
+    info = subprocess.run(["pdfinfo", str(path)], capture_output=True, text=True, timeout=10).stdout
+    m = re.search(r"Pages:\s+(\d+)", info)
+    n = int(m.group(1)) if m else 1
     pages = []
     for i in range(1, n + 1):
-        out = subprocess.run(["pdftotext", "-f", str(i), "-l", str(i), str(path), "-"], capture_output=True, text=True).stdout
+        out = subprocess.run(["pdftotext", "-f", str(i), "-l", str(i), str(path), "-"], capture_output=True, text=True, timeout=10).stdout
         pages.append(re.sub(r"\n{3,}", "\n\n", out).strip())
     return pages
 

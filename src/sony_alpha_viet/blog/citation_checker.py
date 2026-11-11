@@ -8,6 +8,8 @@ import urllib.error
 from typing import Dict
 from urllib.parse import urlparse
 
+from ._doc import as_article, band, fold, links
+
 
 class _NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -16,7 +18,7 @@ class _NoRedirect(urllib.request.HTTPRedirectHandler):
 
 _NO_REDIRECT = urllib.request.build_opener(_NoRedirect)
 
-TIER_1_DOMAINS = ["sony.com", "sony.co.jp", "alphauniverse.com", "imaging-edge.sony.net"]
+TIER_1_DOMAINS = ["sony.com", "sony.com.vn", "sony.co.jp", "alphauniverse.com", "imaging-edge.sony.net"]
 TIER_2_DOMAINS = ["dpreview.com", "petapixel.com", "sonyalpharumors.com", "thephoblographer.com", "digitalcameraworld.com"]
 TIER_3_DOMAINS = ["facebook.com", "youtube.com", "instagram.com"]
 
@@ -25,18 +27,19 @@ def classify_domain(url: str) -> str:
         host = urlparse(url).netloc.lower().split(":")[0]  # strip port
         for d in TIER_1_DOMAINS:
             if host == d or host.endswith("." + d):
-                return "Tier 1 - Chinh thong Sony (tot nhat cho AIO)"
+                return "Tier 1 - Chính thống Sony (tốt nhất cho AIO)"
         for d in TIER_2_DOMAINS:
             if host == d or host.endswith("." + d):
-                return "Tier 2 - Uy tin nganh anh"
+                return "Tier 2 - Uy tín ngành ảnh"
         for d in TIER_3_DOMAINS:
             if host == d or host.endswith("." + d):
-                return "Tier 3 - Social"
-        return "Tier 3 - Blog/shop khac"
-    except:
-        return "Khong xac dinh"
+                return "Tier 3 - Mạng xã hội"
+        return "Tier 3 - Blog/shop khác"
+    except (ValueError, AttributeError, TypeError):
+        return "Không xác định"
 
-def check_link_alive(url: str, timeout=3) -> Dict:
+def check_link_alive(url: str, timeout=5) -> Dict:
+    """HEAD tới url. alive: True (sống), False (chết 4xx), None (không kiểm được, không tính là chết)."""
     if os.environ.get("SONY_VN_NO_NET"):  # public server: never fetch URLs taken from a caller's text
         return {"alive": None, "status": None, "evidence": "Không kiểm link trên server công khai"}
     try:
@@ -54,7 +57,7 @@ def check_link_alive(url: str, timeout=3) -> Dict:
                 if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved:
                     return {"alive": None, "status": None, "evidence": f"Không cho phép địa chỉ {ip_str}"}
         except (socket.gaierror, ValueError):
-            return {"alive": None, "status": None, "evidence": f"Không thể phân giải hostname: {host}"}
+            return {"alive": None, "status": None, "evidence": f"Không kiểm được: không phân giải hostname {host}"}
 
         req = urllib.request.Request(url, method='HEAD', headers={'User-Agent': 'SonyAlphaVietBot/1.1'})
         with _NO_REDIRECT.open(req, timeout=timeout) as resp:
@@ -62,80 +65,108 @@ def check_link_alive(url: str, timeout=3) -> Dict:
     except urllib.error.HTTPError as e:
         if 300 <= e.code < 400:
             location = e.headers.get('Location', '?')[:80]
-            return {"alive": True, "status": e.code, "evidence": f"Redirect {e.code} -> {location}"}
+            return {"alive": True, "status": e.code, "evidence": f"Chuyển hướng {e.code} -> {location}"}
         if e.code in (403, 429):
-            return {"alive": True, "status": e.code, "evidence": f"Bi chan {e.code} nhung link ton tai"}
-        return {"alive": False, "status": e.code, "evidence": f"Chet {e.code}"}
+            return {"alive": True, "status": e.code, "evidence": f"Bị chặn {e.code} nhưng link tồn tại"}
+        if e.code in (405, 501) or e.code >= 500:  # server không nhận HEAD hoặc đang lỗi: chưa biết
+            return {"alive": None, "status": e.code, "evidence": f"Không kiểm được: máy chủ trả {e.code}"}
+        return {"alive": False, "status": e.code, "evidence": f"Chết {e.code}"}
     except Exception as e:
-        return {"alive": None, "status": None, "evidence": f"Khong check duoc (offline): {str(e)[:60]}"}
+        return {"alive": None, "status": None, "evidence": f"Không kiểm được (lỗi mạng): {str(e)[:60]}"}
 
-def citation_checker(text: str) -> Dict:
-    md_links = re.findall(r'\[.*?\]\(https?://[^)]+\)', text)
-    # extract url inside ()
-    md_urls = []
-    for m in md_links:
-        url_match = re.search(r'(https?://[^)]+)', m)
-        if url_match:
-            md_urls.append(url_match.group(1))
-    raw_links = re.findall(r'https?://[^\s\)\]]+', text)
-    all_links = list(dict.fromkeys(md_urls + raw_links))
-    
+def _verdict(score: int, tier1: int) -> str:
+    if tier1 == 0:
+        note = "Thiếu nguồn Sony official (Tier 1)"
+    elif score >= 80:
+        note = "Có nguồn Tier 1"
+    else:
+        note = "Cần bổ sung nguồn"
+    return f"{band(score)} - {note}"
+
+def citation_checker(text: str, check_links: bool = True) -> Dict:
+    """
+    Tool MCP: citation_checker
+    check_links=True: HEAD từng link (timeout 5s). False: chỉ chấm domain và câu nguồn, quy về thang 100 trên 70 điểm.
+    Link không kiểm được (offline, lỗi mạng, 5xx, 405) không bị coi là chết và không được cộng điểm.
+    """
+    # Nguồn ngoài only: link nội bộ (alphacolorlab.com, đường dẫn tương đối, placeholder) không phải nguồn trích dẫn
+    found = [x for x in links(as_article(text)) if not x["internal"]]
+    line_of = {x["url"]: x["line"] for x in found}
+    all_links = [x["url"] for x in found]
+
     if not all_links:
         return {
             "total_links": 0,
+            "tier1_count": 0,
+            "alive": 0,
+            "dead": 0,
+            "unverified": 0,
+            "link_check": "không có link",
             "score": 0,
-            "verdict": "Khong co link nguon nao - AIO se khong trich",
-            "fix": "Them it nhat 1 link Sony official + 1 link DPReview",
+            "verdict": f"{band(0)} - Không có link nguồn nào, AIO sẽ không trích dẫn",
+            "fix": "Thêm ít nhất 1 link Sony official + 1 link DPReview",
             "details": []
         }
-    
+
     details = []
     tier1_count = 0
-    alive_count = 0
-    dead_count = 0
-    
     for url in all_links[:15]:
         tier = classify_domain(url)
-        alive_info = check_link_alive(url)
         if "Tier 1" in tier:
             tier1_count += 1
-        if alive_info["alive"] is True:
-            alive_count += 1
-        elif alive_info["alive"] is False:
-            dead_count += 1
-        
+        if check_links:
+            alive_info = check_link_alive(url, timeout=5)
+        else:
+            alive_info = {"alive": None, "status": None, "evidence": "Bỏ qua (check_links=False)"}
         details.append({
             "url": url[:80],
+            "line": line_of[url],
             "tier": tier,
             "alive": alive_info["alive"],
             "evidence": alive_info["evidence"]
         })
-    
-    has_specs = bool(re.search(r'\d+MP|33MP|61MP|\d+\s*trieu', text))
-    has_source_sentence = bool(re.search(r'nguon:|source:|theo Sony|theo DPReview', text, re.IGNORECASE))
-    
-    score = 0
-    if tier1_count >= 1: score += 40
-    if len(details) > 0 and alive_count >= len(details)*0.8: score += 30
-    if has_source_sentence: score += 20
-    if len(all_links) >= 2: score += 10
-    
-    if score >= 80:
-        verdict = "Tot - Co nguon Tier 1, link song"
-    elif score >= 50:
-        verdict = "Trung binh - Can them 1 link Sony official"
+
+    checked = [d for d in details if d["alive"] is not None]
+    alive_count = sum(1 for d in checked if d["alive"] is True)
+    dead_count = sum(1 for d in details if d["alive"] is False)
+    unverified = len(details) - len(checked)
+
+    folded = fold(text)
+    has_specs = bool(re.search(r'\d+\s?mp|\d+\s*trieu', folded))
+    has_source_sentence = bool(re.search(r'nguon:|source:|theo sony|theo dpreview', folded))
+
+    # Điểm nguồn: Tier 1 40, câu nguồn 20, từ 2 link 10; link sống 30 chỉ khi có link kiểm được
+    raw = 0
+    if tier1_count >= 1: raw += 40
+    if has_source_sentence: raw += 20
+    if len(all_links) >= 2: raw += 10
+    link_known = bool(checked)
+    if link_known:
+        if alive_count >= len(checked) * 0.8: raw += 30
+        max_score = 100
+        link_check = "đã kiểm" if not unverified else f"không kiểm được {unverified}/{len(details)} link"
     else:
-        verdict = "Kem - Thieu nguon chinh thong"
-    
+        max_score = 70
+        link_check = ("bỏ qua link (check_links=False)" if not check_links else "không kiểm được link") + ", chấm trên 70 điểm nguồn"
+    score = round(raw * 100 / max_score)
+
+    fixes = []
+    if tier1_count == 0:
+        fixes.append("Thêm link Sony official (sony.com.vn, sony.com)")
+    if not has_source_sentence:
+        fixes.append("ghi '(nguồn: Sony official, [năm])' sau thông số")
+
     return {
         "total_links": len(all_links),
         "tier1_count": tier1_count,
         "alive": alive_count,
         "dead": dead_count,
+        "unverified": unverified,
+        "link_check": link_check,
         "has_specs_needs_source": has_specs,
         "has_source_sentence": has_source_sentence,
         "score": score,
-        "verdict": verdict,
+        "verdict": _verdict(score, tier1_count),
         "details": details,
-        "fix": "Them link Sony official spec, ghi '(nguon: Sony official 2024)' sau thong so" if not has_source_sentence else ""
+        "fix": "; ".join(fixes),
     }

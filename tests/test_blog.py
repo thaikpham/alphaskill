@@ -163,7 +163,7 @@ def test_seo_audit_example_items(example_post):
     assert st[1] == "Đạt" and st[2] == "Đạt" and st[3] == "Đạt" and st[6] == "Đạt" and st[11] == "Đạt"
     assert st[19] == "Đạt"  # FAQ in article == FAQ in JSON-LD
     assert st[15] == "Chưa đạt" and 15 in r["required_failed"] and not r["complete"]
-    assert st[17] == "Một phần"  # placeholders only
+    assert st[17] == "Đạt"  # placeholder [link nội bộ: …] tính là link nội bộ (2 cái)
 
 
 def test_faq_schema_roundtrip_and_mismatch(example_post):
@@ -172,8 +172,9 @@ def test_faq_schema_roundtrip_and_mismatch(example_post):
     rebuilt = body + "\n" + blog.faq_schema(body, url="https://example.vn/a", site_name="Example")
     assert next(i for i in blog.seo_audit(rebuilt)["items"] if i["id"] == 19)["status"] == "Đạt"
     tampered = rebuilt.replace("Không hẳn. Sony A7R V", "Không. Sony A7R V", 1)  # edit article FAQ only
-    item = next(i for i in blog.seo_audit(tampered)["items"] if i["id"] == 19)
-    assert item["status"] == "Một phần" and "lệch FAQ" in item["evidence"]
+    items = {i["id"]: i for i in blog.seo_audit(tampered)["items"]}
+    assert items[19]["status"] == "Đạt"  # 19 chỉ kiểm kiểu schema (tiêu chí 26)
+    assert items[26]["status"] == "Chưa đạt" and "lệch" in items[26]["evidence"]  # Q/A khớp nguyên văn (tiêu chí 27)
     js = json.loads(re.search(r"\{.*\}", rebuilt.split("<script")[-1], re.S).group())
     art = js["@graph"][0]
     assert art["mainEntityOfPage"] == "https://example.vn/a" and art["publisher"]["name"] == "Example" and art["datePublished"] == "2026-11-02"

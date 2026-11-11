@@ -8,7 +8,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-from .aio_audit import aio_audit
+from ._doc import BULLET_RX, STRUCT_RX, as_article, count_words, fold, links, normalize, quote, tldr
+from .aio_audit import aio_audit, check_sourced_numbers
+from .audit import blog_audit
 from .brand_voice_checker import brand_voice_checker
 from .citation_checker import citation_checker
 from .colorlab import md_to_article, write_pack
@@ -17,6 +19,7 @@ from .paa_generator import paa_generator
 
 __all__ = [
     "aio_audit",
+    "blog_audit",
     "brand_voice_checker",
     "citation_checker",
     "count_words",
@@ -122,18 +125,6 @@ def slugify(text: str, max_words: int = 6) -> str:
         text = "-".join(words[:max_words])
     return text
 
-def count_words(text: str) -> int:
-    """Whitespace-based word count, excluding markdown table rows, code fences, frontmatter."""
-    # Remove frontmatter (--- ... ---)
-    text = re.sub(r"^---\n.*?\n---\n", "", text, flags=re.DOTALL)
-    # Remove code fences
-    text = re.sub(r"```.*?```", "", text, flags=re.DOTALL)
-    # Remove markdown table rows (lines starting with |)
-    lines = [l for l in text.split("\n") if not l.strip().startswith("|")]
-    text = "\n".join(lines)
-    # Count words
-    return len(text.split())
-
 def lookup_prose_term(query: str) -> list[dict]:
     """Fuzzy lookup (case-insensitive substring) on EN/JP/menu/prose columns."""
     glossary = _load_glossary_vi()
@@ -197,6 +188,9 @@ def _strip_special_regions(text: str) -> tuple[str, dict]:
 def _is_in_region(pos: int, regions: dict) -> bool:
     """Check if position is inside any protected region."""
     return any(r[0] <= pos < r[1] for r in regions.values())
+
+
+REDUPLICATIVES = {"từ", "song", "dần", "đâu", "ai", "gì", "nhiều", "lâu", "xa", "mãi", "đều", "khác", "mỗi", "cùng", "nhè", "vừa", "tận"}
 
 
 def style_lint(text: str) -> dict:
@@ -295,8 +289,10 @@ def style_lint(text: str) -> dict:
                     "hint": f"Quá nhiều 'của' ({sent.count('của')} lần), rút gọn câu"
                 })
 
-    # Check doubled words
+    # Check doubled words. Vietnamese reduplicatives ("từ từ", "song song") are words, not typos.
     for match in re.finditer(r"\b(\w+)\s+\1\b", text):
+        if match.group(1).lower() in REDUPLICATIVES:
+            continue
         line_no = text[:match.start()].count("\n") + 1
         issues.append({
             "type": "doubled",
@@ -333,111 +329,45 @@ def style_lint(text: str) -> dict:
     return {"issues": issues}
 
 
-# ---------------- article parsing ----------------
-def _frontmatter(md: str) -> tuple[dict, str]:
-    """Return (frontmatter dict, body). Real YAML (Obsidian writes multi-line lists/strings); loose parse if invalid."""
-    m = re.match(r"---\n(.*?)\n---\n", md, re.DOTALL)
-    if not m:
-        return {}, md
-    try:
-        import yaml
-        data = yaml.safe_load(m.group(1))
-        if isinstance(data, dict):
-            # dates and numbers as text, e.g. updated: 02/11/2026 stays "02/11/2026"
-            return {str(k): (v if isinstance(v, (list, bool)) else "" if v is None else str(v)) for k, v in data.items()}, md[m.end():]
-    except Exception:
-        pass
-    fm = {}
-    for line in m.group(1).split("\n"):
-        if ":" in line and not line.startswith(" "):
-            k, v = line.split(":", 1)
-            v = re.sub(r"\s+#.*$", "", v.strip())
-            if v.startswith("["):
-                fm[k.strip()] = [x.strip().strip('"\'') for x in v.strip("[]").split(",") if x.strip()]
-            else:
-                fm[k.strip()] = v.strip('"\'')
-    return fm, md[m.end():]
-
-
-def _strip_code(md: str) -> str:
-    return re.sub(r"```.*?```", "", md, flags=re.DOTALL)
-
-
-def _section(body: str, heading_rx: str) -> str:
-    """Text of the H2 section whose title matches heading_rx (up to the next H2)."""
-    m = re.search(r"^##\s+(?:" + heading_rx + r")\s*$", body, re.MULTILINE | re.IGNORECASE)
-    if not m:
-        return ""
-    rest = body[m.end():]
-    nxt = re.search(r"^##\s", rest, re.MULTILINE)
-    return rest[: nxt.start()] if nxt else rest
-
-
-FAQ_HEADING = r"Câu hỏi thường gặp|FAQ|Hỏi đáp"
-
-
-def _faq(body: str) -> list[dict]:
-    """[{q, a}] from the FAQ section; answers keep every paragraph up to the next H3."""
-    sec = _strip_code(_section(body, FAQ_HEADING))
-    parts = re.split(r"^###\s+(.+?)\s*$", sec, flags=re.MULTILINE)
-    out = []
-    for i in range(1, len(parts) - 1, 2):
-        a = re.sub(r"\s+", " ", parts[i + 1]).strip()
-        out.append({"q": parts[i].strip(), "a": a})
-    return out
+# ---------------- SEO / AIO audit ----------------
+REQUIRED = {1, 6, 8, 11, 15}
 
 
 def _norm(s: str) -> str:
-    return re.sub(r"\s+", " ", unicodedata.normalize("NFC", s or "")).strip().lower()
-
-
-def _jsonld(md: str) -> list[dict]:
-    blocks = re.findall(r"<script[^>]*application/ld\+json[^>]*>(.*?)</script>", md, re.DOTALL)
-    out = []
-    for b in blocks:
-        try:
-            data = json.loads(b)
-        except json.JSONDecodeError:
-            out.append({"_error": "JSON không hợp lệ"})
-            continue
-        nodes = data.get("@graph", [data]) if isinstance(data, dict) else data
-        out.extend(n for n in nodes if isinstance(n, dict))
-    return out
-
-
-# ---------------- SEO / AIO audit ----------------
-REQUIRED = {1, 6, 8, 11, 15, 19, 21}
+    return " ".join(normalize(s).split()).lower()
 
 
 def seo_audit(markdown: str, primary_keyword: str = "", secondary_keywords: Optional[list[str]] = None) -> dict:
-    """Chấm bài theo references/seo-aio-checklist.md. Mục không chấm bằng máy được → "Cần người duyệt"."""
-    md = unicodedata.normalize("NFC", markdown)
-    fm, body = _frontmatter(md)
+    """Chấm bài theo references/seo-aio-checklist.md: id 1–23 giữ nguyên, 24–26 thêm mới. Mục không chấm bằng máy được → "Cần người duyệt"."""
+    a = as_article(markdown)
+    fm = a.fm
     kw = (primary_keyword or fm.get("primary_keyword") or "").strip()
-    kwl = kw.lower()
-    prose = _strip_code(body)
+    kwf = fold(kw)
+    prose = a.prose
     items = []
 
-    def add(i, item, status, evidence="", fix=""):
-        items.append({"id": i, "item": item, "status": status, "required": i in REQUIRED, "evidence": evidence, "fix": fix if status != "Đạt" else ""})
+    def add(i, item, status, evidence="", fix="", hits=()):
+        first = hits[0] if hits else (0, "")
+        items.append({"id": i, "item": item, "status": status, "required": i in REQUIRED, "evidence": evidence,
+                      "fix": fix if status != "Đạt" else "", "line": first[0], "quote": first[1], "occurrences": len(hits)})
 
-    h1s = re.findall(r"^#\s+(.+)$", prose, re.MULTILINE)
-    h2s = re.findall(r"^##\s+(.+)$", prose, re.MULTILINE)
+    h1s = [h[2] for h in a.headings if h[1] == 1]
+    h2s = [h[2] for h in a.headings if h[1] == 2]
     title, desc, slug = fm.get("meta_title", ""), fm.get("meta_description", ""), fm.get("slug", "")
-    first100 = " ".join(re.sub(r"[#*_>|`\[\]]", " ", prose).split()[:100]).lower()
+    first100 = fold(" ".join(re.sub(r"[#*_>|`\[\]]", " ", prose).split()[:100]))
 
     # 1. keyword placement
     if not kw:
         add(1, "Từ khóa chính ở H1, slug, 100 từ đầu, H2, meta description", "Chưa đạt", "Không có từ khóa chính", "Truyền primary_keyword hoặc khai báo trong frontmatter")
     else:
-        where = {"H1": any(kwl in h.lower() for h in h1s), "slug": slugify(kw, 20) in slug,
-                 "100 từ đầu": kwl in first100, "H2": any(kwl in h.lower() for h in h2s), "meta description": kwl in desc.lower()}
+        where = {"H1": any(kwf in fold(h) for h in h1s), "slug": slugify(kw, 20) in slug,
+                 "100 từ đầu": kwf in first100, "H2": any(kwf in fold(h) for h in h2s), "meta description": kwf in fold(desc)}
         miss = [k for k, v in where.items() if not v]
         add(1, "Từ khóa chính ở H1, slug, 100 từ đầu, H2, meta description", "Đạt" if not miss else "Chưa đạt",
             "; ".join(f"{k}={'có' if v else 'thiếu'}" for k, v in where.items()), "Thêm từ khóa vào: " + ", ".join(miss))
 
     # 2–4. meta + slug
-    add(2, "Meta title 50–60 ký tự", "Đạt" if 50 <= len(title) <= 60 else ("Chưa đạt" if title else "Chưa đạt"),
+    add(2, "Meta title 50–60 ký tự", "Đạt" if 50 <= len(title) <= 60 else "Chưa đạt",
         f"{len(title)} ký tự" if title else "Thiếu meta_title", "Viết lại meta title trong khoảng 50–60 ký tự, từ khóa ở nửa đầu")
     add(3, "Meta description 140–160 ký tự", "Đạt" if 140 <= len(desc) <= 160 else "Chưa đạt",
         f"{len(desc)} ký tự" if desc else "Thiếu meta_description", "Viết lại trong khoảng 140–160 ký tự, có lợi ích + hành động")
@@ -445,67 +375,80 @@ def seo_audit(markdown: str, primary_keyword: str = "", secondary_keywords: Opti
     add(4, "Slug không dấu, gạch nối, ≤ 6 từ", "Đạt" if slug_ok else "Chưa đạt", f"'{slug}'", f"Gợi ý: {slugify(kw or (h1s[0] if h1s else ''))}")
 
     # 5. density = occurrences / words
-    words = count_words(md)
-    occ = len(re.findall(re.escape(kw), prose, re.IGNORECASE)) if kw else 0
+    words = count_words(markdown)
+    occ = len(re.findall(re.escape(kwf), fold(prose))) if kw else 0
     dens = occ / words * 100 if words else 0
     add(5, "Không nhồi từ khóa (≤ 1,5%)", "Đạt" if kw and dens <= 1.5 else ("N/A" if not kw else "Chưa đạt"),
         f"{occ} lần / {words} từ = {dens:.2f}%".replace(".", ","), "Giảm số lần lặp cụm từ khóa chính, dùng biến thể")
 
-    # 6. TL;DR
-    m = re.search(r"\*\*TL;DR:?\*\*:?\s*(.+)", prose)
-    n = len(m.group(1).split()) if m else 0
-    add(6, "TL;DR 40–70 từ ngay sau H1", "Đạt" if 40 <= n <= 70 else "Chưa đạt", f"{n} từ" if m else "Không có **TL;DR:**",
-        "Thêm/sửa TL;DR 40–70 từ trả lời thẳng câu hỏi chính")
+    # 6. TL;DR (bullet hoặc đoạn đều đếm như nhau, xem _doc.tldr)
+    t = tldr(a)
+    add(6, "TL;DR 40–70 từ ngay sau H1", "Đạt" if t["labelled"] and 40 <= t["words"] <= 70 else "Chưa đạt",
+        f"{t['words']} từ ({t['form']})" if t["labelled"] else "Không có nhãn TL;DR ngay dưới H1",
+        "Thêm/sửa TL;DR 40–70 từ trả lời thẳng câu hỏi chính", [(t["line"], t["quote"])] if t["line"] else [])
 
     # 7. headings
-    levels = [len(x) for x in re.findall(r"^(#{1,6})\s", prose, re.MULTILINE)]
-    jumps = [f"H{a}→H{b}" for a, b in zip(levels, levels[1:]) if b > a + 1]
+    levels = [h[1] for h in a.headings]
+    jumps = [f"H{x}→H{y}" for x, y in zip(levels, levels[1:]) if y > x + 1]
     add(7, "Một H1; heading không nhảy cấp", "Đạt" if len(h1s) == 1 and not jumps else "Chưa đạt",
         f"{len(h1s)} H1" + (f"; nhảy cấp: {', '.join(jumps)}" if jumps else ""), "Giữ đúng một H1, không bỏ cấp heading")
 
     # 8. structure
-    table = bool(re.search(r"^\|.+\|\s*$\n^\|[-:| ]+\|\s*$", prose, re.MULTILINE))
-    lst = bool(re.search(r"^\s*(?:[-*+]|\d+\.)\s+\S", prose, re.MULTILINE))
-    add(8, "Có bảng, checklist hoặc danh sách", "Đạt" if table or lst else "Chưa đạt", f"bảng={'có' if table else 'không'}; danh sách={'có' if lst else 'không'}",
-        "Thêm bảng so sánh hoặc danh sách các bước")
+    table = bool(a.tables())
+    lst = any(BULLET_RX.match(ln) for ln in a.lines)
+    add(8, "Có bảng, checklist hoặc danh sách", "Đạt" if table or lst else "Chưa đạt",
+        f"bảng={'có' if table else 'không'}; danh sách={'có' if lst else 'không'}", "Thêm bảng so sánh hoặc danh sách các bước")
 
-    # 9. paragraph length
-    paras = [p for p in re.split(r"\n\s*\n", prose) if p.strip() and not re.match(r"\s*(?:#|\||[-*+]\s|\d+\.\s|>)", p)]
-    long_p = [p for p in paras if len(re.findall(r"[.!?](?:\s|$)", p)) > 4]
+    # 9. paragraph length (chỉ dòng văn xuôi: bỏ heading, bullet, task list, bảng, trích dẫn)
+    long_p = []
+    for blk in a.blocks():
+        prose_lines = [(ln, raw.strip()) for ln, raw in blk if not STRUCT_RX.match(raw.strip())]
+        if not prose_lines:
+            continue
+        text = " ".join(raw for _, raw in prose_lines)
+        if len(re.findall(r"[.!?](?:\s|$)", text)) > 4:
+            long_p.append((prose_lines[0][0], quote(text)))
     add(9, "Đoạn ≤ 4 câu; mỗi H2 mở bằng câu trả lời ngắn", "Đạt" if not long_p else "Một phần",
-        f"{len(long_p)} đoạn > 4 câu", "Tách đoạn dài; mở mỗi H2 bằng câu trả lời 1–2 câu")
-    add(10, "Kết luận có hành động cụ thể", "Cần người duyệt", "Có H2 kết luận" if any(re.search(r"kết luận|tóm lại|nên chọn", h, re.I) for h in h2s) else "Không thấy H2 kết luận",
+        f"{len(long_p)} đoạn > 4 câu", "Tách đoạn dài; mở mỗi H2 bằng câu trả lời 1–2 câu", long_p)
+    add(10, "Kết luận có hành động cụ thể", "Cần người duyệt", "Có H2 kết luận" if any(re.search(r"ket luan|tom lai|nen chon", fold(h)) for h in h2s) else "Không thấy H2 kết luận",
         "Kết thúc bằng khuyến nghị theo nhóm người dùng + bước tiếp theo")
 
     # 11. FAQ
-    faq = _faq(body)
-    lens = [len(f["a"].split()) for f in faq]
-    bad_ctx = [f["q"] for f in faq if re.search(r"như đã nói|ở trên|phía trên", f["a"], re.I)]
+    faq = a.faq()
+    lens = [f["words"] for f in faq]
+    bad_ctx = [f["q"] for f in faq if re.search(r"nhu da noi|o tren|phia tren", fold(f["a"]))]
     ok = 3 <= len(faq) <= 6 and all(40 <= x <= 70 for x in lens) and not bad_ctx
     add(11, "FAQ 3–6 câu, mỗi câu trả lời 40–70 từ, tự đứng được", "Đạt" if ok else ("Chưa đạt" if not faq else "Một phần"),
-        f"{len(faq)} câu; số từ={lens}" + (f"; phụ thuộc ngữ cảnh: {bad_ctx}" if bad_ctx else ""), "Chỉnh số câu hỏi/độ dài; bỏ tham chiếu 'như đã nói ở trên'")
-    add(12, "Có định nghĩa một câu cho khái niệm chính", "Đạt" if re.search(r"\b(?:là|được hiểu là)\b", prose) else "Cần người duyệt", "", "Thêm câu 'X là …' cho khái niệm chính")
+        f"{len(faq)} câu; số từ={lens}" + (f"; phụ thuộc ngữ cảnh: {bad_ctx}" if bad_ctx else ""),
+        "Chỉnh số câu hỏi/độ dài; bỏ tham chiếu 'như đã nói ở trên'", [(f["line"], quote(f["q"])) for f in faq])
+    add(12, "Có định nghĩa một câu cho khái niệm chính", "Đạt" if re.search(r"\b(?:la|duoc hieu la)\b", fold(prose)) else "Cần người duyệt", "", "Thêm câu 'X là …' cho khái niệm chính")
     add(13, "Câu số liệu nêu rõ chủ thể và đơn vị", "Cần người duyệt", "", "Kiểm các câu có số: tránh 'nó', 'máy này'")
     add(14, "Có trải nghiệm/bối cảnh riêng (Việt Nam)", "Cần người duyệt", "", "Thêm ví dụ thực tế: địa điểm, giá, dịch vụ, thói quen chụp")
 
-    # 15. unverified
-    nv = len(re.findall(r"\[cần xác minh[^\]]*\]", prose))
-    add(15, "Không có thông số/giá chưa kiểm chứng", "Đạt" if nv == 0 else "Chưa đạt", f"{nv} chỗ [cần xác minh]", "Đối chiếu nguồn chính thức rồi bỏ đánh dấu")
+    # 15. unverified: liệt kê từng dòng có [cần xác minh]
+    marks = [(ln, quote(raw)) for ln, raw in a.grep(r"\[can xac minh")]
+    add(15, "Không có thông số/giá chưa kiểm chứng", "Đạt" if not marks else "Chưa đạt",
+        f"{len(marks)} dòng có [cần xác minh]" + (f": dòng {', '.join(str(ln) for ln, _ in marks)}" if marks else ""),
+        "Đối chiếu nguồn chính thức rồi bỏ đánh dấu", marks)
 
-    # 16–17. links (outside code/JSON-LD)
-    ext = sorted(set(re.findall(r"https?://[^\s)\]>\"']+", prose)))
-    internal = re.findall(r"\[link nội bộ:[^\]]*\]", prose, re.I)
-    rel = re.findall(r"\]\((/[^)]+)\)", prose)
-    add(16, "Link ngoài 1–3 nguồn uy tín", "Đạt" if 1 <= len(ext) <= 3 else ("Một phần" if ext else "Chưa đạt"), f"{len(ext)} link: " + ", ".join(ext[:5]),
-        "Giữ 1–3 nguồn mạnh nhất (ưu tiên trang Sony chính thức)")
-    n_int = len(internal) + len(rel)
-    add(17, "Link nội bộ 2–5", "Đạt" if 2 <= len(rel) <= 5 else ("Một phần" if n_int else "Chưa đạt"),
-        f"{len(rel)} URL thật, {len(internal)} placeholder", "Thay placeholder [link nội bộ: …] bằng URL thật")
+    # 16–18. links (nguồn chung với tiêu chí 5), author
+    lk = links(a)
+    ext = [x for x in lk if not x["internal"]]
+    inner = [x for x in lk if x["internal"]]
+    n_ph = sum(1 for x in inner if x["kind"] == "placeholder")
+    add(16, "Link ngoài 1–3 nguồn uy tín", "Đạt" if 1 <= len(ext) <= 3 else ("Một phần" if ext else "Chưa đạt"),
+        f"{len(ext)} link ngoài: " + ", ".join(x["url"][:60] for x in ext[:3]),
+        "Giữ 1–3 nguồn mạnh nhất (ưu tiên trang Sony chính thức)",
+        [(ln, quote(a.lines[ln - 1])) for ln in sorted({x["line"] for x in ext})])
+    add(17, "Link nội bộ 2–5", "Đạt" if 2 <= len(inner) <= 5 else ("Một phần" if inner else "Chưa đạt"),
+        f"{len(inner)} link nội bộ, {n_ph} placeholder [link nội bộ: …]",
+        "Thêm/giữ 2–5 link nội bộ; thay placeholder [link nội bộ: …] bằng URL thật",
+        [(ln, quote(a.lines[ln - 1])) for ln in sorted({x["line"] for x in inner})])
     add(18, "Tác giả và ngày cập nhật", "Đạt" if fm.get("author") and fm.get("updated") else "Chưa đạt",
         f"author={fm.get('author', '')}; updated={fm.get('updated', '')}", "Thêm author, updated vào frontmatter")
 
-    # 19. JSON-LD
-    nodes = _jsonld(md)
+    # 19 (→ tiêu chí 26): có đủ kiểu schema; 26 (→ tiêu chí 27): Q/A khớp nguyên văn. Không có JSON-LD: N/A
+    nodes = a.jsonld
     types = {n.get("@type") for n in nodes}
     errs = [n["_error"] for n in nodes if "_error" in n]
     schema_faq = []
@@ -515,11 +458,15 @@ def seo_audit(markdown: str, primary_keyword: str = "", secondary_keywords: Opti
     mismatch = [f["q"] for f, s in zip(faq, schema_faq) if _norm(f["q"]) != _norm(s["q"]) or _norm(f["a"]) != _norm(s["a"])]
     if len(faq) != len(schema_faq):
         mismatch.append(f"số câu: bài {len(faq)} / Schema {len(schema_faq)}")
-    need_howto = bool(re.search(r"hướng dẫn|cách cài|từng bước", h1s[0] if h1s else "", re.I))
-    ok19 = not errs and "Article" in types and "FAQPage" in types and not mismatch and (not need_howto or "HowTo" in types)
-    add(19, "JSON-LD Article + FAQPage (+ HowTo nếu hướng dẫn), FAQ trùng nguyên văn", "Đạt" if ok19 else ("Chưa đạt" if not nodes else "Một phần"),
-        f"types={sorted(t for t in types if t)}" + (f"; lỗi={errs}" if errs else "") + (f"; lệch FAQ={mismatch}" if mismatch else "") + ("; thiếu HowTo" if need_howto and "HowTo" not in types else ""),
-        "Sinh lại bằng faq_schema() sau khi chốt FAQ")
+    need_howto = bool(re.search(r"huong dan|cach cai|tung buoc", fold(h1s[0]) if h1s else ""))
+    missing = [t for t in ("Article", "FAQPage") if t not in types] + (["HowTo"] if need_howto and "HowTo" not in types else [])
+    name19 = "Schema Article + FAQPage (+ HowTo nếu hướng dẫn)"
+    if not nodes:
+        add(19, name19, "N/A", "Không có JSON-LD trong bài")
+    else:
+        add(19, name19, "Đạt" if not errs and not missing else "Một phần",
+            f"types={sorted(t for t in types if t)}" + (f"; lỗi={errs}" if errs else "") + (f"; thiếu: {', '.join(missing)}" if missing else ""),
+            f"Sinh lại bằng faq_schema(), đặt khối JSON-LD cuối bài (còn thiếu: {', '.join(missing) or 'sửa lỗi cú pháp'})")
 
     # 20. images
     imgs = re.findall(r"!\[([^\]]*)\]\(([^)]+)\)", prose)
@@ -530,10 +477,33 @@ def seo_audit(markdown: str, primary_keyword: str = "", secondary_keywords: Opti
     lint = style_lint(prose)["issues"]
     term = [i for i in lint if i["type"] == "terminology"]
     style = [i for i in lint if i["type"] not in ("terminology", "verify_markers")]
-    add(21, "Thuật ngữ đúng glossary", "Đạt" if not term else "Chưa đạt", "; ".join(f"dòng {i['line']}: {i['match']}" for i in term[:5]), "; ".join(i["hint"] for i in term[:3]))
+    add(21, "Thuật ngữ đúng glossary", "Đạt" if not term else "Chưa đạt", "; ".join(f"dòng {i['line']}: {i['match']}" for i in term[:5]),
+        "; ".join(i["hint"] for i in term[:3]), [(i["line"], quote(i["match"])) for i in term])
     add(22, "Không văn dịch máy / cụm AI-sounding", "Đạt" if not style else "Một phần", f"{len(style)} vấn đề: " + "; ".join(f"{i['type']}:{i['match'][:30]}" for i in style[:5]),
         "Sửa theo style_lint()")
     add(23, "Không khuyến nghị y tế/tài chính/pháp lý thiếu căn cứ", "Cần người duyệt", "", "")
+
+    # 24. H1 một dòng, không quá dài
+    h1_title = h1s[0] if h1s else ""
+    add(24, "H1 đúng một dòng, ≤ 70 ký tự", "Đạt" if len(h1s) == 1 and 0 < len(h1_title) <= 70 else "Chưa đạt",
+        f"{len(h1s)} H1, {len(h1_title)} ký tự", "Rút gọn H1 còn ≤ 70 ký tự, đưa từ khóa chính lên đầu",
+        [(a.h1[0], quote(h1_title))] if a.h1 else [])
+
+    # 25. số liệu có nguồn (tiêu chí 16 của aio_audit), chỉ liệt kê để người duyệt
+    num = check_sourced_numbers(a)
+    add(25, "Số liệu có chủ thể và nguồn (tiêu chí 16, người duyệt)", "Đạt" if num["pass"] else "Cần người duyệt",
+        num["evidence"], num["fix"], [(h["line"], h["quote"]) for h in num["hits"]])
+
+    if not nodes:
+        add(26, "Schema FAQ khớp nguyên văn bài", "N/A", "Không có JSON-LD nên chưa đối chiếu Q/A")
+    elif not faq and not schema_faq:
+        add(26, "Schema FAQ khớp nguyên văn bài", "N/A", "Không có mục FAQ và không có FAQPage")
+    else:
+        faq_hits = [(f["line"], quote(f["q"])) for f, s in zip(faq, schema_faq)
+                    if _norm(f["q"]) != _norm(s["q"]) or _norm(f["a"]) != _norm(s["a"])]
+        add(26, "Schema FAQ khớp nguyên văn bài", "Chưa đạt" if mismatch else "Đạt",
+            f"lệch: {mismatch}" if mismatch else f"{len(faq)} câu FAQ trùng nguyên văn",
+            "Sinh lại bằng faq_schema() sau khi sửa FAQ", faq_hits)
 
     scored = [i for i in items if i["status"] in ("Đạt", "Chưa đạt", "Một phần")]
     passed = sum(1 for i in scored if i["status"] == "Đạt")
@@ -544,17 +514,16 @@ def seo_audit(markdown: str, primary_keyword: str = "", secondary_keywords: Opti
 
 def faq_schema(markdown: str, url: str = "", site_name: str = "", image: str = "") -> str:
     """JSON-LD Article + FAQPage từ frontmatter và mục FAQ (nguyên văn) của bài."""
-    md = unicodedata.normalize("NFC", markdown)
-    fm, body = _frontmatter(md)
-    h1 = re.search(r"^#\s+(.+)$", _strip_code(body), re.MULTILINE)
+    a = as_article(markdown)
+    fm = a.fm
     iso = ""
     for key in ("updated", "published"):
         try:
             iso = datetime.strptime(fm.get(key, ""), "%d/%m/%Y").date().isoformat()
             break
-        except ValueError:
+        except (ValueError, TypeError):
             continue
-    article = {"@type": "Article", "headline": h1.group(1).strip() if h1 else fm.get("meta_title", ""),
+    article = {"@type": "Article", "headline": a.h1[2] if a.h1 else fm.get("meta_title", ""),
                "description": fm.get("meta_description", ""), "inLanguage": "vi-VN"}
     if fm.get("author"):
         article["author"] = {"@type": "Person", "name": fm["author"]}
@@ -568,7 +537,7 @@ def faq_schema(markdown: str, url: str = "", site_name: str = "", image: str = "
         article["image"] = image
     article = {k: v for k, v in article.items() if v}
     graph = [article]
-    faq = _faq(body)
+    faq = a.faq()
     if faq:
         graph.append({"@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in faq]})

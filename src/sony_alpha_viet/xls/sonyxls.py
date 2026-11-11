@@ -53,11 +53,17 @@ def write_proposals(src: str, out: str, proposals: list[dict], overwrite: bool =
         targets[(ri, COL["an"])] = p.get("an", "")
         targets[(ri, COL["au"])] = p.get("au", "")
         targets[(ri, COL["av"])] = p.get("av", "")
-    raw = open(src, "rb").read()
-    wb = olefile.OleFileIO(src).openstream("Workbook").read()
+    with open(src, "rb") as f:
+        raw = f.read()
+    ole = olefile.OleFileIO(src)
+    try:
+        wb = ole.openstream("Workbook").read()
+    finally:
+        ole.close()
     new, st = biff.apply_cells(wb, targets, overwrite)
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
-    open(out, "wb").write(biff.ole_replace_stream(raw, "Workbook", new))
+    with open(out, "wb") as f:
+        f.write(biff.ole_replace_stream(raw, "Workbook", new))
     # verify
     sh2 = xlrd.open_workbook(out).sheet_by_name("VN")
     bad = [k for k, v in targets.items() if sh2.cell_value(*k) != v]
