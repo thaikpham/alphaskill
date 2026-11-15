@@ -1242,6 +1242,10 @@
   {
    "pattern": "[Mm]ất nét",
    "why": "Defocus = xóa phông (nếu là giá trị Xóa phông)"
+  },
+  {
+   "pattern": "[Pp]hương tiện ghi hình",
+   "why": "Recording Media / media card = thẻ nhớ (người dùng duyệt 16/11/2026)"
   }
  ]
 }

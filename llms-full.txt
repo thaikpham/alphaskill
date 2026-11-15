@@ -24,7 +24,7 @@ File này sinh tự động từ `skills/sony-alpha-viet/`, `data-sample/` và `
 - [1. Vai trò và giọng điệu](#1-vai-trò-và-giọng-điệu)
 - [2. Quy tắc dịch menu](#2-quy-tắc-dịch-menu)
 - [3. Văn phong tiếng Việt](#3-văn-phong-tiếng-việt)
-- [4. Bảng thuật ngữ: 666 mục](#4-bảng-thuật-ngữ-666-mục)
+- [4. Bảng thuật ngữ: 667 mục](#4-bảng-thuật-ngữ-667-mục)
 - [5. Giữ nguyên tiếng Anh](#5-giữ-nguyên-tiếng-anh)
 - [6. Ngoại lệ không dịch](#6-ngoại-lệ-không-dịch)
 - [7. Quy tắc thay thế và từ cấm](#7-quy-tắc-thay-thế-và-từ-cấm)
@@ -283,7 +283,7 @@ Chuyển thể từ humanizer (blader/humanizer, MIT). Dùng khi bài viết xon
 - Viết hoa tên riêng, model; không viết hoa danh từ chung giữa câu ("Cảm Biến" → "cảm biến").
 - Dấu câu sát chữ trước, cách chữ sau.
 
-## 4. Bảng thuật ngữ: 666 mục
+## 4. Bảng thuật ngữ: 667 mục
 
 Tra ở đây trước. Không có → dịch, đánh dấu [thuật ngữ mới].
 
@@ -891,7 +891,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Playback Option | tùy chọn xem lại |  |  |
 | Protect | bảo vệ |  |  |
 | Rotate | xoay |  |  |
-| Select Playback Media | chọn phương tiện ghi hình xem lại | chọn phương tiện xem lại | Recording media = phương tiện ghi hình. (đã áp quy tắc r121) |
+| Select Playback Media | chọn thẻ nhớ xem lại | chọn thẻ xem lại | Recording media = thẻ nhớ (duyệt 16/11/2026). |
 | Slide Show | trình chiếu |  |  |
 | Sort | sắp xếp |  |  |
 | This Image | ảnh này |  |  |
@@ -941,10 +941,10 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Playback | xem lại |  | (khóa); âm thanh ghi chú thoại: 'phát' |
 | Rating | xếp hạng |  | (khóa) |
 | Rating Only | chỉ xếp hạng |  | (khóa); duyệt 02/11/2026 |
-| Recording Media | phương tiện ghi hình | thẻ nhớ | (khóa) |
+| Recording Media | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026: Recording Media = thẻ nhớ, không dùng 'phương tiện ghi hình'. |
 | Reset | đặt lại |  | (khóa); không 'thiết lập lại' |
 | Shot Mark | dấu cảnh |  | (khóa) |
-| Shutter | màn trập |  | (khóa); Quy tắc mục 2 |
+| Shutter | màn trập |  | (khóa); Quy tắc mục 2. 16/11/2026: bản Sony dùng 'cửa trập' là lỗi thuật ngữ (AU = F). |
 | Shutter Button | nút chụp |  | (khóa); Duyệt 02/11/2026: theo Sony/Canon VN, không dùng 'nút màn trập' |
 | Shutter Priority | ưu tiên tốc độ màn trập | ưu tiên màn trập | (khóa); Nikon VN: tự động ưu tiên màn trập |
 | Shutter Speed | tốc độ màn trập |  | (khóa) |
@@ -988,7 +988,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Language | ngôn ngữ |  |  |
 | Lens | ống kính |  |  |
 | License | giấy phép |  |  |
-| Media | phương tiện ghi hình | phương tiện | Recording media = phương tiện ghi hình (local team decision). "Memory card" stays thẻ nhớ. |
+| Media | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026: media / media card = thẻ nhớ. |
 | Memory card | thẻ nhớ |  |  |
 | Monitor | màn hình |  |  |
 | Monitor Brightness | độ sáng màn hình |  |  |
@@ -1001,7 +1001,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Power Save | tiết kiệm pin |  | Natural; alternative "tiết kiệm năng lượng". |
 | Power Save Start Time | thời gian bắt đầu tiết kiệm pin | bắt đầu tiết kiệm pin |  |
 | Power Setting Option | tùy chọn nguồn |  |  |
-| Rec. Media Settings | cài đặt phương tiện ghi hình | phương tiện ghi hình | Settings implied in tight icon layouts. (đã áp quy tắc r121) |
+| Rec. Media Settings | cài đặt thẻ nhớ |  | Recording media = thẻ nhớ (duyệt 16/11/2026). |
 | Save/Load Settings | lưu/tải cài đặt |  |  |
 | Screen Reader | trình đọc màn hình |  |  |
 | Serial Number | số sê-ri |  |  |
@@ -1181,12 +1181,13 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | sec | giây |  | ${v1} sec -> "${v1} giây". Tight layouts may keep "s". |
 | Sec. | giây |  |  |
 
-#### user (2)
+#### user (3)
 
 | EN | VI | Ngắn | Ghi chú |
 |---|---|---|---|
 | Firmware | Firmware |  | (khóa); giữ nguyên — ai cũng hiểu (duyệt 02/11/2026) |
-| Time Code | Time Code |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
+| Media Card | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026. |
+| Time Code | Time Code |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn \| 16/11/2026: người dùng xác nhận không dịch; trong câu viết 'timecode', không dùng 'mã thời gian'. |
 
 ## 5. Giữ nguyên tiếng Anh
 
@@ -1332,7 +1333,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | `thu, phát lại, xóa` | `thu, phát, xóa` |
 | `(?<!\w)Chọn chụp chống nhấp nháy(?!\w)` | `\g<0>` |
 
-**Từ cấm (14):**
+**Từ cấm (15):**
 
 | Mẫu cấm (regex) | Lý do |
 |---|---|
@@ -1350,6 +1351,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | `\b[Dd]ò\b` | Tracking = theo dõi |
 | `[Nn]út màn trập` | shutter button = nút chụp (duyệt 02/11/2026) |
 | `[Mm]ất nét` | Defocus = xóa phông (nếu là giá trị Xóa phông) |
+| `[Pp]hương tiện ghi hình` | Recording Media / media card = thẻ nhớ (người dùng duyệt 16/11/2026) |
 
 ## 8. Ví dụ dịch
 
