@@ -2115,10 +2115,19 @@
  },
  {
   "en": "Media",
-  "vi": "phương tiện ghi hình",
-  "short": "phương tiện",
+  "vi": "thẻ nhớ",
+  "short": "thẻ nhớ",
   "category": "setup",
-  "note": "Recording media = phương tiện ghi hình (local team decision). \"Memory card\" stays thẻ nhớ."
+  "locked": true,
+  "note": "Người dùng duyệt 16/11/2026: media / media card = thẻ nhớ."
+ },
+ {
+  "en": "Media Card",
+  "vi": "thẻ nhớ",
+  "short": "thẻ nhớ",
+  "category": "user",
+  "locked": true,
+  "note": "Người dùng duyệt 16/11/2026."
  },
  {
   "en": "Medium",
@@ -2873,10 +2882,10 @@
  },
  {
   "en": "Rec. Media Settings",
-  "vi": "cài đặt phương tiện ghi hình",
-  "short": "p.tiện ghi hình",
+  "vi": "cài đặt thẻ nhớ",
+  "short": "cài đặt thẻ nhớ",
   "category": "setup",
-  "note": "Settings implied in tight icon layouts."
+  "note": "Recording media = thẻ nhớ (duyệt 16/11/2026)."
  },
  {
   "en": "Recall",
@@ -2919,10 +2928,11 @@
  },
  {
   "en": "Recording Media",
-  "vi": "phương tiện ghi hình",
+  "vi": "thẻ nhớ",
   "short": "thẻ nhớ",
   "category": "rev3",
-  "locked": true
+  "locked": true,
+  "note": "Người dùng duyệt 16/11/2026: Recording Media = thẻ nhớ, không dùng 'phương tiện ghi hình'."
  },
  {
   "en": "Red Eye Reduction",
@@ -3131,10 +3141,10 @@
  },
  {
   "en": "Select Playback Media",
-  "vi": "chọn phương tiện ghi hình xem lại",
-  "short": "chọn p.tiện xem lại",
+  "vi": "chọn thẻ nhớ xem lại",
+  "short": "chọn thẻ xem lại",
   "category": "playback",
-  "note": "Recording media = phương tiện ghi hình."
+  "note": "Recording media = thẻ nhớ (duyệt 16/11/2026)."
  },
  {
   "en": "Selection",
@@ -3374,7 +3384,7 @@
   "short": "màn trập",
   "category": "rev3",
   "locked": true,
-  "note": "Quy tắc mục 2"
+  "note": "Quy tắc mục 2. 16/11/2026: bản Sony dùng 'cửa trập' là lỗi thuật ngữ (AU = F)."
  },
  {
   "en": "Shutter Button",
@@ -3755,7 +3765,7 @@
   "short": "Time Code",
   "category": "user",
   "locked": true,
-  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn | 16/11/2026: người dùng xác nhận không dịch; trong câu viết 'timecode', không dùng 'mã thời gian'."
  },
  {
   "en": "Time-lapse",

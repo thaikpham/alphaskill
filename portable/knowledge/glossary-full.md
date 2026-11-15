@@ -446,7 +446,7 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Playback Option | tùy chọn xem lại |  |  |
 | Protect | bảo vệ |  |  |
 | Rotate | xoay |  |  |
-| Select Playback Media | chọn phương tiện ghi hình xem lại | chọn phương tiện xem lại | Recording media = phương tiện ghi hình. (đã áp quy tắc r121) |
+| Select Playback Media | chọn thẻ nhớ xem lại | chọn thẻ xem lại | Recording media = thẻ nhớ (duyệt 16/11/2026). |
 | Slide Show | trình chiếu |  |  |
 | Sort | sắp xếp |  |  |
 | This Image | ảnh này |  |  |
@@ -496,10 +496,10 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Playback | xem lại |  | (khóa); âm thanh ghi chú thoại: 'phát' |
 | Rating | xếp hạng |  | (khóa) |
 | Rating Only | chỉ xếp hạng |  | (khóa); duyệt 02/11/2026 |
-| Recording Media | phương tiện ghi hình | thẻ nhớ | (khóa) |
+| Recording Media | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026: Recording Media = thẻ nhớ, không dùng 'phương tiện ghi hình'. |
 | Reset | đặt lại |  | (khóa); không 'thiết lập lại' |
 | Shot Mark | dấu cảnh |  | (khóa) |
-| Shutter | màn trập |  | (khóa); Quy tắc mục 2 |
+| Shutter | màn trập |  | (khóa); Quy tắc mục 2. 16/11/2026: bản Sony dùng 'cửa trập' là lỗi thuật ngữ (AU = F). |
 | Shutter Button | nút chụp |  | (khóa); Duyệt 02/11/2026: theo Sony/Canon VN, không dùng 'nút màn trập' |
 | Shutter Priority | ưu tiên tốc độ màn trập | ưu tiên màn trập | (khóa); Nikon VN: tự động ưu tiên màn trập |
 | Shutter Speed | tốc độ màn trập |  | (khóa) |
@@ -543,7 +543,7 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Language | ngôn ngữ |  |  |
 | Lens | ống kính |  |  |
 | License | giấy phép |  |  |
-| Media | phương tiện ghi hình | phương tiện | Recording media = phương tiện ghi hình (local team decision). "Memory card" stays thẻ nhớ. |
+| Media | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026: media / media card = thẻ nhớ. |
 | Memory card | thẻ nhớ |  |  |
 | Monitor | màn hình |  |  |
 | Monitor Brightness | độ sáng màn hình |  |  |
@@ -556,7 +556,7 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Power Save | tiết kiệm pin |  | Natural; alternative "tiết kiệm năng lượng". |
 | Power Save Start Time | thời gian bắt đầu tiết kiệm pin | bắt đầu tiết kiệm pin |  |
 | Power Setting Option | tùy chọn nguồn |  |  |
-| Rec. Media Settings | cài đặt phương tiện ghi hình | phương tiện ghi hình | Settings implied in tight icon layouts. (đã áp quy tắc r121) |
+| Rec. Media Settings | cài đặt thẻ nhớ |  | Recording media = thẻ nhớ (duyệt 16/11/2026). |
 | Save/Load Settings | lưu/tải cài đặt |  |  |
 | Screen Reader | trình đọc màn hình |  |  |
 | Serial Number | số sê-ri |  |  |
@@ -736,9 +736,10 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | sec | giây |  | ${v1} sec -> "${v1} giây". Tight layouts may keep "s". |
 | Sec. | giây |  |  |
 
-## user (2)
+## user (3)
 
 | EN | VI | Ngắn | Ghi chú |
 |---|---|---|---|
 | Firmware | Firmware |  | (khóa); giữ nguyên — ai cũng hiểu (duyệt 02/11/2026) |
-| Time Code | Time Code |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
+| Media Card | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026. |
+| Time Code | Time Code |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn \| 16/11/2026: người dùng xác nhận không dịch; trong câu viết 'timecode', không dùng 'mã thời gian'. |

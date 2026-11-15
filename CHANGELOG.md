@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Thuật ngữ menu (người dùng duyệt 16/11/2026): Recording Media / Media / Media Card = **thẻ nhớ** (khóa), cấm "phương tiện ghi hình"; Rec. Media Settings = cài đặt thẻ nhớ, Select Playback Media = chọn thẻ nhớ xem lại; Time Code giữ tiếng Anh, trong câu viết "timecode"; ghi chú Shutter: "cửa trập" trong bản Sony là lỗi thuật ngữ (AU = F).
 - Một link cho AI: `llms-full.txt` (lõi, khoảng 90 KB) và các phần bổ sung `llms-blog.txt`, `llms-knowledge.txt`; `llms.txt` là mục lục. Sinh bằng `scripts/build_portable.py`.
 - README viết lại theo quy trình một link.
 - `blog_audit`: chấm checklist 40 tiêu chí một lượt, dùng chung bộ phân tích Markdown (`blog/_doc.py`) với `seo_audit`, `aio_audit`, `citation_checker`, `freshness_check`, `brand_voice_checker`. Band: ≥ 80 Đạt, 60–79 Cần sửa, < 60 Thấp; mục bắt buộc 1, 11, 14, 15, 17 không đạt thì không xếp Đạt.
