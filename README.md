@@ -1,158 +1,133 @@
-# Sony Alpha Việt
+# Sony Alpha Việt (alphaskill)
 
-Bộ quy tắc, bảng thuật ngữ và công cụ để AI dịch menu, tài liệu máy ảnh Sony Alpha sang tiếng Việt như một biên tập viên, và viết blog máy ảnh chuẩn SEO + AIO.
+Rules, a glossary and tools that let an AI translate Sony Alpha camera menus and documents into natural Vietnamese, check every string the way a human editor would, and write camera blog posts that rank in search and get quoted by AI answers.
 
-**Tác giả:** Pham Khang Thai (Thái) · **Phiên bản:** 1.4.0 · **Giấy phép:** MIT
+**Author:** Pham Khang Thai · **Version:** 1.4.0 · **License:** MIT · **Python:** 3.10+
 
-## Dùng ngay: dán một dòng vào bất kỳ AI nào
+## What it does
 
-Mở ChatGPT, Gemini, Claude hoặc Meta AI, dán dòng này rồi thêm yêu cầu của bạn:
-
-```
-Đọc https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-full.txt và làm theo hướng dẫn trong đó. Sau đó: [yêu cầu của bạn]
-```
-
-Ví dụ yêu cầu:
-
-- `Dịch các chuỗi menu này sang tiếng Việt: Focus Area, Zebra Display, Aperture Priority (khung hẹp)`
-- `Dịch đoạn hướng dẫn sau sang tiếng Việt, tên menu in đậm kèm tiếng Anh: …`
-- `Rà bản dịch này, chỉ ra chỗ sai thuật ngữ và chỗ còn giọng dịch máy: …`
-
-`llms-full.txt` là file lõi (khoảng 93 KB) gồm vai trò, quy tắc dịch, văn phong, 666 thuật ngữ và ví dụ dịch trước–sau. Hai file bổ sung, thêm vào câu lệnh khi cần:
-
-| Việc | Đọc thêm |
-|---|---|
-| Viết hoặc chấm blog SEO/AIO | `https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-blog.txt` |
-| Kiến thức nhiếp ảnh, giáo án, trả lời học viên | `https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-knowledge.txt` |
-
-Nếu AI không mở được link: tải [llms-full.txt](llms-full.txt) về rồi đính kèm vào cuộc trò chuyện.
-
-**Giới hạn của cách này.** AI chỉ có văn bản, không có công cụ. Nó không đo được chuỗi có tràn khung hay không, không đọc file `.xls` của Sony, không ghi nhớ bản sửa của bạn và không chấm blog bằng máy. Thông số và giá sẽ được ghi `[cần xác minh]` thay vì đoán. Cần các việc đó thì cài bản đầy đủ ở dưới.
-
-## Làm được gì
-
-| Chế độ | Việc | Kết quả |
+| Mode | Input | Output |
 |---|---|---|
-| A · Dịch menu | Chuỗi menu EN/JP → VI, rà file `ILDC_TranslationCheck_VN.xls` | Bảng nguồn, bản dịch, ghi chú; dạng ngắn cho khung hẹp; file Sony mới khi có MCP |
-| B · Dịch tài liệu | Help Guide, hướng dẫn, mô tả sản phẩm | Văn xuôi tự nhiên, tên menu in đậm kèm tiếng Anh, bảng thuật ngữ đã dùng |
-| C · Blog SEO + AIO | Viết và chấm bài theo checklist 40 tiêu chí | Bài có TL;DR, bảng so sánh, FAQ, JSON-LD |
-| D · Đào tạo | Kiến thức nhiếp ảnh, giáo án, câu hỏi học viên | Trả lời theo kho kiến thức, có cách giảng |
+| A · Menu translation | English/Japanese menu strings, Sony `*_TranslationCheck_VN.xls` files | Vietnamese strings that fit the on-screen frame, short forms for narrow frames, Sony files with the proposal columns (AN/AU/AV) filled |
+| B · Document translation | Help Guides, manuals, product copy (PDF, DOCX, HTML) | Natural Vietnamese prose, menu names in bold with the English name, list of terms used |
+| C · Blog (SEO + AIO) | A keyword and an audience, or a finished draft | Post with TL;DR, comparison table, FAQ, JSON-LD; a 40-point score and a fix list |
+| D · Trainer | Student questions, lesson plans | Answers from a photography knowledge base, lesson plans, exercises |
 
-## Chọn cách dùng
+## How it works
 
-| Cách | Cài đặt | Thuật ngữ + quy tắc | Đo khung chữ | Đọc/ghi file Sony `.xls` | Ghi nhớ bản sửa |
+One source of truth feeds every surface:
+
+- **Rules and workflow** live in [`skills/sony-alpha-viet/`](skills/sony-alpha-viet/) (`SKILL.md` plus references).
+- **Data** (glossary, replacement rules, banned words, keep-English list, translation memory, knowledge notes) lives in a data folder. The public subset is [`data-sample/`](data-sample/) (667 glossary entries, 128 replacement rules, 29 knowledge notes, empty translation memory).
+- **Engine** is the Python package [`src/sony_alpha_viet/`](src/sony_alpha_viet/): an MCP server with 46 tools, 3 prompts (`translate_menu`, `write_blog`, `audit_post`) and the references as resources.
+- **Bundles** for chat apps (`llms-full.txt`, `llms-blog.txt`, `llms-knowledge.txt`, `portable/`) are generated from the skill and data by `scripts/build_portable.py`, so every AI reads the same rules.
+
+## Pick a surface
+
+| Surface | Setup | Glossary + rules | Frame-width check | Reads/writes Sony `.xls` | Remembers fixes |
 |---|---|---|---|---|---|
-| Dán một link | Không | Có | Không | Không | Không |
-| Custom GPT / Gem / Meta AI Studio | Tải file lên một lần | Có | Không | Không | Không |
-| API công khai | Không | Có | Có | Không | Không |
-| Claude Code hoặc Gemini CLI | 2 phút | Có | Có | Có | Có |
+| Paste one link into any chat AI | None | Yes | No | No | No |
+| Custom GPT, Gemini Gem, Meta AI Studio | Upload files once | Yes | No | No | No |
+| Public API `api.alphacolorlab.com` | None | Yes | Yes | No | No |
+| Claude Code plugin or Gemini CLI extension | ~2 minutes | Yes | Yes | Yes | Yes |
+| Local Llama agent (Ollama or Llama API) | Python + model | Yes | Yes | Optional | Optional |
 
-Dịch menu cho dự án Sony thật nên dùng Claude Code hoặc Gemini CLI: chỉ bản này có bộ nhớ dịch, đo khung và xuất file đúng định dạng Sony.
+Real Sony translation projects need the Claude Code or Gemini CLI install: only that has translation memory, frame-width checks and Sony file output.
+
+### Paste a link (any AI)
+
+```
+Read https://raw.githubusercontent.com/thaikpham/alphaskill/main/llms-full.txt and follow its instructions. Then: [your request]
+```
+
+Add `llms-blog.txt` for blog work or `llms-knowledge.txt` for trainer work. The AI gets text only: it cannot measure frames, open `.xls` files or remember corrections, and it marks unverified specs and prices `[cần xác minh]` instead of guessing.
+
+### Custom GPT, Gem, Meta AI Studio
+
+Paste `portable/system-prompt.md` into Instructions and upload `portable/knowledge/`. Per-platform steps: [portable/README.md](portable/README.md).
 
 ### Claude Code
 
 ```
 /plugin marketplace add thaikpham/alphaskill
+```
+
+```
 /plugin install sony-alpha-viet@alphaskill
 ```
 
-Khởi động lại Claude Code, gõ `/mcp` và kiểm tra `sony-alpha-viet` ở trạng thái connected.
+Restart Claude Code, run `/mcp` and check that `sony-alpha-viet` is connected.
 
 ### Gemini CLI
 
-```
+```bash
 gemini extensions install https://github.com/thaikpham/alphaskill
 ```
 
-### Custom GPT, Gem, Meta AI Studio
+### Public API
 
-Dán `portable/system-prompt.md` vào phần Instructions và tải các file trong `portable/knowledge/` lên. Hướng dẫn từng nền tảng: [portable/README.md](portable/README.md).
+`https://api.alphacolorlab.com` is read-only, needs no account and serves `data-sample/`.
 
-### API công khai
+- `GET /v1`: version, data counts, the 28 read-only tools and their parameters
+- `GET /v1/lookup_term?text=Focus%20Area`
+- `POST /v1/check_translation` with `{"en": "Focus Area", "vi": "Vùng lấy nét"}`
+- MCP clients: add `https://api.alphacolorlab.com/mcp`
 
-`https://api.alphacolorlab.com` chỉ đọc, không cần tài khoản. Dữ liệu là bản công khai trong `data-sample/`.
+### Local Llama agent
 
-- Danh sách công cụ và tham số: `GET /v1` (28 công cụ chỉ đọc trong tổng 46 công cụ MCP)
-- Tra thuật ngữ: `GET /v1/lookup_term?text=Focus%20Area`
-- Kiểm bản dịch: `POST /v1/check_translation` với JSON `{"en": "Focus Area", "vi": "Vùng lấy nét"}`
-- Client MCP: thêm server `https://api.alphacolorlab.com/mcp`
-
-Các công cụ ghi dữ liệu (ghi nhớ, sửa file Sony, ghi Obsidian) chỉ có khi cài trên máy.
-
-## Ví dụ với bản đầy đủ
-
-Dịch menu:
-
-```
-Dịch 3 chuỗi này cho A7 IV: Focus Area, Silent Mode, Zebra Display
+```bash
+uv run sony-alpha-viet-llama "Translate for the A7 IV menu: Focus Area, Silent Mode"
 ```
 
-Rà file Sony:
+Defaults to Ollama `llama3.2:3b` with a small read/check tool set. `--base-url` and `--model` switch to Meta's Llama API (`LLAMA_API_KEY`); `--tools` picks other tools; `--allow-write` starts the server with its write tools (memory, `.xls`).
 
-```
-Rà file ~/Downloads/ILDC_TranslationCheck_VN.xls, chỉ lấy dòng lỗi, xuất ra ~/Desktop/fixed.xls
-```
+## Using it at scale
 
-Dịch tài liệu:
+1. **Whole Sony file sets, not single strings.** `xls_review(folder)` scores every row of every `*TranslationCheck_VN.xls` in a folder (rule errors, frame overflow, locked terms, drift from memory, the same English translated differently) and can export all findings to CSV. `prepare_batch` pulls memory matches and glossary terms for a list of strings in one call. `xls_write` fills only the AN/AU/AV columns of a copy, keeps every other byte, and never overwrites the original.
+2. **Four-persona cross-check before delivery.** Menu translation runs four reviewer personas as sub-agents (Sony Vietnam product specialist, photo-media editor, long-time Alpha user, multi-brand photographer). Changes need 3 of 4 votes; locked terms and user-approved memory win. Workflow and prompts: [`persona-review.md`](skills/sony-alpha-viet/references/persona-review.md), [`templates/persona-review/`](templates/persona-review/).
+3. **Human review on unique pairs only.** `python -m sony_alpha_viet.xls.review_pairs <folder> <out.xlsx> <mapping.json>` collapses a file set into unique English | Vietnamese pairs (thousands of rows become one sheet a team can edit) plus a mapping from each pair to its rows, so the team's edits can be applied back to every file.
+4. **Every approved fix is reused.** `record_term`, `remember_translation`, `ban_term` and `keep_english` store decisions; `learn` turns repeated corrections into replacement rules; `commit_memory` commits the data folder to git so every change has history; `consistency_report` lists strings that drifted into several translations.
+5. **One rule set for a whole team.** The same skill and data drive Claude Code, Gemini CLI, the API, chat bundles and Obsidian (`obsidian_export` / `obsidian_import`). `scripts/publish.sh` moves vault edits into the data folder, exports the public subset with `scripts/export_public_data.py` and ships it to the API.
 
-```
-Dịch file ~/a7iv-help-guide.pdf sang tiếng Việt tự nhiên, giữ heading, tên menu in đậm
-```
+Blog teams get the same leverage: `blog_audit` scores a draft on all 40 checklist items in one read-only call, so it can gate posts in a CMS or CI; `colorlab_article`, `colorlab_html` and `colorlab_pack` turn a Markdown post into an Alpha ColorLab page or content pack.
 
-Viết blog:
+## MCP tools (46)
 
-```
-Viết blog 1500 từ "Sony A7 IV hay A7R V cho thợ cưới", từ khóa "Sony A7 IV hay A7R V", độc giả thợ cưới TP.HCM
-```
-
-## Nguyên tắc dịch
-
-- **Tra trước, dịch sau.** Mọi thuật ngữ giao diện lấy từ bảng thuật ngữ. Không có trong bảng thì dịch, đánh dấu `[thuật ngữ mới]` và chờ người duyệt.
-- **Bản sửa đã duyệt thắng bảng thuật ngữ.** Quy tắc thay thế là quyết định mới nhất của người dùng. Ví dụ Zebra Display → "Hiển thị sọc vằn".
-- **Menu và văn xuôi dùng dạng khác nhau.** Menu ngắn, không dấu chấm cuối; bài viết dùng cách gọi quen tai.
-
-| EN | Menu | Bài viết |
-|---|---|---|
-| Focus Area | Vùng lấy nét | vùng lấy nét |
-| Exposure Comp. | Bù sáng | bù sáng |
-| Eye AF | Eye AF | lấy nét mắt (Eye AF) |
-| Time Code, Zoom, Preset | giữ tiếng Anh | giữ tiếng Anh |
-
-- **Chống giọng dịch máy.** Bỏ bị động thừa, bỏ "việc" mở câu, tách câu dài, trật tự từ tiếng Việt. Ví dụ trước–sau: [example-doc-translation.md](skills/sony-alpha-viet/examples/example-doc-translation.md).
-- **Không bịa thông số, giá, ngày ra mắt.** Chưa đối chiếu nguồn Sony chính thức thì ghi `[cần xác minh]`.
-- **Giọng thương hiệu Sony** áp dụng cho blog và tư vấn; khi dịch thì trung thành bản gốc. Chi tiết: [sony-core-principles.md](skills/sony-alpha-viet/references/sony-core-principles.md).
-- **Firmware:** chỉ dịch văn bản. Không sửa, không flash firmware, không bật service mode.
-
-## Viết blog AIO-first
-
-AIO (AI Overviews) là viết để Google AI Overviews, ChatGPT, Perplexity, Gemini trích bài của bạn trong câu trả lời. Bài cần TL;DR 40–70 từ ngay dưới H1, mỗi H2 mở bằng câu trả lời tự đứng được, bảng so sánh, FAQ 3–6 câu và số liệu có nguồn.
-
-Checklist đầy đủ 40 tiêu chí (10 SEO nền tảng, 15 AIO cốt lõi, 10 schema và kỹ thuật, 5 giọng thương hiệu): [seo-aio-checklist.md](skills/sony-alpha-viet/references/seo-aio-checklist.md). Bài mẫu: [example-blog-post.md](skills/sony-alpha-viet/examples/example-blog-post.md).
-
-| Công cụ | Việc |
+| Area | Tools |
 |---|---|
-| `paa_generator` | Gợi ý 10 câu hỏi People Also Ask theo mẫu (offline) |
-| `style_lint` | Bắt cụm văn AI, bị động, câu dài, sai thuật ngữ |
-| `blog_audit` | Chấm một lượt toàn bộ checklist 40 tiêu chí (gồm seo_audit và aio_audit), trả band Đạt / Cần sửa / Thấp. Gọi sau style_lint |
-| `seo_audit` | Chấm nền tảng SEO |
-| `aio_audit` | Chấm tự động 13 mục AIO máy đo được, điểm 0–100. Điểm là tỉ lệ mục đạt, không phải xác suất được AI trích |
-| `citation_checker` | Kiểm link nguồn còn sống và có phải nguồn uy tín |
-| `freshness_check` | Báo bài cũ bao lâu, gợi ý cập nhật |
-| `brand_voice_checker` | Kiểm 5 tiêu chí giọng thương hiệu Sony |
-| `faq_schema` | Sinh JSON-LD Article + FAQPage |
+| Data, guidelines | `data_info`, `get_guidelines` |
+| Menu translation | `lookup_term`, `search_memory`, `prepare_batch`, `check_translation`, `check_fit`, `suggest_short`, `consistency_report` |
+| Sony `.xls` files | `xls_read`, `xls_review`, `xls_write` |
+| Memory and learning | `record_term`, `record_feedback`, `remember_translation`, `ban_term`, `keep_english`, `learn`, `review_memory`, `disable_rule`, `commit_memory` |
+| Sony documents | `lookup_prose_term`, `ingest_docs`, `ingest_helpguide`, `search_docs`, `docs_term_report` |
+| Blog SEO + AIO | `slugify`, `count_words`, `style_lint`, `seo_audit`, `aio_audit`, `paa_generator`, `citation_checker`, `freshness_check`, `brand_voice_checker`, `blog_audit`, `faq_schema` |
+| Alpha ColorLab publishing | `colorlab_article`, `colorlab_html`, `colorlab_pack` |
+| Trainer knowledge | `search_knowledge`, `get_knowledge`, `add_knowledge` |
+| Obsidian | `obsidian_export`, `obsidian_import`, `obsidian_audit_note` |
 
-Các tiêu chí còn lại trong checklist phải tự rà bằng mắt.
+18 tools write data or touch local files. They are removed with `--read-only`, on any non-loopback host, and on the public API, which leaves 28.
 
-## Dữ liệu
+What the checks do:
 
-| Loại | Ở đâu | Công khai |
+- `check_translation`: leftover English, banned words, clipped abbreviations, `${v1}` variables and `<cE660>` icons, consistency with memory, and on-screen width measured with font metrics (Liberation Sans by default, `SONY_VN_FONT` to override). Width is an estimate; Sony's own tool has the final say.
+- `ingest_docs`: loads Sony Vietnamese PDFs/DOCX, converts legacy VNI fonts to Unicode and drops duplicates; `ingest_helpguide` loads an English Help Guide from its index URL. `search_docs` then shows how Sony itself phrased something.
+
+## Data
+
+| Data | Where | Public |
 |---|---|---|
-| Bảng thuật ngữ, quy tắc, ngoại lệ, kho kiến thức đã xuất bản | `data-sample/` | Có |
-| Bộ nhớ dịch Sony, tài liệu Sony đã nạp | repo riêng `alphaskill-data`, trỏ qua `SONY_VN_DATA` | Không |
+| Glossary, rules, exceptions, published knowledge notes | `data-sample/` | Yes |
+| Translation memory, ingested Sony documents, project archives | private repo `alphaskill-data` | No |
 
-Không có dữ liệu riêng, MCP chạy trên `data-sample/`: vẫn tra thuật ngữ và kiểm quy tắc, nhưng không có bộ nhớ dịch.
+The server picks the data folder in this order: `$SONY_VN_DATA`, then `"data"` in `~/.config/sony-alpha-viet/config.json`, then `~/.local/share/sony-alpha-viet/data` (created from the sample on first use). Without private data, glossary lookup and every check still work; translation memory and Sony document search start empty.
 
-## Cho người phát triển
+## Hard limits
+
+- Text only. The tools never modify, repack or flash camera firmware and never enable service mode.
+- No invented specs, prices or release dates: unverified facts are marked `[cần xác minh]` and the audits treat the post as incomplete.
+- Sony originals are never overwritten; output always goes to a copy.
+
+## Development
 
 ```bash
 uv sync
@@ -166,10 +141,9 @@ uv run pytest -q
 uv run python scripts/build_portable.py
 ```
 
-- `skills/sony-alpha-viet/`: SKILL.md, tài liệu tham chiếu, ví dụ. Đây là nguồn gốc của mọi quy tắc.
-- `src/sony_alpha_viet/`: MCP server.
-- `llms-*.txt`, `portable/knowledge/`: sinh tự động bởi `scripts/build_portable.py`, không sửa tay. `--check` báo lỗi khi file sinh ra bị cũ.
-- Chạy API trên máy: `uv run sony-alpha-viet-mcp --http --read-only --port 8765`.
-- Hướng dẫn cho AI đọc repo: [AGENTS.md](AGENTS.md), [llms.txt](llms.txt).
-
-Lịch sử thay đổi: [CHANGELOG.md](CHANGELOG.md).
+- Edit rules in `skills/sony-alpha-viet/` and data in `data-sample/`; never edit `llms-*.txt` or `portable/knowledge/` by hand. `build_portable.py --check` fails when they are stale.
+- Run the HTTP server locally: `uv run sony-alpha-viet-mcp --http --read-only --port 8765` (MCP at `/mcp`, REST at `/v1/<tool>`). Without `--http` it serves stdio for Claude Code and Gemini CLI.
+- The public API deploys on Vercel from `api/index.py`.
+- CI runs ruff, the test suite (186 tests) on Python 3.10 and 3.13, and checks that `portable/` is current.
+- A Claude Code hook (`scripts/claude_hook.py`) blocks committing private data (PDF, XLSX, `tm.jsonl`, `LEARNING_LOG.md`, `knowledge/`) to this repo and rebuilds `portable/` after skill edits.
+- Guide for AI agents reading the repo: [AGENTS.md](AGENTS.md), [llms.txt](llms.txt). Changes: [CHANGELOG.md](CHANGELOG.md).
