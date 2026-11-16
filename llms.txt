@@ -26,6 +26,7 @@
 - [faq-schema.json](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/faq-schema.json): Mẫu JSON-LD Article + FAQPage cho bài blog
 - [glossary-full.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/glossary-full.md): Bảng thuật ngữ đầy đủ
 - [glossary-vi.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/glossary-vi.md): Glossary Sony Alpha — Việt
+- [persona-review.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/persona-review.md): Kiểm tra chéo 4 persona (chế độ A, bắt buộc)
 - [seo-aio-checklist.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/seo-aio-checklist.md): Checklist SEO + AIO + Brand Voice (40 tiêu chí) — Sony Alpha Việt v1.2.0
 - [sony-core-principles.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/sony-core-principles.md): Nguyên tắc cốt lõi: Bảo vệ Sony - Tự hào công nghệ tiên phong
 - [sony-menu-terms.md](https://raw.githubusercontent.com/thaikpham/alphaskill/main/portable/knowledge/sony-menu-terms.md): Dịch menu Sony (chế độ A)

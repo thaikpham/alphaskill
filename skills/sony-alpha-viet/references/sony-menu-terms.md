@@ -20,6 +20,8 @@ Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — b
 5. **Kiểm.** `mcp__sony-alpha-viet__check_translation(en, vi, layout…)` từng chuỗi (autofix bật) đến khi `ok`. `fit.verdict` = BORDER/OVER → rút gọn theo quy tắc 3.
 6. **Xuất** bảng `STT | Nguồn (EN/JP) | Tiếng Việt | Loại UI | Ghi chú` + CSV theo `templates/menu-translation-table.csv`. Ghi chú chỉ khi có lý do (thuật ngữ mới, độ rộng, ngoại lệ, phương án thay thế).
 7. **Thuật ngữ mới** → `search_docs` xem Sony Việt Nam đã dùng chữ gì (ưu tiên tài liệu đời mới) → đề xuất 2–3 phương án, khuyến nghị một; người dùng chốt → `record_term` + thêm vào glossary-vi.md.
+8. **Kiểm tra chéo 4 persona (bắt buộc)** theo `persona-review.md`: Sony VN product specialist, biên tập viên ảnh, người dùng Alpha lâu năm, photographer đa hãng. Chưa qua bước này thì không giao bản cuối.
+9. **Kiểm tra bằng người Việt (bắt buộc trước khi gửi Sony):** file rà soát 2 cột English | Vietnamese đã lọc trùng (`python -m sony_alpha_viet.xls.review_pairs`) → nhóm sửa → áp lại vào cả bộ file → chốt.
 
 Loại UI: `Tiêu đề menu` · `Mục menu` · `Giá trị` · `Nút` · `Thông báo` · `Trợ giúp` · `Biểu tượng/nhãn ngắn`.
 

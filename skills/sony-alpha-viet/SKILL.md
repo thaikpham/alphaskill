@@ -27,7 +27,7 @@ Bốn chế độ, mỗi chế độ một chuẩn thuật ngữ. **Xác định
 
 ## Đọc trước khi làm (bắt buộc)
 - Mọi chế độ: `references/glossary-vi.md`, `references/writing-style-vi.md`.
-- Chế độ A: `references/sony-menu-terms.md` (quy trình + MCP + giới hạn firmware).
+- Chế độ A: `references/sony-menu-terms.md` (quy trình + MCP + giới hạn firmware) và `references/persona-review.md` (**kiểm tra chéo 4 persona, bắt buộc**).
 - Chế độ C: `templates/blog-post-template.md`, `references/seo-aio-checklist.md`, `templates/faq-schema.json`. Bài đăng lên alphacolorlab.com: thêm `references/colorlab-vi.md` (khối nội dung và luật riêng của site).
 - Chế độ D: `references/trainer-vi.md` (cách dùng kho kiến thức, khung câu trả lời, khung giáo án, mẫu note mới).
 - Mẫu đầu ra: `examples/`.
@@ -58,6 +58,8 @@ Yêu cầu ngắn (dưới ~20 chuỗi menu, một đoạn văn) mà ngữ cản
 
 ## Quy trình
 **A. Menu** → làm theo `references/sony-menu-terms.md` (mcp__sony-alpha-viet__get_guidelines → mcp__sony-alpha-viet__prepare_batch → dịch → mcp__sony-alpha-viet__check_translation → bảng/CSV → ghi nhớ khi người dùng duyệt với record_term). Rà lại cả bộ file `*_VN.xls` đã dịch: mcp__sony-alpha-viet__xls_review(thư_mục) trước, rồi mới sửa (xem mục "File Sony *_VN.xls" trong `references/sony-menu-terms.md`). MCP cũ `mcp__sony-vn-translator__*` vẫn còn dùng được nếu người dùng chạy server cũ.
+   - **Kiểm tra chéo 4 persona (bắt buộc trước khi giao bản cuối):** spawn sub-agent nhập vai (1) nhân viên Sony Việt Nam, product specialist phòng Digital Imaging có kinh nghiệm chụp ảnh, (2) biên tập viên media ngành ảnh kỳ cựu, (3) người dùng Sony Alpha lâu năm am hiểu khái niệm chụp ảnh, (4) photographer hiểu kỹ thuật, đã dùng nhiều hãng máy. Vòng 1: mỗi mục hai persona rà độc lập. Vòng 2: hai persona còn lại bỏ phiếu. Đổi khi ≥ 3/4 phiếu, còn lại trọng tài chốt; thuật ngữ khóa và bản `user-approved` thắng phiếu persona. Chi tiết, luật chốt và brief: `references/persona-review.md`, `templates/persona-review/`.
+   - **Kiểm tra bằng người Việt (bắt buộc trước khi gửi Sony):** xuất file rà soát 2 cột English | Vietnamese đã lọc trùng (`python -m sony_alpha_viet.xls.review_pairs <thư_mục> <out.xlsx> <mapping.json>`). Nhóm sửa xong thì áp lại vào mọi dòng của cả bộ file, kiểm engine, viết AV mới, cập nhật bộ nhớ khi người dùng duyệt, rồi mới chốt gửi Sony.
 
 **B. Tài liệu** → tra `search_docs` để dùng đúng câu chữ Sony Việt Nam đã công bố cho cùng nội dung (sạc pin, lắp thẻ, thiết lập ban đầu…) → giữ nguyên cấu trúc heading/danh sách/bảng → tên mục menu in đậm theo cột Menu OSD, lần đầu kèm tên gốc trong ngoặc nếu giúp người đọc tìm trên máy tiếng Anh → biên tập lại theo `writing-style-vi.md` (lượt chống văn dịch máy) → liệt kê thuật ngữ mới đề xuất. Nếu có MCP: dùng mcp__sony-alpha-viet__lookup_prose_term để tra thuật ngữ bài viết.
    - **Help Guide tiếng Anh:** gọi `ingest_helpguide(url)` để lấy toàn bộ trang Help Guide từ Sony (ví dụ https://helpguide.sony.net/ilc/2230/v1/en/index.html) vào kho tài liệu. Sau đó dùng `search_docs` để tra tên/hàm của menu item tiếng Anh trước khi chọn bản dịch. Ví dụ: search_docs("Focus Area") để xem Sony tiếng Anh giải thích nó thế nào, rồi mới dịch đúng theo ý.

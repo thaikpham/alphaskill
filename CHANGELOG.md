@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Chế độ A bắt buộc kiểm tra chéo 4 persona: Sony VN product specialist (Digital Imaging), biên tập viên media ngành ảnh, người dùng Alpha lâu năm, photographer đa hãng. Vòng 1 rà độc lập theo cặp, vòng 2 bỏ phiếu chéo, đổi khi ≥ 3/4, trọng tài chốt phần còn lại; thuật ngữ khóa và bản `user-approved` thắng phiếu persona. Hướng dẫn `references/persona-review.md`, brief mẫu `templates/persona-review/`.
+- Kiểm tra bằng người Việt trước khi gửi Sony: `python -m sony_alpha_viet.xls.review_pairs` xuất file 2 cột English | Vietnamese đã lọc trùng (tab "Cần dịch", "Giữ nguyên tiếng Anh") và mapping để áp bản sửa ngược vào mọi dòng.
 - Thuật ngữ menu (người dùng duyệt 16/11/2026): Recording Media / Media / Media Card = **thẻ nhớ** (khóa), cấm "phương tiện ghi hình"; Rec. Media Settings = cài đặt thẻ nhớ, Select Playback Media = chọn thẻ nhớ xem lại; Time Code giữ tiếng Anh, trong câu viết "timecode"; ghi chú Shutter: "cửa trập" trong bản Sony là lỗi thuật ngữ (AU = F).
 - Một link cho AI: `llms-full.txt` (lõi, khoảng 90 KB) và các phần bổ sung `llms-blog.txt`, `llms-knowledge.txt`; `llms.txt` là mục lục. Sinh bằng `scripts/build_portable.py`.
 - README viết lại theo quy trình một link.
