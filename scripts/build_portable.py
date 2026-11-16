@@ -33,7 +33,7 @@ RAW = "https://raw.githubusercontent.com/thaikpham/alphaskill/main/"
 API = "https://api.alphacolorlab.com"
 FILES = ["references/glossary-vi.md", "references/sony-menu-terms.md", "references/seo-aio-checklist.md",
          "references/sony-core-principles.md", "references/writing-style-vi.md", "references/trainer-vi.md",
-         "references/colorlab-vi.md",
+         "references/colorlab-vi.md", "references/persona-review.md",
          "templates/blog-post-template.md", "templates/faq-schema.json",
          "examples/example-blog-post.md", "examples/example-menu-translation.md"]
 FILE_ROLE = {  # the three root bundles, in the order a reader should open them
