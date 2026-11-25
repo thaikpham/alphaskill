@@ -1,6 +1,11 @@
 # Changelog
 
 ## Unreleased
+- Thuật ngữ và văn phong từ bảng All Terms (7.826 chuỗi) có trainer Sony sửa, người dùng duyệt 25/11/2026. Áp cho dữ liệu bằng `scripts/migrate_2026_11_25.py <thư mục data>` (chạy lại nhiều lần không sao).
+  - Đổi thuật ngữ khóa: Recording Media = **thẻ ghi** (thay quyết định 16/11; Memory Card, Media, Rec. Media Settings vẫn là thẻ nhớ); My Dial = **vòng xoay của tôi**; Developer Tools = **công cụ nhà phát triển**; Mass Storage giữ tiếng Anh (tắt quy tắc r078 "Lưu trữ"); tên tính năng ghép Preset dịch **đặt trước** (Lấy nét/zoom đặt trước, Cân bằng trắng đặt trước), Preset đứng riêng vẫn giữ tiếng Anh.
+  - Theo trainer: Program Auto = chương trình tự động; Red Eye Reduction = giảm đỏ mắt.
+  - Thêm 31 mục glossary (698 mục), 48 quy tắc thay thế `t25NN` cho help text (Không khả dụng, Nhấn giữ, nhấn nửa nút chụp, chụp cách quãng, khi không có thao tác trong N, tiết kiệm pin, từ SDXC V60 trở lên…). Cấm "phát lại" trừ "tốc độ phát lại" và phát lại âm thanh ghi chú thoại.
+  - `writing-style-vi.md` thêm mục "Help text và thông báo trên máy"; `glossary-vi.md` thêm các mục trên và bảng "Đã chốt 25/11/2026".
 - README viết lại hoàn toàn bằng tiếng Anh, ngắn gọn và khớp code: 4 chế độ, một nguồn quy tắc cho mọi bề mặt (plugin Claude Code, Gemini CLI, API công khai, link `llms-*.txt`, Custom GPT/Gem, agent Llama), cách dùng quy mô lớn (`xls_review` cả thư mục, kiểm tra chéo 4 persona, `review_pairs`, bộ nhớ tự học, `publish.sh`), bảng 46 tool MCP (28 công khai).
 - Chế độ A bắt buộc kiểm tra chéo 4 persona: Sony VN product specialist (Digital Imaging), biên tập viên media ngành ảnh, người dùng Alpha lâu năm, photographer đa hãng. Vòng 1 rà độc lập theo cặp, vòng 2 bỏ phiếu chéo, đổi khi ≥ 3/4, trọng tài chốt phần còn lại; thuật ngữ khóa và bản `user-approved` thắng phiếu persona. Hướng dẫn `references/persona-review.md`, brief mẫu `templates/persona-review/`.
 - Kiểm tra bằng người Việt trước khi gửi Sony: `python -m sony_alpha_viet.xls.review_pairs` xuất file 2 cột English | Vietnamese đã lọc trùng (tab "Cần dịch", "Giữ nguyên tiếng Anh") và mapping để áp bản sửa ngược vào mọi dòng.

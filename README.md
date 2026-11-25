@@ -18,7 +18,7 @@ Rules, a glossary and tools that let an AI translate Sony Alpha camera menus and
 One source of truth feeds every surface:
 
 - **Rules and workflow** live in [`skills/sony-alpha-viet/`](skills/sony-alpha-viet/) (`SKILL.md` plus references).
-- **Data** (glossary, replacement rules, banned words, keep-English list, translation memory, knowledge notes) lives in a data folder. The public subset is [`data-sample/`](data-sample/) (667 glossary entries, 128 replacement rules, 29 knowledge notes, empty translation memory).
+- **Data** (glossary, replacement rules, banned words, keep-English list, translation memory, knowledge notes) lives in a data folder. The public subset is [`data-sample/`](data-sample/) (698 glossary entries, 176 replacement rules, 29 knowledge notes, empty translation memory).
 - **Engine** is the Python package [`src/sony_alpha_viet/`](src/sony_alpha_viet/): an MCP server with 46 tools, 3 prompts (`translate_menu`, `write_blog`, `audit_post`) and the references as resources.
 - **Bundles** for chat apps (`llms-full.txt`, `llms-blog.txt`, `llms-knowledge.txt`, `portable/`) are generated from the skill and data by `scripts/build_portable.py`, so every AI reads the same rules.
 

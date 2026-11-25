@@ -62,7 +62,8 @@
   "Type-C",
   "IPsec",
   "PORT1",
-  "PORT2"
+  "PORT2",
+  "Mass Storage"
  ],
  "loanwords": [
   "flash",
@@ -87,7 +88,10 @@
   "bit",
   "mm",
   "express",
-  "Firmware"
+  "Firmware",
+  "fingerprint",
+  "webcam",
+  "low pass"
  ],
  "abbreviations": [
   "AF",

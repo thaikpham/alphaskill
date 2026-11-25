@@ -71,7 +71,7 @@
 - Flash = **Đèn flash**
 - Auto HDR = **HDR tự động**
 - Histogram = **Biểu đồ**
-- Mass Storage = **Lưu trữ**
+- Mass Storage = **Mass Storage** (giữ tiếng Anh, duyệt 25/11/2026)
 - CTRL FOR HDMI = **Điều khiển qua HDMI**
 - Backlight Portrait = **Chân dung ngược sáng**
 - Touch Panel Only = **Chỉ bảng cảm ứng**
@@ -80,7 +80,7 @@
 - Rating Only = **Chỉ xếp hạng** (thống nhất Rating = Xếp hạng)
 - Anti-flicker Shoot Sel. = **Chống nhấp nháy**
 - Shoot Interval Priority = **Ưu tiên khoảng thời gian chụp**
-- My Dial = **Đĩa xoay của tôi**
+- My Dial = **Vòng xoay của tôi** (duyệt 25/11/2026)
 - Primary DNS Server = **Máy chủ DNS chính**
 - Second DNS Server = **Máy chủ DNS phụ**
 - Network = **Mạng**
@@ -147,3 +147,11 @@
 ---
 **Phiên bản:** FINAL CHUẨN - KHÔNG CSDL - KHÔNG MIX - 2024
 **Người duyệt:** Pham Khang Thai
+
+### 11. HELP TEXT VÀ THÔNG BÁO (duyệt 25/11/2026, bảng All Terms)
+- Mô tả mục bật/tắt: **Chọn có … hay không.** Nhãn chuyển nhanh: **Bật/tắt …**; nhãn giữ nút: **… khi nhấn giữ**, giữ một lần: **… khi nhấn**
+- Invalid = **Không khả dụng**; Available when… = **Dùng được khi…**; câu yêu cầu người dùng làm gì mở bằng **Hãy …**
+- Enables selection of X = **Cho phép chọn X**; Assign = **gán**; Failed (trong câu) = **không thành công**
+- Thẻ nhớ "higher than SDXC V60" = **từ SDXC V60 trở lên**
+- Recording Media = **Thẻ ghi**; Memory Card / Rec. Media Settings = **thẻ nhớ / cài đặt thẻ nhớ**
+- Preset đứng riêng giữ **Preset**; tên tính năng ghép dịch **đặt trước** (Lấy nét/Zoom đặt trước, Cân bằng trắng đặt trước)

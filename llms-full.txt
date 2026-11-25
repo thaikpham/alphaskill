@@ -24,7 +24,7 @@ File này sinh tự động từ `skills/sony-alpha-viet/`, `data-sample/` và `
 - [1. Vai trò và giọng điệu](#1-vai-trò-và-giọng-điệu)
 - [2. Quy tắc dịch menu](#2-quy-tắc-dịch-menu)
 - [3. Văn phong tiếng Việt](#3-văn-phong-tiếng-việt)
-- [4. Bảng thuật ngữ: 667 mục](#4-bảng-thuật-ngữ-667-mục)
+- [4. Bảng thuật ngữ: 698 mục](#4-bảng-thuật-ngữ-698-mục)
 - [5. Giữ nguyên tiếng Anh](#5-giữ-nguyên-tiếng-anh)
 - [6. Ngoại lệ không dịch](#6-ngoại-lệ-không-dịch)
 - [7. Quy tắc thay thế và từ cấm](#7-quy-tắc-thay-thế-và-từ-cấm)
@@ -153,7 +153,7 @@ Bạn đã sẵn sàng? Hãy gõ: Dịch Focus Area, Silent Shooting sang tiến
 > Ghi chú: các lệnh `mcp__…`/tên công cụ trong file này chỉ có khi dùng MCP server sony-alpha-viet. Không có công cụ thì làm thủ công theo cùng quy tắc và ghi "chưa kiểm bằng MCP".
 
 
-Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — bộ nhớ dịch ILDC Rev.3 (8.346 chuỗi đã duyệt, 664 thuật ngữ, quy tắc thay thế). Nếu chạy server cũ `sony-vn-translator`, dùng `mcp__sony-vn-translator__*` thay thế. Không thấy tools → báo người dùng cài theo README plugin; không tự đoán quy tắc, chỉ dùng glossary-vi.md và ghi rõ "chưa kiểm bằng MCP".
+Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — bộ nhớ dịch ILDC Rev.3 (8.346 chuỗi đã duyệt, 698 thuật ngữ trong bộ dữ liệu mẫu, quy tắc thay thế). Nếu chạy server cũ `sony-vn-translator`, dùng `mcp__sony-vn-translator__*` thay thế. Không thấy tools → báo người dùng cài theo README plugin; không tự đoán quy tắc, chỉ dùng glossary-vi.md và ghi rõ "chưa kiểm bằng MCP".
 
 ### Quy tắc menu (tóm tắt — `mcp__sony-alpha-viet__get_guidelines()` là bản đầy đủ, mới nhất)
 1. **Thuần Việt**, không trộn Anh–Việt **trừ** hai nhóm: (a) tên riêng Sony, ứng dụng, chuẩn, ký hiệu kỹ thuật (`mcp__sony-alpha-viet__get_guidelines("exceptions")`); (b) **keep_english** — thuật ngữ người dùng chốt giữ tiếng Anh vì tiếng Việt không giúp hiểu hơn: Zoom, Time Code, Preset, Firmware (`mcp__sony-alpha-viet__get_guidelines("keep_english")`). Viết hoa theo bản gốc EN.
@@ -163,7 +163,7 @@ Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — b
 5. Giữ nguyên `${v1}`, `<cE660>`, dấu chấm thập phân (0.3EV, f/2.8). Line Feed = Off: được ngắt dòng khác bản tiếng Anh, miễn số dòng ≤ max(cột Rows, số dòng của chuỗi tiếng Anh). Luôn dùng Unicode NFC (ký tự dựng sẵn), engine báo `not_nfc` nếu sai.
    Gợi ý rút gọn (`short_candidates`/`suggest_short`) chỉ lấy bản đã duyệt của **cùng chuỗi gốc**, bỏ động từ đầu nhãn, hoặc dạng ngắn trong glossary; vẫn phải đọc lại nghĩa trước khi dùng. Verdict `CHECK` = chính chuỗi tiếng Anh cũng vượt khung theo ước lượng → nghi dữ liệu layout, kiểm bằng SonyTool.
 6. Viết hoa kiểu câu: chữ đầu, tên riêng, viết tắt.
-7. Help text: sửa sai nghĩa và thuật ngữ; không viết lại cho hay hơn.
+7. Help text: khi rà bản Sony, chỉ sửa sai nghĩa và thuật ngữ, không viết lại cho hay hơn. Khi dịch mới hoặc được yêu cầu viết tự nhiên, theo mục "Help text và thông báo trên máy" trong `writing-style-vi.md`.
 
 ### Quy trình
 1. **Đầu vào.** Nhận chuỗi gốc, ảnh chụp màn hình, CSV/JSON, file `*_TranslationCheck_VN.xls` hoặc đoạn trích resource. Hỏi model máy và ngôn ngữ nguồn nếu chưa rõ.
@@ -181,7 +181,7 @@ Loại UI: `Tiêu đề menu` · `Mục menu` · `Giá trị` · `Nút` · `Thô
 ### File Sony *_VN.xls
 - **Rà toàn bộ một bộ file đã dịch:** `mcp__sony-alpha-viet__xls_review(folder, out_csv)` chấm mọi dòng của mọi file trong thư mục. Bản được chấm là **AN nếu có, không thì cột VI**. Cột VI là bản cũ của Sony, quét riêng cột VI hoặc nhầm sang thư mục nguồn sẽ ra hàng nghìn lỗi giả (đã gặp). Chỉ ghi AN cho **lỗi thật**: sai nghĩa, sai thuật ngữ khóa, chính tả hay mã hóa, lệch bộ nhớ đã duyệt. Dòng BORDER/OVER/CHECK đưa vào file rà soát độ rộng (CSV, note Obsidian) kèm gợi ý; không ghi AN khi chưa xác nhận bằng SonyTool. Ghi kết quả ra thư mục mới.
   - `variant_word_choice`: cùng chuỗi gốc (bỏ qua icon/biến) mà dịch khác, và bản đa số vẫn vừa khung của dòng lệch. Đây mới là lệch thật. Bản ngắn ở khung hẹp là rút gọn hợp lệ, không báo.
-  - `locked_term` chỉ là cảnh báo: thuật ngữ khóa có thể gắn một ngữ cảnh (Active = Chủ động là của SteadyShot; giá trị bật công cụ lập trình là "Hoạt động"). Đọc cột Reference trước khi sửa.
+  - `locked_term` chỉ là cảnh báo: thuật ngữ khóa có thể gắn một ngữ cảnh (Active = Chủ động là của SteadyShot; giá trị bật công cụ nhà phát triển là "Hoạt động"). Đọc cột Reference trước khi sửa.
   - Trước khi viết AV kiểu "Glossary X = Y", tra lại glossary (`lookup_term`). Đã gặp AV trích sai glossary để biện minh cho bản dịch trái thuật ngữ khóa (S164929).
 - Đọc: `mcp__sony-alpha-viet__xls_read(path, only_flagged=True)` lấy dòng vi phạm; layout lấy từ file.
 - **Không mở rồi lưu file Sony bằng LibreOffice/Excel**: lưu đè có thể cắt các dòng phụ của Sony (đã gặp: 7.094 → 2.002 dòng) và đổi `\r\n` trong tiêu đề. Nếu số dòng sheet VN giảm bất thường so với bản gốc, báo người dùng trước khi dùng file.
@@ -268,6 +268,17 @@ Chuyển thể từ humanizer (blader/humanizer, MIT). Dùng khi bài viết xon
 ### Cụm "AI-sounding" cần tránh
 "Trong thế giới nhiếp ảnh ngày nay", "Hãy cùng khám phá", "không thể phủ nhận", "đưa trải nghiệm lên một tầm cao mới", "hoàn hảo cho mọi nhu cầu", "bậc thầy", "cuộc cách mạng", "Hãy cùng tìm hiểu", "Nói thật nhé", "Đừng hiểu lầm", "Suy cho cùng", "Đó mới là điều", "đóng vai trò then chốt", "minh chứng cho", "đột phá" (khi dùng nghĩa bóng), "vô cùng", "tuyệt vời", "tuyệt đẹp", "đỉnh cao", "không thể bỏ lỡ", "Hy vọng bài viết", "Chúc bạn", "bảng dưới đây", "một trong những", mở/kết đoạn bằng câu hỏi tu từ, ba tính từ liền nhau, kết bài "Tóm lại" lặp lại thân bài.
 
+### Help text và thông báo trên máy (chế độ A)
+Theo trainer Sony, duyệt 25/11/2026; phần máy làm được nằm trong quy tắc thay thế.
+- Sets whether or not to X = **Chọn có X hay không.**; nhãn gán phím: **Bật/tắt X**, **X khi nhấn giữ**
+- **Nhấn giữ** (không "Nhấn và giữ"); **nhấn nửa nút chụp**
+- Invalid = **Không khả dụng**; Available when = **Dùng được khi**; câu yêu cầu mở bằng **Hãy**
+- **Đã kết nối** (không "được kết nối"); Failed trong câu = **không thành công**, nhãn = **Thất bại.**
+- Enables selection of X = **Cho phép chọn X**; higher than SDXC V60 = **từ SDXC V60 trở lên**
+- after N sec. of inactivity = **khi không có thao tác trong N giây**; Power Save = **tiết kiệm pin**
+- Giá trị sau dấu hai chấm viết thường ("Chụp liên tục: cao"); không kèm tên tiếng Anh trong ngoặc
+- Bỏ từ đệm "ra", "lại", "bởi", "được" bị động, "thực hiện" khi không thêm nghĩa
+
 ### Thuật ngữ trong văn xuôi
 - Theo cột **Bài viết/Tài liệu** trong glossary.
 - Lần đầu: "lấy nét mắt (Eye AF)", "chống rung trên thân máy (IBIS)"; sau đó dùng một dạng nhất quán.
@@ -285,7 +296,7 @@ Chuyển thể từ humanizer (blader/humanizer, MIT). Dùng khi bài viết xon
 - Viết hoa tên riêng, model; không viết hoa danh từ chung giữa câu ("Cảm Biến" → "cảm biến").
 - Dấu câu sát chữ trước, cách chữ sau.
 
-## 4. Bảng thuật ngữ: 667 mục
+## 4. Bảng thuật ngữ: 698 mục
 
 Tra ở đây trước. Không có → dịch, đánh dấu [thuật ngữ mới].
 
@@ -306,6 +317,9 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 |---|---|---|---|---|
 | Aperture | 絞り | Khẩu độ 🔒 | khẩu độ | "f/2.8" giữ dấu chấm |
 | Aperture Priority | 絞り優先 | Ưu tiên khẩu độ | ưu tiên khẩu độ (chế độ A) | |
+| Shutter Priority | シャッタースピード優先 | Ưu tiên tốc độ màn trập 🔒 | ưu tiên tốc độ màn trập (chế độ S) | |
+| Program Auto | プログラムオート | Chương trình tự động | chương trình tự động (chế độ P) | |
+| Manual Exposure | マニュアル露出 | Phơi sáng thủ công | phơi sáng thủ công (chế độ M) | |
 | Shutter Speed | シャッタースピード | Tốc độ màn trập 🔒 | tốc độ màn trập | Cấm: tốc độ cửa trập/màn chập |
 | Shutter | シャッター | Màn trập 🔒 | màn trập | |
 | Shutter Button | シャッターボタン | Nút chụp 🔒 | nút chụp | |
@@ -328,6 +342,7 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Eye AF | 瞳AF | Eye AF | lấy nét mắt (Eye AF) | Menu giữ tên Sony (danh sách ngoại lệ MCP) |
 | Face/Eye Priority in AF | AF時の顔/瞳優先 | AF ưu tiên mặt/mắt | ưu tiên khuôn mặt/mắt khi AF | |
 | Subject Recognition | 被写体認識 | Nhận dạng chủ thể (ngắn: Nhận dạng) | nhận dạng chủ thể | Không dùng "nhận diện" |
+| Identification Target | — | Đối tượng nhận diện | đối tượng nhận diện | Ngoại lệ duy nhất dùng "nhận diện" |
 | Real-time Tracking | リアルタイムトラッキング | Theo dõi thời gian thực | theo dõi thời gian thực (Real-time Tracking) | Tracking = theo dõi 🔒, cấm "dò" |
 | Tracking | トラッキング | Theo dõi 🔒 | theo dõi | |
 | Defocus | — | Xóa phông 🔒 | xóa phông | Không dùng "mất nét" |
@@ -359,7 +374,10 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 |---|---|---|---|---|
 | Full Frame / Full-frame | フルサイズ | Toàn khung 🔒 | full-frame | Văn xuôi không dùng "khung hình đầy đủ" |
 | APS-C / Super 35mm | APS-C / Super 35mm | giữ nguyên | giữ nguyên | |
-| Memory Card | メモリーカード | Thẻ nhớ | thẻ nhớ | |
+| Memory Card | メモリーカード | Thẻ nhớ | thẻ nhớ | Cả Media, Rec. Media Settings |
+| Recording Media | 記録メディア | Thẻ ghi 🔒 | thẻ ghi | Cấm "phương tiện ghi hình" |
+| Mass Storage | マスストレージ | Mass Storage 🔒 | Mass Storage | Không dịch "Lưu trữ" |
+| Shoe / Multi Interface Shoe | — | Ngàm / ngàm đa giao diện | ngàm | Không dùng "đế" |
 | Firmware | ファームウェア | Firmware 🔒 | firmware | Giữ nguyên — ai cũng hiểu (duyệt 02/11/2026) |
 | Version | バージョン | Phiên bản | phiên bản | |
 | XAVC S / HS / S-I | — | giữ nguyên | giữ nguyên | |
@@ -371,10 +389,12 @@ Nguyên tắc: giữ tiếng Anh khi bản dịch tiếng Việt **không giúp 
 |---|---|---|---|---|
 | Zoom | ズーム | Zoom 🔒 | zoom | Range of Zoom Assist = Dải hỗ trợ Zoom; Digital Zoom = Zoom số; Clear Image Zoom = Zoom rõ nét |
 | Time Code / timecode | タイムコード | Time Code 🔒 | timecode | Time Code Make = Tạo mã Time Code; Time Code Run = Chạy Time Code |
-| Preset | プリセット | Preset 🔒 | preset | Preset = Preset; Preset Name = Tên Preset |
+| Preset | プリセット | Preset 🔒 | preset | Preset = Preset; Preset Name = Tên Preset; Time Code Make: Preset |
 | Free Run | フリーラン | Chạy tự do | chạy tự do | (dịch được, rõ nghĩa) |
 
-Cấm: "thu phóng" (khi EN là Zoom), "mã thời gian", "đặt trước".
+Cấm: "thu phóng" (khi EN là Zoom), "mã thời gian", "đặt trước" khi Preset đứng riêng hoặc là giá trị.
+
+Tên tính năng ghép dịch "đặt trước" 🔒: Lấy nét/zoom đặt trước, Cân bằng trắng đặt trước.
 
 #### 7. Giữ nguyên (mọi chế độ)
 Sony, Alpha, α, Firmware, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, ISO, RAW, JPEG, HEIF, S-Log2/3, S-Gamut3(.Cine), S-Cinetone, HLG, XAVC (S/HS/S-I), CFexpress, SDXC, UHS-I/II, Wi-Fi, Bluetooth, HDMI, USB, FTP, Creators' App, Imaging Edge Mobile, Monitor & Control, Transfer & Tagging. Danh sách đầy đủ cho menu: `get_guidelines("exceptions")`.
@@ -391,7 +411,7 @@ Sony, Alpha, α, Firmware, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, I
 | Flash Comp. | — | Bù flash | bù flash | |
 | Fill-flash | — | Flash cưỡng bức | flash cưỡng bức | |
 | External Flash | — | Flash ngoài | flash ngoài | |
-| Red Eye Reduction | — | Giảm mắt đỏ | giảm mắt đỏ | |
+| Red Eye Reduction | — | Giảm đỏ mắt | giảm đỏ mắt | Trainer Sony sửa, duyệt 25/11/2026 |
 | Slow Sync. | — | Đồng bộ chậm | đồng bộ chậm | |
 | Rear Sync. | — | Đồng bộ sau | đồng bộ sau | |
 | Trigger | — | Bộ kích | bộ kích | |
@@ -443,11 +463,55 @@ Sony, Alpha, α, Firmware, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, I
 | FTP Server | — | Máy chủ FTP | máy chủ FTP | Giữ FTP (mục 7) |
 | Smartphone Connect | — | Kết nối smartphone | kết nối smartphone | |
 
-#### 12. Thuật ngữ mới đề xuất
+#### 12. Đã chốt 25/11/2026 (trainer Sony)
+
+| EN | Menu OSD | Ghi chú |
+|---|---|---|
+| My Dial | Vòng xoay của tôi 🔒 | Thay "Đĩa xoay của tôi" |
+| Developer Tools | Công cụ nhà phát triển 🔒 | Active = Hoạt động |
+| Playback | Xem lại 🔒 | Được dùng "tốc độ phát lại" (S&Q), phát lại ghi chú thoại |
+
+#### 13. Thuật ngữ mới đề xuất
 Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xuất, chưa chốt]` cho tới lúc đó.
 
 
 ### Bảng đầy đủ theo danh mục
+
+#### all-terms-2026-11-25 (31)
+
+| EN | VI | Ngắn | Ghi chú |
+|---|---|---|---|
+| Action for No Rangefind | khi không bắt được nét |  |  |
+| Auto Framing | tự động căn khung |  |  |
+| AWB Transition Speed | tốc độ chuyển AWB |  |  |
+| Bright Monitoring | tăng sáng Live View |  |  |
+| Button Navigator | hướng dẫn nút |  |  |
+| Cnt Shoot Speed Boost | tăng tốc chụp liên tục |  | Continuous Shooting Speed Boost. |
+| Color Correction | hiệu chỉnh màu |  |  |
+| Color Invert | đảo màu |  |  |
+| Composite RAW Sht. | chụp RAW tổng hợp |  |  |
+| Device Certificate | chứng chỉ thiết bị |  | C2PA. |
+| Dual Gain Shooting | chụp độ lợi kép |  |  |
+| Exp. Value Expand | mở rộng giá trị phơi sáng |  |  |
+| Exposure Assist | hỗ trợ phơi sáng |  |  |
+| Fingerprint | fingerprint |  | Của chứng chỉ; không dịch 'vân tay'. |
+| Footer | thanh dưới |  | Footer Custom = tùy chỉnh thanh dưới. |
+| Framing Stabilizer | ổn định căn khung |  |  |
+| Gamma Display Assist | hỗ trợ hiển thị Gamma |  |  |
+| High Contrast | tương phản cao |  |  |
+| Identification Target | đối tượng nhận diện |  | Khác Recognition Target (nhận dạng). |
+| In-camera Photo Cropping | cắt ảnh trong máy |  |  |
+| Network Streaming | truyền phát mạng |  |  |
+| NR Shooting | chụp giảm nhiễu |  |  |
+| Preset White Balance | cân bằng trắng đặt trước |  | (khóa); Duyệt 25/11/2026. |
+| REC Lamp | đèn ghi hình |  |  |
+| Rec. Media dur HDMI Output | ghi thẻ khi xuất HDMI |  | Recording Media during HDMI Output. |
+| Release w/o Lens | chụp không ống kính |  |  |
+| Scan and Tag | quét và gắn thẻ |  |  |
+| Shooting for HDR | chụp HDR |  |  |
+| Star Shooting Mode | chế độ chụp sao |  |  |
+| User Certificate | chứng chỉ người dùng |  | C2PA. |
+| Volume Photography Commands | lệnh chụp ảnh số lượng lớn |  |  |
 
 #### audio (19)
 
@@ -673,7 +737,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Night Scene | cảnh đêm |  |  |
 | Pet | thú cưng |  |  |
 | Portrait | chân dung |  |  |
-| Program Auto | tự động chương trình | chương trình | Mode P. Shorter than "tự động theo chương trình". Tight icon layout W200: 'Chương trình' (P). |
+| Program Auto | chương trình tự động | chương trình | Mode P (duyệt 25/11/2026). |
 | Scene Selection | chọn cảnh |  |  |
 | Sensitivity | độ nhạy |  | Tracking sensitivity / mic sensitivity. ISO sensitivity -> "độ nhạy ISO". |
 | Shoot Mode | chế độ chụp |  | P/A/S/M. |
@@ -712,7 +776,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Ratio Control | điều khiển tỷ lệ |  |  |
 | Rear Sync. | đồng bộ sau |  |  |
 | Receiver | bộ thu |  |  |
-| Red Eye Reduction | giảm mắt đỏ |  |  |
+| Red Eye Reduction | giảm đỏ mắt |  | Duyệt 25/11/2026. |
 | Slow Sync. | đồng bộ chậm |  |  |
 | Trigger | bộ kích |  |  |
 | TTL | TTL |  |  |
@@ -763,8 +827,8 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Peaking Display Select | chọn viền lấy nét |  |  |
 | Peaking Level | mức viền lấy nét |  |  |
 | Pre-AF | Pre-AF |  |  |
-| Preset Focus | lấy nét Preset |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
-| Preset Focus/Zoom | lấy nét/zoom Preset |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
+| Preset Focus | lấy nét đặt trước |  | (khóa); Duyệt 25/11/2026. |
+| Preset Focus/Zoom | lấy nét/zoom đặt trước |  | (khóa); Duyệt 25/11/2026. |
 | Priority Set in AF-C | ưu tiên trong AF-C |  |  |
 | Priority Set in AF-S | ưu tiên trong AF-S |  |  |
 | Product Showcase | giới thiệu sản phẩm |  |  |
@@ -917,7 +981,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Crop | cắt khung |  | (khóa) |
 | Custom Key | nút tùy chỉnh |  | (khóa) |
 | Defocus | xóa phông |  | (khóa); duyệt 02/11/2026: không dùng 'mất nét' |
-| Developer Tools | công cụ lập trình |  | (khóa) |
+| Developer Tools | công cụ nhà phát triển |  | (khóa); Duyệt 25/11/2026. Active = 'Hoạt động'. |
 | Dial | vòng xoay |  | (khóa) |
 | Digital Zoom | Zoom số |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
 | Dynamic Active | chủ động nâng cao |  | (khóa); SteadyShot |
@@ -933,17 +997,17 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Intelligent Auto | tự động thông minh |  | (khóa) |
 | Lo | thấp |  | (khóa) |
 | Manual | thủ công |  | (khóa) |
-| Mass Storage | lưu trữ |  | (khóa) |
+| Mass Storage | Mass Storage |  | (khóa); Giữ tiếng Anh (duyệt 25/11/2026). |
 | Microphone | micrô |  | (khóa) |
 | Mid | trung bình |  | (khóa) |
-| My Dial | đĩa xoay của tôi |  | (khóa); Quy tắc mục 7 |
+| My Dial | vòng xoay của tôi |  | (khóa); Duyệt 25/11/2026. |
 | Peaking | viền hỗ trợ lấy nét | viền lấy nét | (khóa) |
 | Pixel | điểm ảnh |  | (khóa) |
 | Pixel Mapping | ánh xạ điểm ảnh |  | (khóa); Quy tắc mục 7 |
-| Playback | xem lại |  | (khóa); âm thanh ghi chú thoại: 'phát' |
+| Playback | xem lại |  | (khóa); âm thanh ghi chú thoại: 'phát'. Được dùng 'tốc độ phát lại' (quay chuyển động chậm) và 'phát lại' âm thanh ghi chú thoại. |
 | Rating | xếp hạng |  | (khóa) |
 | Rating Only | chỉ xếp hạng |  | (khóa); duyệt 02/11/2026 |
-| Recording Media | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026: Recording Media = thẻ nhớ, không dùng 'phương tiện ghi hình'. |
+| Recording Media | thẻ ghi |  | (khóa); Duyệt 25/11/2026. Memory Card, Media, Rec. Media Settings vẫn là thẻ nhớ. Cấm 'phương tiện ghi hình'. |
 | Reset | đặt lại |  | (khóa); không 'thiết lập lại' |
 | Shot Mark | dấu cảnh |  | (khóa) |
 | Shutter | màn trập |  | (khóa); Quy tắc mục 2. 16/11/2026: bản Sony dùng 'cửa trập' là lỗi thuật ngữ (AU = F). |
@@ -1118,7 +1182,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Panel | bảng |  |  |
 | Please wait. | vui lòng đợi. |  |  |
 | Position | vị trí |  |  |
-| Preset | Preset |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
+| Preset | Preset |  | (khóa); Đứng riêng giữ tiếng Anh; tên tính năng ghép dịch 'đặt trước' (duyệt 25/11/2026). |
 | Preview | xem trước | xem thử |  |
 | Priority | ưu tiên |  |  |
 | Processing... | đang xử lý... |  |  |
@@ -1197,7 +1261,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 |---|---|---|
 | Zoom | thu phóng → Zoom | Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
 | Time Code | mã thời gian → Time Code | Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
-| Preset | cài đặt trước → cài đặt Preset; đặt trước → Preset | Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
+| Preset | cài đặt trước → cài đặt Preset | Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn. Tên tính năng ghép dịch 'đặt trước' (Preset Focus/Zoom, Preset White Balance; duyệt 25/11/2026) |
 
 ## 6. Ngoại lệ không dịch
 
@@ -1205,9 +1269,9 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 
 **Ứng dụng (7):** Creators' App, Creators' Cloud, Imaging Edge Mobile, Monitor & Control, Transfer & Tagging, for enterprise, add-on
 
-**Chuẩn (34):** Wi-Fi, Wi-Fi Direct, Bluetooth, HDMI, USB, Hi-Speed USB, SuperSpeed USB, FTP, DNS, LAN, RAW, JPEG, HEIF, MP4, Adobe RGB, sRGB, SDXC, Class10, CFexpress, UHS-I, UHS-II, BT.2020, BT.2100, Hybrid Log-Gamma, C2PA, IPTC, Android, iPhone, iPad, MFi, Type-C, IPsec, PORT1, PORT2
+**Chuẩn (35):** Wi-Fi, Wi-Fi Direct, Bluetooth, HDMI, USB, Hi-Speed USB, SuperSpeed USB, FTP, DNS, LAN, RAW, JPEG, HEIF, MP4, Adobe RGB, sRGB, SDXC, Class10, CFexpress, UHS-I, UHS-II, BT.2020, BT.2100, Hybrid Log-Gamma, C2PA, IPTC, Android, iPhone, iPad, MFi, Type-C, IPsec, PORT1, PORT2, Mass Storage
 
-**Từ mượn (23):** flash, menu, Menu, Live View, LiveView, proxy, Proxy, gamma, Gamma, Vlog, anamorphic, logo, Logo, feet, Log, LUT, OK, NG, KEEP, bit, mm, express, Firmware
+**Từ mượn (26):** flash, menu, Menu, Live View, LiveView, proxy, Proxy, gamma, Gamma, Vlog, anamorphic, logo, Logo, feet, Log, LUT, OK, NG, KEEP, bit, mm, express, Firmware, fingerprint, webcam, low pass
 
 **Viết tắt (30):** AF, MF, DMF, ISO, EV, WB, DRO, HDR, ND, TTL, TC, UB, U-Bit, Av, Tv, fps, Mbps, Gbps, kHz, Hz, GHz, APS-C, Super 35mm, 4K, 8K, HD, Fn, MENU, DISP, BULB
 
@@ -1217,7 +1281,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 
 ## 7. Quy tắc thay thế và từ cấm
 
-**Thay thế đang bật (113):**
+**Thay thế đang bật (160):**
 
 | Mẫu (regex) | Thay bằng |
 |---|---|
@@ -1284,7 +1348,6 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | `qua radio\|bằng radio` | `qua sóng vô tuyến` |
 | `\bradio\b` | `sóng vô tuyến` |
 | `QR Code` | `mã QR` |
-| `Mass Storage` | `Lưu trữ` |
 | `Look tùy chỉnh` | `Phong cách tùy chỉnh` |
 | `Look cơ bản` | `Phong cách cơ bản` |
 | `cài đặt Look` | `cài đặt phong cách` |
@@ -1334,6 +1397,54 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | `âm lượng phát lại` | `âm lượng phát` |
 | `thu, phát lại, xóa` | `thu, phát, xóa` |
 | `(?<!\w)Chọn chụp chống nhấp nháy(?!\w)` | `\g<0>` |
+| `Không hợp lệ (với\|ở\|khi\|vì\|do\|trong)` | `Không khả dụng \1` |
+| `Nhấn và giữ` | `Nhấn giữ` |
+| `nhấn nút chụp xuống một nửa` | `nhấn nửa nút chụp` |
+| `chụp theo khoảng thời gian` | `chụp cách quãng` |
+| `Không thể thực hiện được\.` | `Không thể thực hiện.` |
+| `nếu không có thao tác nào được thực hiện trong vòng` | `khi không có thao tác trong` |
+| `khi không hoạt động sau (\d+ (?:giây\|phút))` | `khi không có thao tác trong \1` |
+| `Xoá` | `Xóa` |
+| `xoá` | `xóa` |
+| `phần mềm đặc biệt` | `phần mềm chuyên dụng` |
+| `Chiếu đèn flash` | `Nháy đèn flash` |
+| `chiếu đèn flash` | `nháy đèn flash` |
+| `trong khi xem lại` | `khi xem lại` |
+| `Có thể thực hiện (khi\|nếu)` | `Dùng được \1` |
+| `Sử dụng một thẻ nhớ` | `Hãy dùng thẻ nhớ` |
+| `Được sử dụng khi` | `Dùng khi` |
+| `Chạy một ứng dụng hỗ trợ` | `Hãy chạy ứng dụng hỗ trợ` |
+| `Tự động chương trình` | `Chương trình tự động` |
+| `đã chỉ định cho` | `đã gán cho` |
+| `^Chỉ định` | `Gán` |
+| `^Vô hiệu hóa` | `Tắt` |
+| `CF express` | `CFexpress` |
+| `ở giá trị (\d+(?:\.\d+)?p)` | `ở \1` |
+| `khi máy được khởi chạy` | `khi khởi động máy` |
+| `ngày-giờ` | `ngày giờ` |
+| `Ngày-giờ` | `Ngày giờ` |
+| `ảnh được lọc` | `ảnh đã lọc` |
+| `thiết bị được kết nối` | `thiết bị đã kết nối` |
+| `Kích thước của vùng lấy nét` | `Kích thước vùng lấy nét` |
+| `Mặc dù được biểu thị bằng số nguyên nhưng tốc độ khung hình thực tế là` | `Dù hiển thị dạng số nguyên, tốc độ khung hình thực tế là` |
+| `chứng chỉ số gốc` | `chứng chỉ gốc` |
+| `chiều dài tiêu cự` | `tiêu cự` |
+| `([Cc])hứng chỉ cho C2PA` | `\1hứng chỉ C2PA` |
+| `\nChuyển sang thẻ nhớ` | `Hãy chuyển sang thẻ nhớ` |
+| `này\. Chuyển sang` | `này. Hãy chuyển sang` |
+| `ngày sau đây` | `ngày dưới đây` |
+| `^Bật chọn` | `Cho phép chọn` |
+| `([Tt])ốc độ bít` | `\1ốc độ bit` |
+| `([Tt])iết kiệm điện(?! năng)` | `\1iết kiệm pin` |
+| `ID duy nhất được lấy` | `ID duy nhất đã thu được` |
+| `kiểm chứng` | `xác minh` |
+| `theo ngày này` | `của ngày này` |
+| `Hãy tìm dịch vụ sửa chữa\.` | `Vui lòng mang máy đi sửa chữa.` |
+| `Chức năng này hiện đang bị (?:vô hiệu hóa\|tắt)\.` | `Chức năng này hiện đang tắt.` |
+| `Bạn có thể xóa cờ đoạn phim bằng cách nhấn nút hai lần\.` | `Nhấn nút hai lần để xóa cờ đoạn phim.` |
+| `cao\nhơn (SDXC\s+[A-Za-z0-9]+(?:/[A-Za-z0-9]+)*(?:\s+hoặc\s+(?:thẻ nhớ\s+)?CFexpress\s+VPG\d+)?\|CFexpress\s+VPG\d+)` | `từ\n\1 trở lên` |
+| `cao hơn\n(SDXC\s+[A-Za-z0-9]+(?:/[A-Za-z0-9]+)*(?:\s+hoặc\s+(?:thẻ nhớ\s+)?CFexpress\s+VPG\d+)?\|CFexpress\s+VPG\d+)` | `từ\n\1 trở lên` |
+| `cao hơn (SDXC\s+[A-Za-z0-9]+(?:/[A-Za-z0-9]+)*(?:\s+hoặc\s+(?:thẻ nhớ\s+)?CFexpress\s+VPG\d+)?\|CFexpress\s+VPG\d+)` | `từ \1 trở lên` |
 
 **Từ cấm (15):**
 
@@ -1346,7 +1457,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | `[Bb]ộ tìm kiếm` | Finder = ống ngắm |
 | `\b[Đđ]ịnh mức\b` | Rating = xếp hạng |
 | `[Hh]iển thị [Đđ]ỉnh` | Peaking = viền hỗ trợ lấy nét |
-| `[Pp]hát lại` | Playback = xem lại |
+| `(?<!tốc độ )[Pp]hát lại(?! âm thanh)(?! với ảnh đã có ghi chú thoại)` | Playback = xem lại (trừ 'tốc độ phát lại' và phát lại âm thanh ghi chú thoại, duyệt 25/11/2026) |
 | `[Tt]hiết lập lại` | Reset = đặt lại |
 | `[Hh]ữu hiệu hóa` | Enable = bật/cho phép |
 | `[Pp]hóng lớn` | Magnify = phóng to |
@@ -1380,7 +1491,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | 10 | Mechanical Shutter | Màn trập cơ | Mục menu | — | Khóa. Cấm "màn trập cơ học" |
 | 11 | Flash Mode | Chế độ flash | Mục menu | — | |
 | 12 | Flash Comp. | Bù flash | Mục menu | — | |
-| 13 | Red Eye Reduction | Giảm mắt đỏ | Mục menu | — | |
+| 13 | Red Eye Reduction | Giảm đỏ mắt | Mục menu | — | |
 | 14 | Movie Recording | Quay phim | Mục menu | — | |
 | 15 | Frame Rate | Tốc độ khung hình | Mục menu | — | Khóa |
 | 16 | Log Shooting | Quay Log | Mục menu | — | |
@@ -1426,7 +1537,7 @@ stt,model,source_lang,source,vietnamese,ui_type,screen_path,max_width,fit,status
 10,,en,Mechanical Shutter,Màn trập cơ,Mục menu,,,,glossary,locked
 11,,en,Flash Mode,Chế độ flash,Mục menu,,,,glossary,
 12,,en,Flash Comp.,Bù flash,Mục menu,,,,glossary,
-13,,en,Red Eye Reduction,Giảm mắt đỏ,Mục menu,,,,glossary,
+13,,en,Red Eye Reduction,Giảm đỏ mắt,Mục menu,,,,glossary,
 14,,en,Movie Recording,Quay phim,Mục menu,,,,glossary,
 15,,en,Frame Rate,Tốc độ khung hình,Mục menu,,,,glossary,locked
 16,,en,Log Shooting,Quay Log,Mục menu,,,,glossary,

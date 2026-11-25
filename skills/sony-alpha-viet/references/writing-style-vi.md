@@ -50,6 +50,17 @@ Chuyển thể từ humanizer (blader/humanizer, MIT). Dùng khi bài viết xon
 ## Cụm "AI-sounding" cần tránh
 "Trong thế giới nhiếp ảnh ngày nay", "Hãy cùng khám phá", "không thể phủ nhận", "đưa trải nghiệm lên một tầm cao mới", "hoàn hảo cho mọi nhu cầu", "bậc thầy", "cuộc cách mạng", "Hãy cùng tìm hiểu", "Nói thật nhé", "Đừng hiểu lầm", "Suy cho cùng", "Đó mới là điều", "đóng vai trò then chốt", "minh chứng cho", "đột phá" (khi dùng nghĩa bóng), "vô cùng", "tuyệt vời", "tuyệt đẹp", "đỉnh cao", "không thể bỏ lỡ", "Hy vọng bài viết", "Chúc bạn", "bảng dưới đây", "một trong những", mở/kết đoạn bằng câu hỏi tu từ, ba tính từ liền nhau, kết bài "Tóm lại" lặp lại thân bài.
 
+## Help text và thông báo trên máy (chế độ A)
+Theo trainer Sony, duyệt 25/11/2026; phần máy làm được nằm trong quy tắc thay thế.
+- Sets whether or not to X = **Chọn có X hay không.**; nhãn gán phím: **Bật/tắt X**, **X khi nhấn giữ**
+- **Nhấn giữ** (không "Nhấn và giữ"); **nhấn nửa nút chụp**
+- Invalid = **Không khả dụng**; Available when = **Dùng được khi**; câu yêu cầu mở bằng **Hãy**
+- **Đã kết nối** (không "được kết nối"); Failed trong câu = **không thành công**, nhãn = **Thất bại.**
+- Enables selection of X = **Cho phép chọn X**; higher than SDXC V60 = **từ SDXC V60 trở lên**
+- after N sec. of inactivity = **khi không có thao tác trong N giây**; Power Save = **tiết kiệm pin**
+- Giá trị sau dấu hai chấm viết thường ("Chụp liên tục: cao"); không kèm tên tiếng Anh trong ngoặc
+- Bỏ từ đệm "ra", "lại", "bởi", "được" bị động, "thực hiện" khi không thêm nghĩa
+
 ## Thuật ngữ trong văn xuôi
 - Theo cột **Bài viết/Tài liệu** trong glossary.
 - Lần đầu: "lấy nét mắt (Eye AF)", "chống rung trên thân máy (IBIS)"; sau đó dùng một dạng nhất quán.
