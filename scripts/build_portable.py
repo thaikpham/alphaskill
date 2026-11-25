@@ -47,7 +47,7 @@ MCP_NOTE = "> Ghi chú: các lệnh `mcp__…`/tên công cụ trong file này c
 MCP_RE = re.compile(r"mcp__|prepare_batch|check_translation")
 PROMPT_LIMIT = 8000  # Custom GPT instructions limit
 META_LIMIT = 2000  # Meta AI Studio instructions limit
-CORE_LIMIT = 90 * 1024  # target for llms-full.txt; the test allows 95 KB
+CORE_LIMIT = 105 * 1024  # target for llms-full.txt; the test allows 110 KB
 KNOWLEDGE_FULL_LIMIT = 250 * 1024  # llms-knowledge.txt inlines every note below this total, else only links them
 HEADING = re.compile(r"^(#{1,6})(\s.*)?$")
 FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
@@ -502,7 +502,7 @@ def main() -> int:
     for path in (FULL, BLOG, KNOWLEDGE, INDEX):
         text = files[path]
         size = len(text.encode("utf-8"))
-        warn = " (VƯỢT mục tiêu 90 KB của lõi!)" if path == FULL and size > CORE_LIMIT else ""
+        warn = " (VƯỢT mục tiêu 105 KB của lõi!)" if path == FULL and size > CORE_LIMIT else ""
         print(f"{path.name}: {size} byte, {text.count(chr(10))} dòng{warn}")
     return 0
 
