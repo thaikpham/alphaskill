@@ -40,9 +40,17 @@ Loại UI: `Tiêu đề menu` · `Mục menu` · `Giá trị` · `Nút` · `Thô
   - AGREED trùng VI mà đang có AN: xóa AN/AU/AV.
   - Đề xuất mới: AN = AGREED; AU "Suggest a better translation" ("By a spelling error" nếu chỉ khác dấu hoặc hoa thường); AV là lý do cụ thể dạng `'cũ' → 'mới'`, câu viết lại nhiều thì ghi lý do chung.
   - Đã có AN khác AGREED: AN = AGREED, giữ AU, AV = `<AV cũ> | Review 2: <lý do>`.
-  - Dòng AGREED ước lượng tràn khung: mặc định bỏ qua và liệt kê trong `width_csv` để kiểm bằng SonyTool. Người dùng bảo áp luôn thì dùng `apply_overflow=True`; AV có thêm ghi chú SonyTool ở trên.
+  - Dòng AGREED ước lượng tràn khung: engine **thử xuống dòng lại trước** (`core.rebreak`, cùng chữ, ngắt dòng mới). Vừa thì ghi bản đó, AV có "Line breaks re-arranged to fit the frame". Không vừa thì mặc định bỏ qua và liệt kê trong `width_csv` để kiểm bằng SonyTool. Người dùng bảo áp luôn thì dùng `apply_overflow=True`; AV có thêm ghi chú SonyTool ở trên.
   - Bản sao Google Sheets của bộ file: làm cùng quy tắc. Ghi qua tab phụ (dữ liệu khóa theo số dòng + công thức), đọc lại so với kế hoạch, rồi mới dán giá trị vào AN/AU/AV và xóa tab phụ. Không gõ tay hàng nghìn ô.
   - File gộp `*_EN_JP_VN`: chỉ sửa cột Vietnamese, đặt bằng bản cuối của từng S# trong bộ file (AN nếu có, không thì VI) để hai nơi khớp nhau.
+- **Rút gọn danh sách cần kiểm SonyTool** (dòng AV có "Width to be confirmed with SonyTool"). Làm theo lượt 26/11/2026 trên 247 dòng ILDC:
+  - Xuất danh sách: File, Dòng, S#, English, AD, AN, Max Width, Font W/H, Rows, Line Feed, % ước tính, lý do; thêm cột "Kết quả SonyTool" (Vừa khung/Tràn) và "Đề xuất rút gọn".
+  - **Xuống dòng lại trước khi rút chữ** (`core.rebreak`, cũng là gợi ý đầu tiên của `suggest_short`). Line Feed Off: số dòng cho phép = max(Rows, số dòng EN); giữ ngắt câu sẵn có nếu được, dòng "Khe 1/2" (Slot) đứng riêng ở cuối, tránh dòng chỉ một chữ. Line Feed On: bỏ ngắt dòng thủ công, máy tự xuống dòng. Lượt 26/11: 89/247 dòng chỉ cần xuống dòng lại.
+  - Còn tràn thì rút chữ theo quy tắc 3, không viết tắt rụng chữ. Đo lại từng phương án bằng `check_fit`; ghi % ước tính và lý do cho từng đề xuất.
+  - Dòng mà bản hiện tại (cả AD) cũng ước tính tràn nhiều lần: nghi Max Width sai, không đề xuất, ghi "cần xem khung thật trong SonyTool".
+  - **Thuật ngữ khóa không rút dù tràn** (duyệt 26/11): "Vòng xoay của tôi 1→2→3", "Công cụ nhà phát triển" giữ nguyên, không đổi sang tiếng Anh; để SonyTool quyết định. Khung hẹp được phép: chế độ S = "Ưu tiên tốc độ" (khi "Ưu tiên màn trập" không vừa), "Tăng tốc khi giữ", "Nối USB-LAN/chia sẻ", "Điều khiển PC".
+  - Áp đề xuất: AN = bản rút gọn, giữ AU; trong AV bỏ câu "Width to be confirmed with SonyTool (estimated overflow).", nối `| Review 3: Shortened to fit the frame. 'cũ' → 'mới'.` hoặc `| Review 3: Line breaks re-arranged to fit the frame; wording unchanged.`; dòng còn sát khung (93–100%) thêm "Borderline width (est. NN% of Max Width): please confirm with SonyTool."
+  - Cập nhật cùng lúc: 8 file (AN/AU/AV), bảng thuật ngữ (cột AGREED, trừ dòng mà khung rộng ở file khác vẫn dùng bản đầy đủ), file gộp `*_EN_JP_VN` (theo S#), bộ nhớ dịch (`prev_vi` giữ bản Sony gốc, `note` chỉ còn cho dòng sát khung hoặc chưa rút).
 - Có file gộp `*_EN_JP_VN.xls` (Sheet1: S#, JP, EN, VI) thì sửa cột VI cùng lúc: `xls.biff.apply_cells(stream, {(row0, 3): vi}, overwrite=True, sheet="Sheet1")`.
 - AU hợp lệ: Suggest a better translation · By a fatal error as photographic terms · By a spelling error · By a grammatical error · By the other reason.
 

@@ -6,7 +6,8 @@ Rules follow the 26/11/2026 SEV cross-check run on the ILDC files ①–⑧:
 - New proposal: AN = AGREED, AU "Suggest a better translation" ("By a spelling error" for case or diacritics only),
   AV = concrete reason in English ('old' → 'new').
 - Existing AN that differs: AN = AGREED, AU kept, AV = "<old AV> | Review 2: <reason>".
-- AGREED estimated to overflow the frame: skipped and listed, or with apply_overflow=True written with AV starting
+- AGREED estimated to overflow the frame: first re-broken (same words, new line breaks, see core.rebreak);
+  if that fits, AN is the re-broken text and AV says so. Otherwise skipped and listed, or with apply_overflow=True written with AV starting
   "Width to be confirmed with SonyTool (estimated overflow)." (the user then checks those rows in SonyTool).
 """
 from __future__ import annotations
@@ -22,6 +23,7 @@ from .. import core
 SUGGEST = "Suggest a better translation"
 SPELLING = "By a spelling error"
 WIDTH_NOTE = "Width to be confirmed with SonyTool (estimated overflow). "
+REBROKEN = "Line breaks re-arranged to fit the frame (wording as agreed). "
 REWORDED = "Reworded for natural, concise Vietnamese UI text (agreed in SEV cross-check with Sony VN trainers)."
 _TOK = re.compile(r"\w+|[^\w\s]")
 
@@ -91,11 +93,22 @@ def fits(en: str, vi: str, layout: dict | None) -> bool:
     return lf.lower() == "on" or len(vi.split("\n")) <= max(int(layout.get("rows") or 1), len(en.split("\n")))
 
 
+def rebreak(en: str, vi: str, layout: dict | None) -> str | None:
+    """vi with new line breaks that fit the layout (allowed lines = max(Rows, English lines)), or None."""
+    if not layout or not layout.get("max_w"):
+        return None
+    lay = core.effective_layout(en, {"max_w": layout["max_w"], "font_w": layout.get("font_w", 27),
+                                     "font_h": layout.get("font_h", 36), "rows": layout.get("rows", 1),
+                                     "linefeed": str(layout.get("linefeed") or "Off")})
+    rb = core.rebreak(vi, **lay)
+    return rb if rb and fits(en, rb, layout) else None
+
+
 def plan(rows: list[dict], agreed: dict[str, dict[str, str]], apply_overflow: bool = False) -> dict:
     """rows: sonyxls.read_rows() output. Returns {proposals, skipped_width, stats}; proposals go to write_proposals(overwrite=True)."""
     proposals, skipped = [], []
     stats = {"rows": len(rows), "no_match": 0, "already": 0, "new": 0, "review2": 0, "cleared": 0,
-             "width_flagged": 0, "width_skipped": 0}
+             "width_flagged": 0, "width_skipped": 0, "rebroken": 0}
     for r in rows:
         en, vi, an = r["en"], r["vi"], r["an"]
         options = agreed.get(en)
@@ -114,6 +127,11 @@ def plan(rows: list[dict], agreed: dict[str, dict[str, str]], apply_overflow: bo
             continue
         note = ""
         if not fits(en, ag, r.get("layout")):
+            rb = rebreak(en, ag, r.get("layout"))
+            if rb:  # same words, new line breaks: fits without rewording
+                ag, note = rb, REBROKEN
+                stats["rebroken"] += 1
+        if not note and not fits(en, ag, r.get("layout")):
             if not apply_overflow:
                 skipped.append({**base, "en": en, "current": eff, "agreed": ag, "layout": r.get("layout")})
                 stats["width_skipped"] += 1
@@ -121,6 +139,8 @@ def plan(rows: list[dict], agreed: dict[str, dict[str, str]], apply_overflow: bo
             note = WIDTH_NOTE
             stats["width_flagged"] += 1
         why = note + reason(eff, ag)
+        if note == REBROKEN and why.endswith("Spacing corrected."):
+            why = REBROKEN.strip()
         if an:
             av = (r["av"] + " | " if r["av"] else "") + "Review 2: " + why
             proposals.append({**base, "an": ag, "au": r["au"] or SUGGEST, "av": av})

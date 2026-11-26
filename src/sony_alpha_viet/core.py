@@ -222,6 +222,46 @@ def fit(text: str, max_w, font_w=27, font_h=36, rows=1, linefeed="Off") -> dict:
     return {"verdict": verdict, "lines": n, "max_lines": r, "ratio": round(worst, 2)}
 
 
+SLOT_LINE_RE = re.compile(r"(?:Khe|Slot)\s*\d+", re.I)
+
+
+def rebreak(text: str, max_w, font_w=27, font_h=36, rows=1, linefeed="Off") -> str | None:
+    """Same words, new line breaks, when only the breaks make a string overflow (26/11/2026: 89 of 247 flagged
+    ILDC strings). Line Feed On: drop manual breaks, the camera wraps. Line Feed Off: wrap each existing line first,
+    then the whole text; a final "Khe 1"/"Slot 1" line stays on its own; no new one-word lines when avoidable.
+    Returns None when the text already fits or no re-break fits."""
+    if fit(text, max_w, font_w, font_h, rows, linefeed)["verdict"] != "OVER" or "\n" not in text and int(rows) < 2:
+        return None
+    if str(linefeed).lower() == "on":
+        flat = re.sub(r"\s*\n\s*", " ", text)
+        return flat if flat != text and fit(flat, max_w, font_w, font_h, rows, linefeed)["verdict"] != "OVER" else None
+    mw = float(max_w)
+
+    def wrap(line, thr):
+        out, cur = [], ""
+        for w in line.split(" "):
+            trial = f"{cur} {w}" if cur else w
+            if est_width(trial, font_w, font_h) <= mw * thr or not cur:
+                cur = trial
+            else:
+                out.append(cur)
+                cur = w
+        return out + [cur]
+
+    paras = [p.strip() for p in text.split("\n")]
+    tail = [paras.pop()] if len(paras) > 1 and SLOT_LINE_RE.fullmatch(paras[-1]) else []
+    best = None  # key: (one-word lines, over the 92% safe width, -fill); narrower targets balance the lines
+    for thr in (0.92, 1.0, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5):
+        for lines in ([x for p in paras for x in wrap(p, thr)] + tail, wrap(" ".join(paras), thr) + tail):
+            if len(lines) > int(rows) or any(est_width(x, font_w, font_h) > mw * thr for x in lines):
+                continue
+            orphans = sum(1 for x in lines[:len(lines) - len(tail)] if len(x.split()) < 2)
+            key = (orphans, thr > 0.92, -thr)
+            if best is None or key < best[0]:
+                best = (key, "\n".join(lines))
+    return best[1] if best and best[1] != text else None
+
+
 # ---------------- keep_english helper ----------------
 def _apply_keep_english(vi: str, en: str, keep_entries: list) -> str:
     """Apply keep_english conversions: replace variants in vi with the term using surface form from en."""
@@ -448,7 +488,7 @@ IMPLIED_AFTER = ["chụp"]  # droppable only right after an IMPLIED verb ("Chọ
 
 def suggest_short(store: Store, en: str, vi: str, layout: dict | None = None, limit: int = 5) -> list[dict]:
     """Shorter forms for a BORDER/OVER string that keep its meaning:
-    (a) learned width-only rules, (b) approved translations of the SAME source string made for other layouts,
+    (0) the same words with new line breaks (rebreak), (a) learned width-only rules, (b) approved translations of the SAME source string made for other layouts,
     (c) dropping implied words at the start/end only, (d) glossary short forms substituted in place.
     Never proposes another string's translation (that changed meaning, e.g. "update failed" → "updated")."""
     layout = effective_layout(en, layout)
@@ -464,6 +504,9 @@ def suggest_short(store: Store, en: str, vi: str, layout: dict | None = None, li
             seen.add(text)
             found.append({"text": text, "fit": fit(text, **layout), "source": source})
 
+    rb = rebreak(vi, **layout)  # (0) same words, new line breaks: always the first thing to try
+    if rb:
+        add(rb, "xuống dòng lại (giữ nguyên chữ)")
     for s, rx in store._compiled:  # (a)
         if s.get("fallback") and rx.search(vi):
             add(rx.sub(s["fallback"], vi), f"fallback {s['id']}")
@@ -491,7 +534,7 @@ def suggest_short(store: Store, en: str, vi: str, layout: dict | None = None, li
                 rep = _cap(sh) if m.group(0)[:1].isupper() else sh
                 add(vi[:m.start()] + rep + vi[m.end():], f"dạng ngắn '{g['en']}'")
     rank = {"OK": 0, "BORDER": 1, "OVER": 2}
-    found.sort(key=lambda c: (rank.get(c["fit"]["verdict"], 3), c["fit"]["ratio"]))
+    found.sort(key=lambda c: (rank.get(c["fit"]["verdict"], 3), not c["source"].startswith("xuống dòng"), c["fit"]["ratio"]))
     return found[:limit]
 
 
