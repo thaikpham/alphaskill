@@ -1,0 +1,22 @@
+// Cloudflare: public read-only API at api.alphacolorlab.com (MCP at /mcp, REST at /v1).
+// The Worker forwards every request to one container that runs the same server as local `--http --read-only`.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "alphaskill-api",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-23",
+  "containers": [
+    {
+      "class_name": "ApiContainer",
+      "scheduling_policy": "durable_object",
+      "images": { "base": { "dockerfile": "./Dockerfile" } }
+    }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "API", "class_name": "ApiContainer" }]
+  },
+  "exports": {
+    "ApiContainer": { "type": "durable-object", "storage": "sqlite" }
+  },
+  "observability": { "enabled": true }
+}
