@@ -9,16 +9,37 @@ tags: [sony-alpha-viet/kien-thuc]
 
 # Stop và EV
 
-**Stop là đơn vị chung để so ánh sáng giữa khẩu độ, tốc độ và ISO: +1 stop là gấp đôi ánh sáng, −1 stop là giảm một nửa.**
+**Stop là đơn vị chung để so sánh ánh sáng giữa khẩu độ, tốc độ màn trập và ISO: +1 stop là gấp đôi ánh sáng, −1 stop là giảm một nửa. Stop đi cùng EV, một thang đo theo hệ APEX giúp nhận ra các cặp khẩu độ và tốc độ cho cùng một mức sáng.**
 
-## Hiểu nhanh
+## Stop là gì và đổi 1 stop bằng bao nhiêu
+
 - Ba yếu tố đo bằng ba đơn vị khác nhau (số f, giây, ISO), nên người ta đặt ra "stop" để quy đổi. Tiếng Nhật gọi là 段 (đoạn/bậc).
-- +1 stop: tốc độ 1/250 → 1/125 · khẩu F8 → F5.6 · ISO 100 → 200.
+
+| Yếu tố | Mức ban đầu | Sau khi +1 stop |
+|---|---|---|
+| Tốc độ màn trập | 1/250 | 1/125 |
+| Khẩu độ | F8 | F5.6 |
+| ISO | 100 | 200 |
+
 - Máy hiện đại chỉnh theo **1/3 stop**: 1/60 → 1/80 → 1/100 → 1/125 · F5.6 → F6.3 → F7.1 → F8.
+
+## EV là gì và tính thế nào
+
 - **EV (Exposure Value)** theo hệ APEX: EV = Av + Tv, với Av = 2·log₂(số f), Tv = log₂(1/thời gian). Ví dụ: F5.6 (Av 5) + 1/125s (Tv 7) = **EV 12**; F2.8 (Av 3) + 1/500s (Tv 9) cũng = EV 12 → **cùng độ sáng**.
 - Bảng EV (ở ISO 100) cho thấy rất nhiều cặp khẩu–tốc cùng ra một độ sáng; chọn cặp nào là chọn **cách diễn đạt** (xóa phông hay nét sâu, bắt dính hay nhòe).
 
-## Hai nghĩa của "EV" — dễ nhầm
+## Cặp khẩu độ và tốc độ cho cùng độ sáng (ISO 100)
+
+| Khẩu độ | Tốc độ màn trập | EV |
+|---|---|---|
+| F2.8 | 1/2000s | 14 |
+| F4 | 1/1000s | 14 |
+| F5.6 | 1/500s | 14 |
+| F8 | 1/250s | 14 |
+| F11 | 1/125s | 14 |
+
+## EV có hai nghĩa, dễ nhầm lẫn
+
 - **EV tuyệt đối** (hệ APEX): mô tả độ sáng của cảnh/cặp thông số. EV cao = cảnh sáng.
 - **±EV khi bù sáng**: số stop sáng/tối hơn so với mức máy đo. "+1 EV" = sáng hơn 1 stop. Xem [[Bù sáng]].
 

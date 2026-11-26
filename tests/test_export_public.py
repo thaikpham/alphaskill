@@ -1,4 +1,5 @@
 """Tests for scripts/export_public_data.py"""
+import json
 import tempfile
 import sys
 from pathlib import Path
@@ -98,3 +99,42 @@ def test_export_knowledge_on_previous_export():
         # Old file should be gone, new file present
         assert not (out / "knowledge" / "old_note.md").exists()
         assert (out / "knowledge" / "new_note.md").exists()
+
+
+def test_export_drops_s_number_from_rule_text():
+    """Rule note/disabled_why citing an S-number is dropped; the rule itself stays."""
+    with tempfile.TemporaryDirectory() as tmp:
+        src = Path(tmp) / "src"
+        out = Path(tmp) / "out"
+        src.mkdir()
+        (src / "glossary.json").write_text("[]", encoding="utf-8")
+        rules = {
+            "substitutions": [{
+                "id": "L1", "pattern": "a", "replace": "b",
+                "disabled": True, "disabled_why": "Too broad: hits S50647",
+                "note": "ok note",
+            }],
+            "exact": {}, "banned": [],
+        }
+        (src / "rules.json").write_text(json.dumps(rules), encoding="utf-8")
+
+        export_public_data(src, out)
+
+        sub = json.loads((out / "rules.json").read_text(encoding="utf-8"))["substitutions"][0]
+        assert "disabled_why" not in sub
+        assert sub["note"] == "ok note"
+        assert sub["disabled"] is True
+
+
+def test_export_refuses_s_number_in_copied_files():
+    """Files copied as-is (rules.md, exceptions, keep_english) must not carry S-numbers."""
+    with tempfile.TemporaryDirectory() as tmp:
+        src = Path(tmp) / "src"
+        out = Path(tmp) / "out"
+        src.mkdir()
+        (src / "glossary.json").write_text("[]", encoding="utf-8")
+        (src / "rules.json").write_text('{"substitutions": [], "exact": {}, "banned": []}', encoding="utf-8")
+        (src / "rules.md").write_text("Rule from S12345", encoding="utf-8")
+
+        with pytest.raises(ValueError, match="S-number found in rules.md"):
+            export_public_data(src, out)

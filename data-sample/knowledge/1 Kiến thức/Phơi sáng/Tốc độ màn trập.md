@@ -9,16 +9,27 @@ tags: [sony-alpha-viet/kien-thuc]
 
 # Tốc độ màn trập
 
-**Tốc độ màn trập là khoảng thời gian cảm biến nhận ánh sáng, ghi bằng giây (1/1000s, 1/60s, 2s…): nhanh thì bắt dính chuyển động, chậm thì làm chuyển động nhòe thành vệt.**
+**Tốc độ màn trập là khoảng thời gian cảm biến nhận ánh sáng, ghi bằng giây như 1/1000s, 1/60s hay 2s. Tốc độ nhanh giúp bắt dính chuyển động, tốc độ chậm làm chuyển động nhòe thành vệt. Mỗi lần gấp đôi thời gian là thay đổi 1 stop ánh sáng.**
 
-## Hiểu nhanh
+## Tốc độ nhanh và chậm cho hình ảnh khác nhau thế nào
+
 - Mỗi lần gấp đôi thời gian (1/250 → 1/125) là **+1 stop** ánh sáng.
 - **Màn trập mặt phẳng tiêu cự** (focal-plane) gồm màn trước và màn sau. Ánh sáng đi qua khe hở giữa hai màn; tốc độ càng nhanh, khe càng hẹp.
-- Nhanh (1/1000s trở lên): đóng băng thể thao, chim bay, giọt nước. Chậm (1/15s trở xuống): nước chảy mượt, vệt đèn xe, cảm giác hỗn loạn. Xem [[Panning]], [[Phơi sáng dài]].
+
+| Tốc độ | Hình ảnh thu được |
+|---|---|
+| Nhanh (1/1000s trở lên) | Đóng băng thể thao, chim bay, giọt nước |
+| Chậm (1/15s trở xuống) | Nước chảy mượt, vệt đèn xe, cảm giác hỗn loạn |
+
+Xem [[Panning]], [[Phơi sáng dài]].
+
+## Mốc tốc độ an toàn khi cầm tay
+
 - Mốc an toàn khi cầm tay: không chậm hơn **1/tiêu cự** (ống 50mm → 1/50s; máy APS-C nhân thêm 1,5). Chống rung SteadyShot cho chậm thêm vài stop, nhưng **chỉ chống rung tay, không cứu được chủ thể chuyển động**.
 - Mốc tham khảo cho người: đứng yên 1/125s · đi lại 1/250s · chạy nhảy, thể thao 1/1000s trở lên.
 
-## Trên máy Sony
+## Chỉnh tốc độ màn trập trên máy Sony
+
 - Chế độ **S (Ưu tiên tốc độ màn trập)** hoặc **M**. BULB (giữ nút chụp bao lâu mở bấy lâu) có ở chế độ M.
 - **Loại màn trập** (Shutter Type): màn trập cơ, điện tử hoặc tự động. Màn trập điện tử chụp im lặng và nhanh hơn, nhưng có thể méo vật chuyển động nhanh và sọc dưới đèn LED/huỳnh quang (trừ cảm biến global shutter).
 - ISO AUTO có tham số **tốc độ tối thiểu** (ISO AUTO Min. SS): máy sẽ tăng ISO trước khi để tốc độ chậm hơn mức này. Xem [[Cài đặt nhanh trước buổi chụp]].

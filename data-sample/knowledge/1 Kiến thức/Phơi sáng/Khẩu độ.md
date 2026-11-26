@@ -1,6 +1,6 @@
 ---
 title: Khẩu độ
-aliases: [Aperture, F-number, số f, f-stop, Iris, mở khẩu, khép khẩu]
+aliases: [Aperture, F-number, số f, f-stop, Iris, mở khẩu, khép khẩu, khẩu độ mở lớn nhất, khẩu độ lớn nhất, khẩu độ nhỏ nhất, khẩu độ tối đa]
 level: cơ bản
 sources: [ESSENTIAL PHOTO (@thaikpham), Sony GTP Photo Basic v2.1]
 menu: ["Aperture → Khẩu độ", "Aperture Priority → Ưu tiên khẩu độ"]
@@ -9,18 +9,32 @@ tags: [sony-alpha-viet/kien-thuc]
 
 # Khẩu độ
 
-**Khẩu độ là độ mở của lỗ sáng trong ống kính, ghi bằng số f (F2.8, F8…): số f càng nhỏ thì lỗ càng to, ảnh càng sáng và hậu cảnh càng mờ.**
+**Khẩu độ là độ mở của lỗ sáng trong ống kính, ghi bằng số f như F2.8 hay F8. Số f càng nhỏ thì lỗ càng to, ảnh càng sáng và hậu cảnh càng mờ; số f càng lớn thì ảnh càng tối nhưng nét sâu hơn từ trước ra sau.**
 
-## Hiểu nhanh
+## Dãy số f chuẩn và mỗi bước là bao nhiêu stop
+
 - Dãy số f chuẩn, mỗi bước là **1 stop** (giảm một nửa ánh sáng): F1.4 → F2 → F2.8 → F4 → F5.6 → F8 → F11 → F16 → F22. Mỗi bước nhân số f với khoảng 1,4 (√2).
 - Vì sao √2: số f là tỷ lệ tiêu cự / đường kính lỗ, còn lượng sáng tỷ lệ với **diện tích** lỗ. Đường kính nhỏ đi √2 lần thì diện tích nhỏ đi 2 lần.
 - **Gấp đôi số f (F2.8 → F5.6) = 2 stop = ánh sáng chỉ còn 1/4.**
-- Mở khẩu (số f nhỏ): sáng hơn, độ sâu trường ảnh nông, xóa phông mạnh. Khép khẩu (số f lớn): tối hơn, nét sâu từ trước ra sau.
 - Máy hiện nay chỉnh theo bước 1/3 stop: F5.6 → F6.3 → F7.1 → F8.
 
-## Trên máy Sony
+## Mở khẩu và khép khẩu ảnh đổi thế nào
+
+- Mở khẩu (số f nhỏ): sáng hơn, độ sâu trường ảnh nông, xóa phông mạnh. Khép khẩu (số f lớn): tối hơn, nét sâu từ trước ra sau.
+
+## Chỉnh khẩu độ trên máy Sony
+
 - Chế độ **A (Ưu tiên khẩu độ)** hoặc **M (Phơi sáng thủ công)**: xoay bánh xe trước/sau để đổi số f. Một số ống kính có vòng khẩu, đặt về "A" thì thân máy điều khiển.
-- Gợi ý nhanh: chân dung F1.8–F2.8 · nhóm người F4–F5.6 · phong cảnh F8–F11. Khép quá F16 ảnh có thể mềm đi do nhiễu xạ.
+
+## Nên chọn khẩu độ bao nhiêu cho từng thể loại
+
+| Thể loại | Khẩu độ gợi ý |
+|---|---|
+| Chân dung | F1.8–F2.8 |
+| Nhóm người | F4–F5.6 |
+| Phong cảnh | F8–F11 |
+
+Khép quá F16 ảnh có thể mềm đi do nhiễu xạ.
 
 ## Giảng thế nào
 - Câu dễ nhớ (slide Essential Photography): **"Càng mở khẩu, càng xóa phông."**
