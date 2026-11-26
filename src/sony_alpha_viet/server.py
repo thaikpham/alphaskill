@@ -214,6 +214,16 @@ def xls_write(src: str, out: str, proposals: list[dict], overwrite: bool = False
 
 
 @tool
+def xls_apply_agreed(folder: str, agreed_csv: str, out_folder: str, apply_overflow: bool = False, width_csv: str = "") -> dict:
+    """Áp bảng thuật ngữ đã chốt (CSV: English, Vietnamese, AGREED) vào mọi *VN*.xls trong folder, ghi bản sao ra out_folder.
+    Chỉ ghi AN/AU/AV: đề xuất mới (AU Suggest, AV lý do 'cũ' → 'mới'), sửa đề xuất cũ (giữ AU, AV '| Review 2: …'),
+    xóa đề xuất khi AGREED trùng bản hiện tại. Dòng AGREED ước lượng tràn khung: bỏ qua và liệt kê trong width_csv,
+    hoặc apply_overflow=True thì vẫn ghi, AV mở đầu 'Width to be confirmed with SonyTool (estimated overflow).'"""
+    from .xls import agreed
+    return agreed.apply_folder(folder, agreed_csv, out_folder, apply_overflow, width_csv)
+
+
+@tool
 def xls_review(folder: str, out_csv: str = "") -> dict:
     """Rà soát cả thư mục *TranslationCheck_VN.xls (chấm AN nếu có, không thì VI; kiểm lại cả chuỗi đã duyệt):
     lỗi quy tắc, tràn khung, thuật ngữ khóa, lệch bộ nhớ, cùng chuỗi gốc mà chọn từ khác dù vừa khung.
@@ -589,7 +599,7 @@ def colorlab_pack(sources: list[str], name: str, repo: str = "", overwrite: bool
 
 
 WRITE_TOOLS = ("record_term", "record_feedback", "remember_translation", "ban_term", "keep_english", "learn",
-               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs", "ingest_helpguide", "add_knowledge", "colorlab_pack")
+               "disable_rule", "commit_memory", "xls_read", "xls_write", "xls_review", "xls_apply_agreed", "obsidian_export", "obsidian_import", "obsidian_audit_note", "ingest_docs", "ingest_helpguide", "add_knowledge", "colorlab_pack")
 
 
 def make_public() -> None:

@@ -26,7 +26,7 @@ Công cụ: MCP server `sony-alpha-viet` (tools `mcp__sony-alpha-viet__*`) — b
 Loại UI: `Tiêu đề menu` · `Mục menu` · `Giá trị` · `Nút` · `Thông báo` · `Trợ giúp` · `Biểu tượng/nhãn ngắn`.
 
 ## File Sony *_VN.xls
-- **Rà toàn bộ một bộ file đã dịch:** `mcp__sony-alpha-viet__xls_review(folder, out_csv)` chấm mọi dòng của mọi file trong thư mục. Bản được chấm là **AN nếu có, không thì cột VI**. Cột VI là bản cũ của Sony, quét riêng cột VI hoặc nhầm sang thư mục nguồn sẽ ra hàng nghìn lỗi giả (đã gặp). Chỉ ghi AN cho **lỗi thật**: sai nghĩa, sai thuật ngữ khóa, chính tả hay mã hóa, lệch bộ nhớ đã duyệt. Dòng BORDER/OVER/CHECK đưa vào file rà soát độ rộng (CSV, note Obsidian) kèm gợi ý; không ghi AN khi chưa xác nhận bằng SonyTool. Ghi kết quả ra thư mục mới.
+- **Rà toàn bộ một bộ file đã dịch:** `mcp__sony-alpha-viet__xls_review(folder, out_csv)` chấm mọi dòng của mọi file trong thư mục. Bản được chấm là **AN nếu có, không thì cột VI**. Cột VI là bản cũ của Sony, quét riêng cột VI hoặc nhầm sang thư mục nguồn sẽ ra hàng nghìn lỗi giả (đã gặp). Chỉ ghi AN cho **lỗi thật**: sai nghĩa, sai thuật ngữ khóa, chính tả hay mã hóa, lệch bộ nhớ đã duyệt. Dòng BORDER/OVER/CHECK đưa vào file rà soát độ rộng (CSV, note Obsidian) kèm gợi ý; không ghi AN khi chưa xác nhận bằng SonyTool, trừ khi người dùng bảo áp luôn: khi đó AV mở đầu bằng "Width to be confirmed with SonyTool (estimated overflow)." Ghi kết quả ra thư mục mới.
   - `variant_word_choice`: cùng chuỗi gốc (bỏ qua icon/biến) mà dịch khác, và bản đa số vẫn vừa khung của dòng lệch. Đây mới là lệch thật. Bản ngắn ở khung hẹp là rút gọn hợp lệ, không báo.
   - `locked_term` chỉ là cảnh báo: thuật ngữ khóa có thể gắn một ngữ cảnh (Active = Chủ động là của SteadyShot; giá trị bật công cụ nhà phát triển là "Hoạt động"). Đọc cột Reference trước khi sửa.
   - Trước khi viết AV kiểu "Glossary X = Y", tra lại glossary (`lookup_term`). Đã gặp AV trích sai glossary để biện minh cho bản dịch trái thuật ngữ khóa (S164929).
@@ -34,6 +34,15 @@ Loại UI: `Tiêu đề menu` · `Mục menu` · `Giá trị` · `Nút` · `Thô
 - **Không mở rồi lưu file Sony bằng LibreOffice/Excel**: lưu đè có thể cắt các dòng phụ của Sony (đã gặp: 7.094 → 2.002 dòng) và đổi `\r\n` trong tiêu đề. Nếu số dòng sheet VN giảm bất thường so với bản gốc, báo người dùng trước khi dùng file.
 - Ghi: `mcp__sony-alpha-viet__xls_write(src, out, proposals)` — chỉ ghi AN (đề xuất), AU (loại lỗi), AV (lý do bằng **tiếng Anh**, Sony Nhật đọc). Luôn ghi ra file mới. Chỉ đề xuất khi thực sự khác bản hiện tại.
 - **Rà lần 2 (dòng đã có AN):** `xls_write(..., overwrite=True)`; mặc định engine từ chối ghi vào ô đã có giá trị. Giữ AU cũ, nối lý do mới vào AV: `<AV cũ> | Review 2: …`. Trình tự: sao lưu thư mục output → ghi ra thư mục mới → so mọi ô khác của sheet VN phải giữ nguyên → mới chép đè vào output → `remember_translation(en, vi, tm_id=S#)` cho từng chuỗi đã sửa để bộ nhớ khớp file.
+- **Áp bảng thuật ngữ đã chốt vào cả bộ file** (bảng cross-check gồm English, Vietnamese = bản đang dùng, AGREED): `mcp__sony-alpha-viet__xls_apply_agreed(folder, agreed_csv, out_folder, apply_overflow=False, width_csv)`.
+  - Mỗi dòng ghép với AGREED theo English. Nếu một chuỗi English có nhiều dòng AGREED, chọn dòng có cột Vietnamese trùng bản hiện tại (AN nếu có, không thì VI).
+  - Không đụng dòng giữ tiếng Anh, dòng không có trong bảng, dòng mà AN đã bằng AGREED.
+  - AGREED trùng VI mà đang có AN: xóa AN/AU/AV.
+  - Đề xuất mới: AN = AGREED; AU "Suggest a better translation" ("By a spelling error" nếu chỉ khác dấu hoặc hoa thường); AV là lý do cụ thể dạng `'cũ' → 'mới'`, câu viết lại nhiều thì ghi lý do chung.
+  - Đã có AN khác AGREED: AN = AGREED, giữ AU, AV = `<AV cũ> | Review 2: <lý do>`.
+  - Dòng AGREED ước lượng tràn khung: mặc định bỏ qua và liệt kê trong `width_csv` để kiểm bằng SonyTool. Người dùng bảo áp luôn thì dùng `apply_overflow=True`; AV có thêm ghi chú SonyTool ở trên.
+  - Bản sao Google Sheets của bộ file: làm cùng quy tắc. Ghi qua tab phụ (dữ liệu khóa theo số dòng + công thức), đọc lại so với kế hoạch, rồi mới dán giá trị vào AN/AU/AV và xóa tab phụ. Không gõ tay hàng nghìn ô.
+  - File gộp `*_EN_JP_VN`: chỉ sửa cột Vietnamese, đặt bằng bản cuối của từng S# trong bộ file (AN nếu có, không thì VI) để hai nơi khớp nhau.
 - Có file gộp `*_EN_JP_VN.xls` (Sheet1: S#, JP, EN, VI) thì sửa cột VI cùng lúc: `xls.biff.apply_cells(stream, {(row0, 3): vi}, overwrite=True, sheet="Sheet1")`.
 - AU hợp lệ: Suggest a better translation · By a fatal error as photographic terms · By a spelling error · By a grammatical error · By the other reason.
 

@@ -124,11 +124,11 @@ Nếu thiếu model máy, ngôn ngữ nguồn, từ khóa chính -> hỏi 1 lư�
 
 ## Tool MCP
 
-46 tool, theo chế độ:
+47 tool, theo chế độ:
 
 - **Dữ liệu:** data_info, get_guidelines
 - **A · Dịch menu:** lookup_term, search_memory, prepare_batch, check_translation, check_fit, suggest_short, consistency_report
-- **A · File Sony *_VN.xls:** xls_read, xls_review, xls_write
+- **A · File Sony *_VN.xls:** xls_read, xls_review, xls_write, xls_apply_agreed
 - **Ghi nhớ, tự học:** record_term, record_feedback, remember_translation, ban_term, keep_english, learn, review_memory, disable_rule, commit_memory
 - **B · Tài liệu Sony:** lookup_prose_term, ingest_docs, ingest_helpguide, search_docs, docs_term_report
 - **C · Blog SEO + AIO:** slugify, count_words, style_lint, blog_audit, seo_audit, faq_schema, aio_audit, paa_generator, citation_checker, freshness_check, brand_voice_checker

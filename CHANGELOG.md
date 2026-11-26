@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- `xls_apply_agreed` (module `xls/agreed.py`): áp bảng thuật ngữ đã chốt (English, Vietnamese, AGREED) vào cả thư mục `*_VN.xls`, chỉ ghi AN/AU/AV theo quy tắc đã dùng cho bộ ILDC ①–⑧ ngày 26/11/2026: đề xuất mới, `| Review 2:` cho đề xuất cũ, xóa đề xuất khi AGREED trùng bản hiện tại, dòng có thể tràn khung bỏ qua (liệt kê CSV) hoặc ghi kèm "Width to be confirmed with SonyTool". `sony-menu-terms.md` ghi quy trình, gồm cả cách làm trên bản Google Sheets và file gộp EN_JP_VN.
 - Thuật ngữ và văn phong từ bảng All Terms (7.826 chuỗi) có trainer Sony sửa, người dùng duyệt 25/11/2026. Áp cho dữ liệu bằng `scripts/migrate_2026_11_25.py <thư mục data>` (chạy lại nhiều lần không sao).
   - Đổi thuật ngữ khóa: Recording Media = **thẻ ghi** (thay quyết định 16/11; Memory Card, Media, Rec. Media Settings vẫn là thẻ nhớ); My Dial = **vòng xoay của tôi**; Developer Tools = **công cụ nhà phát triển**; Mass Storage giữ tiếng Anh (tắt quy tắc r078 "Lưu trữ"); tên tính năng ghép Preset dịch **đặt trước** (Lấy nét/zoom đặt trước, Cân bằng trắng đặt trước), Preset đứng riêng vẫn giữ tiếng Anh.
   - Theo trainer: Program Auto = chương trình tự động; Red Eye Reduction = giảm đỏ mắt.
