@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RAW_PREFIX = "https://raw.githubusercontent.com/thaikpham/alphaskill/main/"
 RAW_URL = re.compile(r"https://raw\.githubusercontent\.com/thaikpham/alphaskill/main/([^)\s]+)")
 BUNDLES = ["llms-full.txt", "llms-blog.txt", "llms-knowledge.txt"]
-CORE_BUDGET = 95 * 1024  # build target is 90 KB; the test allows 95 KB
+CORE_BUDGET = 110 * 1024  # build target is 105 KB; the test allows 110 KB
 
 
 def _load_build():

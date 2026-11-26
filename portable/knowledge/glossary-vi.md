@@ -13,6 +13,9 @@
 |---|---|---|---|---|
 | Aperture | 絞り | Khẩu độ 🔒 | khẩu độ | "f/2.8" giữ dấu chấm |
 | Aperture Priority | 絞り優先 | Ưu tiên khẩu độ | ưu tiên khẩu độ (chế độ A) | |
+| Shutter Priority | シャッタースピード優先 | Ưu tiên tốc độ màn trập 🔒 | ưu tiên tốc độ màn trập (chế độ S) | |
+| Program Auto | プログラムオート | Chương trình tự động | chương trình tự động (chế độ P) | |
+| Manual Exposure | マニュアル露出 | Phơi sáng thủ công | phơi sáng thủ công (chế độ M) | |
 | Shutter Speed | シャッタースピード | Tốc độ màn trập 🔒 | tốc độ màn trập | Cấm: tốc độ cửa trập/màn chập |
 | Shutter | シャッター | Màn trập 🔒 | màn trập | |
 | Shutter Button | シャッターボタン | Nút chụp 🔒 | nút chụp | |
@@ -35,6 +38,7 @@
 | Eye AF | 瞳AF | Eye AF | lấy nét mắt (Eye AF) | Menu giữ tên Sony (danh sách ngoại lệ MCP) |
 | Face/Eye Priority in AF | AF時の顔/瞳優先 | AF ưu tiên mặt/mắt | ưu tiên khuôn mặt/mắt khi AF | |
 | Subject Recognition | 被写体認識 | Nhận dạng chủ thể (ngắn: Nhận dạng) | nhận dạng chủ thể | Không dùng "nhận diện" |
+| Identification Target | — | Đối tượng nhận diện | đối tượng nhận diện | Ngoại lệ duy nhất dùng "nhận diện" |
 | Real-time Tracking | リアルタイムトラッキング | Theo dõi thời gian thực | theo dõi thời gian thực (Real-time Tracking) | Tracking = theo dõi 🔒, cấm "dò" |
 | Tracking | トラッキング | Theo dõi 🔒 | theo dõi | |
 | Defocus | — | Xóa phông 🔒 | xóa phông | Không dùng "mất nét" |
@@ -66,7 +70,10 @@
 |---|---|---|---|---|
 | Full Frame / Full-frame | フルサイズ | Toàn khung 🔒 | full-frame | Văn xuôi không dùng "khung hình đầy đủ" |
 | APS-C / Super 35mm | APS-C / Super 35mm | giữ nguyên | giữ nguyên | |
-| Memory Card | メモリーカード | Thẻ nhớ | thẻ nhớ | |
+| Memory Card | メモリーカード | Thẻ nhớ | thẻ nhớ | Cả Media, Rec. Media Settings |
+| Recording Media | 記録メディア | Thẻ ghi 🔒 | thẻ ghi | Cấm "phương tiện ghi hình" |
+| Mass Storage | マスストレージ | Mass Storage 🔒 | Mass Storage | Không dịch "Lưu trữ" |
+| Shoe / Multi Interface Shoe | — | Ngàm / ngàm đa giao diện | ngàm | Không dùng "đế" |
 | Firmware | ファームウェア | Firmware 🔒 | firmware | Giữ nguyên — ai cũng hiểu (duyệt 02/11/2026) |
 | Version | バージョン | Phiên bản | phiên bản | |
 | XAVC S / HS / S-I | — | giữ nguyên | giữ nguyên | |
@@ -78,10 +85,12 @@ Nguyên tắc: giữ tiếng Anh khi bản dịch tiếng Việt **không giúp 
 |---|---|---|---|---|
 | Zoom | ズーム | Zoom 🔒 | zoom | Range of Zoom Assist = Dải hỗ trợ Zoom; Digital Zoom = Zoom số; Clear Image Zoom = Zoom rõ nét |
 | Time Code / timecode | タイムコード | Time Code 🔒 | timecode | Time Code Make = Tạo mã Time Code; Time Code Run = Chạy Time Code |
-| Preset | プリセット | Preset 🔒 | preset | Preset = Preset; Preset Name = Tên Preset |
+| Preset | プリセット | Preset 🔒 | preset | Preset = Preset; Preset Name = Tên Preset; Time Code Make: Preset |
 | Free Run | フリーラン | Chạy tự do | chạy tự do | (dịch được, rõ nghĩa) |
 
-Cấm: "thu phóng" (khi EN là Zoom), "mã thời gian", "đặt trước".
+Cấm: "thu phóng" (khi EN là Zoom), "mã thời gian", "đặt trước" khi Preset đứng riêng hoặc là giá trị.
+
+Tên tính năng ghép dịch "đặt trước" 🔒: Lấy nét/zoom đặt trước, Cân bằng trắng đặt trước.
 
 ## 7. Giữ nguyên (mọi chế độ)
 Sony, Alpha, α, Firmware, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, ISO, RAW, JPEG, HEIF, S-Log2/3, S-Gamut3(.Cine), S-Cinetone, HLG, XAVC (S/HS/S-I), CFexpress, SDXC, UHS-I/II, Wi-Fi, Bluetooth, HDMI, USB, FTP, Creators' App, Imaging Edge Mobile, Monitor & Control, Transfer & Tagging. Danh sách đầy đủ cho menu: `get_guidelines("exceptions")`.
@@ -98,7 +107,7 @@ Sony, Alpha, α, Firmware, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, I
 | Flash Comp. | — | Bù flash | bù flash | |
 | Fill-flash | — | Flash cưỡng bức | flash cưỡng bức | |
 | External Flash | — | Flash ngoài | flash ngoài | |
-| Red Eye Reduction | — | Giảm mắt đỏ | giảm mắt đỏ | |
+| Red Eye Reduction | — | Giảm đỏ mắt | giảm đỏ mắt | Trainer Sony sửa, duyệt 25/11/2026 |
 | Slow Sync. | — | Đồng bộ chậm | đồng bộ chậm | |
 | Rear Sync. | — | Đồng bộ sau | đồng bộ sau | |
 | Trigger | — | Bộ kích | bộ kích | |
@@ -150,5 +159,13 @@ Sony, Alpha, α, Firmware, tên model (A7 IV, A7R V, ZV-E1, FX3…), BIONZ XR, I
 | FTP Server | — | Máy chủ FTP | máy chủ FTP | Giữ FTP (mục 7) |
 | Smartphone Connect | — | Kết nối smartphone | kết nối smartphone | |
 
-## 12. Thuật ngữ mới đề xuất
+## 12. Đã chốt 25/11/2026 (trainer Sony)
+
+| EN | Menu OSD | Ghi chú |
+|---|---|---|
+| My Dial | Vòng xoay của tôi 🔒 | Thay "Đĩa xoay của tôi" |
+| Developer Tools | Công cụ nhà phát triển 🔒 | Active = Hoạt động |
+| Playback | Xem lại 🔒 | Được dùng "tốc độ phát lại" (S&Q), phát lại ghi chú thoại |
+
+## 13. Thuật ngữ mới đề xuất
 Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xuất, chưa chốt]` cho tới lúc đó.

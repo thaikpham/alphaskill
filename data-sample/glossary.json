@@ -13,6 +13,12 @@
   "locked": true
  },
  {
+  "en": "Action for No Rangefind",
+  "vi": "khi không bắt được nét",
+  "short": "khi không bắt được nét",
+  "category": "all-terms-2026-11-25"
+ },
+ {
   "en": "Active",
   "vi": "chủ động",
   "short": "chủ động",
@@ -244,6 +250,12 @@
   "category": "ui-generic"
  },
  {
+  "en": "Auto Framing",
+  "vi": "tự động căn khung",
+  "short": "tự động căn khung",
+  "category": "all-terms-2026-11-25"
+ },
+ {
   "en": "Auto Power OFF Temp.",
   "vi": "nhiệt độ tự tắt nguồn",
   "short": "nhiệt độ tự tắt",
@@ -285,6 +297,12 @@
   "vi": "AWB",
   "short": "AWB",
   "category": "color"
+ },
+ {
+  "en": "AWB Transition Speed",
+  "vi": "tốc độ chuyển AWB",
+  "short": "tốc độ chuyển AWB",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Back",
@@ -383,6 +401,12 @@
   "category": "color"
  },
  {
+  "en": "Bright Monitoring",
+  "vi": "tăng sáng Live View",
+  "short": "tăng sáng Live View",
+  "category": "all-terms-2026-11-25"
+ },
+ {
   "en": "Burst",
   "vi": "chụp loạt",
   "short": "chụp loạt",
@@ -393,6 +417,12 @@
   "vi": "nút",
   "short": "nút",
   "category": "custom"
+ },
+ {
+  "en": "Button Navigator",
+  "vi": "hướng dẫn nút",
+  "short": "hướng dẫn nút",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "C2PA",
@@ -523,16 +553,35 @@
   "note": "Report. If still too long: \"Kết nối/Từ xa\"."
  },
  {
+  "en": "Cnt Shoot Speed Boost",
+  "vi": "tăng tốc chụp liên tục",
+  "short": "tăng tốc chụp liên tục",
+  "category": "all-terms-2026-11-25",
+  "note": "Continuous Shooting Speed Boost."
+ },
+ {
   "en": "Color",
   "vi": "màu",
   "short": "màu",
   "category": "color"
  },
  {
+  "en": "Color Correction",
+  "vi": "hiệu chỉnh màu",
+  "short": "hiệu chỉnh màu",
+  "category": "all-terms-2026-11-25"
+ },
+ {
   "en": "Color Gamut",
   "vi": "không gian màu",
   "short": "không gian màu",
   "category": "color"
+ },
+ {
+  "en": "Color Invert",
+  "vi": "đảo màu",
+  "short": "đảo màu",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Color Temp./Filter",
@@ -579,6 +628,12 @@
   "vi": "đã hoàn tất.",
   "short": "đã hoàn tất.",
   "category": "ui-generic"
+ },
+ {
+  "en": "Composite RAW Sht.",
+  "vi": "chụp RAW tổng hợp",
+  "short": "chụp RAW tổng hợp",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Compressed",
@@ -747,16 +802,24 @@
  },
  {
   "en": "Developer Tools",
-  "vi": "công cụ lập trình",
-  "short": "công cụ lập trình",
+  "vi": "công cụ nhà phát triển",
+  "short": "công cụ nhà phát triển",
   "category": "rev3",
-  "locked": true
+  "locked": true,
+  "note": "Duyệt 25/11/2026. Active = 'Hoạt động'."
  },
  {
   "en": "Device",
   "vi": "thiết bị",
   "short": "thiết bị",
   "category": "ui-generic"
+ },
+ {
+  "en": "Device Certificate",
+  "vi": "chứng chỉ thiết bị",
+  "short": "chứng chỉ thiết bị",
+  "category": "all-terms-2026-11-25",
+  "note": "C2PA."
  },
  {
   "en": "Dial",
@@ -890,6 +953,12 @@
   "category": "drive"
  },
  {
+  "en": "Dual Gain Shooting",
+  "vi": "chụp độ lợi kép",
+  "short": "chụp độ lợi kép",
+  "category": "all-terms-2026-11-25"
+ },
+ {
   "en": "Dynamic Active",
   "vi": "chủ động nâng cao",
   "short": "chủ động nâng cao",
@@ -985,6 +1054,12 @@
   "category": "ui-generic"
  },
  {
+  "en": "Exp. Value Expand",
+  "vi": "mở rộng giá trị phơi sáng",
+  "short": "mở rộng giá trị phơi sáng",
+  "category": "all-terms-2026-11-25"
+ },
+ {
   "en": "Expand Spot",
   "vi": "điểm mở rộng",
   "short": "điểm mở rộng",
@@ -996,6 +1071,12 @@
   "short": "phơi sáng",
   "category": "exposure",
   "note": "Noun. \"Độ phơi sáng\" only when a value is meant."
+ },
+ {
+  "en": "Exposure Assist",
+  "vi": "hỗ trợ phơi sáng",
+  "short": "hỗ trợ phơi sáng",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Exposure Comp.",
@@ -1184,6 +1265,13 @@
   "note": "JPEG/HEIF image quality (local team decision). Extra Fine = siêu nét. \"Soft skin\" stays làm mịn da."
  },
  {
+  "en": "Fingerprint",
+  "vi": "fingerprint",
+  "short": "fingerprint",
+  "category": "all-terms-2026-11-25",
+  "note": "Của chứng chỉ; không dịch 'vân tay'."
+ },
+ {
   "en": "Fireworks",
   "vi": "pháo hoa",
   "short": "pháo hoa",
@@ -1365,6 +1453,13 @@
   "category": "custom"
  },
  {
+  "en": "Footer",
+  "vi": "thanh dưới",
+  "short": "thanh dưới",
+  "category": "all-terms-2026-11-25",
+  "note": "Footer Custom = tùy chỉnh thanh dưới."
+ },
+ {
   "en": "Format",
   "vi": "định dạng",
   "short": "định dạng",
@@ -1395,6 +1490,12 @@
   "short": "căn khung",
   "category": "drive",
   "note": "Auto Framing."
+ },
+ {
+  "en": "Framing Stabilizer",
+  "vi": "ổn định căn khung",
+  "short": "ổn định căn khung",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Front",
@@ -1482,6 +1583,12 @@
   "vi": "hỗ trợ hiển thị gamma",
   "short": "hỗ trợ gamma",
   "category": "color"
+ },
+ {
+  "en": "Gamma Display Assist",
+  "vi": "hỗ trợ hiển thị Gamma",
+  "short": "hỗ trợ hiển thị Gamma",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Gamut",
@@ -1588,6 +1695,12 @@
   "category": "ui-generic"
  },
  {
+  "en": "High Contrast",
+  "vi": "tương phản cao",
+  "short": "tương phản cao",
+  "category": "all-terms-2026-11-25"
+ },
+ {
   "en": "High Contrast Mono.",
   "vi": "đơn sắc tương phản cao",
   "short": "đơn sắc tương phản",
@@ -1662,6 +1775,13 @@
   "vi": "biểu tượng",
   "short": "biểu tượng",
   "category": "ui-generic"
+ },
+ {
+  "en": "Identification Target",
+  "vi": "đối tượng nhận diện",
+  "short": "đối tượng nhận diện",
+  "category": "all-terms-2026-11-25",
+  "note": "Khác Recognition Target (nhận dạng)."
  },
  {
   "en": "Illumination",
@@ -1743,6 +1863,12 @@
   "vi": "nhập",
   "short": "nhập",
   "category": "network"
+ },
+ {
+  "en": "In-camera Photo Cropping",
+  "vi": "cắt ảnh trong máy",
+  "short": "cắt ảnh trong máy",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Index",
@@ -2094,10 +2220,11 @@
  },
  {
   "en": "Mass Storage",
-  "vi": "lưu trữ",
-  "short": "lưu trữ",
+  "vi": "Mass Storage",
+  "short": "Mass Storage",
   "category": "rev3",
-  "locked": true
+  "locked": true,
+  "note": "Giữ tiếng Anh (duyệt 25/11/2026)."
  },
  {
   "en": "Mbps",
@@ -2300,11 +2427,11 @@
  },
  {
   "en": "My Dial",
-  "vi": "đĩa xoay của tôi",
-  "short": "đĩa xoay của tôi",
+  "vi": "vòng xoay của tôi",
+  "short": "vòng xoay của tôi",
   "category": "rev3",
   "locked": true,
-  "note": "Quy tắc mục 7"
+  "note": "Duyệt 25/11/2026."
  },
  {
   "en": "My Dial Settings",
@@ -2357,6 +2484,12 @@
   "category": "setup"
  },
  {
+  "en": "Network Streaming",
+  "vi": "truyền phát mạng",
+  "short": "truyền phát mạng",
+  "category": "all-terms-2026-11-25"
+ },
+ {
   "en": "Night Portrait",
   "vi": "chân dung đêm",
   "short": "C.dung đêm",
@@ -2400,6 +2533,12 @@
   "short": "giảm nhiễu",
   "category": "color",
   "note": "Audio NR -> 'giảm ồn'."
+ },
+ {
+  "en": "NR Shooting",
+  "vi": "chụp giảm nhiễu",
+  "short": "chụp giảm nhiễu",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Number",
@@ -2602,7 +2741,7 @@
   "short": "xem lại",
   "category": "rev3",
   "locked": true,
-  "note": "âm thanh ghi chú thoại: 'phát'"
+  "note": "âm thanh ghi chú thoại: 'phát'. Được dùng 'tốc độ phát lại' (quay chuyển động chậm) và 'phát lại' âm thanh ghi chú thoại."
  },
  {
   "en": "Playback Option",
@@ -2707,23 +2846,31 @@
   "short": "Preset",
   "category": "ui-generic",
   "locked": true,
-  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+  "note": "Đứng riêng giữ tiếng Anh; tên tính năng ghép dịch 'đặt trước' (duyệt 25/11/2026)."
  },
  {
   "en": "Preset Focus",
-  "vi": "lấy nét Preset",
-  "short": "lấy nét Preset",
+  "vi": "lấy nét đặt trước",
+  "short": "lấy nét đặt trước",
   "category": "focus",
   "locked": true,
-  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+  "note": "Duyệt 25/11/2026."
  },
  {
   "en": "Preset Focus/Zoom",
-  "vi": "lấy nét/zoom Preset",
-  "short": "lấy nét/zoom Preset",
+  "vi": "lấy nét/zoom đặt trước",
+  "short": "lấy nét/zoom đặt trước",
   "category": "focus",
   "locked": true,
-  "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"
+  "note": "Duyệt 25/11/2026."
+ },
+ {
+  "en": "Preset White Balance",
+  "vi": "cân bằng trắng đặt trước",
+  "short": "cân bằng trắng đặt trước",
+  "category": "all-terms-2026-11-25",
+  "locked": true,
+  "note": "Duyệt 25/11/2026."
  },
  {
   "en": "Preview",
@@ -2763,10 +2910,10 @@
  },
  {
   "en": "Program Auto",
-  "vi": "tự động chương trình",
+  "vi": "chương trình tự động",
   "short": "chương trình",
   "category": "exposure",
-  "note": "Mode P. Shorter than \"tự động theo chương trình\". Tight icon layout W200: 'Chương trình' (P)."
+  "note": "Mode P (duyệt 25/11/2026)."
  },
  {
   "en": "Protect",
@@ -2881,6 +3028,19 @@
   "note": "FATAL in current: \"tỷ lệ khung hình\" means aspect ratio."
  },
  {
+  "en": "REC Lamp",
+  "vi": "đèn ghi hình",
+  "short": "đèn ghi hình",
+  "category": "all-terms-2026-11-25"
+ },
+ {
+  "en": "Rec. Media dur HDMI Output",
+  "vi": "ghi thẻ khi xuất HDMI",
+  "short": "ghi thẻ khi xuất HDMI",
+  "category": "all-terms-2026-11-25",
+  "note": "Recording Media during HDMI Output."
+ },
+ {
   "en": "Rec. Media Settings",
   "vi": "cài đặt thẻ nhớ",
   "short": "cài đặt thẻ nhớ",
@@ -2928,17 +3088,18 @@
  },
  {
   "en": "Recording Media",
-  "vi": "thẻ nhớ",
-  "short": "thẻ nhớ",
+  "vi": "thẻ ghi",
+  "short": "thẻ ghi",
   "category": "rev3",
   "locked": true,
-  "note": "Người dùng duyệt 16/11/2026: Recording Media = thẻ nhớ, không dùng 'phương tiện ghi hình'."
+  "note": "Duyệt 25/11/2026. Memory Card, Media, Rec. Media Settings vẫn là thẻ nhớ. Cấm 'phương tiện ghi hình'."
  },
  {
   "en": "Red Eye Reduction",
-  "vi": "giảm mắt đỏ",
-  "short": "giảm mắt đỏ",
-  "category": "flash"
+  "vi": "giảm đỏ mắt",
+  "short": "giảm đỏ mắt",
+  "category": "flash",
+  "note": "Duyệt 25/11/2026."
  },
  {
   "en": "Regist. AF Area",
@@ -2958,6 +3119,12 @@
   "short": "chụp",
   "category": "drive",
   "note": "Release w/o Card -> \"Chụp khi không có thẻ\"; \"Release w/o Lens\" -> \"Chụp khi không có ống kính\"."
+ },
+ {
+  "en": "Release w/o Lens",
+  "vi": "chụp không ống kính",
+  "short": "chụp không ống kính",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Remaining",
@@ -3101,6 +3268,12 @@
   "vi": "nhận dạng chủ thể",
   "short": "nhận dạng chủ thể",
   "category": "focus"
+ },
+ {
+  "en": "Scan and Tag",
+  "vi": "quét và gắn thẻ",
+  "short": "quét và gắn thẻ",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Scene Selection",
@@ -3320,6 +3493,12 @@
   "vi": "hiển thị khi chụp",
   "short": "hiển thị khi chụp",
   "category": "ui-generic"
+ },
+ {
+  "en": "Shooting for HDR",
+  "vi": "chụp HDR",
+  "short": "chụp HDR",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Shooting Interval",
@@ -3596,6 +3775,12 @@
   "vi": "tiêu chuẩn",
   "short": "chuẩn",
   "category": "ui-generic"
+ },
+ {
+  "en": "Star Shooting Mode",
+  "vi": "chế độ chụp sao",
+  "short": "chế độ chụp sao",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Start",
@@ -4012,6 +4197,13 @@
   "note": "UB."
  },
  {
+  "en": "User Certificate",
+  "vi": "chứng chỉ người dùng",
+  "short": "chứng chỉ người dùng",
+  "category": "all-terms-2026-11-25",
+  "note": "C2PA."
+ },
+ {
   "en": "Value",
   "vi": "giá trị",
   "short": "giá trị",
@@ -4073,6 +4265,12 @@
   "vi": "âm lượng",
   "short": "âm lượng",
   "category": "audio"
+ },
+ {
+  "en": "Volume Photography Commands",
+  "vi": "lệnh chụp ảnh số lượng lớn",
+  "short": "lệnh chụp ảnh số lượng lớn",
+  "category": "all-terms-2026-11-25"
  },
  {
   "en": "Watercolor",

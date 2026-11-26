@@ -739,7 +739,9 @@
    "fallback": null,
    "source": "rev3",
    "hits": 0,
-   "count": 0
+   "count": 0,
+   "disabled": true,
+   "disabled_why": "Mass Storage giữ tiếng Anh (người dùng duyệt 25/11/2026)"
   },
   {
    "id": "r079",
@@ -1183,6 +1185,500 @@
    "note": "chỉ áp khi tràn khung",
    "hits": 0,
    "count": 0
+  },
+  {
+   "id": "t2500",
+   "pattern": "Không hợp lệ (với|ở|khi|vì|do|trong) ",
+   "replace": "Không khả dụng \\1 ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "Invalid = không khả dụng"
+  },
+  {
+   "id": "t2501",
+   "pattern": "Nhấn và giữ",
+   "replace": "Nhấn giữ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2502",
+   "pattern": "nhấn nút chụp xuống một nửa",
+   "replace": "nhấn nửa nút chụp",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2503",
+   "pattern": "chụp theo khoảng thời gian",
+   "replace": "chụp cách quãng",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "Interval Shooting = chụp cách quãng"
+  },
+  {
+   "id": "t2504",
+   "pattern": "Không thể thực hiện được\\.",
+   "replace": "Không thể thực hiện.",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2505",
+   "pattern": "nếu không có thao tác nào được thực hiện trong vòng",
+   "replace": "khi không có thao tác trong",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2506",
+   "pattern": "khi không hoạt động sau (\\d+ (?:giây|phút))",
+   "replace": "khi không có thao tác trong \\1",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2507",
+   "pattern": "Xoá",
+   "replace": "Xóa",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "dấu thanh kiểu mới"
+  },
+  {
+   "id": "t2508",
+   "pattern": "xoá",
+   "replace": "xóa",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "dấu thanh kiểu mới"
+  },
+  {
+   "id": "t2509",
+   "pattern": "phần mềm đặc biệt",
+   "replace": "phần mềm chuyên dụng",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2510",
+   "pattern": "Chiếu đèn flash",
+   "replace": "Nháy đèn flash",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2511",
+   "pattern": "chiếu đèn flash",
+   "replace": "nháy đèn flash",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2512",
+   "pattern": "trong khi xem lại",
+   "replace": "khi xem lại",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2513",
+   "pattern": "Có thể thực hiện (khi|nếu)",
+   "replace": "Dùng được \\1",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2514",
+   "pattern": "Sử dụng một thẻ nhớ",
+   "replace": "Hãy dùng thẻ nhớ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2515",
+   "pattern": "Được sử dụng khi",
+   "replace": "Dùng khi",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2516",
+   "pattern": "Chạy một ứng dụng hỗ trợ",
+   "replace": "Hãy chạy ứng dụng hỗ trợ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2517",
+   "pattern": "Tự động chương trình",
+   "replace": "Chương trình tự động",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "Program Auto (duyệt 25/11/2026)"
+  },
+  {
+   "id": "t2518",
+   "pattern": "đã chỉ định cho",
+   "replace": "đã gán cho",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "Assign = gán"
+  },
+  {
+   "id": "t2519",
+   "pattern": "^Chỉ định ",
+   "replace": "Gán ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "Assign = gán"
+  },
+  {
+   "id": "t2520",
+   "pattern": "^Vô hiệu hóa ",
+   "replace": "Tắt ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2521",
+   "pattern": "CF express",
+   "replace": "CFexpress",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "tên chuẩn"
+  },
+  {
+   "id": "t2522",
+   "pattern": "ở giá trị (\\d+(?:\\.\\d+)?p)",
+   "replace": "ở \\1",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2523",
+   "pattern": "khi máy được khởi chạy",
+   "replace": "khi khởi động máy",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2524",
+   "pattern": "ngày-giờ",
+   "replace": "ngày giờ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2525",
+   "pattern": "Ngày-giờ",
+   "replace": "Ngày giờ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2526",
+   "pattern": "ảnh được lọc",
+   "replace": "ảnh đã lọc",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2527",
+   "pattern": "thiết bị được kết nối",
+   "replace": "thiết bị đã kết nối",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2528",
+   "pattern": "Kích thước của vùng lấy nét",
+   "replace": "Kích thước vùng lấy nét",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2529",
+   "pattern": "Mặc dù được biểu thị bằng số nguyên nhưng tốc độ khung hình thực tế là",
+   "replace": "Dù hiển thị dạng số nguyên, tốc độ khung hình thực tế là",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2530",
+   "pattern": "chứng chỉ số gốc",
+   "replace": "chứng chỉ gốc",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2531",
+   "pattern": "chiều dài tiêu cự",
+   "replace": "tiêu cự",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2532",
+   "pattern": "([Cc])hứng chỉ cho C2PA",
+   "replace": "\\1hứng chỉ C2PA",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2533",
+   "pattern": "\\nChuyển sang thẻ nhớ",
+   "replace": "\nHãy chuyển sang thẻ nhớ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2534",
+   "pattern": "này\\. Chuyển sang",
+   "replace": "này. Hãy chuyển sang",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2535",
+   "pattern": "ngày sau đây",
+   "replace": "ngày dưới đây",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2536",
+   "pattern": "^Bật chọn ",
+   "replace": "Cho phép chọn ",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "Enables selection of = cho phép chọn"
+  },
+  {
+   "id": "t2537",
+   "pattern": "([Tt])ốc độ bít",
+   "replace": "\\1ốc độ bit",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "bit rate"
+  },
+  {
+   "id": "t2538",
+   "pattern": "([Tt])iết kiệm điện(?! năng)",
+   "replace": "\\1iết kiệm pin",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "Power Save = tiết kiệm pin"
+  },
+  {
+   "id": "t2539",
+   "pattern": "ID duy nhất được lấy",
+   "replace": "ID duy nhất đã thu được",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2540",
+   "pattern": "kiểm chứng",
+   "replace": "xác minh",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2541",
+   "pattern": " theo ngày này",
+   "replace": " của ngày này",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2542",
+   "pattern": "Hãy tìm dịch vụ sửa chữa\\.",
+   "replace": "Vui lòng mang máy đi sửa chữa.",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2543",
+   "pattern": "Chức năng này hiện đang bị (?:vô hiệu hóa|tắt)\\.",
+   "replace": "Chức năng này hiện đang tắt.",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2544",
+   "pattern": "Bạn có thể xóa cờ đoạn phim bằng cách nhấn nút hai lần\\.",
+   "replace": "Nhấn nút hai lần để xóa cờ đoạn phim.",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "t2545",
+   "pattern": "cao\\nhơn (SDXC\\s+[A-Za-z0-9]+(?:/[A-Za-z0-9]+)*(?:\\s+hoặc\\s+(?:thẻ nhớ\\s+)?CFexpress\\s+VPG\\d+)?|CFexpress\\s+VPG\\d+)",
+   "replace": "từ\\n\\1 trở lên",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "higher than <thẻ> = từ <thẻ> trở lên"
+  },
+  {
+   "id": "t2546",
+   "pattern": "cao hơn\\n(SDXC\\s+[A-Za-z0-9]+(?:/[A-Za-z0-9]+)*(?:\\s+hoặc\\s+(?:thẻ nhớ\\s+)?CFexpress\\s+VPG\\d+)?|CFexpress\\s+VPG\\d+)",
+   "replace": "từ\\n\\1 trở lên",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "higher than <thẻ> = từ <thẻ> trở lên"
+  },
+  {
+   "id": "t2547",
+   "pattern": "cao hơn (SDXC\\s+[A-Za-z0-9]+(?:/[A-Za-z0-9]+)*(?:\\s+hoặc\\s+(?:thẻ nhớ\\s+)?CFexpress\\s+VPG\\d+)?|CFexpress\\s+VPG\\d+)",
+   "replace": "từ \\1 trở lên",
+   "fallback": null,
+   "source": "all-terms-2026-11-25",
+   "added": "2026-11-25T00:00:00",
+   "hits": 0,
+   "count": 0,
+   "note": "higher than <thẻ> = từ <thẻ> trở lên"
   }
  ],
  "exact": {},
@@ -1216,8 +1712,8 @@
    "why": "Peaking = viền hỗ trợ lấy nét"
   },
   {
-   "pattern": "[Pp]hát lại",
-   "why": "Playback = xem lại"
+   "pattern": "(?<!tốc độ )[Pp]hát lại(?! âm thanh)(?! với ảnh đã có ghi chú thoại)",
+   "why": "Playback = xem lại (trừ 'tốc độ phát lại' và phát lại âm thanh ghi chú thoại, duyệt 25/11/2026)"
   },
   {
    "pattern": "[Tt]hiết lập lại",

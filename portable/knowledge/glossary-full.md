@@ -2,6 +2,42 @@
 
 Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã chốt, không tự đổi.
 
+## all-terms-2026-11-25 (31)
+
+| EN | VI | Ngắn | Ghi chú |
+|---|---|---|---|
+| Action for No Rangefind | khi không bắt được nét |  |  |
+| Auto Framing | tự động căn khung |  |  |
+| AWB Transition Speed | tốc độ chuyển AWB |  |  |
+| Bright Monitoring | tăng sáng Live View |  |  |
+| Button Navigator | hướng dẫn nút |  |  |
+| Cnt Shoot Speed Boost | tăng tốc chụp liên tục |  | Continuous Shooting Speed Boost. |
+| Color Correction | hiệu chỉnh màu |  |  |
+| Color Invert | đảo màu |  |  |
+| Composite RAW Sht. | chụp RAW tổng hợp |  |  |
+| Device Certificate | chứng chỉ thiết bị |  | C2PA. |
+| Dual Gain Shooting | chụp độ lợi kép |  |  |
+| Exp. Value Expand | mở rộng giá trị phơi sáng |  |  |
+| Exposure Assist | hỗ trợ phơi sáng |  |  |
+| Fingerprint | fingerprint |  | Của chứng chỉ; không dịch 'vân tay'. |
+| Footer | thanh dưới |  | Footer Custom = tùy chỉnh thanh dưới. |
+| Framing Stabilizer | ổn định căn khung |  |  |
+| Gamma Display Assist | hỗ trợ hiển thị Gamma |  |  |
+| High Contrast | tương phản cao |  |  |
+| Identification Target | đối tượng nhận diện |  | Khác Recognition Target (nhận dạng). |
+| In-camera Photo Cropping | cắt ảnh trong máy |  |  |
+| Network Streaming | truyền phát mạng |  |  |
+| NR Shooting | chụp giảm nhiễu |  |  |
+| Preset White Balance | cân bằng trắng đặt trước |  | (khóa); Duyệt 25/11/2026. |
+| REC Lamp | đèn ghi hình |  |  |
+| Rec. Media dur HDMI Output | ghi thẻ khi xuất HDMI |  | Recording Media during HDMI Output. |
+| Release w/o Lens | chụp không ống kính |  |  |
+| Scan and Tag | quét và gắn thẻ |  |  |
+| Shooting for HDR | chụp HDR |  |  |
+| Star Shooting Mode | chế độ chụp sao |  |  |
+| User Certificate | chứng chỉ người dùng |  | C2PA. |
+| Volume Photography Commands | lệnh chụp ảnh số lượng lớn |  |  |
+
 ## audio (19)
 
 | EN | VI | Ngắn | Ghi chú |
@@ -226,7 +262,7 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Night Scene | cảnh đêm |  |  |
 | Pet | thú cưng |  |  |
 | Portrait | chân dung |  |  |
-| Program Auto | tự động chương trình | chương trình | Mode P. Shorter than "tự động theo chương trình". Tight icon layout W200: 'Chương trình' (P). |
+| Program Auto | chương trình tự động | chương trình | Mode P (duyệt 25/11/2026). |
 | Scene Selection | chọn cảnh |  |  |
 | Sensitivity | độ nhạy |  | Tracking sensitivity / mic sensitivity. ISO sensitivity -> "độ nhạy ISO". |
 | Shoot Mode | chế độ chụp |  | P/A/S/M. |
@@ -265,7 +301,7 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Ratio Control | điều khiển tỷ lệ |  |  |
 | Rear Sync. | đồng bộ sau |  |  |
 | Receiver | bộ thu |  |  |
-| Red Eye Reduction | giảm mắt đỏ |  |  |
+| Red Eye Reduction | giảm đỏ mắt |  | Duyệt 25/11/2026. |
 | Slow Sync. | đồng bộ chậm |  |  |
 | Trigger | bộ kích |  |  |
 | TTL | TTL |  |  |
@@ -316,8 +352,8 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Peaking Display Select | chọn viền lấy nét |  |  |
 | Peaking Level | mức viền lấy nét |  |  |
 | Pre-AF | Pre-AF |  |  |
-| Preset Focus | lấy nét Preset |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
-| Preset Focus/Zoom | lấy nét/zoom Preset |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
+| Preset Focus | lấy nét đặt trước |  | (khóa); Duyệt 25/11/2026. |
+| Preset Focus/Zoom | lấy nét/zoom đặt trước |  | (khóa); Duyệt 25/11/2026. |
 | Priority Set in AF-C | ưu tiên trong AF-C |  |  |
 | Priority Set in AF-S | ưu tiên trong AF-S |  |  |
 | Product Showcase | giới thiệu sản phẩm |  |  |
@@ -470,7 +506,7 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Crop | cắt khung |  | (khóa) |
 | Custom Key | nút tùy chỉnh |  | (khóa) |
 | Defocus | xóa phông |  | (khóa); duyệt 02/11/2026: không dùng 'mất nét' |
-| Developer Tools | công cụ lập trình |  | (khóa) |
+| Developer Tools | công cụ nhà phát triển |  | (khóa); Duyệt 25/11/2026. Active = 'Hoạt động'. |
 | Dial | vòng xoay |  | (khóa) |
 | Digital Zoom | Zoom số |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
 | Dynamic Active | chủ động nâng cao |  | (khóa); SteadyShot |
@@ -486,17 +522,17 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Intelligent Auto | tự động thông minh |  | (khóa) |
 | Lo | thấp |  | (khóa) |
 | Manual | thủ công |  | (khóa) |
-| Mass Storage | lưu trữ |  | (khóa) |
+| Mass Storage | Mass Storage |  | (khóa); Giữ tiếng Anh (duyệt 25/11/2026). |
 | Microphone | micrô |  | (khóa) |
 | Mid | trung bình |  | (khóa) |
-| My Dial | đĩa xoay của tôi |  | (khóa); Quy tắc mục 7 |
+| My Dial | vòng xoay của tôi |  | (khóa); Duyệt 25/11/2026. |
 | Peaking | viền hỗ trợ lấy nét | viền lấy nét | (khóa) |
 | Pixel | điểm ảnh |  | (khóa) |
 | Pixel Mapping | ánh xạ điểm ảnh |  | (khóa); Quy tắc mục 7 |
-| Playback | xem lại |  | (khóa); âm thanh ghi chú thoại: 'phát' |
+| Playback | xem lại |  | (khóa); âm thanh ghi chú thoại: 'phát'. Được dùng 'tốc độ phát lại' (quay chuyển động chậm) và 'phát lại' âm thanh ghi chú thoại. |
 | Rating | xếp hạng |  | (khóa) |
 | Rating Only | chỉ xếp hạng |  | (khóa); duyệt 02/11/2026 |
-| Recording Media | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026: Recording Media = thẻ nhớ, không dùng 'phương tiện ghi hình'. |
+| Recording Media | thẻ ghi |  | (khóa); Duyệt 25/11/2026. Memory Card, Media, Rec. Media Settings vẫn là thẻ nhớ. Cấm 'phương tiện ghi hình'. |
 | Reset | đặt lại |  | (khóa); không 'thiết lập lại' |
 | Shot Mark | dấu cảnh |  | (khóa) |
 | Shutter | màn trập |  | (khóa); Quy tắc mục 2. 16/11/2026: bản Sony dùng 'cửa trập' là lỗi thuật ngữ (AU = F). |
@@ -671,7 +707,7 @@ Cột Ngắn trống khi bằng VI. (khóa) trong Ghi chú = thuật ngữ đã 
 | Panel | bảng |  |  |
 | Please wait. | vui lòng đợi. |  |  |
 | Position | vị trí |  |  |
-| Preset | Preset |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
+| Preset | Preset |  | (khóa); Đứng riêng giữ tiếng Anh; tên tính năng ghép dịch 'đặt trước' (duyệt 25/11/2026). |
 | Preview | xem trước | xem thử |  |
 | Priority | ưu tiên |  |  |
 | Processing... | đang xử lý... |  |  |

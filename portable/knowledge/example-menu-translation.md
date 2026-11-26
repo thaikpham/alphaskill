@@ -20,7 +20,7 @@
 | 10 | Mechanical Shutter | Màn trập cơ | Mục menu | — | Khóa. Cấm "màn trập cơ học" |
 | 11 | Flash Mode | Chế độ flash | Mục menu | — | |
 | 12 | Flash Comp. | Bù flash | Mục menu | — | |
-| 13 | Red Eye Reduction | Giảm mắt đỏ | Mục menu | — | |
+| 13 | Red Eye Reduction | Giảm đỏ mắt | Mục menu | — | |
 | 14 | Movie Recording | Quay phim | Mục menu | — | |
 | 15 | Frame Rate | Tốc độ khung hình | Mục menu | — | Khóa |
 | 16 | Log Shooting | Quay Log | Mục menu | — | |
@@ -66,7 +66,7 @@ stt,model,source_lang,source,vietnamese,ui_type,screen_path,max_width,fit,status
 10,,en,Mechanical Shutter,Màn trập cơ,Mục menu,,,,glossary,locked
 11,,en,Flash Mode,Chế độ flash,Mục menu,,,,glossary,
 12,,en,Flash Comp.,Bù flash,Mục menu,,,,glossary,
-13,,en,Red Eye Reduction,Giảm mắt đỏ,Mục menu,,,,glossary,
+13,,en,Red Eye Reduction,Giảm đỏ mắt,Mục menu,,,,glossary,
 14,,en,Movie Recording,Quay phim,Mục menu,,,,glossary,
 15,,en,Frame Rate,Tốc độ khung hình,Mục menu,,,,glossary,locked
 16,,en,Log Shooting,Quay Log,Mục menu,,,,glossary,

@@ -18,8 +18,8 @@ Rules, a glossary and tools that let an AI translate Sony Alpha camera menus and
 One source of truth feeds every surface:
 
 - **Rules and workflow** live in [`skills/sony-alpha-viet/`](skills/sony-alpha-viet/) (`SKILL.md` plus references).
-- **Data** (glossary, replacement rules, banned words, keep-English list, translation memory, knowledge notes) lives in a data folder. The public subset is [`data-sample/`](data-sample/) (667 glossary entries, 128 replacement rules, 29 knowledge notes, empty translation memory).
-- **Engine** is the Python package [`src/sony_alpha_viet/`](src/sony_alpha_viet/): an MCP server with 46 tools, 3 prompts (`translate_menu`, `write_blog`, `audit_post`) and the references as resources.
+- **Data** (glossary, replacement rules, banned words, keep-English list, translation memory, knowledge notes) lives in a data folder. The public subset is [`data-sample/`](data-sample/) (698 glossary entries, 176 replacement rules, 29 knowledge notes, empty translation memory).
+- **Engine** is the Python package [`src/sony_alpha_viet/`](src/sony_alpha_viet/): an MCP server with 47 tools, 3 prompts (`translate_menu`, `write_blog`, `audit_post`) and the references as resources.
 - **Bundles** for chat apps (`llms-full.txt`, `llms-blog.txt`, `llms-knowledge.txt`, `portable/`) are generated from the skill and data by `scripts/build_portable.py`, so every AI reads the same rules.
 
 ## Pick a surface
@@ -97,7 +97,7 @@ Blog teams get the same leverage: `blog_audit` scores a draft on all 40 checklis
 |---|---|
 | Data, guidelines | `data_info`, `get_guidelines` |
 | Menu translation | `lookup_term`, `search_memory`, `prepare_batch`, `check_translation`, `check_fit`, `suggest_short`, `consistency_report` |
-| Sony `.xls` files | `xls_read`, `xls_review`, `xls_write` |
+| Sony `.xls` files | `xls_read`, `xls_review`, `xls_write`, `xls_apply_agreed` |
 | Memory and learning | `record_term`, `record_feedback`, `remember_translation`, `ban_term`, `keep_english`, `learn`, `review_memory`, `disable_rule`, `commit_memory` |
 | Sony documents | `lookup_prose_term`, `ingest_docs`, `ingest_helpguide`, `search_docs`, `docs_term_report` |
 | Blog SEO + AIO | `slugify`, `count_words`, `style_lint`, `seo_audit`, `aio_audit`, `paa_generator`, `citation_checker`, `freshness_check`, `brand_voice_checker`, `blog_audit`, `faq_schema` |
