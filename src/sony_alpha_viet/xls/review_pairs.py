@@ -4,7 +4,7 @@ Unique English–Vietnamese pairs (Vietnamese = AN when proposed, else AD), writ
 ("Cần dịch", "Giữ nguyên tiếng Anh"), plus a JSON mapping {tab: [{sheet_row, en, vi, rows: [[file, row, S#]]}]} used to
 apply the reviewers' edits back to every row. Stdlib only, so it runs without openpyxl.
 
-    python -m sony_alpha_viet.xls.review_pairs <folder with *_VN.xls> <out.xlsx> <mapping.json>
+    alphaskill review-pairs <folder with *_VN.xls> <out.xlsx> <mapping.json>
 """
 from __future__ import annotations
 

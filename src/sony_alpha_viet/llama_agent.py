@@ -160,7 +160,7 @@ async def run(prompt: str, base_url: str, model: str, api_key: str = "", tools: 
 
 
 def main():
-    ap = argparse.ArgumentParser(prog="sony-alpha-viet-llama", description="Agent Llama dùng công cụ MCP sony-alpha-viet")
+    ap = argparse.ArgumentParser(description="Agent Llama dùng công cụ MCP sony-alpha-viet")
     ap.add_argument("prompt", nargs="?", help="yêu cầu; bỏ trống để vào chế độ hội thoại")
     ap.add_argument("--base-url", default=os.environ.get("LLAMA_BASE_URL", "http://localhost:11434/v1"))
     ap.add_argument("--model", default=os.environ.get("LLAMA_MODEL", "llama3.2:3b"))
