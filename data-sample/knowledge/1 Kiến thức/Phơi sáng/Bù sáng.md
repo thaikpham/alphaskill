@@ -9,20 +9,29 @@ tags: [sony-alpha-viet/kien-thuc]
 
 # Bù sáng
 
-**Bù sáng là lệnh bảo máy chụp sáng hơn (+EV) hoặc tối hơn (−EV) so với mức máy tự đo, dùng khi máy đo sai hoặc khi muốn diễn đạt khác.**
+**Bù sáng là lệnh bảo máy chụp sáng hơn (+EV) hoặc tối hơn (−EV) so với mức máy tự đo, dùng khi máy đo sai hoặc khi muốn diễn đạt khác. Cảnh nhiều màu trắng nên bù +, cảnh nhiều màu đen nên bù −. Kiểm tra kết quả bằng biểu đồ (histogram).**
 
 ## Vì sao cần bù sáng
+
 - Máy chỉ biết cảnh "sáng" hay "tối" và luôn kéo về **xám trung tính**: cảnh sáng thì chụp tối đi, cảnh tối thì chụp sáng lên.
-- Cảnh nhiều màu trắng (tuyết, áo cưới, đĩa trắng trên bàn trắng) → ảnh xám, tối → **bù +** (+0.7 đến +2).
-- Cảnh nhiều màu đen/màu đậm (áo đen, nền tối, sân khấu) → ảnh bệch, sáng quá → **bù −** (−0.7 đến −1).
-- Cảnh ngược sáng, có đèn/điểm sáng trong khung → chủ thể tối → bù +.
 
-## Bù sáng để diễn đạt
-- **High-key** (+1.3 đến +2): ảnh trong trẻo, nhẹ nhàng, hợp chân dung nữ, đồ ăn, hoa.
-- **Low-key** (−0.7 trở xuống): tương phản rõ, màu đậm hơn, nhấn chất liệu và khối.
-- Giáo trình Sony nhấn mạnh: không có mức nào "đúng" tuyệt đối, chỉ có cách diễn đạt khác nhau.
+| Loại cảnh | Hướng bù | Vì sao |
+|---|---|---|
+| Nhiều màu trắng (tuyết, áo cưới, đĩa trắng trên bàn trắng) | Bù + (+0.7 đến +2) | Máy kéo về xám nên ảnh bị tối |
+| Nhiều màu đen (áo đen, nền tối, sân khấu) | Bù − (−0.7 đến −1) | Máy kéo về xám nên ảnh bị sáng, bệch |
+| Ngược sáng, có đèn hoặc điểm sáng trong khung | Bù + | Chủ thể bị tối |
 
-## Trên máy Sony
+## Bù sáng để diễn đạt ảnh
+
+| Kiểu ảnh | Mức bù | Đặc điểm |
+|---|---|---|
+| High-key | +1.3 đến +2 | Trong trẻo, nhẹ nhàng, hợp chân dung nữ, đồ ăn, hoa |
+| Low-key | −0.7 trở xuống | Tương phản rõ, màu đậm hơn, nhấn chất liệu và khối |
+
+Giáo trình Sony nhấn mạnh: không có mức nào "đúng" tuyệt đối, chỉ có cách diễn đạt khác nhau.
+
+## Chỉnh bù sáng trên máy Sony
+
 - Vòng bù sáng trên thân máy (đa số máy full-frame), hoặc nút ▼ / bánh xe điều khiển, hoặc menu **Bù sáng** (Exposure Comp.). Bước 1/3 EV; phạm vi tùy model.
 - Có tác dụng ở P, A, S và **M khi dùng ISO AUTO**. Ở M với ISO cố định, bù sáng không thay đổi ảnh.
 - Kiểm tra bằng **Biểu đồ** (Histogram): đỉnh dồn sát mép phải là cháy sáng, sát mép trái là mất chi tiết vùng tối.

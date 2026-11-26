@@ -24,7 +24,7 @@ File này sinh tự động từ `skills/sony-alpha-viet/`, `data-sample/` và `
 - [1. Vai trò và giọng điệu](#1-vai-trò-và-giọng-điệu)
 - [2. Quy tắc dịch menu](#2-quy-tắc-dịch-menu)
 - [3. Văn phong tiếng Việt](#3-văn-phong-tiếng-việt)
-- [4. Bảng thuật ngữ: 698 mục](#4-bảng-thuật-ngữ-698-mục)
+- [4. Bảng thuật ngữ: 704 mục](#4-bảng-thuật-ngữ-704-mục)
 - [5. Giữ nguyên tiếng Anh](#5-giữ-nguyên-tiếng-anh)
 - [6. Ngoại lệ không dịch](#6-ngoại-lệ-không-dịch)
 - [7. Quy tắc thay thế và từ cấm](#7-quy-tắc-thay-thế-và-từ-cấm)
@@ -313,7 +313,7 @@ Theo trainer Sony, duyệt 25/11/2026; phần máy làm được nằm trong quy
 - Viết hoa tên riêng, model; không viết hoa danh từ chung giữa câu ("Cảm Biến" → "cảm biến").
 - Dấu câu sát chữ trước, cách chữ sau.
 
-## 4. Bảng thuật ngữ: 698 mục
+## 4. Bảng thuật ngữ: 704 mục
 
 Tra ở đây trước. Không có → dịch, đánh dấu [thuật ngữ mới].
 
@@ -542,9 +542,9 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Audio Recording | ghi âm |  |  |
 | Audio signals | âm báo |  | Operation beeps. |
 | Directivity | hướng thu |  | Mic directivity. |
-| Ext Mic | micrô ngoài |  | (đã áp quy tắc r069) |
+| Ext Mic | micrô ngoài |  |  |
 | Headphone | tai nghe |  |  |
-| Int Mic | micrô trong |  | (đã áp quy tắc r069) |
+| Int Mic | micrô trong |  |  |
 | Mic | mic |  |  |
 | Monitoring | giám sát |  | Audio monitoring. |
 | Shoe | ngàm |  |  |
@@ -570,7 +570,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Creative Look | Creative Look |  |  |
 | Custom WB | WB tùy chỉnh |  | Modifier after noun. |
 | Distortion Comp. | hiệu chỉnh méo hình | hiệu chỉnh méo |  |
-| Fade | Fade |  | Creative Look parameter; kept in English. |
+| Fade | phai |  | Creative Look parameter. |
 | Gamma | gamma |  |  |
 | Gamma Disp. Assist | hỗ trợ hiển thị gamma | hỗ trợ gamma |  |
 | Gamut | không gian màu |  |  |
@@ -581,7 +581,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Illustration | minh họa |  |  |
 | Lens Comp. | hiệu chỉnh ống kính |  |  |
 | Long Exposure NR | giảm nhiễu phơi sáng dài | giảm nhiễu phơi dài |  |
-| Look | Phong cách |  | Creative Look "look". (đã áp quy tắc r083) |
+| Look | phong cách |  | Creative Look "look". |
 | Miniature | thu nhỏ |  |  |
 | Noise Reduction | giảm nhiễu |  | Keep current 'giảm nhiễu' (29 rows, natural). Not 'khử tiếng ồn'. |
 | NR | giảm nhiễu |  | Audio NR -> 'giảm ồn'. |
@@ -598,7 +598,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Sharpness | độ nét |  |  |
 | Sharpness Range | dải độ nét |  |  |
 | Soft Focus | lấy nét mềm |  |  |
-| Soft High-key | Tông sáng mềm |  | (đã áp quy tắc r117) |
+| Soft High-key | tông sáng mềm |  |  |
 | Soft Skin | làm mịn da |  |  |
 | Soft Skin Effect | làm mịn da |  |  |
 | Tone | tông màu | tông |  |
@@ -633,7 +633,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Memory | bộ nhớ |  |  |
 | Memory recall | gọi lại bộ nhớ |  | MR mode. |
 | Mode Dial | vòng xoay chế độ |  |  |
-| Multi-Selector | Nút đa hướng |  | (đã áp quy tắc r110) |
+| Multi-Selector | nút đa hướng |  |  |
 | My Dial Settings | cài đặt vòng xoay |  | Report wording ("của tôi" implied). |
 | My Style | phong cách của tôi | phong cách |  |
 | Operation | thao tác |  |  |
@@ -659,18 +659,18 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | EN | VI | Ngắn | Ghi chú |
 |---|---|---|---|
 | Anti-flicker | chống nhấp nháy |  |  |
-| Bracket Settings | cài đặt bù trừ |  | (đã áp quy tắc r010) |
+| Bracket Settings | cài đặt bù trừ |  |  |
 | Burst | chụp loạt |  |  |
 | Cont. | liên tục |  |  |
-| Cont. Bracket | Bù trừ liên tục |  | (đã áp quy tắc r009) |
+| Cont. Bracket | bù trừ liên tục |  |  |
 | Cont. Shooting | chụp liên tục |  |  |
 | Cont. Shooting Speed | tốc độ chụp liên tục |  |  |
 | Continuous Shooting | chụp liên tục |  |  |
 | Drive | kiểu chụp |  |  |
 | Drive Mode | kiểu chụp |  | Distinct from Shoot Mode (chế độ chụp). Alternative: "chế độ điều khiển" (Sony VN manual, literal). |
-| DRO Bracket | Bù trừ DRO |  | (đã áp quy tắc r009) |
+| DRO Bracket | bù trừ DRO |  |  |
 | Flicker | nhấp nháy |  |  |
-| Focus Bracket | Bù trừ lấy nét |  | (đã áp quy tắc r008) |
+| Focus Bracket | bù trừ lấy nét |  |  |
 | Framing | căn khung |  | Auto Framing. |
 | Image Stabilization | ổn định hình ảnh |  |  |
 | Image Stabilization Settings | cài đặt ổn định hình ảnh | cài đặt ổn định |  |
@@ -694,13 +694,13 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Sht. | chụp |  |  |
 | Silent Mode | chế độ im lặng | im lặng |  |
 | Single | đơn |  |  |
-| Single Bracket | Bù trừ đơn |  | (đã áp quy tắc r009) |
+| Single Bracket | bù trừ đơn |  |  |
 | Single Burst Shooting | chụp loạt một lần | chụp loạt |  |
 | Single Shooting | chụp đơn |  |  |
 | Speed Boost | tăng tốc |  |  |
 | SteadyShot | SteadyShot |  |  |
-| Step Crop Shooting | chụp cắt khung theo bước | chụp crop bước | (đã áp quy tắc r042) |
-| WB bracket | Bù trừ WB |  | (đã áp quy tắc r009) |
+| Step Crop Shooting | chụp cắt khung theo bước | chụp cắt khung bước |  |
+| WB bracket | bù trừ WB |  |  |
 
 #### exposure (66)
 
@@ -770,8 +770,8 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Tv | Tv |  | Sony dial label (shutter value). |
 | Var. Shutter | màn trập biến thiên |  | Variable Shutter (anti-flicker fine tuning). Est. 100% with icon at W304: borderline. |
 | Variable | biến thiên |  |  |
-| Zebra Display | hiển thị sọc vằn |  | (đã áp quy tắc r115) |
-| Zebra Level | mức sọc vằn |  | (đã áp quy tắc r115) |
+| Zebra Display | hiển thị sọc vằn |  |  |
+| Zebra Level | mức sọc vằn |  |  |
 
 #### flash (20)
 
@@ -789,7 +789,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Flash Power | công suất flash |  | FATAL in current: "nguồn điện đèn flash". |
 | Power Level | mức công suất |  |  |
 | Power Ratio | tỷ lệ công suất |  |  |
-| Pre-flash TTL | TTL tiền flash |  |  |
+| Pre-flash TTL | TTL đèn nháy trước |  |  |
 | Ratio Control | điều khiển tỷ lệ |  |  |
 | Rear Sync. | đồng bộ sau |  |  |
 | Receiver | bộ thu |  |  |
@@ -936,14 +936,14 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Root Certificate | chứng chỉ gốc |  |  |
 | Send | gửi |  |  |
 | Server | máy chủ |  |  |
-| Smartphone Connect | kết nối điện thoại |  | (đã áp quy tắc r020) |
+| Smartphone Connect | kết nối điện thoại |  |  |
 | SSID | SSID |  |  |
 | Streaming | truyền phát | Stream | Sony VN term. Alternative: keep "stream". |
 | Transfer | chuyển |  | Image transfer. "Chuyển ảnh" when standalone. |
 | Transfer Status | trạng thái chuyển |  |  |
 | Transfer/Remote | chuyển ảnh/từ xa | chuyển/từ xa |  |
 | USB Streaming | truyền phát USB |  |  |
-| USB-LAN/Tethering Connect | kết nối USB-LAN/chia sẻ mạng | USB-LAN/chia sẻ mạng | (đã áp quy tắc r011) |
+| USB-LAN/Tethering Connect | nối USB-LAN/chia sẻ |  |  |
 | Wi-Fi | Wi-Fi |  |  |
 | Wired LAN | LAN có dây |  |  |
 | Wireless | không dây |  |  |
@@ -1037,7 +1037,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Touch Pad | bàn di cảm ứng |  | (khóa) |
 | Tracking | theo dõi |  | (khóa); không dùng 'dò' |
 | Zebra | sọc vằn |  | (khóa) |
-| Zoom | Zoom | tiêu cự (vị trí zoom) | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
+| Zoom | Zoom |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn |
 
 #### setup (63)
 
@@ -1138,11 +1138,11 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Error | lỗi |  |  |
 | Execute | thực hiện |  |  |
 | Exit | thoát |  |  |
-| Extra fine | cực mịn |  |  |
+| Extra fine | siêu nét |  |  |
 | Failed | thất bại |  | Failed to ... -> "Không thể ...". |
 | Fast | nhanh |  |  |
 | File Format | định dạng tập tin |  |  |
-| Fine | nét |  | JPEG/HEIF image quality (local team decision). Extra Fine = siêu nét. "Soft skin" stays làm mịn da. |
+| Fine | mịn |  | JPEG/HEIF image quality. Fine = mịn; Extra fine = siêu nét (theo TM). "Soft skin" stays làm mịn da. |
 | Folder | thư mục |  |  |
 | Front | trước |  |  |
 | Full | toàn bộ |  |  |
@@ -1153,7 +1153,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | Group | nhóm |  |  |
 | HEIF | HEIF |  |  |
 | High | cao |  |  |
-| Histogram Display | hiển thị biểu đồ |  | (đã áp quy tắc r037) |
+| Histogram Display | hiển thị biểu đồ |  |  |
 | Home | trang chủ |  |  |
 | Horizontal | ngang |  |  |
 | Icon | biểu tượng |  |  |
@@ -1264,12 +1264,18 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | sec | giây |  | ${v1} sec -> "${v1} giây". Tight layouts may keep "s". |
 | Sec. | giây |  |  |
 
-#### user (3)
+#### user (9)
 
 | EN | VI | Ngắn | Ghi chú |
 |---|---|---|---|
+| Ambience | Môi trường |  | (khóa); Lựa chọn của Ưu tiên trong AWB (Priority Set in AWB); Auto: Ambience = Tự động: môi trường. Không dịch là "Bầu không khí" (chữ đó giữ cho Mood). Người dùng sửa 2026-11-08. |
+| Ambient only | Chỉ môi trường |  | (khóa); Lựa chọn của Cài đặt bù sáng (Exp.comp.set), cặp với Ambient&flash = Môi trường & flash. Ambient = môi trường, không dịch là "ánh sáng". Người dùng sửa 2026-11-08. |
+| Ambient&flash | Môi trường & flash |  | (khóa); Lựa chọn của Cài đặt bù sáng (Exp.comp.set). Ambient = môi trường, không dịch là "ánh sáng". Người dùng sửa 2026-11-08. |
+| Code | mã |  | (khóa); Người dùng 2026-11-08. Ngoại lệ: Time Code giữ tiếng Anh ("mã thời gian" = timecode), không viết "mã Time Code". |
+| Create | tạo |  | (khóa); Người dùng 2026-11-08. |
 | Firmware | Firmware |  | (khóa); giữ nguyên — ai cũng hiểu (duyệt 02/11/2026) |
 | Media Card | thẻ nhớ |  | (khóa); Người dùng duyệt 16/11/2026. |
+| Run | chạy |  | (khóa); Người dùng 2026-11-08 (ví dụ Time Code Run = Chạy Time Code). |
 | Time Code | Time Code |  | (khóa); keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn \| 16/11/2026: người dùng xác nhận không dịch; trong câu viết 'timecode', không dùng 'mã thời gian'. |
 
 ## 5. Giữ nguyên tiếng Anh
@@ -1298,7 +1304,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 
 ## 7. Quy tắc thay thế và từ cấm
 
-**Thay thế đang bật (160):**
+**Thay thế đang bật (168):**
 
 | Mẫu (regex) | Thay bằng |
 |---|---|
@@ -1353,7 +1359,7 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | `hiện tượng breathing khi lấy nét` | `hiện tượng thở ống kính khi lấy nét` |
 | `Cam ID \+ Reel#` | `ID máy + số cuộn` |
 | `Cam ID` | `ID máy` |
-| `Developer Tools` | `Công cụ nhà phát triển` |
+| `Developer Tools` | `Công cụ lập trình` |
 | `Fixed-\$\{v1\}` | `Cố định ${v1}` |
 | `\(Beta\)` | `(bản thử)` |
 | `Ver\.\$\{v1\}` | `Phiên bản ${v1}` |
@@ -1414,6 +1420,14 @@ Thêm dòng vào bảng phù hợp sau khi người dùng chốt. Ghi `[đề xu
 | `âm lượng phát lại` | `âm lượng phát` |
 | `thu, phát lại, xóa` | `thu, phát, xóa` |
 | `(?<!\w)Chọn chụp chống nhấp nháy(?!\w)` | `\g<0>` |
+| `(?<!\w)thu\ phóng(?!\w)` | `Zoom` |
+| `(?<!\w)mã\ thời\ gian(?!\w)` | `Time Code` |
+| `(?<!\w)thời\ gian(?!\w)` | `Time Code` |
+| `(?<!\w)Đặt\ trước(?!\w)` | `Preset` |
+| `(?<!\w)Ánh\ sáng\&flash(?!\w)` | `Môi trường & flash` |
+| `(?<!\w)Chỉ\ ánh\ sáng\ xung\ quanh(?!\w)` | `Chỉ môi trường` |
+| `(?<!\w)[Mm]ã\ Time\ Code(?!\w)` | `Time Code` |
+| `(?<!\w)Bầu\ không\ khí(?!\w)` | `Môi trường` |
 | `Không hợp lệ (với\|ở\|khi\|vì\|do\|trong)` | `Không khả dụng \1` |
 | `Nhấn và giữ` | `Nhấn giữ` |
 | `nhấn nút chụp xuống một nửa` | `nhấn nửa nút chụp` |

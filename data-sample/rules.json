@@ -605,7 +605,7 @@
   {
    "id": "r064",
    "pattern": "Developer Tools",
-   "replace": "Công cụ nhà phát triển",
+   "replace": "Công cụ lập trình",
    "fallback": null,
    "source": "rev3",
    "hits": 0,
@@ -738,10 +738,10 @@
    "replace": "Lưu trữ",
    "fallback": null,
    "source": "rev3",
-   "hits": 0,
-   "count": 0,
    "disabled": true,
-   "disabled_why": "Mass Storage giữ tiếng Anh (người dùng duyệt 25/11/2026)"
+   "disabled_why": "Mass Storage giữ tiếng Anh (người dùng duyệt 25/11/2026)",
+   "hits": 0,
+   "count": 0
   },
   {
    "id": "r079",
@@ -1187,15 +1187,112 @@
    "count": 0
   },
   {
+   "id": "L128",
+   "pattern": "(?<!\\w)thu\\ phóng(?!\\w)",
+   "replace": "Zoom",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T14:01:34",
+   "en_requires": "(?i)\\bZoom\\b",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L131",
+   "pattern": "(?<!\\w)mã\\ thời\\ gian(?!\\w)",
+   "replace": "Time Code",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T14:01:34",
+   "en_requires": "(?i)\\bTime\\s*Code\\b",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L129",
+   "pattern": "(?<!\\w)thời\\ gian(?!\\w)",
+   "replace": "Time Code",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T14:01:34",
+   "en_requires": "(?i)\\bTime\\s*Code\\b",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L130",
+   "pattern": "(?<!\\w)Đặt\\ trước(?!\\w)",
+   "replace": "Preset",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T14:01:34",
+   "en_requires": "(?i)\\bPreset\\b",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L132",
+   "pattern": "(?<!\\w)Ánh\\ sáng\\&flash(?!\\w)",
+   "replace": "Môi trường & flash",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T14:01:34",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L133",
+   "pattern": "(?<!\\w)Chỉ\\ ánh\\ sáng\\ xung\\ quanh(?!\\w)",
+   "replace": "Chỉ môi trường",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T14:26:04",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L134",
+   "pattern": "(?<!\\w)ánh\\ sáng\\ xung\\ quanh(?!\\w)",
+   "replace": "môi trường",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T14:53:19",
+   "disabled": true,
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L136",
+   "pattern": "(?<!\\w)[Mm]ã\\ Time\\ Code(?!\\w)",
+   "replace": "Time Code",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T14:53:19",
+   "en_requires": "(?i)\\bTime\\s*Code\\b",
+   "hits": 0,
+   "count": 0
+  },
+  {
+   "id": "L136b",
+   "pattern": "(?<!\\w)Bầu\\ không\\ khí(?!\\w)",
+   "replace": "Môi trường",
+   "fallback": null,
+   "source": "learned",
+   "added": "2026-11-08T15:23:35",
+   "en_requires": "(?i)\\bAmbience\\b",
+   "hits": 0,
+   "count": 0
+  },
+  {
    "id": "t2500",
    "pattern": "Không hợp lệ (với|ở|khi|vì|do|trong) ",
    "replace": "Không khả dụng \\1 ",
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "Invalid = không khả dụng",
    "hits": 0,
-   "count": 0,
-   "note": "Invalid = không khả dụng"
+   "count": 0
   },
   {
    "id": "t2501",
@@ -1224,9 +1321,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "Interval Shooting = chụp cách quãng",
    "hits": 0,
-   "count": 0,
-   "note": "Interval Shooting = chụp cách quãng"
+   "count": 0
   },
   {
    "id": "t2504",
@@ -1265,9 +1362,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "dấu thanh kiểu mới",
    "hits": 0,
-   "count": 0,
-   "note": "dấu thanh kiểu mới"
+   "count": 0
   },
   {
    "id": "t2508",
@@ -1276,9 +1373,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "dấu thanh kiểu mới",
    "hits": 0,
-   "count": 0,
-   "note": "dấu thanh kiểu mới"
+   "count": 0
   },
   {
    "id": "t2509",
@@ -1367,9 +1464,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "Program Auto (duyệt 25/11/2026)",
    "hits": 0,
-   "count": 0,
-   "note": "Program Auto (duyệt 25/11/2026)"
+   "count": 0
   },
   {
    "id": "t2518",
@@ -1378,9 +1475,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "Assign = gán",
    "hits": 0,
-   "count": 0,
-   "note": "Assign = gán"
+   "count": 0
   },
   {
    "id": "t2519",
@@ -1389,9 +1486,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "Assign = gán",
    "hits": 0,
-   "count": 0,
-   "note": "Assign = gán"
+   "count": 0
   },
   {
    "id": "t2520",
@@ -1410,9 +1507,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "tên chuẩn",
    "hits": 0,
-   "count": 0,
-   "note": "tên chuẩn"
+   "count": 0
   },
   {
    "id": "t2522",
@@ -1561,9 +1658,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "Enables selection of = cho phép chọn",
    "hits": 0,
-   "count": 0,
-   "note": "Enables selection of = cho phép chọn"
+   "count": 0
   },
   {
    "id": "t2537",
@@ -1572,9 +1669,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "bit rate",
    "hits": 0,
-   "count": 0,
-   "note": "bit rate"
+   "count": 0
   },
   {
    "id": "t2538",
@@ -1583,9 +1680,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "Power Save = tiết kiệm pin",
    "hits": 0,
-   "count": 0,
-   "note": "Power Save = tiết kiệm pin"
+   "count": 0
   },
   {
    "id": "t2539",
@@ -1654,9 +1751,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "higher than <thẻ> = từ <thẻ> trở lên",
    "hits": 0,
-   "count": 0,
-   "note": "higher than <thẻ> = từ <thẻ> trở lên"
+   "count": 0
   },
   {
    "id": "t2546",
@@ -1665,9 +1762,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "higher than <thẻ> = từ <thẻ> trở lên",
    "hits": 0,
-   "count": 0,
-   "note": "higher than <thẻ> = từ <thẻ> trở lên"
+   "count": 0
   },
   {
    "id": "t2547",
@@ -1676,9 +1773,9 @@
    "fallback": null,
    "source": "all-terms-2026-11-25",
    "added": "2026-11-25T00:00:00",
+   "note": "higher than <thẻ> = từ <thẻ> trở lên",
    "hits": 0,
-   "count": 0,
-   "note": "higher than <thẻ> = từ <thẻ> trở lên"
+   "count": 0
   }
  ],
  "exact": {},
@@ -1741,7 +1838,9 @@
   },
   {
    "pattern": "[Pp]hương tiện ghi hình",
-   "why": "Recording Media / media card = thẻ nhớ (người dùng duyệt 16/11/2026)"
+   "why": "Recording Media / media card = thẻ nhớ (người dùng duyệt 16/11/2026)",
+   "source": "user",
+   "added": "2026-11-16T03:18:27"
   }
  ]
 }

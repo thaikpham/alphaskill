@@ -137,6 +137,30 @@
   "category": "playback"
  },
  {
+  "en": "Ambience",
+  "vi": "Môi trường",
+  "short": "Môi trường",
+  "category": "user",
+  "locked": true,
+  "note": "Lựa chọn của Ưu tiên trong AWB (Priority Set in AWB); Auto: Ambience = Tự động: môi trường. Không dịch là \"Bầu không khí\" (chữ đó giữ cho Mood). Người dùng sửa 2026-11-08."
+ },
+ {
+  "en": "Ambient only",
+  "vi": "Chỉ môi trường",
+  "short": "Chỉ môi trường",
+  "category": "user",
+  "locked": true,
+  "note": "Lựa chọn của Cài đặt bù sáng (Exp.comp.set), cặp với Ambient&flash = Môi trường & flash. Ambient = môi trường, không dịch là \"ánh sáng\". Người dùng sửa 2026-11-08."
+ },
+ {
+  "en": "Ambient&flash",
+  "vi": "Môi trường & flash",
+  "short": "Môi trường & flash",
+  "category": "user",
+  "locked": true,
+  "note": "Lựa chọn của Cài đặt bù sáng (Exp.comp.set). Ambient = môi trường, không dịch là \"ánh sáng\". Người dùng sửa 2026-11-08."
+ },
+ {
   "en": "Animal",
   "vi": "động vật",
   "short": "động vật",
@@ -390,8 +414,8 @@
  },
  {
   "en": "Bracket Settings",
-  "vi": "cài đặt Bracket",
-  "short": "cài đặt Bracket",
+  "vi": "cài đặt bù trừ",
+  "short": "cài đặt bù trừ",
   "category": "drive"
  },
  {
@@ -560,6 +584,14 @@
   "note": "Continuous Shooting Speed Boost."
  },
  {
+  "en": "Code",
+  "vi": "mã",
+  "short": "mã",
+  "category": "user",
+  "locked": true,
+  "note": "Người dùng 2026-11-08. Ngoại lệ: Time Code giữ tiếng Anh (\"mã thời gian\" = timecode), không viết \"mã Time Code\"."
+ },
+ {
   "en": "Color",
   "vi": "màu",
   "short": "màu",
@@ -667,8 +699,8 @@
  },
  {
   "en": "Cont. Bracket",
-  "vi": "Bracket liên tục",
-  "short": "Bracket liên tục",
+  "vi": "bù trừ liên tục",
+  "short": "bù trừ liên tục",
   "category": "drive"
  },
  {
@@ -715,6 +747,14 @@
   "vi": "bánh xe điều khiển",
   "short": "bánh xe",
   "category": "custom"
+ },
+ {
+  "en": "Create",
+  "vi": "tạo",
+  "short": "tạo",
+  "category": "user",
+  "locked": true,
+  "note": "Người dùng 2026-11-08."
  },
  {
   "en": "Creative Look",
@@ -948,8 +988,8 @@
  },
  {
   "en": "DRO Bracket",
-  "vi": "Bracket DRO",
-  "short": "Bracket DRO",
+  "vi": "bù trừ DRO",
+  "short": "bù trừ DRO",
   "category": "drive"
  },
  {
@@ -1113,8 +1153,8 @@
  },
  {
   "en": "Ext Mic",
-  "vi": "mic ngoài",
-  "short": "mic ngoài",
+  "vi": "micrô ngoài",
+  "short": "micrô ngoài",
   "category": "audio"
  },
  {
@@ -1132,8 +1172,8 @@
  },
  {
   "en": "Extra fine",
-  "vi": "cực mịn",
-  "short": "cực mịn",
+  "vi": "siêu nét",
+  "short": "siêu nét",
   "category": "ui-generic"
  },
  {
@@ -1182,10 +1222,10 @@
  },
  {
   "en": "Fade",
-  "vi": "Fade",
-  "short": "Fade",
+  "vi": "phai",
+  "short": "phai",
   "category": "color",
-  "note": "Creative Look parameter; kept in English."
+  "note": "Creative Look parameter."
  },
  {
   "en": "Failed",
@@ -1259,10 +1299,10 @@
  },
  {
   "en": "Fine",
-  "vi": "nét",
-  "short": "nét",
+  "vi": "mịn",
+  "short": "mịn",
   "category": "ui-generic",
-  "note": "JPEG/HEIF image quality (local team decision). Extra Fine = siêu nét. \"Soft skin\" stays làm mịn da."
+  "note": "JPEG/HEIF image quality. Fine = mịn; Extra fine = siêu nét (theo TM). \"Soft skin\" stays làm mịn da."
  },
  {
   "en": "Fingerprint",
@@ -1387,8 +1427,8 @@
  },
  {
   "en": "Focus Bracket",
-  "vi": "Bracket lấy nét",
-  "short": "Bracket lấy nét",
+  "vi": "bù trừ lấy nét",
+  "short": "bù trừ lấy nét",
   "category": "drive"
  },
  {
@@ -1735,8 +1775,8 @@
  },
  {
   "en": "Histogram Display",
-  "vi": "hiển thị Histogram",
-  "short": "hiển thị Histogram",
+  "vi": "hiển thị biểu đồ",
+  "short": "hiển thị biểu đồ",
   "category": "ui-generic"
  },
  {
@@ -1915,8 +1955,8 @@
  },
  {
   "en": "Int Mic",
-  "vi": "mic trong",
-  "short": "mic trong",
+  "vi": "micrô trong",
+  "short": "micrô trong",
   "category": "audio"
  },
  {
@@ -2137,8 +2177,8 @@
  },
  {
   "en": "Look",
-  "vi": "Look",
-  "short": "Look",
+  "vi": "phong cách",
+  "short": "phong cách",
   "category": "color",
   "note": "Creative Look \"look\"."
  },
@@ -2415,8 +2455,8 @@
  },
  {
   "en": "Multi-Selector",
-  "vi": "Multi-Selector",
-  "short": "Multi-Selector",
+  "vi": "nút đa hướng",
+  "short": "nút đa hướng",
   "category": "custom"
  },
  {
@@ -2836,8 +2876,8 @@
  },
  {
   "en": "Pre-flash TTL",
-  "vi": "TTL tiền flash",
-  "short": "TTL tiền flash",
+  "vi": "TTL đèn nháy trước",
+  "short": "TTL đèn nháy trước",
   "category": "flash"
  },
  {
@@ -3228,6 +3268,14 @@
   "category": "playback"
  },
  {
+  "en": "Run",
+  "vi": "chạy",
+  "short": "chạy",
+  "category": "user",
+  "locked": true,
+  "note": "Người dùng 2026-11-08 (ví dụ Time Code Run = Chạy Time Code)."
+ },
+ {
   "en": "S&Q",
   "vi": "S&Q",
   "short": "S&Q",
@@ -3608,8 +3656,8 @@
  },
  {
   "en": "Single Bracket",
-  "vi": "Bracket đơn",
-  "short": "Bracket đơn",
+  "vi": "bù trừ đơn",
+  "short": "bù trừ đơn",
   "category": "drive"
  },
  {
@@ -3682,8 +3730,8 @@
  },
  {
   "en": "Smartphone Connect",
-  "vi": "kết nối smartphone",
-  "short": "kết nối smartphone",
+  "vi": "kết nối điện thoại",
+  "short": "kết nối điện thoại",
   "category": "network"
  },
  {
@@ -3700,8 +3748,8 @@
  },
  {
   "en": "Soft High-key",
-  "vi": "High-key mềm",
-  "short": "High-key mềm",
+  "vi": "tông sáng mềm",
+  "short": "tông sáng mềm",
   "category": "color"
  },
  {
@@ -3808,8 +3856,8 @@
  },
  {
   "en": "Step Crop Shooting",
-  "vi": "chụp crop theo bước",
-  "short": "chụp crop bước",
+  "vi": "chụp cắt khung theo bước",
+  "short": "chụp cắt khung bước",
   "category": "drive"
  },
  {
@@ -4179,8 +4227,8 @@
  },
  {
   "en": "USB-LAN/Tethering Connect",
-  "vi": "kết nối USB-LAN/Tethering",
-  "short": "USB-LAN/Tethering",
+  "vi": "nối USB-LAN/chia sẻ",
+  "short": "nối USB-LAN/chia sẻ",
   "category": "network"
  },
  {
@@ -4286,8 +4334,8 @@
  },
  {
   "en": "WB bracket",
-  "vi": "Bracket WB",
-  "short": "Bracket WB",
+  "vi": "bù trừ WB",
+  "short": "bù trừ WB",
   "category": "drive"
  },
  {
@@ -4360,14 +4408,14 @@
  },
  {
   "en": "Zebra Display",
-  "vi": "hiển thị Zebra",
-  "short": "hiển thị Zebra",
+  "vi": "hiển thị sọc vằn",
+  "short": "hiển thị sọc vằn",
   "category": "exposure"
  },
  {
   "en": "Zebra Level",
-  "vi": "mức Zebra",
-  "short": "mức Zebra",
+  "vi": "mức sọc vằn",
+  "short": "mức sọc vằn",
   "category": "exposure"
  },
  {
@@ -4379,7 +4427,7 @@
  {
   "en": "Zoom",
   "vi": "Zoom",
-  "short": "tiêu cự (vị trí zoom)",
+  "short": "Zoom",
   "category": "rev3",
   "locked": true,
   "note": "keep_english - Người dùng duyệt 02/11/2026: dịch ra không giúp người dùng dễ hiểu hơn"

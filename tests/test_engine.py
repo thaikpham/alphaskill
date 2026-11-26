@@ -20,6 +20,9 @@ def legacy(env, tmp_path):
     for s in rules["substitutions"]:
         if str(s.get("disabled_why", "")).startswith("keep_english"):
             s.pop("disabled", None); s.pop("disabled_why", None)
+    # Approved rules that rewrite into a kept English term (L128-L131...) are those decisions too
+    kept = ("Zoom", "Time Code", "Preset")
+    rules["substitutions"] = [s for s in rules["substitutions"] if not any(t in str(s.get("replace") or "") for t in kept)]
     (d / "rules.json").write_text(json.dumps(rules, ensure_ascii=False), encoding="utf-8")
     gl = json.loads((d / "glossary.json").read_text(encoding="utf-8"))
     old = {"Zoom": "thu phóng", "Digital Zoom": "thu phóng số", "Clear Image Zoom": "thu phóng rõ nét", "Preset": "đặt trước"}

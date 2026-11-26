@@ -9,9 +9,10 @@ tags: [sony-alpha-viet/kien-thuc]
 
 # Chế độ chụp P-A-S-M
 
-**Bốn chế độ P, A, S, M quyết định ai chọn khẩu độ và tốc độ: máy, người chụp, hay cả hai. Chọn chế độ là chọn mình muốn kiểm soát điều gì.**
+**Chế độ chụp P-A-S-M là bốn chế độ P, A, S và M, quyết định ai chọn khẩu độ và tốc độ: máy, người chụp, hay cả hai. Chọn chế độ là chọn điều mình muốn kiểm soát. A chỉnh khẩu độ, S chỉnh tốc độ màn trập, M chỉnh cả hai.**
 
-## Bảng: người chụp chỉnh được gì
+## Mỗi chế độ cho người chụp chỉnh được gì
+
 | Chế độ | Khẩu độ | Tốc độ | ISO | Bù sáng | Cân bằng trắng |
 |---|---|---|---|---|---|
 | Tự động thông minh / Chọn cảnh (SCN) | Không | Không | Không | Không | Không |
@@ -22,7 +23,8 @@ tags: [sony-alpha-viet/kien-thuc]
 
 \* P cho phép **Program Shift**: xoay bánh xe để đổi cặp khẩu–tốc mà vẫn giữ độ sáng.
 
-## Khi nào dùng
+## Nên dùng chế độ nào cho từng tình huống
+
 - **P**: du lịch, chụp nhanh nhiều cảnh. Nhược: máy có thể chọn tốc độ không đủ nhòe hoặc không đủ dính.
 - **A**: chân dung, phong cảnh, macro — mọi lúc cần kiểm soát xóa phông. **Chế độ khuyên dùng cho người mới** (giáo trình Sony: "không dùng Auto nữa").
 - **S**: thể thao, thú cưng, trẻ em chạy nhảy (tốc độ nhanh); nước chảy, [[Panning]] (tốc độ chậm).

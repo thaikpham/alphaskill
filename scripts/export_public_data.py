@@ -51,6 +51,10 @@ def export_public_data(src_dir: Path, out_dir: Path):
 
     for sub in rules_in.get("substitutions", []):
         out_sub = {k: v for k, v in sub.items() if k not in ("learned_from", "hits", "count")}
+        # Drop free-text fields that cite an S-number, same as glossary notes
+        for field in ("note", "disabled_why"):
+            if re.search(r"S\d{5,}", str(out_sub.get(field, ""))):
+                del out_sub[field]
         out_sub["hits"] = 0
         out_sub["count"] = 0
         rules_out["substitutions"].append(out_sub)
@@ -75,6 +79,12 @@ def export_public_data(src_dir: Path, out_dir: Path):
     if (src_dir / "rules.md").exists():
         rules_md = (src_dir / "rules.md").read_text(encoding="utf-8")
         (out_dir / "rules.md").write_text(rules_md, encoding="utf-8")
+
+    # Refuse the export if any public data file still carries an S-number
+    for name in ("glossary.json", "rules.json", "exceptions.json", "keep_english.json", "rules.md"):
+        path = out_dir / name
+        if path.exists() and re.search(r"S\d{5,}", path.read_text(encoding="utf-8")):
+            raise ValueError(f"S-number found in {name}")
 
     # 8. knowledge/: copy all .md files recursively, check for S-numbers
     knowledge_src = src_dir / "knowledge"

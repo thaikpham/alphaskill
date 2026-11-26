@@ -72,7 +72,11 @@ def test_llms_full_glossary_applies_replacement_rules():
     row = next(line for line in full.split("\n") if line.startswith("| Zebra Display |"))
     assert "sọc vằn" in row
     assert "hiển thị Zebra" not in row
-    assert "(đã áp quy tắc r115)" in row
+    # The data glossary is already a fixed point of the rules, so feed a stale entry directly
+    rendered, changed = build.rule_glossary([{"en": "Zebra Display", "vi": "hiển thị Zebra"}])
+    assert changed == ["Zebra Display"]
+    assert "sọc vằn" in rendered[0]["vi"]
+    assert "r115" in rendered[0]["note"]
 
 
 def test_glossary_vi_is_fixed_point_of_rules():

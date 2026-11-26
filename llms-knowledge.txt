@@ -307,11 +307,17 @@ Săn màu: bộ 5–10 ảnh cùng tông rõ ràng. Phối màu: đặt tên đ�
 
 ### Đồng bộ màn sau
 
-**Đồng bộ màn sau là cho đèn flash nổ ở cuối thời gian phơi sáng thay vì đầu: vệt sáng chuyển động nằm phía sau chủ thể, đúng chiều chuyển động.**
+**Đồng bộ màn sau là cho đèn flash nổ ở cuối thời gian phơi sáng thay vì đầu. Vệt sáng chuyển động nằm phía sau chủ thể, đúng chiều chuyển động, nên ảnh trông như chủ thể đang lao tới. Kiểu này hợp với cảnh có đèn nền màu và chủ thể chuyển động.**
 
-#### Vì sao
-- Mặc định (đồng bộ màn trước), flash nổ ngay đầu: chủ thể được "đóng băng" trước, vệt mờ ghi sau nên nằm **phía trước** chủ thể, trông như đang đi lùi.
-- Đồng bộ màn sau: vệt ghi trước, flash "đóng băng" chủ thể ở cuối → đuôi vệt kéo dài **phía sau**, như đang lao tới.
+#### Đồng bộ màn trước và màn sau
+
+| Kiểu | Flash nổ lúc | Vệt sáng chuyển động nằm |
+|---|---|---|
+| Đồng bộ màn trước (mặc định) | Đầu thời gian phơi sáng | Phía trước chủ thể, trông như đang đi lùi |
+| Đồng bộ màn sau | Cuối thời gian phơi sáng | Phía sau chủ thể, trông như đang lao tới |
+
+#### Vì sao vệt sáng nằm phía sau chủ thể
+- Vệt sáng ghi suốt thời gian phơi sáng, còn flash chỉ nổ một lần. Vị trí nổ (đầu hay cuối) quyết định vệt nằm trước hay sau chủ thể.
 
 #### Cài đặt Sony Alpha
 - Flash rời gắn hotshoe: HVL-F46RM, HVL-F60RM, hoặc Godox TT685S/V860S.
@@ -320,12 +326,13 @@ Săn màu: bộ 5–10 ảnh cùng tông rõ ràng. Phối màu: đặt tên đ�
 - Khẩu F5.6–F8, ISO 400–800.
 - **Bù flash −1 EV** để ánh sáng flash hòa với đèn nền, không bị "dán" lên nền tối.
 - Cân bằng trắng **Đèn sợi đốt** hoặc nhập K ~3.200K: vệt đèn nền ngả xanh lạnh.
+- Trên ZV-E10 và A6400, chế độ flash và bù flash nằm ở Cài đặt máy ảnh1; trên A7C II, ở Phơi sáng/màu › Đèn flash.
 
-#### Cách chụp
+#### Cách chụp đồng bộ màn sau
 1. Chụp nơi có đèn nền màu: đèn phố, bảng hiệu neon, sàn nhảy.
 2. Đo sáng cho hậu cảnh trước (chưa tính flash): nền phải hơi thiếu sáng.
 3. Chủ thể di chuyển, hoặc mình lia nhẹ máy trong lúc màn trập mở.
-4. **Giữ máy đến khi nghe flash nổ** mới hạ xuống. Flash nổ xong mới hết khung.
+4. **Giữ máy đến khi flash nổ**, rồi mới hạ xuống.
 
 #### Mẹo khi dạy
 Chụp cùng một cảnh hai kiểu, Đồng bộ màn trước và Đồng bộ sau, đặt cạnh nhau. Hướng vệt sáng khác nhau là minh họa thuyết phục nhất.
@@ -338,22 +345,51 @@ Chủ thể nét nhờ flash · vệt sáng nằm phía sau theo chiều chuyể
 
 ### Lấy nét
 
-**Lấy nét là đặt mặt phẳng nét đúng vào phần quan trọng nhất của chủ thể (thường là mắt); ảnh trượt nét gần như không cứu được bằng hậu kỳ.**
+**Lấy nét là đặt mặt phẳng nét đúng vào phần quan trọng nhất của chủ thể, thường là mắt. Ảnh trượt nét gần như không cứu được bằng hậu kỳ, nên điểm nét phải đúng ngay lúc bấm chụp, trước khi máy nhả màn trập.**
 
-#### Hiểu nhanh
-- Câu hỏi đầu tiên khi xem ảnh: *nét có rơi đúng chỗ mình muốn khoe không?* Nét vào tai thay vì mắt, hay ảnh nhòe vì rung tay, đều làm mất cảm xúc.
-- **Chế độ lấy nét** (Focus Mode):
-  - **AF-S** (lấy nét đơn): bấm nửa nút chụp là khóa nét. Hợp chủ thể đứng yên.
-  - **AF-C** (lấy nét liên tục): máy bám nét suốt khi giữ nửa nút chụp. Hợp người, trẻ em, thú cưng, hoặc khi chính người chụp di chuyển.
-  - **DMF**: lấy nét tự động rồi xoay vòng nét chỉnh tay.
-  - **MF**: lấy nét tay; dùng cho [[Phơi sáng dài]], macro, chụp qua kính.
-- **Vùng lấy nét** (Focus Area): **Rộng** (Wide, cả khung) · **Vùng** (Zone) · **Trung tâm** (Center Fix) · **Điểm** / **Điểm linh hoạt** (Spot / Flexible Spot, một điểm nhỏ, dời được) · **Điểm mở rộng** (Expand Spot), và các biến thể **Theo dõi** (Tracking) bám chủ thể di chuyển trong khung. Tên đúng theo từng model.
-- **Nhận dạng chủ thể** (Subject Recognition) — người, động vật, chim… tùy model — tự tìm mắt/đầu/thân để lấy nét.
+#### Nét rơi vào đâu thì ảnh mới đạt
 
-#### Khóa nét (focus lock)
+Khi xem ảnh, hỏi trước: nét có rơi đúng chỗ muốn khoe không? Nét vào tai thay vì mắt, hoặc ảnh nhòe vì rung tay, đều làm mất cảm xúc.
+
+#### Chế độ lấy nét: AF-S, AF-C, DMF, MF
+
+| Chế độ | Cách hoạt động | Hợp với |
+|---|---|---|
+| AF-S (lấy nét đơn) | Bấm nửa nút chụp là khóa nét | Chủ thể đứng yên |
+| AF-C (lấy nét liên tục) | Máy bám nét suốt khi giữ nửa nút chụp | Người, trẻ em, thú cưng, hoặc khi người chụp đang di chuyển |
+| DMF | Máy lấy nét tự động, rồi xoay vòng nét để chỉnh tay | Tinh chỉnh nét sau khi máy đã lấy nét sơ bộ |
+| MF (lấy nét tay) | Xoay vòng nét bằng tay | [[Phơi sáng dài]], macro, chụp qua kính |
+
+#### Vùng lấy nét trên máy
+
+| Vùng lấy nét | Tên tiếng Anh | Cách hoạt động |
+|---|---|---|
+| Rộng | Wide | Máy tự chọn điểm trên cả khung |
+| Vùng | Zone | Máy chọn điểm trong một vùng bạn đặt |
+| Trung tâm | Center Fix | Chỉ dùng điểm giữa khung |
+| Điểm / Điểm linh hoạt | Spot / Flexible Spot | Một điểm nhỏ, dời được tới chỗ cần |
+| Điểm mở rộng | Expand Spot | Một điểm nhỏ kèm các điểm quanh, bắt nét khi chủ thể lệch nhẹ |
+| Theo dõi | Tracking | Bám chủ thể đang di chuyển trong khung |
+
+Danh sách mục thay đổi theo từng model, nên đối chiếu với menu của máy đang dùng.
+
+#### Đường dẫn trên từng máy
+
+| Cài đặt | ZV-E10, A6400 | A7C II |
+|---|---|---|
+| Chế độ lấy nét, Pre-AF, AF khi chụp | Cài đặt máy ảnh1 | Lấy nét › AF/MF |
+| Vùng lấy nét | Cài đặt máy ảnh1 | Lấy nét › Vùng lấy nét |
+
+#### Nhận dạng chủ thể tự tìm mắt hoặc đầu
+
+Nhận dạng chủ thể (Subject Recognition) tìm người, động vật, chim, tùy model, rồi tự tìm mắt, đầu hoặc thân để lấy nét.
+
+#### Khóa nét khi chủ thể lệch khung
+
 Khi chủ thể không nằm giữa khung: đặt điểm nét lên chủ thể → bấm nửa nút (nghe "bíp") → giữ nguyên, bố cục lại → bấm hết. Dùng với AF-S.
 
-#### Tách lấy nét khỏi nút chụp (back-button)
+#### Lấy nét bằng nút sau máy (back-button focus)
+
 Gán **AF-ON** cho một nút phía sau và tắt lấy nét theo nút chụp (AF w/ shutter: Off). Ngón cái lo lấy nét, ngón trỏ lo chụp. Có thể giữ nét qua nhiều tấm mà không phải chuyển AF-S/AF-C.
 
 #### Giảng thế nào
@@ -366,23 +402,34 @@ Gán **AF-ON** cho một nút phía sau và tắt lấy nét theo nút chụp (A
 
 ### Độ sâu trường ảnh và xóa phông
 
-**Độ sâu trường ảnh là khoảng trước–sau điểm lấy nét mà mắt người còn thấy nét; vùng này càng mỏng thì hậu cảnh và tiền cảnh càng mờ (xóa phông).**
+**Độ sâu trường ảnh là khoảng trước và sau điểm lấy nét mà mắt người vẫn thấy nét. Vùng này càng mỏng thì hậu cảnh và tiền cảnh càng mờ, tức là xóa phông; vùng càng rộng thì nền càng rõ, ảnh kể được bối cảnh.**
 
-#### Hiểu nhanh
-- Về lý thuyết chỉ có **một mặt phẳng nét**. Phần trước và sau "trông như nét" với mắt người, đó là độ sâu trường ảnh.
-- **Sâu (rộng)**: nét từ bông hoa tới chậu cây phía sau, kể được bối cảnh. **Nông (hẹp)**: chỉ chủ thể nét, nền mờ, chủ thể nổi bật.
-- Càng xa điểm nét, độ mờ càng tăng. Mờ có cả **phía sau** (hậu cảnh) và **phía trước** (tiền cảnh) chủ thể.
+#### Độ sâu trường ảnh là gì
 
-#### 4 cách xóa phông mạnh hơn
+Về lý thuyết chỉ có một mặt phẳng nét. Phần trước và sau trông vẫn nét với mắt người, đó là độ sâu trường ảnh.
+
+| | Sâu (nét rộng) | Nông (nét hẹp) |
+|---|---|---|
+| Vùng nét | Từ chủ thể tới cả bối cảnh phía sau | Chỉ quanh chủ thể |
+| Kết quả | Kể được bối cảnh | Chủ thể nổi bật, nền mờ |
+| Hợp với | Phong cảnh, nhóm đông người | Chân dung, chi tiết cần tách khỏi nền |
+
+Càng xa điểm nét, độ mờ càng tăng. Mờ có cả phía sau (hậu cảnh) và phía trước (tiền cảnh) chủ thể.
+
+#### Cách xóa phông mạnh hơn
+
 1. **Mở khẩu** (số f nhỏ): F2.8 mờ hơn F16. Đây là yếu tố "phần cứng" chỉnh nhanh nhất ở chế độ A. → [[Khẩu độ]]
 2. **Tiêu cự dài** (zoom về tele): 250mm mờ hơn 35mm.
 3. **Đến gần chủ thể**: đứng cách 0,5m mờ hơn đứng cách 1,5m.
 4. **Đẩy hậu cảnh ra xa chủ thể**: chủ thể đứng cách tường 3m mờ hơn đứng sát tường.
 
-Hai yếu tố đầu thuộc ống kính, hai yếu tố sau thuộc khoảng cách. Câu dễ nhớ (Essential Photography): **"Càng mở khẩu, càng gần, càng zoom thì càng xóa phông."**
+Hai yếu tố đầu thuộc ống kính, hai yếu tố sau thuộc khoảng cách. Câu dễ nhớ (Essential Photography): "Càng mở khẩu, càng gần, càng zoom thì càng xóa phông."
 
-#### Dùng độ mờ để diễn đạt
-- **Hậu cảnh mờ**: làm gọn nền rối, đẩy chủ thể lên. Đèn điểm phía sau thành bóng tròn (bokeh) làm ảnh lộng lẫy hơn.
+Ví dụ: ở chế độ A trên ZV-E10, A6400 hoặc A7C II, mở khẩu xuống F2.8 rồi kéo chủ thể ra khỏi tường: nền mờ rõ hơn nhiều so với F16 sát tường.
+
+#### Dùng độ mờ trong bố cục
+
+- **Hậu cảnh mờ**: làm gọn nền rối, đẩy chủ thể lên. Đèn điểm phía sau thành bóng tròn (bokeh), tạo điểm nhấn cho nền.
 - **Tiền cảnh mờ**: phải cố ý tạo ra. Đặt lá cây, hoa, kính sát ống kính để tạo chiều sâu hoặc như một lớp lọc màu.
 
 #### Giảng thế nào
@@ -420,25 +467,53 @@ Look **PT**: Contrast +1 · Highlights −6 · Shadows +3 · Fade +1 · Saturati
 
 ### Cân bằng trắng và nhiệt độ màu
 
-**Cân bằng trắng là chỉnh để vật màu trắng ra đúng màu trắng dưới mọi nguồn sáng; ngoài ra nó còn là công cụ tạo cảm giác ấm hay lạnh cho ảnh.**
+**Cân bằng trắng là cách báo cho máy biết nguồn sáng đang là gì, để vật màu trắng ra đúng màu trắng dưới đèn vàng, bóng râm hay huỳnh quang. Nhiệt độ màu đo bằng Kelvin, và chỉnh nó cũng là cách tạo cảm giác ấm hay lạnh cho ảnh.**
 
-#### Vì sao cần
+#### Vì sao ảnh cần cân bằng trắng
+
 - Mỗi nguồn sáng có tỷ lệ đỏ/xanh lá/xanh dương khác nhau: dưới đèn vàng, đĩa trắng ra màu vàng; tuyết trong bóng râm ra màu xanh.
 - Mắt và não người tự bù trừ (quả táo dưới đèn nào cũng thấy đỏ), cảm biến thì không. Máy cần được báo nguồn sáng là gì.
 
-#### Nhiệt độ màu (K)
+#### Nhiệt độ màu đo bằng Kelvin
+
 - Đo bằng độ Kelvin: **K thấp = ánh sáng đỏ/cam, K cao = ánh sáng xanh**.
-- Mốc tham khảo (giáo trình Sony): nến ~1.800–2.000K · bình minh/hoàng hôn ~2.000–3.000K · đèn sợi đốt ~2.850–3.000K · huỳnh quang 4.000–6.500K tùy loại · nắng ban ngày ~5.300–5.800K · trời mây ~6.000–7.500K · bóng râm/trời xanh ~7.500–12.000K.
-- Đèn huỳnh quang thường lệch **xanh lá**, nằm ngoài trục đỏ–xanh dương của nhiệt độ màu → cần chỉnh thêm trục G–M.
+- Đèn huỳnh quang thường lệch **xanh lá**, nằm ngoài trục đỏ–xanh dương của nhiệt độ màu, nên cần chỉnh thêm trục G–M.
 
-#### Trên máy Sony
-- **Cân bằng trắng**: Tự động (AWB), các mức đặt sẵn (Ánh sáng ban ngày, Bóng râm, Trời nhiều mây, Đèn sợi đốt, 4 loại Huỳnh quang: trắng ấm, trắng lạnh, trung tính, ban ngày), nhiệt độ màu nhập tay (K), và tùy chỉnh bằng tấm trắng/xám.
+Mốc tham khảo trong giáo trình Sony:
+
+| Nguồn sáng | Nhiệt độ màu |
+|---|---|
+| Nến | ~1.800–2.000K |
+| Bình minh, hoàng hôn | ~2.000–3.000K |
+| Đèn sợi đốt | ~2.850–3.000K |
+| Huỳnh quang | 4.000–6.500K, tùy loại |
+| Nắng ban ngày | ~5.300–5.800K |
+| Trời nhiều mây | ~6.000–7.500K |
+| Bóng râm, trời xanh | ~7.500–12.000K |
+
+#### Các mức cân bằng trắng trên máy Sony
+
+| Mức | Nhiệt độ màu trong giáo trình |
+|---|---|
+| Tự động (AWB) | Máy tự chọn |
+| Ánh sáng ban ngày | ~5.000K |
+| Trời nhiều mây | ~6.000K |
+| Bóng râm | ~7.000K |
+| Đèn sợi đốt | ~3.200K |
+| Huỳnh quang (4 loại: trắng ấm, trắng lạnh, trung tính, ban ngày) | ~4.000K |
+| Nhiệt độ màu (C.Temp./Filter) | Nhập tay, theo nấc 100K |
+| Tùy chỉnh | Chụp tấm trắng hoặc xám |
+
+Giá trị K chính xác của từng model: [cần xác minh].
+
 - Mỗi mức đều có **chỉnh tinh** theo trục A–B (hổ phách–xanh dương) và G–M (xanh lá–đỏ tím).
-- Mốc K của các mức đặt sẵn trong giáo trình: Đèn sợi đốt ~3.200K · Huỳnh quang ~4.000K · Ban ngày ~5.000K · Trời nhiều mây ~6.000K · Bóng râm ~7.000K. Giá trị chính xác của từng model [cần xác minh].
+- Mỗi mức cân bằng trắng **nhớ chỉnh tinh riêng** (đã kiểm trên file máy A7C II): chỉnh A3 ở AWB rồi chuyển sang Nhiệt độ màu thì máy dùng chỉnh tinh đã lưu của Nhiệt độ màu, không mang A3 theo. Chỉnh tinh có cả nửa nấc (ví dụ M0.5).
+- Mục Ưu tiên trong AWB: ZV-E10 và A6400 ở Cài đặt máy ảnh1; A7C II ở Phơi sáng/màu › Cân bằng trắng.
 
-#### Mẹo dễ nhầm — dạy kỹ
+#### Đặt K thấp hay cao thì ảnh đổi thế nào
+
 - Đặt **K trên máy** là báo cho máy biết nguồn sáng, máy sẽ bù ngược lại: **đặt K thấp → ảnh xanh hơn; đặt K cao → ảnh vàng ấm hơn**.
-- Vì vậy chọn "Trời nhiều mây"/"Bóng râm" khi trời nắng sẽ làm ảnh ấm lên. [[Silhouette]] dùng mẹo này để trời hoàng hôn vàng cam hơn; [[Đồng bộ màn sau]] dùng Đèn sợi đốt (~3.200K) để vệt đèn nền ngả xanh.
+- Vì vậy chọn "Trời nhiều mây" hoặc "Bóng râm" khi trời nắng sẽ làm ảnh ấm lên. [[Silhouette]] dùng mẹo này để trời hoàng hôn vàng cam hơn; [[Đồng bộ màn sau]] dùng Đèn sợi đốt (~3.200K) để vệt đèn nền ngả xanh.
 
 #### Giảng thế nào
 - Giáo trình Sony chốt: **không có đáp án đúng**, màu ảnh là lựa chọn diễn đạt. Demo: chụp cùng chậu cẩm tú cầu ở AWB, Trời nhiều mây, Đèn sợi đốt rồi hỏi học viên thích tấm nào và vì sao.
@@ -446,11 +521,56 @@ Look **PT**: Contrast +1 · Highlights −6 · Shadows +3 · Fade +1 · Saturati
 #### Liên quan
 [[Creative Look]] · [[RAW, JPEG và HEIF]] · [[Săn màu, phối màu và lớp cảnh]]
 
+### Picture Profile
+
+**Picture Profile là bộ thông số chỉnh tông, màu và độ nét ngay trong máy, gồm 25 mục từ Gamma, Chế độ màu tới Chi tiết. Sony thiết kế chủ yếu cho phim, nhưng máy vẫn dùng được cho ảnh tĩnh: chọn một PP có sẵn rồi chỉnh từng mục.**
+
+#### Picture Profile có những mục nào
+
+- **Mức độ màu đen** (Black Level): độ sâu vùng đen, −15 đến +15.
+- **Gamma:** đường cong tông. A7C II có Movie, Still, S-Cinetone, Cine1–Cine4, ITU709, S-Log3, HLG, HLG1–HLG3.
+- **Gamma màu đen** (Black Gamma): phạm vi Rộng/Trung bình/Hẹp và mức −7 đến +7.
+- **Bẻ cong** (Knee): nén vùng sáng; chế độ Tự động (điểm tối đa, độ nhạy) hoặc Thủ công (điểm, độ dốc).
+- **Chế độ màu** (Color Mode): Movie, Still, S-Cinetone, Cinema, Pro, ITU709 Matrix, Black & White, S-Gamut3.Cine, S-Gamut3, BT.2020, 709.
+- **Độ bão hòa, Pha màu, Độ sâu màu** (R, G, B, C, M, Y): chỉnh màu theo từng vùng màu.
+- **Chi tiết** (Detail): mức nét và chỉnh sâu (cân bằng V/H, B/W, giới hạn, độ sắc, chi tiết vùng sáng).
+
+#### PP1 đến PP11 trên A7C II
+
+| Ô | Nội dung mặc định |
+|---|---|
+| PP1 | Gamma Movie |
+| PP2 | Still |
+| PP3 | ITU709 màu tự nhiên |
+| PP4 | ITU709 đúng chuẩn |
+| PP5 | Cine1 |
+| PP6 | Cine2 |
+| PP7 | Chưa xác định (Help Guide không mô tả) |
+| PP8 | S-Log3 với S-Gamut3.Cine |
+| PP9 | S-Log3 với S-Gamut3 |
+| PP10 | HLG2 cho HDR |
+| PP11 | S-Cinetone |
+
+#### Mở Picture Profile trên từng máy
+
+| Máy | Đường dẫn |
+|---|---|
+| ZV-E10, A6400 | Cài đặt máy ảnh1 › Picture Profile |
+| A7C II | Phơi sáng/màu › Màu/tông màu › Picture Profile |
+
+- Chọn một PP rồi bấm cạnh phải bánh xe điều khiển để vào từng mục.
+- Với gamma HLG, Gamma màu đen cố định 0 và Chế độ màu chỉ còn BT.2020 hoặc 709.
+- Bộ Picture Profile lưu được vào Bộ nhớ cài đặt (M1–M4) cùng các cài đặt khác: xem [[Bộ nhớ cài đặt và Memory Recall]].
+
+#### Liên quan
+[[Cân bằng trắng và nhiệt độ màu]] · [[RAW, JPEG và HEIF]] · [[Khác biệt ZV-E10, A6400 và A7C II]]
+
 ### RAW, JPEG và HEIF
 
-**RAW là dữ liệu thô từ cảm biến, giữ nhiều thông tin nhất nhưng bắt buộc phải hậu kỳ; JPEG và HEIF là ảnh đã được chip BIONZ của máy xử lý màu, nét, nhiễu, dùng được ngay.**
+**RAW là dữ liệu thô từ cảm biến, giữ được nhiều thông tin nhất nhưng phải hậu kỳ mới thành ảnh. JPEG và HEIF là ảnh đã qua chip BIONZ của máy xử lý màu, nét và nhiễu, dùng được ngay nhưng ít chỗ sửa hơn.**
 
-#### So sánh nhanh
+#### RAW, JPEG hay HEIF khác nhau ở đâu
+
 | | RAW (.ARW) | JPEG | HEIF |
 |---|---|---|---|
 | Xử lý | Chưa; cần phần mềm (Imaging Edge, Lightroom, Capture One) | Máy xử lý theo Creative Look | Máy xử lý theo Creative Look |
@@ -459,12 +579,17 @@ Look **PT**: Contrast +1 · Highlights −6 · Shadows +3 · Fade +1 · Saturati
 | Dung lượng | Lớn | Nhỏ | Nhỏ hơn JPEG cùng chất lượng |
 | Mở được ở đâu | Phần mềm hỗ trợ | Mọi nơi | Thiết bị/phần mềm mới; đôi khi phải chuyển đổi |
 
+#### File RAW có đuôi nào
+
 - Máy Sony Alpha ghi RAW đuôi **.ARW** (có tùy chọn nén, không nén, nén không mất dữ liệu tùy model). **DNG** là định dạng RAW mở của Adobe, có được khi chuyển đổi trong phần mềm.
 
 #### Khi nào chọn gì
+
+Ví dụ: chụp tiệc để đăng ngay trên A6400 thì JPEG là đủ. Chụp ngược sáng ngoài trời trên A7C II để kéo lại vùng tối khi hậu kỳ thì chọn RAW.
+
 - **JPEG/HEIF**: sự kiện, du lịch, cần đăng nhanh, người chưa biết hậu kỳ. Chọn đúng Creative Look và cân bằng trắng ngay khi chụp.
 - **RAW**: ánh sáng khó (ngược sáng, đèn hỗn hợp), [[Silhouette]], [[Chồng ảnh]], khi muốn hậu kỳ sâu. Đòi hỏi kiến thức và thời gian xử lý.
-- **RAW + JPEG**: vừa có ảnh dùng ngay, vừa có file dự phòng. Tốn thẻ nhớ gấp đôi.
+- **RAW + JPEG**: vừa có ảnh dùng ngay, vừa có file dự phòng. Tốn thêm dung lượng thẻ nhớ và ổ lưu trữ.
 - Không gian màu: **sRGB** cho ảnh đăng mạng và người mới; Adobe RGB chỉ khi cả quy trình in ấn hỗ trợ.
 
 #### Giảng thế nào
@@ -474,22 +599,101 @@ Look **PT**: Contrast +1 · Highlights −6 · Shadows +3 · Fade +1 · Saturati
 #### Liên quan
 [[Creative Look]] · [[Cân bằng trắng và nhiệt độ màu]] · [[Đặt tên và lọc ảnh]]
 
+### Hệ menu Legacy và New-gen
+
+**Máy Sony Alpha ngàm E có hai kiểu menu: Legacy Menu chia theo tab Cài đặt máy ảnh1/2, và New-gen Menu chia theo việc cần làm (Chụp, Phơi sáng/màu, Lấy nét). Cùng một cài đặt nhưng đường dẫn khác hẳn, nên hướng dẫn phải ghi đúng hệ menu của máy.**
+
+#### Legacy Menu và New-gen Menu khác nhau thế nào
+
+- **Legacy Menu:** tab Cài đặt máy ảnh1, Cài đặt máy ảnh2, Mạng, Xem lại, Cài đặt, Menu của tôi. Máy đời đầu (A6000, A7, A7 II…) có menu còn cũ hơn, nhưng cùng kiểu chia tab theo trang.
+- **New-gen Menu:** bắt đầu từ A7S III (2020). Tab Chụp, Phơi sáng/màu, Lấy nét, Xem lại, Mạng, Cài đặt; mỗi tab chia thành nhóm có tên (ví dụ Phơi sáng/màu › Đo sáng).
+- Không chia theo năm: A7C (2020), A7R IVA (2021) và ZV-E10 (2021) ra sau A7S III nhưng vẫn dùng Legacy Menu (A7C đã kiểm trên Help Guide).
+
+#### Nhận biết hệ menu trên máy
+
+- Thấy tab **Cài đặt máy ảnh1** và **Cài đặt máy ảnh2**: Legacy Menu, như ZV-E10 và A6400.
+- Thấy tab **Chụp**, **Phơi sáng/màu**, **Lấy nét**: New-gen Menu, như A7C II.
+
+#### Máy nào dùng hệ menu nào
+
+| Hệ menu | Máy |
+|---|---|
+| Legacy Menu | ZV-E10, A5000, A5100, A6000, A6100, A6300, A6400, A6500, A6600, A7, A7 II, A7 III, A7C, A7R, A7R II, A7R III/IIIA, A7R IV/IVA, A7S, A7S II, A9, A9 II |
+| New-gen Menu | A7S III, A1, A1 II, A7 IV, A7 V, A7C II, A7CR, A7R V, A7R VI, A9 III, A6700, ZV-E1, ZV-E10 II |
+
+#### Đường dẫn của cùng một cài đặt
+
+| Cài đặt | Legacy Menu (ZV-E10, A6400) | New-gen Menu (A7C II) |
+|---|---|---|
+| Tự động xem lại | Cài đặt máy ảnh2 › Tự động xem lại | Cài đặt › Tùy chọn hiển thị › Tự động xem lại |
+| ISO AUTO tốc độ tối thiểu | Cài đặt máy ảnh1 › Cài đặt ISO (chỉ A6400) | Phơi sáng/màu › Phơi sáng |
+| Chế độ flash, Cài đặt bù sáng | Cài đặt máy ảnh1 | Phơi sáng/màu › Đèn flash |
+| Chế độ lấy nét, Pre-AF, AF khi chụp | Cài đặt máy ảnh1 | Lấy nét › AF/MF |
+| Vùng lấy nét | Cài đặt máy ảnh1 | Lấy nét › Vùng lấy nét |
+| SteadyShot | Cài đặt máy ảnh2 | Chụp › Ổn định ảnh |
+| Chế độ đo sáng, Ưu tiên mặt (đa điểm) | Cài đặt máy ảnh1 | Phơi sáng/màu › Đo sáng |
+| Picture Profile, Làm mịn da | Cài đặt máy ảnh1 | Phơi sáng/màu › Màu/tông màu |
+| Ưu tiên trong AWB | Cài đặt máy ảnh1 | Phơi sáng/màu › Cân bằng trắng |
+| Độ sáng màn hình, Chất lượng hiển thị | Cài đặt | Cài đặt › Ống ngắm/màn hình |
+| Hiển thị Live View | Cài đặt máy ảnh2 | Chụp › Hiển thị khi chụp › Cài đặt hiển thị Live View |
+| Bộ nhớ cài đặt (lưu M1–M4) | Cài đặt máy ảnh1 | Chụp › Chế độ chụp |
+
+#### Mẹo khi dạy
+- Hỏi model trước khi chỉ menu. Tên mục giống nhau nhưng nằm ở tab khác.
+- Trên New-gen Menu, **Tùy chọn hiển thị** (tab Cài đặt) và **Tùy chọn xem lại** (tab Xem lại) dễ nhầm: Tự động xem lại nằm ở Tùy chọn hiển thị, ngay dưới nhóm Ống ngắm/màn hình.
+
+#### Liên quan
+[[Khác biệt ZV-E10, A6400 và A7C II]] · [[Cài đặt nhanh trước buổi chụp]] · [[Bộ nhớ cài đặt và Memory Recall]]
+
+### Khác biệt ZV-E10, A6400 và A7C II
+
+**Ba máy hay gặp nhất khi hướng dẫn người mới. ZV-E10 và A6400 dùng [[Hệ menu Legacy và New-gen|Legacy Menu]], A7C II dùng New-gen Menu; khác nhau cả về nút bấm, ống ngắm, flash và một số mục trong menu.**
+
+#### Thân máy và nút bấm
+- **Chọn chế độ chụp:** ZV-E10 không có vòng chế độ (bấm nút Ảnh tĩnh/Phim/S&Q rồi chọn trong menu Chế độ chụp). A6400 có vòng chế độ. A7C II có vòng chế độ và vòng Ảnh tĩnh/Phim/S&Q.
+- **Ống ngắm:** ZV-E10 không có. A6400 và A7C II có ống ngắm điện tử.
+- **Flash tích hợp:** chỉ A6400 có. ZV-E10 và A7C II cần flash rời gắn giày Multi Interface. Tốc độ đồng bộ flash của ZV-E10 và A6400: 1/160 giây (flash Sony).
+- **Nút lấy nét bằng ngón cái:** A6400 có nút AF/MF/AEL. ZV-E10 không có nút AEL, gán Bật AF cho nút giữa bánh xe hoặc nút C1. A7C II có sẵn nút AF-ON.
+- **Bù sáng:** ZV-E10 và A6400 không có vòng bù sáng riêng; bù sáng ở cạnh dưới bánh xe điều khiển, hoặc gán cho vòng xoay/bánh xe bằng Vòng xoay/bánh xe bù sáng. A7C II gán sẵn bù sáng cho Vòng xoay sau R.
+- **Chế độ M** (ZV-E10, A6400): vòng xoay điều khiển chỉnh khẩu, bánh xe điều khiển chỉnh tốc.
+- **Chống rung:** ZV-E10 và A6400 không có chống rung trên thân, SteadyShot chỉ chạy khi tên ống có chữ OSS. A7C II có chống rung trên thân.
+
+#### Khác nhau trong menu
+- **ISO AUTO tốc độ tối thiểu:** A6400 và A7C II có. ZV-E10 không có; giữ tốc độ bằng chế độ S, hoặc chế độ M kèm ISO AUTO.
+- **Đo sáng điểm:** A6400 và A7C II có Điểm: tiêu chuẩn và Điểm: lớn; ZV-E10 chỉ có một mức Điểm. Điểm đo sáng (gắn vòng đo sáng theo điểm lấy nét) chỉ có trên A6400 trong hai máy Legacy; trên ZV-E10, đo sáng điểm luôn ở giữa khung.
+- **Màn trập trước điện tử:** ZV-E10 và A6400 có. A7C II không có mục này; Loại màn trập chỉ có Màn trập cơ và Màn trập điện tử.
+- **Tỷ lệ khung hình:** ZV-E10 có 3:2, 4:3, 16:9, 1:1; A6400 không có 4:3.
+- **Định dạng ảnh:** ZV-E10 và A6400 ghi RAW và JPEG, không có HEIF.
+- **Picture Profile:** ZV-E10 và A6400 cùng đường dẫn Cài đặt máy ảnh1 › Picture Profile. A7C II có PP1–PP11 ở Phơi sáng/màu › Màu/tông màu, áp cho cả ảnh tĩnh và phim. Xem [[Picture Profile]].
+
+#### Liên quan
+[[Hệ menu Legacy và New-gen]] · [[Cài đặt nhanh trước buổi chụp]] · [[Đo sáng]] · [[Bù sáng]]
+
 ### Bù sáng
 
-**Bù sáng là lệnh bảo máy chụp sáng hơn (+EV) hoặc tối hơn (−EV) so với mức máy tự đo, dùng khi máy đo sai hoặc khi muốn diễn đạt khác.**
+**Bù sáng là lệnh bảo máy chụp sáng hơn (+EV) hoặc tối hơn (−EV) so với mức máy tự đo, dùng khi máy đo sai hoặc khi muốn diễn đạt khác. Cảnh nhiều màu trắng nên bù +, cảnh nhiều màu đen nên bù −. Kiểm tra kết quả bằng biểu đồ (histogram).**
 
 #### Vì sao cần bù sáng
+
 - Máy chỉ biết cảnh "sáng" hay "tối" và luôn kéo về **xám trung tính**: cảnh sáng thì chụp tối đi, cảnh tối thì chụp sáng lên.
-- Cảnh nhiều màu trắng (tuyết, áo cưới, đĩa trắng trên bàn trắng) → ảnh xám, tối → **bù +** (+0.7 đến +2).
-- Cảnh nhiều màu đen/màu đậm (áo đen, nền tối, sân khấu) → ảnh bệch, sáng quá → **bù −** (−0.7 đến −1).
-- Cảnh ngược sáng, có đèn/điểm sáng trong khung → chủ thể tối → bù +.
 
-#### Bù sáng để diễn đạt
-- **High-key** (+1.3 đến +2): ảnh trong trẻo, nhẹ nhàng, hợp chân dung nữ, đồ ăn, hoa.
-- **Low-key** (−0.7 trở xuống): tương phản rõ, màu đậm hơn, nhấn chất liệu và khối.
-- Giáo trình Sony nhấn mạnh: không có mức nào "đúng" tuyệt đối, chỉ có cách diễn đạt khác nhau.
+| Loại cảnh | Hướng bù | Vì sao |
+|---|---|---|
+| Nhiều màu trắng (tuyết, áo cưới, đĩa trắng trên bàn trắng) | Bù + (+0.7 đến +2) | Máy kéo về xám nên ảnh bị tối |
+| Nhiều màu đen (áo đen, nền tối, sân khấu) | Bù − (−0.7 đến −1) | Máy kéo về xám nên ảnh bị sáng, bệch |
+| Ngược sáng, có đèn hoặc điểm sáng trong khung | Bù + | Chủ thể bị tối |
 
-#### Trên máy Sony
+#### Bù sáng để diễn đạt ảnh
+
+| Kiểu ảnh | Mức bù | Đặc điểm |
+|---|---|---|
+| High-key | +1.3 đến +2 | Trong trẻo, nhẹ nhàng, hợp chân dung nữ, đồ ăn, hoa |
+| Low-key | −0.7 trở xuống | Tương phản rõ, màu đậm hơn, nhấn chất liệu và khối |
+
+Giáo trình Sony nhấn mạnh: không có mức nào "đúng" tuyệt đối, chỉ có cách diễn đạt khác nhau.
+
+#### Chỉnh bù sáng trên máy Sony
+
 - Vòng bù sáng trên thân máy (đa số máy full-frame), hoặc nút ▼ / bánh xe điều khiển, hoặc menu **Bù sáng** (Exposure Comp.). Bước 1/3 EV; phạm vi tùy model.
 - Có tác dụng ở P, A, S và **M khi dùng ISO AUTO**. Ở M với ISO cố định, bù sáng không thay đổi ảnh.
 - Kiểm tra bằng **Biểu đồ** (Histogram): đỉnh dồn sát mép phải là cháy sáng, sát mép trái là mất chi tiết vùng tối.
@@ -503,9 +707,10 @@ Look **PT**: Contrast +1 · Highlights −6 · Shadows +3 · Fade +1 · Saturati
 
 ### Chế độ chụp P-A-S-M
 
-**Bốn chế độ P, A, S, M quyết định ai chọn khẩu độ và tốc độ: máy, người chụp, hay cả hai. Chọn chế độ là chọn mình muốn kiểm soát điều gì.**
+**Chế độ chụp P-A-S-M là bốn chế độ P, A, S và M, quyết định ai chọn khẩu độ và tốc độ: máy, người chụp, hay cả hai. Chọn chế độ là chọn điều mình muốn kiểm soát. A chỉnh khẩu độ, S chỉnh tốc độ màn trập, M chỉnh cả hai.**
 
-#### Bảng: người chụp chỉnh được gì
+#### Mỗi chế độ cho người chụp chỉnh được gì
+
 | Chế độ | Khẩu độ | Tốc độ | ISO | Bù sáng | Cân bằng trắng |
 |---|---|---|---|---|---|
 | Tự động thông minh / Chọn cảnh (SCN) | Không | Không | Không | Không | Không |
@@ -516,7 +721,8 @@ Look **PT**: Contrast +1 · Highlights −6 · Shadows +3 · Fade +1 · Saturati
 
 \* P cho phép **Program Shift**: xoay bánh xe để đổi cặp khẩu–tốc mà vẫn giữ độ sáng.
 
-#### Khi nào dùng
+#### Nên dùng chế độ nào cho từng tình huống
+
 - **P**: du lịch, chụp nhanh nhiều cảnh. Nhược: máy có thể chọn tốc độ không đủ nhòe hoặc không đủ dính.
 - **A**: chân dung, phong cảnh, macro — mọi lúc cần kiểm soát xóa phông. **Chế độ khuyên dùng cho người mới** (giáo trình Sony: "không dùng Auto nữa").
 - **S**: thể thao, thú cưng, trẻ em chạy nhảy (tốc độ nhanh); nước chảy, [[Panning]] (tốc độ chậm).
@@ -536,18 +742,30 @@ Demo thao tác (giáo trình Sony):
 
 ### ISO
 
-**ISO là mức khuếch đại tín hiệu ánh sáng trong máy: tăng ISO giúp ảnh sáng hơn khi thiếu sáng, đổi lại ảnh nhiễu hơn.**
+**ISO là mức khuếch đại tín hiệu ánh sáng trong máy, ghi bằng số như 100, 400, 6400. Tăng ISO giúp ảnh sáng hơn khi thiếu sáng, đổi lại ảnh nhiễu hơn. Gấp đôi ISO tương đương tăng 1 stop. Thường chỉ tăng ISO khi khẩu độ đã mở hết và tốc độ không thể chậm hơn.**
 
-#### Hiểu nhanh
+#### ISO hoạt động thế nào
+
 - Khẩu độ và tốc độ quyết định *bao nhiêu ánh sáng vào máy*; ISO quyết định *khuếch đại ánh sáng đó bao nhiêu lần*.
 - **Gấp đôi ISO = +1 stop**: ISO 200 chỉ cần một nửa lượng sáng so với ISO 100 để ra cùng độ sáng.
-- Dùng ISO khi khẩu độ đã mở hết và tốc độ không thể chậm hơn (sợ rung tay, chủ thể nhòe).
 - Ví dụ của giáo trình Sony: ISO giống **núm âm lượng**. Vặn to thì nghe rõ hơn, nhưng tiếng rè cũng to theo.
-- Ảnh hưởng hình ảnh: ISO thấp (100–400) mịn; ISO cao (6400 trở lên) hạt màu đỏ/xanh lá/xanh dương, giảm chi tiết và dải tương phản động.
 
-#### Trên máy Sony
+#### Khi nào nên tăng ISO
+
+- Dùng ISO khi khẩu độ đã mở hết và tốc độ không thể chậm hơn (sợ rung tay, chủ thể nhòe).
+
+#### Ảnh hưởng của ISO thấp và ISO cao lên ảnh
+
+| Mức ISO | Hình ảnh |
+|---|---|
+| ISO thấp (100–400) | Mịn |
+| ISO cao (6400 trở lên) | Hạt màu đỏ/xanh lá/xanh dương, giảm chi tiết và dải tương phản động |
+
+#### ISO AUTO và cách cài trên máy Sony
+
 - **ISO AUTO** với khoảng giới hạn (ví dụ 100–6400) và tốc độ tối thiểu (ISO AUTO Min. SS, ví dụ 1/125s khi chụp người). Đây là cấu hình khởi đầu khuyên dùng cho người mới. Xem [[Cài đặt nhanh trước buổi chụp]].
 - Chế độ M + ISO AUTO: khóa cả khẩu và tốc độ, máy tự lo độ sáng bằng ISO, và **bù sáng vẫn có tác dụng** (máy đổi ISO).
+- ISO AUTO tối thiểu/tối đa chọn theo nấc 1/3 stop. **ISO AUTO tốc độ tối thiểu** có trên A6400 và A7C II, không có trên ZV-E10 → [[Khác biệt ZV-E10, A6400 và A7C II]].
 
 #### Giảng thế nào
 - Demo (giáo trình Sony): giữ F3.5 – 1/60s, chụp lần lượt ISO 100 → 6400, phóng to 100% để so nhiễu.
@@ -561,18 +779,32 @@ Demo thao tác (giáo trình Sony):
 
 ### Khẩu độ
 
-**Khẩu độ là độ mở của lỗ sáng trong ống kính, ghi bằng số f (F2.8, F8…): số f càng nhỏ thì lỗ càng to, ảnh càng sáng và hậu cảnh càng mờ.**
+**Khẩu độ là độ mở của lỗ sáng trong ống kính, ghi bằng số f như F2.8 hay F8. Số f càng nhỏ thì lỗ càng to, ảnh càng sáng và hậu cảnh càng mờ; số f càng lớn thì ảnh càng tối nhưng nét sâu hơn từ trước ra sau.**
 
-#### Hiểu nhanh
+#### Dãy số f chuẩn và mỗi bước là bao nhiêu stop
+
 - Dãy số f chuẩn, mỗi bước là **1 stop** (giảm một nửa ánh sáng): F1.4 → F2 → F2.8 → F4 → F5.6 → F8 → F11 → F16 → F22. Mỗi bước nhân số f với khoảng 1,4 (√2).
 - Vì sao √2: số f là tỷ lệ tiêu cự / đường kính lỗ, còn lượng sáng tỷ lệ với **diện tích** lỗ. Đường kính nhỏ đi √2 lần thì diện tích nhỏ đi 2 lần.
 - **Gấp đôi số f (F2.8 → F5.6) = 2 stop = ánh sáng chỉ còn 1/4.**
-- Mở khẩu (số f nhỏ): sáng hơn, độ sâu trường ảnh nông, xóa phông mạnh. Khép khẩu (số f lớn): tối hơn, nét sâu từ trước ra sau.
 - Máy hiện nay chỉnh theo bước 1/3 stop: F5.6 → F6.3 → F7.1 → F8.
 
-#### Trên máy Sony
+#### Mở khẩu và khép khẩu ảnh đổi thế nào
+
+- Mở khẩu (số f nhỏ): sáng hơn, độ sâu trường ảnh nông, xóa phông mạnh. Khép khẩu (số f lớn): tối hơn, nét sâu từ trước ra sau.
+
+#### Chỉnh khẩu độ trên máy Sony
+
 - Chế độ **A (Ưu tiên khẩu độ)** hoặc **M (Phơi sáng thủ công)**: xoay bánh xe trước/sau để đổi số f. Một số ống kính có vòng khẩu, đặt về "A" thì thân máy điều khiển.
-- Gợi ý nhanh: chân dung F1.8–F2.8 · nhóm người F4–F5.6 · phong cảnh F8–F11. Khép quá F16 ảnh có thể mềm đi do nhiễu xạ.
+
+#### Nên chọn khẩu độ bao nhiêu cho từng thể loại
+
+| Thể loại | Khẩu độ gợi ý |
+|---|---|
+| Chân dung | F1.8–F2.8 |
+| Nhóm người | F4–F5.6 |
+| Phong cảnh | F8–F11 |
+
+Khép quá F16 ảnh có thể mềm đi do nhiễu xạ.
 
 #### Giảng thế nào
 - Câu dễ nhớ (slide Essential Photography): **"Càng mở khẩu, càng xóa phông."**
@@ -587,16 +819,37 @@ Demo thao tác (giáo trình Sony):
 
 ### Stop và EV
 
-**Stop là đơn vị chung để so ánh sáng giữa khẩu độ, tốc độ và ISO: +1 stop là gấp đôi ánh sáng, −1 stop là giảm một nửa.**
+**Stop là đơn vị chung để so sánh ánh sáng giữa khẩu độ, tốc độ màn trập và ISO: +1 stop là gấp đôi ánh sáng, −1 stop là giảm một nửa. Stop đi cùng EV, một thang đo theo hệ APEX giúp nhận ra các cặp khẩu độ và tốc độ cho cùng một mức sáng.**
 
-#### Hiểu nhanh
+#### Stop là gì và đổi 1 stop bằng bao nhiêu
+
 - Ba yếu tố đo bằng ba đơn vị khác nhau (số f, giây, ISO), nên người ta đặt ra "stop" để quy đổi. Tiếng Nhật gọi là 段 (đoạn/bậc).
-- +1 stop: tốc độ 1/250 → 1/125 · khẩu F8 → F5.6 · ISO 100 → 200.
+
+| Yếu tố | Mức ban đầu | Sau khi +1 stop |
+|---|---|---|
+| Tốc độ màn trập | 1/250 | 1/125 |
+| Khẩu độ | F8 | F5.6 |
+| ISO | 100 | 200 |
+
 - Máy hiện đại chỉnh theo **1/3 stop**: 1/60 → 1/80 → 1/100 → 1/125 · F5.6 → F6.3 → F7.1 → F8.
+
+#### EV là gì và tính thế nào
+
 - **EV (Exposure Value)** theo hệ APEX: EV = Av + Tv, với Av = 2·log₂(số f), Tv = log₂(1/thời gian). Ví dụ: F5.6 (Av 5) + 1/125s (Tv 7) = **EV 12**; F2.8 (Av 3) + 1/500s (Tv 9) cũng = EV 12 → **cùng độ sáng**.
 - Bảng EV (ở ISO 100) cho thấy rất nhiều cặp khẩu–tốc cùng ra một độ sáng; chọn cặp nào là chọn **cách diễn đạt** (xóa phông hay nét sâu, bắt dính hay nhòe).
 
-#### Hai nghĩa của "EV" — dễ nhầm
+#### Cặp khẩu độ và tốc độ cho cùng độ sáng (ISO 100)
+
+| Khẩu độ | Tốc độ màn trập | EV |
+|---|---|---|
+| F2.8 | 1/2000s | 14 |
+| F4 | 1/1000s | 14 |
+| F5.6 | 1/500s | 14 |
+| F8 | 1/250s | 14 |
+| F11 | 1/125s | 14 |
+
+#### EV có hai nghĩa, dễ nhầm lẫn
+
 - **EV tuyệt đối** (hệ APEX): mô tả độ sáng của cảnh/cặp thông số. EV cao = cảnh sáng.
 - **±EV khi bù sáng**: số stop sáng/tối hơn so với mức máy đo. "+1 EV" = sáng hơn 1 stop. Xem [[Bù sáng]].
 
@@ -609,13 +862,28 @@ Demo thao tác (giáo trình Sony):
 
 ### Tam giác phơi sáng
 
-**Độ sáng của ảnh do ba yếu tố quyết định: khẩu độ (lượng ánh sáng đi qua ống kính), tốc độ màn trập (thời gian cảm biến nhận sáng) và ISO (mức khuếch đại tín hiệu).**
+**Tam giác phơi sáng là mô hình ba yếu tố cùng quyết định độ sáng của ảnh: khẩu độ (lượng sáng đi qua ống kính), tốc độ màn trập (thời gian cảm biến nhận sáng) và ISO (mức khuếch đại tín hiệu). Đổi một yếu tố thì phải bù bằng yếu tố khác để giữ cùng độ sáng.**
 
-#### Hiểu nhanh
-- **Đúng sáng** (correct exposure): lượng sáng vừa đủ, ảnh giữ được chi tiết từ vùng tối đến vùng sáng. **Thiếu sáng** (under): ảnh tối, mất chi tiết vùng tối. **Thừa sáng** (over): ảnh cháy, mất chi tiết vùng sáng.
+#### Ba yếu tố phơi sáng liên kết với nhau thế nào
+
 - Khẩu độ và màn trập là hai "cơ cấu" thật: khẩu độ nằm trong ống kính (thân máy điều khiển), màn trập nằm trước cảm biến trong thân máy. ISO là cách thứ ba khi hai cơ cấu kia đã chạm giới hạn.
 - Mỗi yếu tố đổi 1 stop là gấp đôi hoặc giảm một nửa ánh sáng. Vì cùng đơn vị stop nên có thể đổi qua lại: mở khẩu thêm 1 stop + tăng tốc thêm 1 stop = độ sáng không đổi. Xem [[Stop và EV]].
-- Mỗi yếu tố còn có "tác dụng phụ" về hình ảnh: khẩu độ → độ sâu trường ảnh ([[Độ sâu trường ảnh và xóa phông]]); tốc độ → bắt dính hoặc làm nhòe chuyển động ([[Tốc độ màn trập]]); ISO → nhiễu ([[ISO]]).
+
+#### Mỗi yếu tố ảnh hưởng hình ảnh thế nào
+
+| Yếu tố | Ảnh hưởng chính | Xem thêm |
+|---|---|---|
+| Khẩu độ | Độ sâu trường ảnh | [[Độ sâu trường ảnh và xóa phông]] |
+| Tốc độ màn trập | Bắt dính hoặc làm nhòe chuyển động | [[Tốc độ màn trập]] |
+| ISO | Nhiễu | [[ISO]] |
+
+#### Ba mức phơi sáng: đúng, thiếu và thừa
+
+| Mức phơi sáng | Hình ảnh |
+|---|---|
+| Đúng sáng (correct exposure) | Lượng sáng vừa đủ, ảnh giữ được chi tiết từ vùng tối đến vùng sáng |
+| Thiếu sáng (under) | Ảnh tối, mất chi tiết vùng tối |
+| Thừa sáng (over) | Ảnh cháy, mất chi tiết vùng sáng |
 
 #### Giảng thế nào
 - **Ví dụ vòi nước và cái cốc** (giáo trình Sony): nước = ánh sáng, vòi = khẩu độ, thời gian mở vòi = tốc độ màn trập, cốc = cảm biến, cốc đầy vừa = đúng sáng. Mở vòi to thì đóng nhanh; mở vòi nhỏ thì phải chờ lâu. Hai cách đều đầy một cốc.
@@ -631,16 +899,27 @@ Demo thao tác (giáo trình Sony):
 
 ### Tốc độ màn trập
 
-**Tốc độ màn trập là khoảng thời gian cảm biến nhận ánh sáng, ghi bằng giây (1/1000s, 1/60s, 2s…): nhanh thì bắt dính chuyển động, chậm thì làm chuyển động nhòe thành vệt.**
+**Tốc độ màn trập là khoảng thời gian cảm biến nhận ánh sáng, ghi bằng giây như 1/1000s, 1/60s hay 2s. Tốc độ nhanh giúp bắt dính chuyển động, tốc độ chậm làm chuyển động nhòe thành vệt. Mỗi lần gấp đôi thời gian là thay đổi 1 stop ánh sáng.**
 
-#### Hiểu nhanh
+#### Tốc độ nhanh và chậm cho hình ảnh khác nhau thế nào
+
 - Mỗi lần gấp đôi thời gian (1/250 → 1/125) là **+1 stop** ánh sáng.
 - **Màn trập mặt phẳng tiêu cự** (focal-plane) gồm màn trước và màn sau. Ánh sáng đi qua khe hở giữa hai màn; tốc độ càng nhanh, khe càng hẹp.
-- Nhanh (1/1000s trở lên): đóng băng thể thao, chim bay, giọt nước. Chậm (1/15s trở xuống): nước chảy mượt, vệt đèn xe, cảm giác hỗn loạn. Xem [[Panning]], [[Phơi sáng dài]].
+
+| Tốc độ | Hình ảnh thu được |
+|---|---|
+| Nhanh (1/1000s trở lên) | Đóng băng thể thao, chim bay, giọt nước |
+| Chậm (1/15s trở xuống) | Nước chảy mượt, vệt đèn xe, cảm giác hỗn loạn |
+
+Xem [[Panning]], [[Phơi sáng dài]].
+
+#### Mốc tốc độ an toàn khi cầm tay
+
 - Mốc an toàn khi cầm tay: không chậm hơn **1/tiêu cự** (ống 50mm → 1/50s; máy APS-C nhân thêm 1,5). Chống rung SteadyShot cho chậm thêm vài stop, nhưng **chỉ chống rung tay, không cứu được chủ thể chuyển động**.
 - Mốc tham khảo cho người: đứng yên 1/125s · đi lại 1/250s · chạy nhảy, thể thao 1/1000s trở lên.
 
-#### Trên máy Sony
+#### Chỉnh tốc độ màn trập trên máy Sony
+
 - Chế độ **S (Ưu tiên tốc độ màn trập)** hoặc **M**. BULB (giữ nút chụp bao lâu mở bấy lâu) có ở chế độ M.
 - **Loại màn trập** (Shutter Type): màn trập cơ, điện tử hoặc tự động. Màn trập điện tử chụp im lặng và nhanh hơn, nhưng có thể méo vật chuyển động nhanh và sọc dưới đèn LED/huỳnh quang (trừ cảm biến global shutter).
 - ISO AUTO có tham số **tốc độ tối thiểu** (ISO AUTO Min. SS): máy sẽ tăng ISO trước khi để tốc độ chậm hơn mức này. Xem [[Cài đặt nhanh trước buổi chụp]].
@@ -657,18 +936,29 @@ Demo thao tác (giáo trình Sony):
 
 ### Đo sáng
 
-**Đo sáng là cách máy đọc độ sáng của cảnh để tự chọn thông số phơi sáng; chế độ đo sáng quyết định máy "nhìn" vùng nào trong khung.**
+**Đo sáng là cách máy đọc độ sáng của cảnh để tự chọn thông số phơi sáng. Chế độ đo sáng quyết định máy "nhìn" vùng nào trong khung: đa điểm cân bằng cả khung, điểm chỉ đo một vùng nhỏ. Mọi chế độ đều nhắm tới mức xám trung tính.**
 
-#### Các chế độ trên Sony
-- **Đa điểm** (Multi): chia khung thành nhiều vùng và cân bằng chung. Dùng mặc định cho hầu hết tình huống. Bật **Ưu tiên mặt khi đo đa điểm** để máy lấy khuôn mặt làm chuẩn, rất hợp chụp người.
-- **Trung tâm** (Center): ưu tiên vùng giữa nhưng vẫn tính cả khung.
-- **Điểm** (Spot): chỉ đo một vùng nhỏ. Dùng cho [[Silhouette]] (chấm vào vùng trời sáng), sân khấu, chủ thể nhỏ trên nền rất sáng/tối.
-- **Trung bình toàn khung** (Entire Screen Avg.): ổn định khi bố cục thay đổi, hợp quay phim.
-- **Vùng sáng** (Highlight): giữ chi tiết vùng sáng nhất, hợp sân khấu, cảnh có đèn mạnh.
+#### Đo sáng nhắm tới mức nào
 
-#### Hiểu nhanh
 - Mọi chế độ đo sáng đều nhắm tới mức xám trung tính, nên vẫn cần [[Bù sáng]] khi cảnh chủ yếu trắng hoặc đen.
 - Ở chế độ M, thước đo phơi sáng trên màn hình cho biết thông số đang lệch bao nhiêu stop so với mức máy đo.
+
+#### Các chế độ đo sáng trên máy Sony
+
+| Chế độ | Cách máy đo |
+|---|---|
+| Đa điểm (Multi) | Chia khung thành nhiều vùng và cân bằng chung |
+| Trung tâm (Center) | Ưu tiên vùng giữa nhưng vẫn tính cả khung |
+| Điểm (Spot) | Chỉ đo một vùng nhỏ |
+| Trung bình toàn khung (Entire Screen Avg.) | Ổn định khi bố cục thay đổi |
+| Vùng sáng (Highlight) | Giữ chi tiết vùng sáng nhất |
+
+#### Chọn chế độ đo sáng theo cảnh
+
+- **Đa điểm** dùng mặc định cho hầu hết tình huống. Bật **Ưu tiên mặt khi đo đa điểm** để máy lấy khuôn mặt làm chuẩn, rất hợp chụp người.
+- **Điểm** dùng cho [[Silhouette]] (chấm vào vùng trời sáng), sân khấu, chủ thể nhỏ trên nền rất sáng/tối.
+- **Trung bình toàn khung** hợp quay phim.
+- **Vùng sáng** hợp sân khấu, cảnh có đèn mạnh.
 
 #### Giảng thế nào
 - Cấu hình khởi đầu cho người mới (Essential Photography): **Đa điểm + Ưu tiên mặt khi đo đa điểm: Bật**.
@@ -676,6 +966,37 @@ Demo thao tác (giáo trình Sony):
 
 #### Liên quan
 [[Bù sáng]] · [[Tam giác phơi sáng]] · [[Cài đặt nhanh trước buổi chụp]]
+
+### Bộ nhớ cài đặt và Memory Recall
+
+**Bộ nhớ cài đặt lưu cùng lúc một nhóm thông số của máy, gồm chế độ chụp, lấy nét, đo sáng, cân bằng trắng và Picture Profile, rồi gọi lại bằng một thao tác. Ví dụ: một bộ cho chân dung, một bộ cho phim, một bộ cho đêm.**
+
+#### Lưu bộ cài đặt ở đâu
+- **Trên thân máy:** A7C II lưu 3 bộ, gọi bằng vòng chế độ 1, 2, 3.
+- **Trên thẻ nhớ:** 4 bộ M1–M4. File nằm ở `PRIVATE/SONY/SETTING/<thư mục model>/CAMPR01P.DAT`…`CAMPR04P.DAT`; đuôi P là máy hệ PAL (máy bán ở Việt Nam), N là NTSC. Thư mục: ZV-E10 là `E10`, A7C II là `7CM2`.
+- **Lưu/tải cài đặt** (A7C II, tab Cài đặt): lưu tới 10 bộ cài đặt toàn máy lên một thẻ; chỉ nạp được vào máy cùng model, và có thể không nạp được nếu khác phiên bản phần mềm.
+
+#### Lưu và gọi lại bộ cài đặt
+- A7C II: Chụp › Chế độ chụp › Bộ nhớ cài đặt › chọn ô. Gọi bộ trên thẻ: Chụp › Chế độ chụp › Gọi lại cài đặt. Bộ lưu từ máy khác cùng model vẫn gọi được.
+- A7C II: để vòng chế độ ở 1, 2 hoặc 3 rồi gọi bộ trên thẻ thì máy chạy đúng chế độ chụp (P, A, S, M), khẩu độ và tốc độ của bộ.
+- Ống kính có vòng khẩu: để vòng ở A. Vòng đặt ở số F nào thì máy giữ số đó, khẩu độ trong bộ không có tác dụng.
+- A7C II không lưu Tự động xem lại (Cài đặt › Tùy chọn hiển thị) vào bộ.
+- ZV-E10: gọi lại bằng MENU › Cài đặt máy ảnh1 › Chế độ chụp › MR. Mục "MR Memory" là để lưu, chọn nhầm sẽ ghi đè.
+- Mỗi lần lưu, máy ghi giờ lưu vào file (A7C II ghi theo giờ UTC).
+
+#### Cấu trúc file cho người viết công cụ
+- ZV-E10 dùng file cố định 4.608 byte. A7C II dùng file 13.948 byte gồm 1061 bản ghi có mã; hai đời máy khác định dạng.
+- Mỗi file có checksum. Trên ZV-E10, file sửa tay mà sai checksum hoặc đổi header (ngày, tên ô) thì máy báo File Error, nên header phải lấy nguyên từ file do chính máy lưu cho đúng ô.
+- Khẩu độ và tốc độ lưu bằng mã APEX theo nấc 1/3, cả ZV-E10 lẫn A7C II. File A7C II còn ghi số khẩu và tốc độ đang hiện lúc lưu (ở P, A, S là số đo), nhưng máy bỏ qua số này khi gọi lại.
+- Bộ M1–M4 do công cụ tạo cho A7C II, giữ header từ file máy lưu, đã gọi lại đúng trên máy thật (firmware 2.01, 11/2026).
+
+#### Mẹo khi dạy
+- Lưu xong một ô, xem lại giờ của file trên máy tính: người mới hay quên bấm lưu ô cuối.
+- Muốn kiểm một bộ vừa chép vào thẻ: gọi lại rồi lưu ngay vào đúng ô, không chỉnh gì ở giữa. Chỉnh tay xen vào thì không biết giá trị nào do bộ nạp.
+- Chép bộ M1–M4 mới vào thẻ xong: tắt máy, tháo thẻ lắp lại rồi bật máy thì máy mới đọc (đã thấy trên ZV-E10).
+
+#### Liên quan
+[[Picture Profile]] · [[Hệ menu Legacy và New-gen]] · [[Cài đặt nhanh trước buổi chụp]]
 
 ### Đặt tên và lọc ảnh
 
@@ -699,6 +1020,281 @@ Ví dụ: `20260430 - Dalat - Day 1 - Card 1 - HoTuyenLam - Wedding - HungYen`
 
 #### Liên quan
 [[RAW, JPEG và HEIF]] · [[Khóa Photo Basic 3 giờ]]
+
+### Bộ xử lý hình ảnh
+
+**Bộ xử lý hình ảnh là con chip biến dữ liệu thô từ cảm biến thành ảnh và phim, Sony gọi là BIONZ. Chip đời mới chạy nhanh hơn, lấy nét thông minh hơn và có thêm tính năng quay phim. Khi chọn máy, đời chip cho biết máy thuộc hệ menu nào.**
+
+#### Bộ xử lý hình ảnh làm gì
+- Chip đọc dữ liệu từ [[Cảm biến hình ảnh]], khử nhiễu, xử lý màu, nén JPEG/HEIF và mã hóa phim.
+- Chip cũng tính toán lấy nét tự động. Chip càng mạnh thì máy bám chủ thể càng chắc.
+- Bạn không chỉnh được thông số này. Nó cho biết máy thuộc thế hệ nào.
+
+#### Các đời BIONZ trên máy Sony
+- **BIONZ X**: [[ZV-E10]], [[A6400]], [[A6600]], [[A7 III]], dòng RX100.
+- **BIONZ XR**: [[A7 IV]], [[A7S III]], [[A1]], [[ZV-E10 II]], [[ZV-E1]].
+- **BIONZ XR kèm AI Processing Unit**: [[A7C II]], [[A6700]], [[A7R V]], [[A9 III]]. Bộ xử lý AI riêng lo việc nhận dạng chủ thể khi lấy nét: người, động vật, chim, côn trùng, xe.
+- **BIONZ XR2**: máy mới nhất như [[A7 V]].
+
+#### Có nên để ý đời chip khi mua máy
+- Máy ống kính rời dùng BIONZ X có hệ menu Legacy. Máy dùng BIONZ XR trở đi có hệ menu mới. Xem [[Hệ menu Legacy và New-gen]].
+- Đời chip thường quyết định máy có quay 10-bit, có [[Picture Profile]] S-Cinetone hay không. Xem bảng thông số của từng máy.
+
+#### Liên quan
+[[Cảm biến hình ảnh]] · [[Lấy nét]] · [[Hệ menu Legacy và New-gen]] · [[Độ phân giải và tốc độ khung hình video]]
+
+### Chống rung IBIS
+
+**Chống rung trên thân máy (IBIS) là cơ chế đặt cảm biến lên một bộ phận di động, dịch theo 5 trục để bù rung tay. IBIS chạy với mọi ống, kể cả ống fix không có OSS. Khi chọn máy, hãy xem có IBIS hay không, vì máy không có IBIS dựa vào OSS khi chụp ảnh.**
+
+#### IBIS hoạt động với ống nào và hiệu quả ra sao
+- IBIS chạy với mọi ống kính, kể cả ống fix không có [[OSS]].
+- Gắn ống OSS, thân máy và ống kính cùng chống rung. Cách chia việc tùy từng ống kính.
+- Hiệu quả tính bằng stop. [[A7C II]] đạt 7 stop theo chuẩn CIPA khi gắn ống [[FE 50mm F1.2 GM]].
+
+#### Máy Sony nào có chống rung IBIS
+- Có: [[A7C II]], [[A7 IV]], [[A6700]], [[A6600]], [[ZV-E1]], [[A1]].
+- Không có: [[ZV-E10]] và [[ZV-E10 II]] chỉ có [[Chống rung điện tử]] khi quay. [[A6400]] và [[A6100]] dựa vào OSS của ống kính.
+
+#### SteadyShot trên máy Sony có những mức nào
+- Menu gọi tính năng này là SteadyShot. Chụp ảnh có Bật và Tắt.
+- Khi quay phim có các mức Tiêu chuẩn, Chủ động và Tắt. Máy đời mới như [[A7C II]] có thêm Chủ động nâng cao.
+- Ống kính không báo tiêu cự cho máy (ống cơ, ống qua ngàm chuyển): đặt tiêu cự bằng tay trong phần chỉnh SteadyShot.
+- Đặt máy trên chân máy thì tắt SteadyShot.
+
+#### Liên quan
+[[Chống rung điện tử]] · [[OSS]] · [[Tốc độ màn trập]] · [[Stop và EV]]
+
+### Chống rung điện tử
+
+**Chống rung điện tử là cách bù rung xử lý trên chính dữ liệu ảnh: máy cắt bớt viền khung hình rồi dịch vùng ảnh theo từng khung. Tính năng này chỉ dùng khi quay phim, và góc nhìn hẹp đi một chút. Khi chọn máy, hãy xem có mức Chủ động hay không.**
+
+#### Chống rung điện tử hoạt động thế nào
+- Máy xử lý trên chính dữ liệu ảnh, không cần cơ cấu dịch cảm biến.
+- Bù rung tốt khi vừa đi vừa quay. Đổi lại khung hình bị crop và ảnh mềm đi chút ít.
+- Không có tác dụng khi chụp ảnh tĩnh.
+
+#### SteadyShot có những mức nào khi quay
+- [[ZV-E10]] và [[ZV-E10 II]] không có [[Chống rung IBIS]]. Khi quay, SteadyShot có hai mức: Tiêu chuẩn chỉ dùng OSS của ống kính, Chủ động thêm chống rung điện tử.
+- Máy có IBIS như [[A7C II]] cũng có mức Chủ động: IBIS cộng thêm chống rung điện tử.
+- Vì bị crop, nên quay vlog bằng ống góc rộng như [[E PZ 10-20mm F4 G]].
+
+#### Khi nào bật
+- Cầm máy đi bộ quay vlog: bật Chủ động.
+- Máy đặt cố định hoặc trên chân máy: dùng Tiêu chuẩn hoặc tắt để giữ trọn góc nhìn.
+
+#### Liên quan
+[[Chống rung IBIS]] · [[OSS]] · [[Độ phân giải và tốc độ khung hình video]]
+
+### Cảm biến hình ảnh
+
+**Cảm biến hình ảnh là tấm thu ánh sáng thay cho phim. Khổ cảm biến (full-frame, APS-C hay 1 inch) quyết định góc nhìn của ống kính, độ xóa phông và độ nhiễu khi thiếu sáng. Khi chọn máy, hãy để ý khổ cảm biến: cùng góc nhìn và khẩu độ, khổ lớn xóa phông mạnh hơn.**
+
+#### Khổ cảm biến full-frame, APS-C và 1 inch
+- **Full-frame**: khoảng 36 × 24 mm, bằng khung phim 35 mm. Ví dụ [[A7C II]], [[A7 IV]].
+- **APS-C**: khoảng 23,5 × 15,6 mm, cạnh nhỏ hơn full-frame 1,5 lần. Ví dụ [[ZV-E10]], [[A6400]], [[A6700]].
+- **1 inch**: 13,2 × 8,8 mm, trong máy compact như [[RX100 VII]], [[ZV-1 II]].
+- **Hệ số crop 1,5**: trên máy APS-C, ống 50 mm cho góc nhìn như ống 75 mm trên máy full-frame. Xem [[Tiêu cự]].
+- Cùng góc nhìn và cùng khẩu độ, cảm biến lớn hơn xóa phông mạnh hơn. Ở ISO cao ảnh thường ít nhiễu hơn.
+
+#### Exmor, Exmor R và Exmor RS khác nhau thế nào
+- **Exmor CMOS**: loại cơ bản, có trong [[ZV-E10]], [[A6400]].
+- **Exmor R CMOS**: chiếu sáng mặt sau, thu sáng tốt hơn. Có trong [[A7C II]], [[A6700]], [[ZV-E10 II]].
+- **Exmor RS CMOS**: cảm biến xếp chồng, đọc dữ liệu rất nhanh nên ít méo hình khi dùng màn trập điện tử. Có trong [[A1]], [[A9 III]] và dòng RX100. [[A9 III]] còn dùng màn trập toàn cục (global shutter).
+
+#### Ống FE và ống E gắn lên máy nào
+- Ống FE làm cho full-frame, gắn được cả máy APS-C.
+- Ống E làm cho APS-C. Gắn ống E lên máy full-frame, máy tự chuyển sang chụp khổ APS-C và ảnh nhỏ đi. Xem [[Độ phân giải ảnh tĩnh]].
+
+#### Liên quan
+[[Độ phân giải ảnh tĩnh]] · [[Tiêu cự]] · [[Độ sâu trường ảnh và xóa phông]] · [[ISO]] · [[Bộ xử lý hình ảnh]]
+
+### Dòng ống kính G và G Master
+
+**Dòng ống kính G và G Master là các nhóm ống Sony, xếp từ G Master (GM) cao nhất, rồi G, ZEISS và dòng tiêu chuẩn. Nhãn dòng nằm trong tên và mã ống kính. Khi chọn ống, GM ưu tiên sắc nét ở khẩu lớn và hậu cảnh mờ mịn, còn G thường gọn nhẹ hơn GM.**
+
+#### G Master, G, ZEISS và tiêu chuẩn khác nhau thế nào
+- **G Master (GM)**: dòng cao nhất. Ưu tiên độ sắc nét ở khẩu lớn và hậu cảnh mờ mịn. Ví dụ [[FE 24-70mm F2.8 GM II]], [[FE 85mm F1.4 GM II]].
+- **G**: chất lượng cao, thường gọn nhẹ hơn GM. Ví dụ [[FE 20-70mm F4 G]], [[E PZ 10-20mm F4 G]].
+- **ZEISS (ZA)**: ống làm cùng hãng ZEISS, tên có Sonnar, Planar, Distagon hoặc Vario-Tessar.
+- **Tiêu chuẩn**: không có nhãn, giá dễ tiếp cận. Ví dụ [[FE 50mm F1.8]], [[E PZ 16-50mm F3.5-5.6 OSS II]].
+
+#### Cách đọc tên và mã ống kính Sony
+- Mã kết thúc bằng GM là G Master, kết thúc bằng G là dòng G. SEL70200GM2 là [[FE 70-200mm F2.8 GM OSS II]].
+- FE là ống cho full-frame, E là ống cho APS-C. Xem [[Cảm biến hình ảnh]].
+
+#### Liên quan
+[[Khẩu độ]] · [[Độ sâu trường ảnh và xóa phông]] · [[Ống kính zoom và ống kính fix]]
+
+### Kích thước filter
+
+**Kích thước filter là đường kính ren ở đầu ống kính, tính bằng mm. Mua kính lọc UV, CPL hay ND phải đúng số này. Ống có ren thì vặn filter trực tiếp, ống có thấu kính trước lồi thì không lắp được filter vặn, còn ống siêu tele dùng filter cắm vào đuôi ống.**
+
+#### Các cỡ filter hay gặp và ống dùng cỡ nào
+- Cỡ hay gặp: 49, 55, 67, 72, 77, 82 mm.
+- [[E PZ 16-50mm F3.5-5.6 OSS II]] dùng filter 40,5 mm, [[FE 20-70mm F4 G]] dùng 72 mm, [[FE 24-70mm F2.8 GM II]] dùng 82 mm.
+- Dùng vòng chuyển (step-up ring) để lắp chung một bộ filter cỡ lớn cho nhiều ống.
+
+#### Ống nào không lắp được filter vặn ren
+- Ống có thấu kính trước lồi như [[FE 12-24mm F2.8 GM]], [[FE 14mm F1.8 GM]] không lắp được filter vặn ren.
+- Ống siêu tele như [[FE 400mm F2.8 GM OSS]] dùng filter drop-in 40,5 mm, cắm vào khe ở phần đuôi ống.
+
+#### Khi nào nên dùng filter ND hoặc CPL
+- ND để giảm sáng khi chụp phơi sáng dài hoặc quay phim ngoài trời nắng. Xem [[Phơi sáng dài]].
+- CPL để giảm phản chiếu trên mặt nước, kính và làm trời xanh hơn.
+
+#### Liên quan
+[[Phơi sáng dài]] · [[Tiêu cự]] · [[Dòng ống kính G và G Master]]
+
+### OSS
+
+**OSS (Optical SteadyShot) là chống rung quang học nằm trong ống kính, bù rung bằng một nhóm thấu kính dịch chuyển. Ống có chữ OSS trong tên là ống có chống rung. Khi chọn máy không có IBIS như A6400 hay ZV-E10, OSS của ống là cách duy nhất để chống rung khi chụp ảnh.**
+
+#### OSS hoạt động thế nào và ống nào có OSS
+- Một nhóm thấu kính trong ống dịch chuyển để bù rung tay.
+- Với máy không có [[Chống rung IBIS]] như [[A6400]], [[ZV-E10]], OSS là cách duy nhất để chống rung khi chụp ảnh.
+- Ống kit [[E PZ 16-50mm F3.5-5.6 OSS II]] và ống du lịch [[E 18-135mm F3.5-5.6 OSS]] đều có OSS.
+- Gắn ống OSS lên máy có IBIS thì hai hệ cùng làm việc.
+
+#### Công tắc chế độ OSS
+Một số ống tele có công tắc MODE:
+- **MODE 1**: chống rung thông thường.
+- **MODE 2**: dùng khi lia máy theo chủ thể. Xem [[Panning]].
+- **MODE 3**: tối ưu cho chủ thể chuyển động nhanh, giữ khung ngắm ổn định khi bạn liên tục đổi hướng máy.
+- Ống có đủ 3 chế độ: [[FE 70-200mm F2.8 GM OSS II]], [[FE 200-600mm F5.6-6.3 G OSS]], [[FE 400mm F2.8 GM OSS]].
+
+#### Liên quan
+[[Chống rung IBIS]] · [[Chống rung điện tử]] · [[Tiêu cự]] · [[Panning]]
+
+### Pin máy ảnh Sony
+
+**Pin máy ảnh Sony là nguồn điện của thân máy, mỗi nhóm máy dùng một loại riêng như NP-FW50, NP-FZ100 hay NP-BX1. Thời lượng pin ghi trên thông số đo theo CIPA, gồm số ảnh chụp và số phút quay sau một lần sạc đầy. Khi chọn máy, hãy xem loại pin và số CIPA.**
+
+#### Mỗi máy Sony dùng pin loại nào
+- **NP-FW50**: [[ZV-E10]], [[A6400]], [[A6100]].
+- **NP-FZ100**: [[A7C II]], [[A7 IV]], [[A6700]], [[A6600]], [[ZV-E10 II]] và hầu hết máy full-frame từ [[A7 III]] trở đi.
+- **NP-BX1**: máy compact như [[RX100 VII]], [[ZV-1 II]], [[ZV-1F]].
+- Lên đời từ [[ZV-E10]] sang [[ZV-E10 II]] phải mua pin mới: pin NP-FW50 không lắp vừa.
+
+#### Số ảnh và phút quay CIPA nghĩa là gì
+- [[ZV-E10]]: khoảng 440 ảnh hoặc 80 phút quay.
+- [[A6400]]: khoảng 410 ảnh hoặc 75 phút quay.
+- [[A7C II]]: khoảng 560 ảnh hoặc 105 phút quay.
+- Phép đo CIPA chụp cách nhau 30 giây, có bật tắt máy và dùng flash nếu máy có. Chụp thực tế thường được nhiều ảnh hơn. Quay phim liên tục thì hao pin nhanh hơn.
+
+#### Mẹo kéo dài thời lượng pin khi đi chụp
+- Mang thêm một pin dự phòng cho buổi chụp dài.
+- Máy đời mới sạc được qua cổng USB-C, kể cả bằng sạc dự phòng.
+- Trời lạnh pin tụt nhanh. Giữ pin dự phòng trong túi áo.
+
+#### Liên quan
+[[Bộ nhớ cài đặt và Memory Recall]] · [[Độ phân giải và tốc độ khung hình video]]
+
+### Power Zoom
+
+**Ống Power Zoom (chữ PZ trong tên) là ống zoom bằng mô-tơ, nên zoom đều và êm, rất hợp khi quay phim. Ống kit E PZ tự thu ngắn khi tắt máy, mang đi gọn hơn. Khi chọn ống, nếu bạn quay video nhiều, hãy tìm chữ PZ trong tên.**
+
+#### Power Zoom hoạt động thế nào
+- Zoom bằng vòng hoặc lẫy trên ống kính, bằng cần zoom trên thân máy nếu máy có, hoặc bằng điều khiển từ xa.
+- [[ZV-E10]] có cần zoom quanh nút chụp nên điều khiển ống PZ rất tiện.
+- Ống kit [[E PZ 16-50mm F3.5-5.6 OSS II]] tự thu ngắn lại khi tắt máy nên rất gọn.
+
+#### Các ống Power Zoom APS-C và full-frame
+- APS-C: [[E PZ 16-50mm F3.5-5.6 OSS II]], [[E PZ 10-20mm F4 G]], [[E PZ 18-105mm F4 G OSS]].
+- Full-frame: [[FE PZ 16-35mm F4 G]], [[FE PZ 28-135mm F4 G OSS]].
+
+#### Chỉnh tốc độ zoom trên máy Sony
+- Chỉnh tốc độ zoom trong mục Tốc độ zoom khi quay phim, để cú zoom chậm và đều.
+
+#### Liên quan
+[[Ống kính zoom và ống kính fix]] · [[Tiêu cự]] · [[Độ phân giải và tốc độ khung hình video]]
+
+### Tiêu cự
+
+**Tiêu cự là thông số tính bằng mm, quyết định góc nhìn của ống kính. Số nhỏ cho góc rộng, số lớn kéo cảnh ở xa lại gần. Khi chọn ống, tiêu cự cho biết ống hợp phong cảnh, đường phố, chân dung hay thể thao, và tiêu cự càng dài thì rung tay càng lộ.**
+
+#### Tiêu cự bao nhiêu thì hợp với từng thể loại
+- Dưới 24 mm: siêu rộng, hợp phong cảnh, kiến trúc, vlog cầm tay.
+- 24–35 mm: góc rộng, chụp đường phố, du lịch.
+- Khoảng 50 mm: góc nhìn gần với mắt người.
+- 85–135 mm: chân dung.
+- Trên 200 mm: tele, chụp thể thao, chim.
+
+#### Đọc tiêu cự trên thông số ống kính
+- Ống zoom ghi hai số: tiêu cự min và tiêu cự max, ví dụ [[FE 20-70mm F4 G]] là 20–70 mm.
+- Ống fix chỉ ghi một số. Xem [[Ống kính zoom và ống kính fix]].
+- Trên máy APS-C, nhân tiêu cự với 1,5 để ra góc nhìn tương đương full-frame. Ống [[E PZ 16-50mm F3.5-5.6 OSS II]] trên [[ZV-E10]] cho góc nhìn như 24–75 mm. Xem [[Cảm biến hình ảnh]].
+
+#### Tiêu cự ảnh hưởng gì khi chụp
+- Tiêu cự càng dài, rung tay càng lộ. Cần [[Tốc độ màn trập]] nhanh hơn, hoặc dùng [[OSS]].
+- Tiêu cự dài làm hậu cảnh trông gần và mờ hơn. Xem [[Độ sâu trường ảnh và xóa phông]].
+
+#### Liên quan
+[[Ống kính zoom và ống kính fix]] · [[Cảm biến hình ảnh]] · [[Khẩu độ]] · [[OSS]]
+
+### Độ phân giải và tốc độ khung hình video
+
+**Độ phân giải video là kích thước khung hình: 4K là 3840 × 2160, Full HD (1080p) là 1920 × 1080. Tốc độ khung hình là số khung mỗi giây, ghi kèm chữ "p" như 24p, 30p, 60p, 120p. Khi chọn máy, hãy xem máy quay 4K tối đa ở tốc độ nào.**
+
+#### Tốc độ khung hình nào hợp với bạn
+- 24p cho cảm giác điện ảnh. 30p dùng cho video thường.
+- 60p cho chuyển động mượt, làm chậm được 2 lần. 120p làm chậm được 4 đến 5 lần.
+- Quy tắc dễ nhớ: [[Tốc độ màn trập]] khoảng 1/(2 × tốc độ khung hình). Quay 25p dùng 1/50 giây, quay 50p dùng 1/100 giây.
+
+#### NTSC và PAL khác nhau thế nào khi quay
+- Trang thông số Sony Nhật ghi theo NTSC: 24p, 30p, 60p, 120p.
+- Máy bán ở Việt Nam mặc định PAL: 25p, 50p, 100p.
+- Muốn quay 24p hoặc 30p, đổi máy sang NTSC trong menu Cài đặt (NTSC/PAL Selector).
+
+#### Máy Sony quay 4K ở tốc độ khung hình nào
+- [[ZV-E10]], [[A6400]]: 4K tối đa 30p, Full HD tối đa 120p.
+- [[A7C II]], [[ZV-E10 II]], [[A7 IV]]: 4K tối đa 60p.
+- [[A6700]], [[A7S III]], [[A1]], [[A9 III]]: 4K tối đa 120p.
+- Một số máy cắt khung hình (crop) khi quay 4K 60p hoặc 120p. Xem bảng thông số của từng máy.
+
+#### Liên quan
+[[Picture Profile]] · [[Tốc độ màn trập]] · [[Hệ menu Legacy và New-gen]] · [[Chống rung điện tử]]
+
+### Độ phân giải ảnh tĩnh
+
+**Độ phân giải ảnh tĩnh là số điểm ảnh của tấm ảnh, tính bằng megapixel (MP, triệu điểm ảnh). Ảnh 33 MP của [[A7C II]] rộng 7008 và cao 4672 điểm ảnh. Khi chọn máy, nhiều MP in được khổ lớn và cắt ảnh thoải mái, còn ít MP trên full-frame hợp quay phim và chụp thiếu sáng.**
+
+#### Nhiều MP có lợi và hại gì
+- Thông số ghi "tối đa" là ảnh cỡ L, cỡ lớn nhất trong mục Kích thước ảnh.
+- Nhiều MP thì in được khổ lớn và cắt ảnh thoải mái. Đổi lại tập tin nặng hơn và cần ống kính sắc nét hơn.
+- Ít MP trên cảm biến full-frame thì mỗi điểm ảnh to hơn, hợp quay phim và chụp thiếu sáng.
+
+#### Máy Sony có bao nhiêu MP
+- 24,2 MP: [[ZV-E10]], [[A6400]], [[A6100]].
+- 26 MP: [[A6700]], [[ZV-E10 II]].
+- 33 MP: [[A7C II]], [[A7 IV]].
+- 61 MP: [[A7R V]], [[A7CR]].
+- 12,1 MP: [[A7S III]], [[ZV-E1]]. Đây là máy thiên về quay phim.
+
+#### Gắn ống E lên máy full-frame ảnh nhỏ đi thế nào
+- Máy full-frame chụp ở khổ APS-C (khi gắn ống E) thì ảnh nhỏ lại. [[A7C II]] còn khoảng 14 MP.
+- Muốn giữ đủ chi tiết để chỉnh màu, chụp RAW. Xem [[RAW, JPEG và HEIF]].
+
+#### Liên quan
+[[Cảm biến hình ảnh]] · [[RAW, JPEG và HEIF]] · [[Độ phân giải và tốc độ khung hình video]]
+
+### Ống kính zoom và ống kính fix
+
+**Ống zoom là ống kính đổi được tiêu cự bằng vòng zoom, còn ống fix (prime) chỉ có một tiêu cự. Bù lại, ống fix thường sáng hơn, gọn hơn và sắc nét hơn. Khi chọn ống, zoom linh hoạt cho du lịch và sự kiện, còn fix hợp chụp thiếu sáng và xóa phông mạnh.**
+
+#### Ống zoom và ống fix khác nhau thế nào
+- **Zoom**: linh hoạt, một ống thay được nhiều ống. Hợp du lịch, sự kiện.
+- **Fix**: khẩu độ lớn như F1.4, F1.8 nên xóa phông mạnh và chụp tốt khi thiếu sáng. Muốn đổi khung thì bạn bước tới hoặc lùi lại.
+
+#### Khẩu độ của ống zoom cố định hay thay đổi
+- **Khẩu độ cố định**: giữ một số f suốt dải zoom, như F4 của [[FE 20-70mm F4 G]] hay F2.8 của [[FE 24-70mm F2.8 GM II]].
+- **Khẩu độ thay đổi**: ghi hai số như F3.5–5.6. Ống [[E PZ 16-50mm F3.5-5.6 OSS II]] mở lớn nhất F3.5 ở 16 mm nhưng chỉ còn F5.6 ở 50 mm.
+
+#### Ống kit và ống fix cho máy APS-C
+- Giữ ống kit để đi chơi, thêm một ống fix sáng như [[E 35mm F1.8 OSS]] để chụp chân dung và chụp trong nhà.
+
+#### Liên quan
+[[Tiêu cự]] · [[Khẩu độ]] · [[Power Zoom]] · [[Độ sâu trường ảnh và xóa phông]]
 
 ### 8 bài thực hành
 
@@ -730,11 +1326,11 @@ Ví dụ: `20260430 - Dalat - Day 1 - Card 1 - HoTuyenLam - Wedding - HungYen`
 #### 10 cài đặt cần kiểm tra
 1. Chế độ **A** (Ưu tiên khẩu độ): tự chọn độ xóa phông, chỉnh sáng bằng **bù sáng**.
 2. **ISO AUTO 100–6400**: máy tự cân bằng giữa độ sáng và nhiễu.
-3. **Tốc độ tối thiểu của ISO AUTO** (ISO AUTO Min. SS) **1/125s** (hoặc "nhanh hơn" một nấc): hạn chế nhòe khi chụp người.
+3. **Tốc độ tối thiểu của ISO AUTO** (ISO AUTO Min. SS) **1/125s** (hoặc "nhanh hơn" một nấc): hạn chế nhòe khi chụp người. ZV-E10 không có mục này: dùng chế độ S, hoặc chế độ M kèm ISO AUTO.
 4. **AF-C** (lấy nét liên tục) cho chủ thể hoặc người chụp di chuyển.
 5. Vùng lấy nét **Theo dõi: Vùng** (Tracking: Zone): máy bám nét ổn định.
 6. Tùy chọn: gán **AF-ON** và tắt lấy nét theo nút chụp (AF w/ shutter: Off) → [[Lấy nét]].
-7. Đo sáng **Đa điểm** + **Ưu tiên mặt khi đo đa điểm: Bật** → [[Đo sáng]].
+7. Đo sáng **Đa điểm** + **Ưu tiên mặt (đa điểm): Bật** → [[Đo sáng]].
 8. Creative Look **ST** cho JPEG trung tính, hoặc **PT** khi chụp chân dung → [[Creative Look]].
 9. **Độ sáng màn hình: Sunny Weather** (trời nắng) để dễ nhìn ngoài trời.
 10. **Chất lượng hiển thị: Cao** (High) để xem chi tiết, kiểm tra nét.
@@ -742,7 +1338,7 @@ Ví dụ: `20260430 - Dalat - Day 1 - Card 1 - HoTuyenLam - Wedding - HungYen`
 #### Tối ưu menu Sony Alpha, 4 bước
 **Bước 1 — Phong cách chụp, chất lượng ảnh:** chế độ A, EV 0 · khẩu độ tự chọn · tốc độ Auto · ISO 100–6400, tốc độ tối thiểu 1/125s · ảnh JPEG 24M · Không gian màu sRGB.
 
-**Bước 2 — Đo sáng và màu:** ISO AUTO 100–6400, tốc độ tối thiểu "nhanh hơn 1/125" · Làm mịn da: Bật – Thấp · Creative Look PT (Contrast +1, Highlights −6, Shadows +3, Fade +1, Saturation 0, Sharpness 0, Sharpness Range 1, Clarity 0) · Cân bằng trắng AWB, chỉnh tinh A 3.5 / G 3 (xem [[Đính chính slide]]) · Đo sáng Đa điểm · Ưu tiên mặt khi đo đa điểm: Bật.
+**Bước 2 — Đo sáng và màu:** ISO AUTO 100–6400, tốc độ tối thiểu "nhanh hơn 1/125" · Làm mịn da: Bật – Thấp · Creative Look PT (Contrast +1, Highlights −6, Shadows +3, Fade +1, Saturation 0, Sharpness 0, Sharpness Range 1, Clarity 0) · Cân bằng trắng AWB, chỉnh tinh A 3.5 / G 3 (xem [[Đính chính slide]]) · Đo sáng Đa điểm · Ưu tiên mặt (đa điểm): Bật.
 
 **Bước 3 — Lấy nét chuyên nghiệp:** Vùng lấy nét Vùng (Theo dõi) · AF-C · Nhận dạng chủ thể: Bật – Người · Nút tùy chỉnh: gán AF-ON.
 
@@ -754,7 +1350,7 @@ Ví dụ: `20260430 - Dalat - Day 1 - Card 1 - HoTuyenLam - Wedding - HungYen`
 
 #### Giảng thế nào
 - Làm "cầm tay chỉ việc" trên máy của học viên, theo đúng thứ tự 4 bước; mỗi bước nói lý do một câu.
-- Tên mục và vị trí menu khác nhau giữa các model. Khi dạy máy để menu tiếng Việt, dùng tên trong ngoặc ở đây (theo bộ nhớ dịch ILDC); máy tiếng Anh thì dùng tên tiếng Anh.
+- Tên mục và vị trí menu khác nhau giữa các model: bảng đường dẫn Legacy Menu và New-gen Menu ở [[Hệ menu Legacy và New-gen]], khác biệt theo máy ở [[Khác biệt ZV-E10, A6400 và A7C II]]. Khi dạy máy để menu tiếng Việt, dùng tên trong ngoặc ở đây (theo bộ nhớ dịch ILDC); máy tiếng Anh thì dùng tên tiếng Anh.
 - Bài viết chi tiết: sonycolorlab.app/vi/blog/setup.
 
 #### Liên quan

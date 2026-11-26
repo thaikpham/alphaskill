@@ -9,9 +9,10 @@ tags: [sony-alpha-viet/kien-thuc]
 
 # RAW, JPEG và HEIF
 
-**RAW là dữ liệu thô từ cảm biến, giữ nhiều thông tin nhất nhưng bắt buộc phải hậu kỳ; JPEG và HEIF là ảnh đã được chip BIONZ của máy xử lý màu, nét, nhiễu, dùng được ngay.**
+**RAW là dữ liệu thô từ cảm biến, giữ được nhiều thông tin nhất nhưng phải hậu kỳ mới thành ảnh. JPEG và HEIF là ảnh đã qua chip BIONZ của máy xử lý màu, nét và nhiễu, dùng được ngay nhưng ít chỗ sửa hơn.**
 
-## So sánh nhanh
+## RAW, JPEG hay HEIF khác nhau ở đâu
+
 | | RAW (.ARW) | JPEG | HEIF |
 |---|---|---|---|
 | Xử lý | Chưa; cần phần mềm (Imaging Edge, Lightroom, Capture One) | Máy xử lý theo Creative Look | Máy xử lý theo Creative Look |
@@ -20,12 +21,17 @@ tags: [sony-alpha-viet/kien-thuc]
 | Dung lượng | Lớn | Nhỏ | Nhỏ hơn JPEG cùng chất lượng |
 | Mở được ở đâu | Phần mềm hỗ trợ | Mọi nơi | Thiết bị/phần mềm mới; đôi khi phải chuyển đổi |
 
+## File RAW có đuôi nào
+
 - Máy Sony Alpha ghi RAW đuôi **.ARW** (có tùy chọn nén, không nén, nén không mất dữ liệu tùy model). **DNG** là định dạng RAW mở của Adobe, có được khi chuyển đổi trong phần mềm.
 
 ## Khi nào chọn gì
+
+Ví dụ: chụp tiệc để đăng ngay trên A6400 thì JPEG là đủ. Chụp ngược sáng ngoài trời trên A7C II để kéo lại vùng tối khi hậu kỳ thì chọn RAW.
+
 - **JPEG/HEIF**: sự kiện, du lịch, cần đăng nhanh, người chưa biết hậu kỳ. Chọn đúng Creative Look và cân bằng trắng ngay khi chụp.
 - **RAW**: ánh sáng khó (ngược sáng, đèn hỗn hợp), [[Silhouette]], [[Chồng ảnh]], khi muốn hậu kỳ sâu. Đòi hỏi kiến thức và thời gian xử lý.
-- **RAW + JPEG**: vừa có ảnh dùng ngay, vừa có file dự phòng. Tốn thẻ nhớ gấp đôi.
+- **RAW + JPEG**: vừa có ảnh dùng ngay, vừa có file dự phòng. Tốn thêm dung lượng thẻ nhớ và ổ lưu trữ.
 - Không gian màu: **sRGB** cho ảnh đăng mạng và người mới; Adobe RGB chỉ khi cả quy trình in ấn hỗ trợ.
 
 ## Giảng thế nào
