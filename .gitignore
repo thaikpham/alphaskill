@@ -19,3 +19,7 @@ __pycache__
 .impeccable/
 .vercel
 .env*
+
+# Cloudflare Worker (wrangler.jsonc)
+node_modules/
+.wrangler/

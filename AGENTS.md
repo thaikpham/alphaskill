@@ -143,6 +143,6 @@ Prompts: /sony-alpha-viet:translate_menu, /sony-alpha-viet:write_blog, /sony-alp
 uv sync
 uv run pytest -q (bao gồm tests/test_aio.py)
 Env: SONY_VN_DATA, SONY_VN_FONT
-API công khai (chỉ đọc): https://api.alphacolorlab.com — `GET /v1` (danh sách tool + tham số), `GET /v1/<tool>?…` hoặc `POST /v1/<tool>` JSON, MCP ở `/mcp`. Chạy trên máy: `uv run sony-alpha-viet-mcp --http --read-only --port 8765`. Deploy: Vercel, entry `api/index.py`, đọc `data/`.
+API công khai (chỉ đọc): https://api.alphacolorlab.com — `GET /v1` (danh sách tool + tham số), `GET /v1/<tool>?…` hoặc `POST /v1/<tool>` JSON, MCP ở `/mcp`. Chạy trên máy: `uv run sony-alpha-viet-mcp --http --read-only --port 8765`. Deploy: Cloudflare Worker `alphaskill-api` + Container (`wrangler.jsonc`, `worker/index.ts`, `Dockerfile`): Workers Builds chạy `npx wrangler deploy` khi push lên `main`, container chạy `sony-alpha-viet-mcp --http --read-only` trên `data-sample/`. `api/index.py` + `vercel.json` là bản Vercel cũ.
 
 Hook (`.claude/settings.json` → `scripts/claude_hook.py`): chặn commit/push file dữ liệu vào repo code (PDF, XLSX, tm.jsonl, LEARNING_LOG.md, knowledge/ — chúng thuộc alphaskill-data) và tự build lại `portable/` sau khi sửa `skills/sony-alpha-viet/`.
