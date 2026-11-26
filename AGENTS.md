@@ -141,7 +141,8 @@ Prompts: /sony-alpha-viet:translate_menu, /sony-alpha-viet:write_blog, /sony-alp
 ## Phát triển
 
 uv sync
-uv run pytest -q (bao gồm tests/test_aio.py)
+uv run alphaskill check (ruff + pytest + build --check, đúng như CI)
+Một lệnh cho mọi việc: `uv run alphaskill` liệt kê serve, info, agent, review-pairs, obsidian, build, export, publish, check. Lệnh cũ (`sony-alpha-viet-mcp`, `scripts/*.py`) vẫn chạy.
 Env: SONY_VN_DATA, SONY_VN_FONT
 API công khai (chỉ đọc): https://api.alphacolorlab.com — `GET /v1` (danh sách tool + tham số), `GET /v1/<tool>?…` hoặc `POST /v1/<tool>` JSON, MCP ở `/mcp`. Chạy trên máy: `uv run sony-alpha-viet-mcp --http --read-only --port 8765`. Deploy: Cloudflare Worker `alphaskill-api` + Container (`wrangler.jsonc`, `worker/index.ts`, `Dockerfile`): Workers Builds chạy `npx wrangler deploy` khi push lên `main`, container chạy `sony-alpha-viet-mcp --http --read-only` trên `data-sample/`. `api/index.py` + `vercel.json` là bản Vercel cũ.
 

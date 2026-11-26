@@ -617,7 +617,7 @@ def main():
     """stdio (Claude Code, Gemini CLI) by default; --http for remote clients (ChatGPT developer mode, other MCP hosts)."""
     import argparse
     import sys
-    ap = argparse.ArgumentParser(prog="sony-alpha-viet-mcp")
+    ap = argparse.ArgumentParser()  # prog from argv: sony-alpha-viet-mcp or "alphaskill serve"
     ap.add_argument("--http", action="store_true", help="chạy HTTP thay vì stdio: MCP ở /mcp, REST JSON ở /v1/<tool>")
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8765)

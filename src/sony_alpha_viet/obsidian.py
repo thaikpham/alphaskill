@@ -450,7 +450,7 @@ def audit_note(path: str, primary_keyword: str = "") -> dict:
 
 
 def main():
-    ap = argparse.ArgumentParser(prog="sony-alpha-viet-obsidian", description="Đồng bộ Sony Alpha Việt với vault Obsidian")
+    ap = argparse.ArgumentParser(description="Đồng bộ Sony Alpha Việt với vault Obsidian")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("export", help="ghi/cập nhật note thuật ngữ, bảng, rà soát, bản sao skill")
     im = sub.add_parser("import", help="đưa thuật ngữ và kiến thức sửa trong Obsidian về kho dữ liệu")
